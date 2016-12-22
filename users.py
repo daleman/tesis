@@ -84,7 +84,7 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 	while (usr_prov < cant_tweets):
 		for coord in coords:
 			if usr_prov >= cant_tweets:
-				print 'break2'
+				#print 'break2'
 				break
 
 			ic = 0
@@ -144,45 +144,96 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 	return n_app
 
 def plot(canti):
-    plt.title("Histograma de lugares")
-    plt.xlabel("Lugares")
-    plt.ylabel("Frecuencia")
+	plt.title("Histograma de lugares")
+	plt.xlabel("Lugares")
+	plt.ylabel("Frecuencia")
 
-    index = np.arange(len(loc.keys()))
-    bar_width = 0.35
+	index = np.arange(len(loc.keys()))
+	bar_width = 0.35
 
 
-    cant = canti
-    valores = sorted(loc.values(),reverse=True)
-    claves = sorted(loc, key=loc.get,reverse=True)
+	cant = canti
+	valores = sorted(loc.values(),reverse=True)
+	claves = sorted(loc, key=loc.get,reverse=True)
 
-    opacity = 0.4
-    plt.xticks(index + bar_width, claves[:cant], size=6, rotation="vertical")
-    plt.bar(range(cant),valores[:cant],alpha=opacity,color='b',)
-    plt.tight_layout()
-    plt.show()
+	opacity = 0.4
+	plt.xticks(index + bar_width, claves[:cant], size=6, rotation="vertical")
+	plt.bar(range(cant),valores[:cant],alpha=opacity,color='b',)
+	plt.tight_layout()
+	plt.show()
 
 	
-
-
-if __name__ == "__main__":
-
-	mod_print = 200
-	tot_tweets = 2000
-	n_app = 0
+def usuarios_prov(mod_print,tot_tweets,n_app):
 	api = autenticar(n_app)
-	print ids
 	for prov in provincias.keys():
 		print provincias[prov]['name']
 		n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
-	#buscar_tweets(provincias['santacruz']['coord'],api,n_app,100,100000)
-
-	#for f_prov in files_prov.keys():
-	#	files_prov[f_prov]['users'].close()
-	#	files_prov[f_prov]['tweets'].close()
+	
 	print str(tot_tweets * len(provincias.keys())), len(ids)
 	with open('location.json','w') as a_file:
 		a_file.write(json.dumps(loc))
+	return n_app
+
+	# agregar diccionario de cantidad de usuarios por location
+def followers(prov, n_app, f_out):
+	api = autenticar_app(n_app)
+	#with open(f_out,'a') as f:
+	#f.write( "jujuy={" )
+	#	f.write('\n')
+	with open(prov + '_users.json', "r") as ins:
+		#array = []
+		for line in ins:
+			d = json.loads(line)
+			sc = d["screen_name"]
+			foll_temp = []
+			loc_d = {}
+			try:
+				print sc
+				for user in tweepy.Cursor(api.followers,count=200, screen_name=sc).items():
+					#print '\t',user.screen_name, user.location
+					
+					foll_temp.append(user.location)
+
+				#array.append(d)
+					if user.location!="":  
+						location=unicodedata.normalize('NFKD',user.location).encode('ASCII', 'ignore').lower().replace('-',' ').replace(';',' ').replace(',',' ').replace('|',' ').replace('?',' ').replace('¿',' ').replace("\ ",' ').replace('/',' ')
+						location = word_tokenize(location)
+						#print location
+						for prov in provincias.keys():
+							words = provincias[prov]['words']
+							matches=[x for x in location if x in words]
+							if len(matches)>0:
+								if prov in loc_d:
+									loc_d[prov] += 1
+								else:
+									loc_d[prov] = 1
+								#with open(f_out,'a') as f:
+									#f.write(str(sc) + '=' + str(foll_temp))
+									#f.write('\n')
+				with open(f_out,'a') as f:
+					f.write( "'" +str(sc) + "':" + str(loc_d) +',')
+					f.write('\n')
+			except tweepy.TweepError,e:
+				n_app += 1
+				print "Error " + str(e)
+				api = autenticar_app(n_app)
+				continue
+			except Exception, e:
+				print "Error " + str(e)
+				continue
+	
+	with open(f_out,'a') as f:
+		f.write( "}" )
+		f.write('\n')
 	
 
-	plot(20)
+	return n_app
+
+	#'cordoba':{'name': 'Cordoba',
+
+if __name__ == "__main__":
+	#n_app = usuarios_prov(20,100,0)
+	n_app = 5
+	for prov in provincias.keys():
+		n_app = followers(prov,n_app, prov + '_followers.json')
+	#plot(20)
