@@ -10,10 +10,13 @@ import os
 import unicodedata
 import math
 from apps import *
+import datetime
 import sys
 from nltk.tokenize import word_tokenize
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+from jujuy_followers import *
 
 ids= {}
 loc = {}
@@ -69,7 +72,6 @@ def autenticar_app(n_app):
 
 
 
-
 def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 	
 	tweet_count = 0
@@ -88,19 +90,23 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 				break
 
 			ic = 0
-			print str(coords.index(coord)) +  '/' + str(len(coords))
-			prev = usr_prov
+			#print str(coords.index(coord)) +  '/' + str(len(coords))
+			prev = 0
 			
 			#print 'coord, tweet' ,coord, tweet_count
 			#print "Intento " + str(tweet_count)
-
+			act = 0 
 			try:
 				for tweet in tweepy.Cursor(api.search, count=100,lang="es",geocode=(coord + ',10mi')).items():
 					#print(tweet.id)
 					tweet_count += 1
 					ic += 1
 					if tweet_count % printi == 0:
-						print tweet_count, usr_prov					
+						#print '\t' , tweet_count, ic, usr_prov, prev
+						if prev and usr_prov - prev < 3:
+							break
+						prev = usr_prov
+
 					
 
 					if tweet.user.location!="":  
@@ -111,6 +117,7 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 						matches=[x for x in location if x in words]
 						if len(matches)>0 and tweet.user.id not in ids:
 							usr_prov += 1
+							
 							f_users.write(json.dumps(tweet._json['user']))
 							f_users.write("\n")
 							f_tweets.write(json.dumps(tweet._json))
@@ -121,22 +128,18 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
 							if usr_prov >= cant_tweets:
 								#print 'break2'
 								break
+							
 					if ic >= cant_por_coord:
 						#print 'break1'
 						break
-					if ic > 100 and (usr_prov - prev) < 4:
-						#print 'break 3'
-						break
-					
-
-					
+							
 			except tweepy.TweepError,e:
 				n_app += 1
-				print "Error " + str(e)
+				#print "Error " + str(e)
 				api = autenticar_app(n_app)
 				continue
 			except Exception, e:
-				print "Error " + str(e)
+				#print "Error " + str(e)
 				continue
 
 	f_tweets.close()
@@ -166,9 +169,13 @@ def plot(canti):
 def usuarios_prov(mod_print,tot_tweets,n_app):
 	api = autenticar(n_app)
 	for prov in provincias.keys():
-		print provincias[prov]['name']
+		start = datetime.datetime.now()
+		#print provincias[prov]['name']
 		n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
-	
+		end = datetime.datetime.now()
+		diff = (end - start)
+		print provincias[prov]['name'] , diff
+
 	print str(tot_tweets * len(provincias.keys())), len(ids)
 	with open('location.json','w') as a_file:
 		a_file.write(json.dumps(loc))
@@ -177,9 +184,9 @@ def usuarios_prov(mod_print,tot_tweets,n_app):
 	# agregar diccionario de cantidad de usuarios por location
 def followers(prov, n_app, f_out):
 	api = autenticar_app(n_app)
-	#with open(f_out,'a') as f:
-	#f.write( "jujuy={" )
-	#	f.write('\n')
+	with open(f_out,'a') as f:
+		f.write( "jujuy={" )
+		f.write('\n')
 	with open(prov + '_users.json', "r") as ins:
 		#array = []
 		for line in ins:
@@ -187,6 +194,9 @@ def followers(prov, n_app, f_out):
 			sc = d["screen_name"]
 			foll_temp = []
 			loc_d = {}
+			for prov in provincias:
+				loc_d[prov] = 1
+			folls = 0.0
 			try:
 				print sc
 				for user in tweepy.Cursor(api.followers,count=200, screen_name=sc).items():
@@ -203,37 +213,67 @@ def followers(prov, n_app, f_out):
 							words = provincias[prov]['words']
 							matches=[x for x in location if x in words]
 							if len(matches)>0:
-								if prov in loc_d:
-									loc_d[prov] += 1
-								else:
-									loc_d[prov] = 1
-								#with open(f_out,'a') as f:
-									#f.write(str(sc) + '=' + str(foll_temp))
-									#f.write('\n')
+								folls += 1
+								loc_d[prov] += 1
+								#if prov in loc_d:
+								#	loc_d[prov] += 1
+								#else:
+								#	loc_d[prov] = 1
+				
+				for k in loc_d.keys():
+					loc_d[k] =  loc_d[k] / folls					
 				with open(f_out,'a') as f:
 					f.write( "'" +str(sc) + "':" + str(loc_d) +',')
 					f.write('\n')
 			except tweepy.TweepError,e:
 				n_app += 1
-				print "Error " + str(e)
+				#print "Error " + str(e)
 				api = autenticar_app(n_app)
 				continue
 			except Exception, e:
-				print "Error " + str(e)
+				#print "Error " + str(e)
 				continue
-	
 	with open(f_out,'a') as f:
 		f.write( "}" )
 		f.write('\n')
 	
-
+	
 	return n_app
 
 	#'cordoba':{'name': 'Cordoba',
 
 if __name__ == "__main__":
-	#n_app = usuarios_prov(20,100,0)
-	n_app = 5
+	n_app = 10
+	start = datetime.datetime.now()
+		
+	n_app = usuarios_prov(100,2000,n_app)
+	end = datetime.datetime.now()
+	
+	print 'Todas las provincias en: ' + str(end -start)
+		
+	n_app = followers('jujuy',n_app, 'jujuy' + '_followers.json')
 	for prov in provincias.keys():
-		n_app = followers(prov,n_app, prov + '_followers.json')
+		start = datetime.datetime.now()
+		n_app = followers(prov,n_app, prov + '_followers.py')
+		end = datetime.datetime.now()
+		print provincias[prov]['name'] ,str(end -start)
+	
 	#plot(20)
+
+
+
+	#provs = [x+'_jujuy' for x in provincias.keys()]
+
+#	data=[] 
+#	for i,key in enumerate(jujuy.keys() ):
+#		try:	
+#			li = []		
+#			for prov in provincias.keys():
+#				li.append(jujuy[key][prov])
+#			data.append(li)
+#		# if no entry, skip
+#		except:
+#			pass 
+
+#	df=pd.DataFrame(data=data,columns=provs)
+#	print df
