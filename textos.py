@@ -46,12 +46,14 @@ def dictionary(words,provincia):
 		for line in f:
 			content = json.loads(line)
 			texto =  content['text']
-			texto = ' '.join(word for word in texto.split(' ') if not word.startswith('#') and (not word.startswith('@')))
+			texto = ' '.join(word for word in texto.split(' ') if not word.startswith('#'))
+			texto = ' '.join(word for word in texto.split(' ') if not word.startswith('@'))
 			texto = re.sub(r'http\S+', '', texto)
 			m = re.findall('[^\W\d]+', texto, re.UNICODE)
 			#import ipdb; ipdb.set_trace()
 			#print m
 			txt =' '.join(m)
+			print txt
 			texto =  word_tokenize(txt)
 			#print texto
 			for w in texto:
