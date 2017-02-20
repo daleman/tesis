@@ -45,13 +45,18 @@ def autenticar_app(n_app):
 
 
 def save_tweet(tweet,str_file_tweet):
-     with open(str_file,'a') as a_file:
+     with open(str_file_tweet,'a') as a_file:
         json.dump(tweet._json, a_file)
         a_file.write('\n')    
 
 def save_text(tweet,str_file_text):
     with open(str_file_text,'a') as a_file:
-        a_file.write(t.text.encode('utf-8') + '\n')
+        a_file.write(tweet.text.encode('utf-8') + '\n')
+
+def save_tokens(tokens,str_file_text):
+    with open(str_file_text,'a') as a_file:
+        json.dump(tokens, a_file)
+        a_file.write('\n')
 
 def save_dat(i,tot,total,cant_tot_tweets,str_file_dat):
     with open(str_file_dat,'a') as a_file:
@@ -59,24 +64,23 @@ def save_dat(i,tot,total,cant_tot_tweets,str_file_dat):
         a_file.write('\n') 
 
 def save_tiempos(prov,start,printi,str_file_tiempos):
-    end = datetime.datetime.now
+    end = datetime.datetime.now()
     print prov, end - start
     with open(str_file_tiempos,'a') as fil:
         fil.write(str(printi) + ' ' + prov + ' ' + str(end-start) + '\n')
 
 
-def tweets_prov(api,file_users= 'ult_json/' + prov + '_users.json',cant_tweets_max_usuario = 200000,cant_words_prov = 2000000,num_usr = 0)
+def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_usr ,dias,pares):
     total_words = 0         # cantidad total de palabras
     cant_tot_tweets = 0
     start = datetime.datetime.now()
-    #cant_words_prov = 5000000        # cantidad de palabras por provincia
-    #   cant_tweets_max_usuario = 200000
     word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
     i = 0
+    los_dias = 'pares' if pares else 'impares'
 
     print prov
 
-     with open(file_users) as f:
+    with open(file_users) as f:
         for line in f:
             if i < num_usr:
                 i+=1
@@ -88,12 +92,13 @@ def tweets_prov(api,file_users= 'ult_json/' + prov + '_users.json',cant_tweets_m
                 cant_tweets = 0
                 
                 for t in tweepy.Cursor(api.user_timeline, id=elid,count = 200, include_rts = False ).items():
-                    dia = t.created_at
+                    dia = t.created_at.weekday()
                     if dia in dias:
                         cant_tweets +=1
                         texto = tokenize(t.text)
-                        save_tweet(t,'tweets2/' + prov  + '_tweets.json')
-                        save_text(t,'tweets2/' + prov  + '_text.txt')
+                        save_tweet(t,'tweetsFinal/' + los_dias + '/' + prov  + '_tweets.json')
+                        save_text(t,'tweetsFinal/' + los_dias + '/' + prov  + '_text.txt')
+                        save_tokens(texto,'tweetsFinal/' + los_dias + '/' + prov  + '_tokens.txt')
                         l = len(texto)
                         words_user_tot += l
                     if cant_tweets == cant_tweets_max_usuario:
@@ -101,10 +106,10 @@ def tweets_prov(api,file_users= 'ult_json/' + prov + '_users.json',cant_tweets_m
                 total_words += words_user_tot
                 cant_tot_tweets += cant_tweets
                 num_usr+=1
-                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,cant_words_prov,'tweets2/' + prov  + '.dat')
+                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweetsFinal/' + los_dias + '/'+ prov  + '.dat')
                 
                 if total_words > cant_words_prov:
-                    save_tiempos(prov,start,'tweets2/tiempos.dat')
+                    save_tiempos(prov,start,cant_words_prov,'tweetsFinal/' + los_dias + '/' + 'tiempos.dat')
                     break
             except Exception, e:   
                 app += 1
@@ -112,7 +117,8 @@ def tweets_prov(api,file_users= 'ult_json/' + prov + '_users.json',cant_tweets_m
                 api = autenticar_app(app)
                 continue
 
-    return num_usr 
+    return num_usr
+     
 
 if __name__ == "__main__":
 
@@ -120,55 +126,10 @@ if __name__ == "__main__":
     prov = (sys.argv[2])
     api = autenticar_app(app)
 
-    total_words = 0         # cantidad total de palabras
-    start = datetime.datetime.now()
-    i = 0                   # numero de usuario
-    cant_words_prov = 5000000        # cantidad de palabras por provincia
-    word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
-
-    cant_tot_tweets = 0
-    cant_max_usuario = 200000
-
-    arch = 'ult_json/' + prov + '_users.json'
-    print prov
-
-    # Hacer una funcion que tome como parametros los nombres de los archivos,
-    # cuantas palabras y que separe el conjunto de datos por usuarios y por dias
-    # half_num_lines = sum(1 for line in f) / 2
-       
-
-    with open(arch) as f:
-        for line in f:
-
-            d = json.loads(line)
-            try:
-                elid = d['id']
-                words_user_tot = 0
-                cant_tweets = 0
-                
-                for t in tweepy.Cursor(api.user_timeline, id=elid,count = 200, include_rts = False ).items():
-                    cant_tweets +=1
-                   
-
-                    
-                        texto = tokenize(t.text)
-                        save_tweet(t,'tweets2/' + prov  + '_tweets.json')
-                        save_text(t,'tweets2/' + prov  + '_text.txt')
-                        l = len(texto)
-                        #print texto, l
-                        words_user_tot += l
-                    if cant_tweets == cant_max_usuario:
-                        break 
-                total_words += words_user_tot
-                cant_tot_tweets += cant_tweets
-                i+=1
-                save_dat(i,words_user_tot,total_words,cant_tot_tweets,cant_words_prov,'tweets2/' + prov  + '.dat')
-                
-                if total_words > cant_words_prov:
-                    save_tiempos(prov,start,'tweets2/tiempos.dat')
-                    break
-            except Exception, e:   
-                app += 1
-                print "Error " + str(e)
-                api = autenticar_app(app)
-                continue
+    cant_tweets_max_usuario = 200000
+    cant_words_prov = 3000000
+    num_usr = 0
+    dias = [0,2,4,6]
+    n = tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,num_usr,dias,True)
+    dias2 = [1,3,5]
+    tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,n,dias2,False)

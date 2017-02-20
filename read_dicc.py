@@ -81,6 +81,27 @@ def read_dicc_stop(file_path,tot):
 		print total
 	return claves,valores
 
+def save_texts(file_path)
+	i = 0
+	total = 0
+	claves = []
+	valores = []
+	tot = 100
+	with open(file_path) as f:
+		for line in f:
+			l = line.split()
+			word = l[0]
+			frequency = int(l[1])
+			claves.append(word)
+			valores.append(float(frequency))
+			i+=1
+			if i == tot:
+				break
+			total += frequency
+		print total
+	return claves,valores
+	
+
 
 if __name__ == "__main__":
 
