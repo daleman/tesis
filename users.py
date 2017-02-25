@@ -17,7 +17,6 @@ from nltk.tokenize import word_tokenize
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-from jujuy_followers import *
 from sklearn.cross_validation import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -80,11 +79,10 @@ def autenticar_app(n_app):
 def buscar_tweets(prov,api,n_app,printi,cant_tweets):
     
     tweet_count = 0
-    cant_tweets = cant_tweets
     coords = provincias[prov]['coords']
     
-    f_tweets = open(prov+'_tweets.json','a')
-    f_users = open(prov+'_users.json','a')
+    f_tweets = open('users/' + prov+'_tweets.json','a')
+    f_users = open('users/' + prov+'_users.json','a')
     usr_prov = 0
     cant_por_coord = 40000
     
@@ -94,20 +92,19 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                 #print 'break2'
                 break
 
-            ic = 0
+            icoord = 0
             #print str(coords.index(coord)) +  '/' + str(len(coords))
             prev = 0
             
             #print 'coord, tweet' ,coord, tweet_count
             #print "Intento " + str(tweet_count)
-            act = 0 
             try:
                 for tweet in tweepy.Cursor(api.search, count=100,lang="es",geocode=(coord + ',20mi')).items():
                     #print(tweet.id)
                     tweet_count += 1
-                    ic += 1
+                    icoord += 1
                     if tweet_count % printi == 0:
-                        print '\t' , tweet_count, ic, usr_prov, prev
+                        print '\t' , tweet_count, icoord, usr_prov, prev, coord
                         if prev and usr_prov - prev < 2:
                             break
                         prev = usr_prov
@@ -134,7 +131,7 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                                 #print 'break2'
                                 break
                             
-                    if ic >= cant_por_coord:
+                    if icoord >= cant_por_coord:
                         #print 'break1'
                         break
                             
@@ -172,7 +169,7 @@ def plot(canti):
 
     
 def usuarios_prov(mod_print,tot_tweets,n_app):
-    api = autenticar(n_app)
+    api = autenticar_app(n_app)
     for prov in provincias.keys():
         start = datetime.datetime.now()
         #print provincias[prov]['name']
@@ -182,7 +179,7 @@ def usuarios_prov(mod_print,tot_tweets,n_app):
         print provincias[prov]['name'] , diff
 
     print str(tot_tweets * len(provincias.keys())), len(ids)
-    with open('location.json','w') as a_file:
+    with open('users/' + 'location.json','w') as a_file:
         a_file.write(json.dumps(loc))
     return n_app
 
@@ -262,17 +259,17 @@ def followers(prov, n_app, f_out):
 
     
 if __name__ == "__main__":
-    # n_app = 0
-    # start = datetime.datetime.now()
+    n_app = 0
+    start = datetime.datetime.now()
     
     # #n_app = int(sys.argv[1])
     # #prov = sys.argv[2]
-    # #api = autenticar(n_app)
-    # #mod_print = 400
-    # #tot_tweets = 10000
+    api = autenticar(n_app)
+    mod_print = 20000
+    tot_tweets = 10000
 
-    # n_app = usuarios_prov(400,10000,n_app)
-    # end = datetime.datetime.now()
+    n_app = usuarios_prov(mod_print,tot_tweets,n_app)
+    end = datetime.datetime.now()
 
     # #start = datetime.datetime.now()
     # #print provincias[prov]['name']
@@ -299,21 +296,21 @@ if __name__ == "__main__":
     
     # #plot(20)
 
-    frames = []
-    for pr in provincias:
-        with open('provs/' + pr + '.pkl') as f:
-            df = pd.DataFrame(pickle.load(f))
-        #df = pd.read_pickle('provs/' + pr + '.pkl')
-        df['class'] = pr
-        frames.append(df)
-        df.to_pickle(pr + '.pickle')
-    result = pd.concat(frames,ignore_index=True,keys=provincias.keys())
-    print result.describe()
-    y = result['class']
-    X = result.drop('class', 1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
-    result.to_pickle('features.pickle')
-    clf = RandomForestClassifier()
-    clf.fit(X_train,y_train)
-    y_pred = clf.predict(X_test)
-    print accuracy_score(y_test, y_pred)
+    # frames = []
+    # for pr in provincias:
+    #     with open('provs/' + pr + '.pkl') as f:
+    #         df = pd.DataFrame(pickle.load(f))
+    #     #df = pd.read_pickle('provs/' + pr + '.pkl')
+    #     df['class'] = pr
+    #     frames.append(df)
+    #     df.to_pickle(pr + '.pickle')
+    # result = pd.concat(frames,ignore_index=True,keys=provincias.keys())
+    # print result.describe()
+    # y = result['class']
+    # X = result.drop('class', 1)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+    # result.to_pickle('features.pickle')
+    # clf = RandomForestClassifier()
+    # clf.fit(X_train,y_train)
+    # y_pred = clf.predict(X_test)
+    # print accuracy_score(y_test, y_pred)

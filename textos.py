@@ -19,6 +19,9 @@ sys.setdefaultencoding('utf-8')
 
 path = 'tweetsFinal/impares/' 
 
+#grep -wio 'independiente' ../impares/buenosaires_tokens.txt | wc -l
+
+
 
 def plot(canti,dic):
     plt.title("Frecuencia de Palabras")
@@ -69,10 +72,13 @@ def fnorm(provincia,word,words,cant_words):
         n = float(words[provincia][word])
     else:
         n = 0.0
-    return n /(cant_words[provincia]/1000000)
+
+    #if word == 'un' and (provincia =='buenosaires' or provincia =='cordoba'):
+    #    print word,provincia,n,cant_words[provincia],n /(float(cant_words[provincia])/1000000)
+    return n /(float(cant_words[provincia])/1000000)
 
 def mean(provincia,word):
-    return words[provincia][word]/cant_words[provincia]
+    return words[provincia][word]/float(cant_words[provincia])
 
 def save_texts(provincia):
     file_path = provi + '_textos.json'
@@ -99,10 +105,10 @@ def tokenize(texto):
 
 def ztest(x1,x2,n1,n2):
     from numpy import sqrt
-    p1 = x1/n1
-    p2 = x2/n2
-    p = (x1 + x2) / (n1 + n2)
-    den = sqrt(p*(1.0-p)*((1/n1)+(1/n2)))
+    p1 = float(x1)/n1
+    p2 = float(x2)/n2
+    p = float(x1 + x2) / (n1 + n2)
+    den = sqrt((p*(1.0-p)* ((1/float(n1))+(1/float(n2)))))
     z = (p1-p2) / den 
     return z 
 
@@ -122,7 +128,7 @@ def save_dicts():
         start = datetime.datetime.now()
         #words[prov],cant_words[prov] = dictionary(prov)
         dicc = dictionary(prov)
-        n_dicc = remove_words(dicc,1)
+        #n_dicc = remove_words(dicc,1)
         words[prov] = n_dicc
         cant_words[prov] = cant_palabras(n_dicc)
         end = datetime.datetime.now()
@@ -146,20 +152,20 @@ def load_dicts():
 def save_list_words(pvalores,words,cant_words,p1,p2):
     import csv
     
-    for w in sorted(pvalores,key=pvalores.get):
-        with open('tweetsFinal/listas/corcsv/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
-            spamwriter = csv.writer(fi, delimiter=',',
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    with open('tweetsFinal/listas/corcsv2/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
+        spamwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        spamwriter.writerow(('Palabra','cant P1' ,'cant P2' , 'Pvalue' ,'fnorm1' ,'fnorm2'))
+        for w in sorted(pvalores,key=pvalores.get):
             cant_p1 = str(0.0) if not(words[p1].has_key(w)) else str(words[p1][w])
             cant_p2 = str(0.0) if not(words[p2].has_key(w)) else str(words[p2][w])
             fnorm1 = str(fnorm(p1,w,words,cant_words))
             fnorm2 = str(fnorm(p2,w,words,cant_words)) 
             #fi.write(w.encode('utf-8')+ "\t" + cant_p1  + '\t' + cant_p2 + '\t' +  str(pvalores[w]) + '\t' + fnorm1 + '\t' + fnorm2 + '\n')
-            
             spamwriter.writerow((w.encode('utf-8'),cant_p1 ,cant_p2 ,str(pvalores[w]) ,fnorm1 ,fnorm2))
           
 
 def test_par_provincias(words,cant_words):
+    import statsmodels.api as sm
     pvalores = {}
     for pair in itertools.combinations(provincias, 2):
         start = datetime.datetime.now()
@@ -170,17 +176,16 @@ def test_par_provincias(words,cant_words):
             n2 = float(cant_words[p2])
             X1 = 0.0 if not(words[p1].has_key(w)) else words[p1][w]
             X2 = 0.0 if not(words[p2].has_key(w)) else words[p2][w]
-            z = ztest(X1,X2,n1,n2)
-            pv = pvalor(z)
-            pvalores[w] = pv
+            z_score, p_value = sm.stats.proportions_ztest([X1, X2], [n1, n2])
+            pvalores[w] = p_value
         save_list_words(pvalores,words,cant_words,p1,p2)
         pvalores = {}
         end = datetime.datetime.now()
         print p1,p2, end - start
 
 def test_par_provincias_bonfarroni(words,cant_words,cant_lines):
-   
-    
+    import statsmodels.api as sm
+    alpha = 0.05
     for pair in itertools.combinations(provincias, 2):
         start = datetime.datetime.now()
         pvalores = {}
@@ -192,17 +197,19 @@ def test_par_provincias_bonfarroni(words,cant_words,cant_lines):
         with open(filename) as fi:
             for i in range(cant_lines):
                 line = fi.readline()
-                first_word = line.split('\t')[0]
-                words_pvalues.append(first_word)
-        for w in words_pvalues:
-            n1 = float(cant_words[p1])
-            n2 = float(cant_words[p2])
-            X1 = 0.0 if not(words[p1].has_key(w)) else words[p1][w]
-            X2 = 0.0 if not(words[p2].has_key(w)) else words[p2][w]
-            z = ztest(X1,X2,n1,n2)
-            pv = pvalor(z)
-            if not math.isnan(pv) :
-                pvalores[w] = pv
+                w = line.split('\t')[0]
+                #words_pvalues.append(w)
+        #for w in words_pvalues:
+                n1 = (cant_words[p1])
+                n2 = (cant_words[p2])
+                X1 = 0.0 if not(words[p1].has_key(w)) else words[p1][w]
+                X2 = 0.0 if not(words[p2].has_key(w)) else words[p2][w]
+                z_score, p_value = sm.stats.proportions_ztest([X1, X2], [n1, n2])
+                if not math.isnan(p_value) : # son nan si X1 y/o X2 son 0
+                    #print (alpha* i / cant_lines)
+                    #if p_value < (alpha* i / cant_lines):
+                    pvalores[w] = p_value
+                    
         save_list_words(pvalores,words,cant_words,p1,p2)
         end = datetime.datetime.now()
         print p1,p2, end - start
@@ -214,7 +221,7 @@ if __name__ == "__main__":
     start_todo = datetime.datetime.now()
     #save_dicts()
     words,cant_words = load_dicts()
-    test_par_provincias_bonfarroni(words,cant_words,300)
+    test_par_provincias_bonfarroni(words,cant_words,400)
     end_todo = datetime.datetime.now()
     print end_todo - start_todo
     

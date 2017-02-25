@@ -70,13 +70,13 @@ def save_tiempos(prov,start,printi,str_file_tiempos):
         fil.write(str(printi) + ' ' + prov + ' ' + str(end-start) + '\n')
 
 
-def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_usr ,dias,pares):
+def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_usr,cant_max_tweets):
     total_words = 0         # cantidad total de palabras
     cant_tot_tweets = 0
     start = datetime.datetime.now()
     word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
     i = 0
-    los_dias = 'pares' if pares else 'impares'
+    #los_dias = 'pares' if pares else 'impares'
 
     print prov
 
@@ -92,24 +92,26 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
                 cant_tweets = 0
                 
                 for t in tweepy.Cursor(api.user_timeline, id=elid,count = 200, include_rts = False ).items():
-                    dia = t.created_at.weekday()
-                    if dia in dias:
-                        cant_tweets +=1
-                        texto = tokenize(t.text)
-                        save_tweet(t,'tweetsFinal/' + los_dias + '/' + prov  + '_tweets.json')
-                        save_text(t,'tweetsFinal/' + los_dias + '/' + prov  + '_text.txt')
-                        save_tokens(texto,'tweetsFinal/' + los_dias + '/' + prov  + '_tokens.txt')
-                        l = len(texto)
-                        words_user_tot += l
+                    #dia = t.created_at.weekday()
+                    #if dia in dias:
+                    cant_tweets +=1
+                    texto = tokenize(t.text)
+                    save_tweet(t,'tweetsFinal2/' + prov  + '_tweets.json')
+                    # Dejo la tokenizacion como post procesamiento
+                    #save_text(t,'tweetsFinal2/' + los_dias + '/' + prov  + '_text.txt')
+                    #save_tokens(texto,'tweetsFinal2/' + los_dias + '/' + prov  + '_tokens.txt')
+                    l = len(texto)
+                    words_user_tot += l
                     if cant_tweets == cant_tweets_max_usuario:
                         break 
                 total_words += words_user_tot
                 cant_tot_tweets += cant_tweets
                 num_usr+=1
-                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweetsFinal/' + los_dias + '/'+ prov  + '.dat')
+                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweetsFinal2/' +  prov  + '.dat')
                 
-                if total_words > cant_words_prov:
-                    save_tiempos(prov,start,cant_words_prov,'tweetsFinal/' + los_dias + '/' + 'tiempos.dat')
+                #if total_words > cant_words_prov:
+                if cant_tot_tweets > cant_max_tweets:
+                    save_tiempos(prov,start,cant_words_prov,'tweetsFinal2/' + 'tiempos.dat')
                     break
             except Exception, e:   
                 app += 1
@@ -126,10 +128,8 @@ if __name__ == "__main__":
     prov = (sys.argv[2])
     api = autenticar_app(app)
 
-    cant_tweets_max_usuario = 200000
-    cant_words_prov = 3000000
+    cant_tweets_max_usuario = 600
+    cant_words_prov = 6000000
     num_usr = 0
-    dias = [0,2,4,6]
-    n = tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,num_usr,dias,True)
-    dias2 = [1,3,5]
-    tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,n,dias2,False)
+    n = tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,num_usr,500000)
+  
