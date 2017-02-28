@@ -10,10 +10,12 @@ import os
 import unicodedata
 import math
 from apps import *
+from conf import *
 import datetime
 import sys
 import pickle
 from nltk.tokenize import word_tokenize
+from datetime import timedelta
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -79,15 +81,20 @@ def autenticar_app(n_app):
 def buscar_tweets(prov,api,n_app,printi,cant_tweets):
     
     tweet_count = 0
-    coords = provincias[prov]['coords']
+    coords = uruguay[prov]['coords']
     
-    f_tweets = open('users/' + prov+'_tweets.json','a')
-    f_users = open('users/' + prov+'_users.json','a')
+    f_tweets = open('users2/' + prov+'_tweets.json','a')
+    f_users = open('users2/' + prov+'_users.json','a')
     usr_prov = 0
     cant_por_coord = 40000
+    start = datetime.datetime.now()
+    td = timedelta(days = 0, hours = 0, minutes=2, seconds = 10)
     
     while (usr_prov < cant_tweets):
         for coord in coords:
+            end = datetime.datetime.now()
+            if end-start > td:
+                return n_app
             if usr_prov >= cant_tweets:
                 #print 'break2'
                 break
@@ -115,7 +122,7 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                         location=unicodedata.normalize('NFKD',tweet.user.location).encode('ASCII', 'ignore').lower().replace('-',' ').replace(';',' ').replace(',',' ').replace('|',' ').replace('?',' ').replace('¿',' ').replace("\ ",' ').replace('/',' ')
                         location = word_tokenize(location)
                         #print location
-                        words = provincias[prov]['words']
+                        words = uruguay[prov]['words']
                         matches=[x for x in location if x in words]
                         if len(matches)>0 and tweet.user.id not in ids:
                             usr_prov += 1
@@ -130,7 +137,10 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                             if usr_prov >= cant_tweets:
                                 #print 'break2'
                                 break
-                            
+                    end = datetime.datetime.now()
+                    if end-start > td:
+                        return n_app
+
                     if icoord >= cant_por_coord:
                         #print 'break1'
                         break
@@ -168,35 +178,35 @@ def plot(canti):
     plt.show()
 
     
-def usuarios_prov(mod_print,tot_tweets,n_app):
+def usuarios_prov(pais,mod_print,tot_tweets,n_app):
     api = autenticar_app(n_app)
-    for prov in provincias.keys():
+    for prov in pais.keys():
         start = datetime.datetime.now()
         #print provincias[prov]['name']
         n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
         end = datetime.datetime.now()
         diff = (end - start)
-        print provincias[prov]['name'] , diff
+        print pais[prov]['name'] , diff
 
-    print str(tot_tweets * len(provincias.keys())), len(ids)
+    print str(tot_tweets * len(pais.keys())), len(ids)
     with open('users/' + 'location.json','w') as a_file:
         a_file.write(json.dumps(loc))
     return n_app
 
-def listDict_toDataFrame(locs):
+def listDict_toDataFrame(pais,locs):
 
     data=[] 
     for loc in locs:
         li = []        
-        for prov in provincias:
+        for prov in pais:
             li.append(loc[prov])
         data.append(li)
     
-    df=pd.DataFrame(data=data,columns=provincias.keys())
+    df=pd.DataFrame(data=data,columns=pais.keys())
 
     return df
 
-def followers(prov, n_app, f_out):
+def followers(pais,prov, n_app, f_out):
     api = autenticar_app(n_app)
     with open(f_out,'a') as f:
         f.write( prov + "={" )
@@ -214,7 +224,7 @@ def followers(prov, n_app, f_out):
         ind +=1
         sc = screen_names[ind]
         loc_d = {}
-        for pr in provincias:
+        for pr in pais:
             loc_d[pr] = 0
         folls = 0.0
         try:
@@ -226,8 +236,8 @@ def followers(prov, n_app, f_out):
                     location=unicodedata.normalize('NFKD',user.location).encode('ASCII', 'ignore').lower().replace('-',' ').replace(';',' ').replace(',',' ').replace('|',' ').replace('?',' ').replace('¿',' ').replace("\ ",' ').replace('/',' ')
                     location = word_tokenize(location)
                     #print location
-                    for pr in provincias:
-                        words = provincias[pr]['words']
+                    for pr in pais:
+                        words = pais[pr]['words']
                         matches=[x for x in location if x in words]
                         if len(matches)>0:
                             folls += 1
@@ -259,30 +269,40 @@ def followers(prov, n_app, f_out):
 
     
 if __name__ == "__main__":
-    n_app = 0
+    
+    # nombres de archivos por conf file
+    # parametros de busqueda por parametro
+    # poner funciones de "tweepy" en un archivo
+    # poner funciones de procesamiento de texto en un archivo
+    # agregar headers en las tablas
+    # modificar las terminaciones en las funciones de busqueda por cantidad y tiempo
+    # hacer funcion para buscar palabra en los tweets
+
     start = datetime.datetime.now()
+   
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("n_app", help="el numero de aplicacion con que empieza la busqueda",
+                        type=int)
+    parser.add_argument("mod_print", help="el numero de iteraciones por cada coordenada dentro del loop",
+                        type=int)
+    parser.add_argument("tot_tweets", help="el numero total de tweets por cada region/provincia",
+                        type=int)
+    parser.add_argument("provincia", help="la provincia donde se van a buscar los usuarios",
+                        type=str)
+ 
+    args = parser.parse_args()
+    n_app = args.n_app
+    mod_print = args.mod_print
+    tot_tweets = args.tot_tweets
+    prov = args.provincia
     
-    # #n_app = int(sys.argv[1])
-    # #prov = sys.argv[2]
     api = autenticar(n_app)
-    mod_print = 20000
-    tot_tweets = 10000
-
-    n_app = usuarios_prov(mod_print,tot_tweets,n_app)
-    end = datetime.datetime.now()
-
-    # #start = datetime.datetime.now()
-    # #print provincias[prov]['name']
+    api = autenticar_app(n_app)
     
-
-    # #n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
-    # #end = datetime.datetime.now()
-    # diff = (end - start)
-    # #print provincias[prov]['name'] , diff
-
-
-    # print 'Todas las provincias en: ' + str(end -start)
-
+    n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
+   
+    
     # ##n_app = int(sys.argv[1])
     # ##pr = sys.argv[2]
     # ##print n_app, pr
