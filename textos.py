@@ -153,15 +153,15 @@ def save_list_words(pvalores,words,cant_words,p1,p2):
     import csv
     
     with open('tweetsFinal/listas/corcsv2/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
-        spamwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow(('Palabra','cant P1' ,'cant P2' , 'Pvalue' ,'fnorm1' ,'fnorm2'))
+        csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csvwriter.writerow(('Palabra','cant P1' ,'cant P2' , 'Pvalue' ,'fnorm1' ,'fnorm2'))
         for w in sorted(pvalores,key=pvalores.get):
             cant_p1 = str(0.0) if not(words[p1].has_key(w)) else str(words[p1][w])
             cant_p2 = str(0.0) if not(words[p2].has_key(w)) else str(words[p2][w])
             fnorm1 = str(fnorm(p1,w,words,cant_words))
             fnorm2 = str(fnorm(p2,w,words,cant_words)) 
             #fi.write(w.encode('utf-8')+ "\t" + cant_p1  + '\t' + cant_p2 + '\t' +  str(pvalores[w]) + '\t' + fnorm1 + '\t' + fnorm2 + '\n')
-            spamwriter.writerow((w.encode('utf-8'),cant_p1 ,cant_p2 ,str(pvalores[w]) ,fnorm1 ,fnorm2))
+            csvwriter.writerow((w.encode('utf-8'),cant_p1 ,cant_p2 ,str(pvalores[w]) ,fnorm1 ,fnorm2))
           
 
 def test_par_provincias(words,cant_words):
