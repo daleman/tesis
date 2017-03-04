@@ -17,7 +17,7 @@ import math
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-path = 'tweetsFinal/impares/' 
+path = 'tweetsFinal/pares/' 
 
 #grep -wio 'independiente' ../impares/buenosaires_tokens.txt | wc -l
 
@@ -47,13 +47,14 @@ def dictionary(provincia):
     dicc = {}
     cant_words = 0
     #file_path = 'tweets2/' + provincia + '_tweets.json'
-    file_path = path + provincia + '_tokens.txt'
+    file_path = path + provincia + '_tweets.json'
     with open(file_path) as f:
         for line in f:
-            #content = json.loads(line)
-            #texto =  content['text']
-            #texto = tokenize(texto)
-            texto = json.loads(line)
+            content = json.loads(line)
+            texto =  content['text']
+            texto = tokenize(texto)
+            
+            #texto = json.loads(line)
             for w in texto:
                 wl = w.lower()
                 dicc[wl] = 1 if not dicc.has_key(wl) else dicc[wl] +1
@@ -95,8 +96,8 @@ def save_texts(provincia):
 def tokenize(texto):
     #import ipdb; ipdb.set_trace()
     #print m
-    texto = re.sub('@[\w]*', '', texto)
-    texto = re.sub('#[\w]*', '', texto)
+    texto = re.sub('@[\wáéíóú]*', '', texto)
+    texto = re.sub('#[\wáéíóú]*', '', texto)
     texto = re.sub(r'http\S+', '', texto)
     texto = re.findall('[^\W\d]+', texto, re.UNICODE)
     texto =' '.join(texto)
@@ -119,29 +120,29 @@ def pvalor(z):
         nz = -z
     return 2*st.norm.cdf(nz)
 
-def save_dicts():
+def save_dicts(pais):
     words = {}
     cant_words = {}
-    for prov in provincias:
+    for prov in pais:
         cant_words[prov] = 0
-    for prov in provincias:
+    for prov in pais:
         start = datetime.datetime.now()
         #words[prov],cant_words[prov] = dictionary(prov)
-        dicc = dictionary(prov)
+        words[prov] = dictionary(prov)
         #n_dicc = remove_words(dicc,1)
-        words[prov] = n_dicc
-        cant_words[prov] = cant_palabras(n_dicc)
+        #words[prov] = n_dicc
+        cant_words[prov] = cant_palabras(words[prov])
         end = datetime.datetime.now()
         with open(path + prov + '_dict.json', 'w') as fp:
             json.dump(words[prov], fp)
         print prov,cant_words[prov], end - start
 
-def load_dicts():    
+def load_dicts(pais):    
     words = {}
     cant_words = {}
-    for prov in provincias:
+    for prov in pais:
         cant_words[prov] = 0
-    for prov in provincias:
+    for prov in pais:
         print prov
         with open(path+prov+'_dict.json') as fi:
             words[prov] = json.load(fi)
@@ -152,7 +153,7 @@ def load_dicts():
 def save_list_words(pvalores,words,cant_words,p1,p2):
     import csv
     
-    with open('tweetsFinal/listas/corcsv2/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
+    with open('tweetsFinal/listas/lista10317/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
         csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csvwriter.writerow(('Palabra','cant P1' ,'cant P2' , 'Pvalue' ,'fnorm1' ,'fnorm2'))
         for w in sorted(pvalores,key=pvalores.get):
@@ -164,10 +165,10 @@ def save_list_words(pvalores,words,cant_words,p1,p2):
             csvwriter.writerow((w.encode('utf-8'),cant_p1 ,cant_p2 ,str(pvalores[w]) ,fnorm1 ,fnorm2))
           
 
-def test_par_provincias(words,cant_words):
+def test_par_provincias(words,cant_words,pais):
     import statsmodels.api as sm
     pvalores = {}
-    for pair in itertools.combinations(provincias, 2):
+    for pair in itertools.combinations(pais, 2):
         start = datetime.datetime.now()
         p1 = pair[0]
         p2 = pair[1]
@@ -183,10 +184,10 @@ def test_par_provincias(words,cant_words):
         end = datetime.datetime.now()
         print p1,p2, end - start
 
-def test_par_provincias_bonfarroni(words,cant_words,cant_lines):
+def test_par_provincias_bonfarroni(pais,words,cant_words,cant_lines):
     import statsmodels.api as sm
     alpha = 0.05
-    for pair in itertools.combinations(provincias, 2):
+    for pair in itertools.combinations(pais, 2):
         start = datetime.datetime.now()
         pvalores = {}
         p1 = pair[0]
@@ -215,13 +216,61 @@ def test_par_provincias_bonfarroni(words,cant_words,cant_lines):
         print p1,p2, end - start
 
 
+litoral  = ['santacruz', 'tierradelfuego', 'chubut', 'rionegro',"neuquen", 'lapampa','buenosaires','santafe','entrerios']
+cuyo = ['mendoza']
+central= ['sanluis','cordoba']
+guaranitica = ['corrientes', 'misiones', 'chaco', 'formosa']
+noroeste = ['santiago', 'larioja', 'catamarca','sanjuan', 'jujuy', 'salta', 'tucuman']
+regiones = {}
+#litoral_dict = cuyo_dict = guaranitica_dict = noreoeste_dict = central_dict = {}
+for prov in litoral:
+    regiones[prov] = 'litoral'
+for prov in cuyo:
+    regiones[prov] = 'cuyo'
+for prov in guaranitica:
+    regiones[prov] = 'guaranitica'
+for prov in noroeste:
+    regiones[prov] = 'noroeste'
+for prov in central:
+    regiones[prov] = 'central'
+
+def region (prov):
+    return regiones[prov]
+
+
+
+def save_regions(words,cant_words):
+    words_region = {}
+    cant_words_region = {}
+    for prov in words:
+        la_region = region(prov)
+        if la_region not in words_region:
+            words_region[la_region] = {}
+            cant_words_region[la_region] = cant_words[prov]
+        else:
+            cant_words_region[la_region] += cant_words[prov]
+        for w in words[prov]:
+            if w in words_region[la_region]:
+                words_region[la_region][w] += words[prov][w]
+            else:
+                words_region[la_region][w] = words[prov][w]
+
+    with open(path + 'regiones.json', 'w') as fp:
+        json.dump(words_region, fp)
+    with open(path + 'cant_words_region.json', 'w') as fp:
+        json.dump(cant_words_region, fp)
+    return words_region,cant_words_region
+
+ 
 
 if __name__ == "__main__":
 
     start_todo = datetime.datetime.now()
-    #save_dicts()
-    words,cant_words = load_dicts()
-    test_par_provincias_bonfarroni(words,cant_words,400)
+    save_dicts(argentina)
+    words,cant_words = load_dicts(argentina)
+    words_region,cant_words_region=save_regions(words,cant_words)
+    #test_par_provincias(words,cant_words,argentina)
+    test_par_provincias(words_region,cant_words_region,list(set(regiones.values())))
     end_todo = datetime.datetime.now()
     print end_todo - start_todo
     
