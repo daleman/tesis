@@ -13,6 +13,7 @@ from apps import *
 import datetime
 import sys
 import pickle
+import csv
 from nltk.tokenize import word_tokenize
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -83,6 +84,8 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
     
     f_tweets = open('users/' + prov+'_tweets.json','a')
     f_users = open('users/' + prov+'_users.json','a')
+    f_coord = open('users/' + prov + '_coord.csv','a')
+    csvwriter = csv.writer(f_coord, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
     usr_prov = 0
     cant_por_coord = 40000
     
@@ -100,7 +103,7 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
             #print "Intento " + str(tweet_count)
             try:
                 for tweet in tweepy.Cursor(api.search, count=100,lang="es",geocode=(coord + ',20mi')).items():
-                    #print(tweet.id)
+                    #print(tweet.id,tweet.user.location)
                     tweet_count += 1
                     icoord += 1
                     if tweet_count % printi == 0:
@@ -119,11 +122,11 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                         matches=[x for x in location if x in words]
                         if len(matches)>0 and tweet.user.id not in ids:
                             usr_prov += 1
-                            
                             f_users.write(json.dumps(tweet._json['user']))
                             f_users.write("\n")
                             f_tweets.write(json.dumps(tweet._json))
                             f_tweets.write("\n")
+                            csvwriter.writerow((tweet.user.id,coord))
                             ids[tweet.user.id] = 1
                             location = tweet.user.location
                             loc[location] = 1 if not loc.has_key(location) else loc[location] +1
@@ -141,11 +144,12 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
                 api = autenticar_app(n_app)
                 continue
             except Exception, e:
-                #print "Error " + str(e)
+                print "Error " + str(e)
                 continue
 
     f_tweets.close()
     f_users.close()
+    f_coord.close()
     return n_app
 
 def plot(canti):
@@ -265,8 +269,8 @@ if __name__ == "__main__":
     # #n_app = int(sys.argv[1])
     # #prov = sys.argv[2]
     api = autenticar(n_app)
-    mod_print = 20000
-    tot_tweets = 10000
+    mod_print = 1000
+    tot_tweets = 2500 
 
     n_app = usuarios_prov(mod_print,tot_tweets,n_app)
     end = datetime.datetime.now()
