@@ -11,6 +11,7 @@ import datetime
 import unicodedata
 import string
 import sys
+import argparse
 
 def tokenize(text):
     text = re.sub('@[\w]*', '', text)
@@ -82,9 +83,9 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
 
     with open(file_users) as f:
         for line in f:
-            if i < num_usr:
-                i+=1
-                continue            
+            #if i < num_usr:
+            #    i+=1
+            #    continue            
             d = json.loads(line)
             try:
                 elid = d['id']
@@ -95,37 +96,48 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
                     #dia = t.created_at.weekday()
                     #if dia in dias:
                     cant_tweets +=1
-                    texto = tokenize(t.text)
+                    #texto = tokenize(t.text)
                     save_tweet(t,'tweetsFinal2/' + prov  + '_tweets.json')
                     # Dejo la tokenizacion como post procesamiento
                     #save_text(t,'tweetsFinal2/' + los_dias + '/' + prov  + '_text.txt')
                     #save_tokens(texto,'tweetsFinal2/' + los_dias + '/' + prov  + '_tokens.txt')
-                    l = len(texto)
-                    words_user_tot += l
-                    if cant_tweets == cant_tweets_max_usuario:
-                        break 
-                total_words += words_user_tot
+                    #l = len(texto)
+                    #words_user_tot += l
+                    #if cant_tweets == cant_tweets_max_usuario:
+                    #    break 
+                #total_words += words_user_tot
                 cant_tot_tweets += cant_tweets
                 num_usr+=1
                 save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweetsFinal2/' +  prov  + '.dat')
                 
                 #if total_words > cant_words_prov:
-                if cant_tot_tweets > cant_max_tweets:
-                    save_tiempos(prov,start,cant_words_prov,'tweetsFinal2/' + 'tiempos.dat')
-                    break
+                #if cant_tot_tweets > cant_max_tweets:
+                #    save_tiempos(prov,start,cant_words_prov,'tweetsFinal2/' + 'tiempos.dat')
+                #    break
             except Exception, e:   
                 app += 1
                 print "Error " + str(e)
                 api = autenticar_app(app)
                 continue
 
+    save_tiempos(prov,start,cant_words_prov,'tweetsFinal2/' + 'tiempos.dat')
     return num_usr
      
 
 if __name__ == "__main__":
 
-    app = int(sys.argv[1])
-    prov = (sys.argv[2])
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("app", help="el numero de aplicacion con que empieza la busqueda",
+                        type=int)
+    parser.add_argument("provincia", help="la provincia donde se van a buscar los usuarios",
+                        type=str)
+ 
+
+    args = parser.parse_args()
+    n_app = args.app
+    prov = args.provincia
+
     api = autenticar_app(app)
 
     cant_tweets_max_usuario = 600
