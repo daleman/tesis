@@ -97,7 +97,7 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
                     #if dia in dias:
                     cant_tweets +=1
                     #texto = tokenize(t.text)
-                    save_tweet(t,'tweetsFinal2/' + prov  + '_tweets.json')
+                    save_tweet(t,'tweets/' + prov  + '_tweets.json')
                     # Dejo la tokenizacion como post procesamiento
                     #save_text(t,'tweetsFinal2/' + los_dias + '/' + prov  + '_text.txt')
                     #save_tokens(texto,'tweetsFinal2/' + los_dias + '/' + prov  + '_tokens.txt')
@@ -108,7 +108,7 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
                 #total_words += words_user_tot
                 cant_tot_tweets += cant_tweets
                 num_usr+=1
-                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweetsFinal2/' +  prov  + '.dat')
+                save_dat(num_usr,words_user_tot,total_words,cant_tot_tweets,'tweets/' +  prov  + '.dat')
                 
                 #if total_words > cant_words_prov:
                 #if cant_tot_tweets > cant_max_tweets:
@@ -120,7 +120,7 @@ def tweets_prov(app,api,file_users,cant_tweets_max_usuario,cant_words_prov ,num_
                 api = autenticar_app(app)
                 continue
 
-    save_tiempos(prov,start,cant_words_prov,'tweetsFinal2/' + 'tiempos.dat')
+    save_tiempos(prov,start,cant_words_prov,'tweets/' + 'tiempos.dat')
     return num_usr
      
 
@@ -138,10 +138,10 @@ if __name__ == "__main__":
     n_app = args.app
     prov = args.provincia
 
-    api = autenticar_app(app)
+    api = autenticar_app(n_app)
 
     cant_tweets_max_usuario = 600
     cant_words_prov = 6000000
     num_usr = 0
-    n = tweets_prov(app,api,'ult_json/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,num_usr,500000)
+    n = tweets_prov(n_app,api,'users/' + prov + '_users.json',cant_tweets_max_usuario,cant_words_prov,num_usr,500000)
   
