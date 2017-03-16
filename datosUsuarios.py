@@ -10,6 +10,8 @@ from apps import *
 from datetime import timedelta
 import csv
 from datetime import timedelta
+import pickle 
+
 
 
 if __name__ == "__main__":
@@ -17,19 +19,23 @@ if __name__ == "__main__":
 
     for prov in argentina:
         i = 0
-        file_path = 'tweetsFinal/pares/' + prov + '_tweets.json'
+        paths = ['tweetsFinal/pares/','tweetsFinal/impares/']
         with open('csv/' + prov + '.csv','a') as fi:
             csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(('tweet_created_at','text','tweet_id','user_id','screen_name', 'friends', 'followers','statuses_count','favorites','geo_enabled','created_at','location'))
-            with open(file_path) as f:
-                for line in f:
-                    tweet = json.loads(line)
-                    csvwriter.writerow((tweet['created_at'].encode('utf-8'),tweet['text'].encode('utf-8'),tweet['id'],tweet['user']['id'],tweet['user']['screen_name'].encode('utf-8'),tweet['user']['friends_count'],tweet['user']['followers_count'],tweet['user']['statuses_count'],tweet['user']['favourites_count'],tweet['user']['geo_enabled'],tweet['user']['created_at'].encode('utf-8'),tweet['user']['location'].encode('utf-8')))
-                    i +=1
-            
+            for path in paths:
+                file_path = path + prov + '_tweets.json'
+                with open(file_path) as f:
+                    for line in f:
+                        tweet = json.loads(line)
+                        csvwriter.writerow((tweet['created_at'].encode('utf-8'),tweet['text'].encode('utf-8'),tweet['id'],tweet['user']['id'],tweet['user']['screen_name'].encode('utf-8'),tweet['user']['friends_count'],tweet['user']['followers_count'],tweet['user']['statuses_count'],tweet['user']['favourites_count'],tweet['user']['geo_enabled'],tweet['user']['created_at'].encode('utf-8'),tweet['user']['location'].encode('utf-8')))
+                        i +=1
+                
 
         print prov
-        df = pd.read_csv('csv/'+prov + '.csv',delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        dateparse = lambda x: pd.datetime.strptime(x, '%a %b %d %H:%M:%S +0000 %Y')
+        df =  pd.read_csv('csv/'+prov + '.csv',encoding='utf-8', parse_dates=['tweet_created_at','created_at'], date_parser=dateparse,delimiter=',',quotechar='|')
+        #pd.read_csv('csv/'+prov + '.csv',delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         df['tweet_created_at'] = pd.to_datetime(df['tweet_created_at'])
         users = df['user_id'].drop_duplicates()
         #print users.shape
@@ -82,5 +88,12 @@ if __name__ == "__main__":
 
         print prov,centro,in_range_df1.shape[0], in_range_df2.shape[0]
 
-        in_range_df1.to_csv('csv/train_' + prov + '.csv', encoding='utf-8')
-        in_range_df2.to_csv('csv/test_'  + prov + '.csv', encoding='utf-8')
+       
+        with open('csv/train_' + prov + '.csv', 'wb') as output:
+            pickle.dump(in_range_df1, output)
+
+        with open('csv/test_' + prov + '.csv', 'wb') as output:
+            pickle.dump(in_range_df2, output)
+       
+        #in_range_df1.to_csv('csv/train_' + prov + '.csv',encoding='utf-8', index=False,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        #in_range_df2.to_csv('csv/test_'  + prov + '.csv',encoding='utf-8', index=False,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
