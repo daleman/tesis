@@ -84,15 +84,10 @@ def buscar_tweets(prov,api,n_app,printi,cant_tweets):
     tweet_count = 0
     coords = uruguay[prov]['coords']
     
-<<<<<<< HEAD
     f_tweets = open('users/' + prov+'_tweets.json','a')
     f_users = open('users/' + prov+'_users.json','a')
     f_coord = open('users/' + prov + '_coord.csv','a')
     csvwriter = csv.writer(f_coord, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-=======
-    f_tweets = open('users2/' + prov+'_tweets.json','a')
-    f_users = open('users2/' + prov+'_users.json','a')
->>>>>>> 05c707622576667afbafbf9c38195d147c4d1898
     usr_prov = 0
     cant_por_coord = 40000
     start = datetime.datetime.now()
