@@ -14,7 +14,8 @@ regiones = ['litoral', 'central', 'cuyo', 'noroeste', 'guaranitica']
 for pair in itertools.combinations(regiones, 2):
     p1 = pair[0]
     p2 = pair[1]
-    df = pd.read_csv('/home/dami/tesis/tweetsFinal/listas/lista10317/'+p1 + '_'+p2+'.csv',sep=",")
+    print p1,p2
+    df = pd.read_csv('/home/dami/tesis/train/listas/'+p1 + '_'+p2+'.csv',sep=",",delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
     df = df[df['Pvalue'] <= 0.05]
     #df['fnorm1'] = df.Age.apply(lambda x: x if not pd.isnull(x) else 'Is Null value')
     mini = df[df > 0].fnorm1.min() 
@@ -30,5 +31,5 @@ for pair in itertools.combinations(regiones, 2):
     df = df.sort_values('maxdif',ascending = False)
     df = df.drop(['div1','div2'], axis=1)
     print str(p1),str(p2)
-    df.rename(columns={'cant P1':'cant '+ p1,'cant P2': 'cant ' + p2 ,'fnorm1': 'fnorm ' + p1 ,'fnorm2':'fnorm ' + p2}, inplace=True)
-    df.to_csv('regiones/' + p1 + '_'+p2 + '.csv', encoding='utf-8')
+    df.rename(columns={'cant P1':'cant '+ p1,'cant P2': 'cant ' + p2 ,'Total P1': 'Total '+ p1,'Total P2': 'Total '+ p2,'Total P1 + P2': 'Total '+ p1 + ' ' + p2,'fnorm1': 'fnorm ' + p1 ,'fnorm2':'fnorm ' + p2}, inplace=True)
+    df.to_csv('train/regiones/' + p1 + '_'+p2 + '.csv', encoding='utf-8',quotechar='|', quoting=csv.QUOTE_MINIMAL)
