@@ -13,11 +13,16 @@ import statsmodels.stats as sta
 import itertools
 import datetime
 import math
+import csv
+import string
+import unicodecsv
+import nltk
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-path = 'tweetsFinal/pares/' 
+path = 'train/train_' 
+path_listas = 'train/listas/'
 
 #grep -wio 'independiente' ../impares/buenosaires_tokens.txt | wc -l
 
@@ -42,29 +47,30 @@ def plot(canti,dic):
     plt.tight_layout()
     plt.show()
 
-
+# leo un archivo csv, en la primer columna está el tweet id, después user id y finalmente el texto.
 def dictionary(provincia):
     dicc = {}
     dicc_usuarios = {}
     cant_words = 0
-    #file_path = 'tweets2/' + provincia + '_tweets.json'
-    file_path = path + provincia + '_tweets.json'
-    with open(file_path) as f:
-        for line in f:
-            content = json.loads(line)
-            texto =  content['text']
+    file_path = path + provincia + '.csv'
+    #i = 0
+    with open(file_path, 'r') as f:
+        reader = unicodecsv.reader(f, encoding="utf-8", delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        for row in reader:
+            #i += 1
+            #print provincia,i,len(row)
+            texto = row[2]  # la columna de texto
             texto = tokenize(texto)
-            tid = content['user']['id']
+            uid = row[1]    # la columna de user id
             
-            #texto = json.loads(line)
             for w in texto:
                 wl = w.lower()
                 dicc[wl] = 1 if not dicc.has_key(wl) else dicc[wl] +1
-                if dicc_usuarios.has_key(wl) :
-                    if tid not in dicc_usuarios[wl]:
-                        dicc_usuarios[wl].append(tid)
+                if dicc_usuarios.has_key(wl):
+                    if uid not in dicc_usuarios[wl]:
+                        dicc_usuarios[wl].append(uid)
                 else:
-                    dicc_usuarios[wl] = [tid]
+                    dicc_usuarios[wl] = [uid]
                 # cant_words += 1
     return dicc,dicc_usuarios
 
@@ -100,15 +106,28 @@ def save_texts(provincia):
                 fi.write('\n')
     return words
 
+# def tokenize(texto):
+#     #import ipdb; ipdb.set_trace()
+#     #print m
+#     texto = re.sub('@[\wáéíóúñ]*', '', texto)
+#     texto = re.sub('#[\wáéíóúñ]*', '', texto)
+#     texto = re.sub(r'http\S+', '', texto)
+#     texto = re.findall('[^\W\d]+', texto, re.UNICODE)
+#     texto =' '.join(texto)
+#     tokens =  word_tokenize(texto)
+#     return tokens
+
 def tokenize(texto):
     #import ipdb; ipdb.set_trace()
     #print m
-    texto = re.sub('@[\wáéíóúñ]*', '', texto)
-    texto = re.sub('#[\wáéíóúñ]*', '', texto)
+    texto = re.sub('@[\S]+', '', texto)
+    texto = re.sub('#[\S]+', '', texto)
     texto = re.sub(r'http\S+', '', texto)
-    texto = re.findall('[^\W\d]+', texto, re.UNICODE)
-    texto =' '.join(texto)
+    #texto = re.findall('[\w\d!\"#$%&*+,-./():\';<=>?@[\]^_`{|}~]+', texto, re.UNICODE)
+    #texto =' '.join(texto)
+    texto =  re.sub(r'\w+[\d!\"#$%&*+,-./():\';<=>?@[\]^_`{|}~]+\w+', '', texto).replace(r'\b\d+\b', '')
     tokens =  word_tokenize(texto)
+    tokens = [word.strip(string.punctuation) for word in tokens]
     return tokens
 
 def ztest(x1,x2,n1,n2):
@@ -130,22 +149,23 @@ def pvalor(z):
 def save_dicts(pais):
     words = {}
     cant_words = {}
+    dicc_usuarios = {}
     for prov in pais:
         cant_words[prov] = 0
     for prov in pais:
-        dicc_usuarios = {}
         start = datetime.datetime.now()
         #words[prov],cant_words[prov] = dictionary(prov)
-        words[prov],dicc_usuarios = dictionary(prov)
+        words[prov],dicc_usuarios[prov] = dictionary(prov)
         #n_dicc = remove_words(dicc,1)
         #words[prov] = n_dicc
         cant_words[prov] = cant_palabras(words[prov])
         end = datetime.datetime.now()
         with open(path + prov + '_dict.json', 'w') as fp:
-            json.dump(words[prov], fp)
+            json.dump(words[prov], fp, encoding="utf-8")
         with open(path + prov + '_users_dict.json', 'w') as fp:
-            json.dump(dicc_usuarios, fp)
+            json.dump(dicc_usuarios[prov], fp, encoding="utf-8")
         print prov,cant_words[prov], end - start
+    return (words,cant_words,dicc_usuarios)
 
 def load_dicts(pais):    
     words = {}
@@ -157,19 +177,18 @@ def load_dicts(pais):
         print prov
         with open(path+prov+'_dict.json') as fi:
             words[prov] = json.load(fi)
-        for w in words[prov]:
-            cant_words[prov] += words[prov][w]
+        cant_words[prov] = cant_palabras(words[prov])
         with open(path+prov+'_users_dict.json') as fi:
             dicc_usuarios[prov] = json.load(fi)
             
-    return words,cant_words,dicc_usuarios
+    return (words,cant_words,dicc_usuarios)
 
 def save_list_words(pvalores,words,cant_words,p1,p2,dicc_usuarios_region):
     import csv
 
 
 
-    with open('tweetsFinal/listas/lista130317/' + str(p1) + '_' + str(p2) + '.csv','a') as fi:
+    with open(path_listas + str(p1) + '_' + str(p2) + '.csv','a') as fi:
         csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csvwriter.writerow(('Palabra','cant P1' ,'cant P2' ,'Total P1','Total P2','Total P1 + P2', 'Pvalue' ,'fnorm1' ,'fnorm2'))
         for w in sorted(pvalores,key=pvalores.get):
@@ -261,12 +280,12 @@ def save_regions(words,cant_words,dicc_usuarios):
     words_region = {}
     cant_words_region = {}
     dicc_usuarios_region = {}
-    for prov in words:
+    for prov in regiones:
         la_region = region(prov)
         if la_region not in words_region:
             words_region[la_region] = {}
             cant_words_region[la_region] = cant_words[prov]
-            dicc_usuarios_region[la_region] = dicc_usuarios[prov]
+            dicc_usuarios_region[la_region] = {}
         else:
             cant_words_region[la_region] += cant_words[prov]
         for w in words[prov]:
@@ -280,11 +299,11 @@ def save_regions(words,cant_words,dicc_usuarios):
                 dicc_usuarios_region[la_region][w] = dicc_usuarios[prov][w]
 
     with open(path + 'regiones.json', 'w') as fp:
-        json.dump(words_region, fp)
+        json.dump(words_region, fp, encoding="utf-8")
     with open(path + 'cant_words_region.json', 'w') as fp:
-        json.dump(cant_words_region, fp)
+        json.dump(cant_words_region, fp, encoding="utf-8")
     with open(path + 'users_dicc_region.json', 'w') as fp:
-        json.dump(dicc_usuarios_region, fp)
+        json.dump(dicc_usuarios_region, fp, encoding="utf-8")
     return (words_region,cant_words_region,dicc_usuarios_region)
 
 def load_regions():
@@ -292,11 +311,11 @@ def load_regions():
     cant_words = {}
     dicc_usuarios_region = {}
     with open(path + 'regiones.json', 'r') as fp:
-        words_region = json.load(fp)
+        words_region = json.load(fp, encoding="utf-8")
     with open(path + 'cant_words_region.json', 'r') as fp:
-        cant_words = json.load(fp)
+        cant_words = json.load(fp, encoding="utf-8")
     with open(path + 'users_dicc_region.json', 'r') as fp:
-        dicc_usuarios_region = json.load(fp)
+        dicc_usuarios_region = json.load(fp, encoding="utf-8")
     return (words_region,cant_words_region,dicc_usuarios_region)
 
 
@@ -304,9 +323,13 @@ def load_regions():
 
 if __name__ == "__main__":
 
+    word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
     start_todo = datetime.datetime.now()
-    #save_dicts(argentina)
-    words,cant_words,dicc_usuarios = load_dicts(argentina)
+    wcd = save_dicts(argentina)
+    #wcd = load_dicts(argentina)
+    words = wcd[0]
+    cant_words = wcd[1]
+    dicc_usuarios = wcd[2]
     #tup= load_regions()
     tup = save_regions(words,cant_words,dicc_usuarios)
     words_region = tup[0]
