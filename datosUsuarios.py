@@ -34,16 +34,21 @@ if __name__ == "__main__":
 
         print prov
         dateparse = lambda x: pd.datetime.strptime(x, '%a %b %d %H:%M:%S +0000 %Y')
-        df =  pd.read_csv('csv/'+prov + '.csv',encoding='utf-8', parse_dates=['tweet_created_at','created_at'], date_parser=dateparse,delimiter=',',quotechar='|')
+        df =  pd.read_csv('csv/'+prov + '.csv',encoding='utf-8', parse_dates=['tweet_created_at','created_at'], date_parser=dateparse,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         #pd.read_csv('csv/'+prov + '.csv',delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         df['tweet_created_at'] = pd.to_datetime(df['tweet_created_at'])
-        users = df['user_id'].drop_duplicates()
+        df = df.sort_values(by='created_at')
+        users = df[['user_id','created_at']].drop_duplicates('user_id')
         #print users.shape
-        users1 = users.sample(frac=0.5)
-        users2=users.drop(users1.index)
+        tot = users.shape[0]
+        half = users.shape[0]/2
+        users1 = users.iloc[0:half,:] 
+        users2 = users.iloc[half:tot,:]
+        #users1 = users.sample(frac=0.5)
+        #users2=users.drop(users1.index)
         #print users1.shape, users2.shape
-        train = df[df['user_id'].isin(users1)]
-        test = df[df['user_id'].isin(users2)]
+        train = df[df['user_id'].isin(users1['user_id'])]
+        test = df[df['user_id'].isin(users2['user_id'])]
         #print train.shape[0],test.shape[0], train.shape[0]+test.shape[0],df.shape[0]
 
         dmin1 = train['tweet_created_at'].min()
@@ -52,8 +57,8 @@ if __name__ == "__main__":
         dmin2 = test['tweet_created_at'].min()
         dmax2 = test['tweet_created_at'].max()
 
-        t1 = train.shape[0]
-        t2 = test.shape[0]
+        #t1 = train.shape[0]
+        #t2 = test.shape[0]
         #print dmin1,dmax1,dmin2,dmax2
         #print t1,t2
         cant = train.shape[0]
@@ -64,29 +69,29 @@ if __name__ == "__main__":
         dmax = maxtemp
         delta = (maxtemp - mintemp) /2
         #print delta.days
-        centro = mintemp+timedelta(delta.days)
+        centro = mintemp+timedelta(days = delta.days)
         #print centro
         in_range_df1 = train[(train['tweet_created_at'] > dmin) & (train['tweet_created_at'] <= centro)]
         in_range_df2 = test[(test['tweet_created_at'] > centro) & (test['tweet_created_at'] <= dmax)]
 
-        while abs(in_range_df1.shape[0] - in_range_df2.shape[0]) > 10 and delta.days > 1:
+        while abs(in_range_df1.shape[0] - in_range_df2.shape[0]) > 10 and delta.days > 0:
             in_range_df1 = train[(train['tweet_created_at'] > dmin) & (train['tweet_created_at'] <= centro)]
             in_range_df2 = test[(test['tweet_created_at'] > centro) & (test['tweet_created_at'] <= dmax)]
 
             if in_range_df1.shape[0] < in_range_df2.shape[0]:
                     mintemp = centro + timedelta(days = 1)
                     delta = (maxtemp - mintemp) /2
-                    #print delta.days,'mas'
+                    print delta.days,'mas'
                     centro = centro + timedelta(days = delta.days)
                    
             elif in_range_df1.shape[0] > in_range_df2.shape[0]:
                     maxtemp = centro - timedelta(days = 1)
                     delta = (maxtemp - mintemp) /2
-                    #print delta.days,'menos'
+                    print delta.days,'menos'
                     centro = centro - timedelta(days = delta.days)
             #print centro, in_range_df1.shape[0], in_range_df2.shape[0],delta.days    
 
-        print prov,centro,in_range_df1.shape[0], in_range_df2.shape[0]
+        #print prov,centro,in_range_df1.shape[0], in_range_df2.shape[0]
 
        
         with open('csv/train_' + prov + '.csv', 'wb') as output:
