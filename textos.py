@@ -123,12 +123,12 @@ def tokenize(texto):
     texto = re.sub('@[\S]+', '', texto)
     texto = re.sub('#[\S]+', '', texto)
     texto = re.sub(r'http\S+', '', texto)
-    #texto = re.findall('[\w\d!\"#$%&*+,-./():\';<=>?@[\]^_`{|}~]+', texto, re.UNICODE)
-    #texto =' '.join(texto)
-    texto =  re.sub(r'\w+[\d!\"#$%&*+,-./():\';<=>?@[\]^_`{|}~]+\w+', '', texto).replace(r'\b\d+\b', '')
+    texto =  re.sub(r'\w+[\d!¡\"#$%&*+,-./():\';<=>¿?@[\]^_`{|}~]+\w+', '', texto).replace(r'\b\d+\b', '').replace(r'\w*[jaja|ajaj]+\w*', '')
+    texto = re.findall('[^\W\d]+', texto, re.UNICODE)
+    texto =' '.join(texto)
     tokens =  word_tokenize(texto)
-    tokens = [word.strip(string.punctuation) for word in tokens]
     return tokens
+
 
 def ztest(x1,x2,n1,n2):
     from numpy import sqrt
