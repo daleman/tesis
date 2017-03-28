@@ -1,16 +1,11 @@
 # coding: utf-8
 
 import json
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import DataFrame, Series
-import seaborn as sns 
 from apps import *
 from datetime import timedelta
 import csv
-from datetime import timedelta
-import pickle 
 
 
 
@@ -20,7 +15,7 @@ if __name__ == "__main__":
     for prov in argentina:
         i = 0
         paths = ['tweetsFinal/pares/','tweetsFinal/impares/']
-        with open('csv/' + prov + '.csv','a') as fi:
+        with open('csv/{0}.csv'.format(prov),'a') as fi:
             csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(('tweet_created_at','text','tweet_id','user_id','screen_name', 'friends', 'followers','statuses_count','favorites','geo_enabled','created_at','location'))
             for path in paths:
@@ -34,7 +29,7 @@ if __name__ == "__main__":
 
         print prov
         dateparse = lambda x: pd.datetime.strptime(x, '%a %b %d %H:%M:%S +0000 %Y')
-        df =  pd.read_csv('csv/'+prov + '.csv',encoding='utf-8', parse_dates=['tweet_created_at','created_at'], date_parser=dateparse,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        df =  pd.read_csv('csv/{0}.csv'.format(prov),encoding='utf-8', parse_dates=['tweet_created_at','created_at'], date_parser=dateparse,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         #pd.read_csv('csv/'+prov + '.csv',delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         df['tweet_created_at'] = pd.to_datetime(df['tweet_created_at'])
         df = df.sort_values(by='created_at')
@@ -47,9 +42,13 @@ if __name__ == "__main__":
         #users1 = users.sample(frac=0.5)
         #users2=users.drop(users1.index)
         #print users1.shape, users2.shape
-        train = df[df['user_id'].isin(users1['user_id'])]
-        test = df[df['user_id'].isin(users2['user_id'])]
+        train = df[df['user_id'].isin(users1['user_id'])].copy()    
+        test = df[df['user_id'].isin(users2['user_id'])].copy()
         #print train.shape[0],test.shape[0], train.shape[0]+test.shape[0],df.shape[0]
+
+        train.text.replace(regex=True,inplace=True,to_replace=['\r','\n'],value=r'')
+        test.text.replace(regex=True,inplace=True,to_replace=['\r','\n'],value=r'')
+        
 
         dmin1 = train['tweet_created_at'].min()
         dmax1 = train['tweet_created_at'].max()
@@ -68,37 +67,41 @@ if __name__ == "__main__":
         dmin = mintemp
         dmax = maxtemp
         delta = (maxtemp - mintemp) /2
-        #print delta.days
-        centro = mintemp+timedelta(days = delta.days)
+        print delta.days
+        centro = mintemp+timedelta(seconds = delta.total_seconds())
         #print centro
         in_range_df1 = train[(train['tweet_created_at'] > dmin) & (train['tweet_created_at'] <= centro)]
         in_range_df2 = test[(test['tweet_created_at'] > centro) & (test['tweet_created_at'] <= dmax)]
 
-        while abs(in_range_df1.shape[0] - in_range_df2.shape[0]) > 10 and delta.days > 0:
+        while abs(in_range_df1.shape[0] - in_range_df2.shape[0]) > 10 and delta.total_seconds() > 3600:
             in_range_df1 = train[(train['tweet_created_at'] > dmin) & (train['tweet_created_at'] <= centro)]
             in_range_df2 = test[(test['tweet_created_at'] > centro) & (test['tweet_created_at'] <= dmax)]
 
             if in_range_df1.shape[0] < in_range_df2.shape[0]:
                     mintemp = centro + timedelta(days = 1)
                     delta = (maxtemp - mintemp) /2
-                    print delta.days,'mas'
-                    centro = centro + timedelta(days = delta.days)
+                    #print delta.days,'mas'
+                    centro = centro + timedelta(seconds = delta.total_seconds())
                    
             elif in_range_df1.shape[0] > in_range_df2.shape[0]:
                     maxtemp = centro - timedelta(days = 1)
                     delta = (maxtemp - mintemp) /2
-                    print delta.days,'menos'
-                    centro = centro - timedelta(days = delta.days)
-            #print centro, in_range_df1.shape[0], in_range_df2.shape[0],delta.days    
+                    #print delta.days,'menos'
+                    centro = centro - timedelta(seconds = delta.total_seconds())
+            print centro, in_range_df1.shape[0], in_range_df2.shape[0],delta.seconds    
 
         #print prov,centro,in_range_df1.shape[0], in_range_df2.shape[0]
 
        
-        with open('csv/train_' + prov + '.csv', 'wb') as output:
-            pickle.dump(in_range_df1, output)
-
-        with open('csv/test_' + prov + '.csv', 'wb') as output:
-            pickle.dump(in_range_df2, output)
-       
-        #in_range_df1.to_csv('csv/train_' + prov + '.csv',encoding='utf-8', index=False,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        #in_range_df2.to_csv('csv/test_'  + prov + '.csv',encoding='utf-8', index=False,delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        with open('csv/train_{0}.csv'.format(prov), 'wb') as trainAllCols, \
+             open('train/train_{0}.csv'.format(prov), 'wb') as trainMin:
+              
+            train_df = in_range_df1.loc[:,['tweet_id','user_id','text']] 
+            train_df.to_csv(trainMin,encoding='utf-8', header=None, index=False,quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            in_range_df1.to_csv(trainAllCols,encoding='utf-8', index=False,quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        with open('csv/test_{0}.csv'.format(prov), 'wb') as testAllCols, \
+             open('test/test_{0}.csv'.format(prov), 'wb') as testMin:
+            test_df = in_range_df2.loc[:,['tweet_id','user_id','text']] 
+            test_df.to_csv(testMin,encoding='utf-8', header=None, index=False,quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            in_range_df2.to_csv(testAllCols,encoding='utf-8', index=False,quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    
