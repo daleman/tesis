@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import re
 from nltk import word_tokenize
-from string import punctuation
 import sys
 
+import nltk.data
+from nltk.tokenize import TweetTokenizer
 import statsmodels.api as sm
 import statsmodels.stats as sta
 import itertools
@@ -16,7 +17,6 @@ import math
 import csv
 import string
 import unicodecsv
-import nltk
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -49,6 +49,7 @@ def plot(canti,dic):
 
 # leo un archivo csv, en la primer columna está el tweet id, después user id y finalmente el texto.
 def dictionary(provincia):
+    tknzr = TweetTokenizer(preserve_case=False, reduce_len=True, strip_handles=True)
     dicc = {}
     dicc_usuarios = {}
     cant_words = 0
@@ -59,18 +60,18 @@ def dictionary(provincia):
         for row in reader:
             #i += 1
             #print provincia,i,len(row)
-            texto = row[2]  # la columna de texto
-            texto = tokenize(texto)
+            #row[2] es la columna de texto
+            texto = [w for w in tknzr.tokenize(row[2]) if w.isalpha()]
             uid = row[1]    # la columna de user id
             
             for w in texto:
-                wl = w.lower()
-                dicc[wl] = 1 if not dicc.has_key(wl) else dicc[wl] +1
-                if dicc_usuarios.has_key(wl):
-                    if uid not in dicc_usuarios[wl]:
-                        dicc_usuarios[wl].append(uid)
+                #wl = w.lower()
+                dicc[w] = 1 if not dicc.has_key(w) else dicc[w] +1
+                if dicc_usuarios.has_key(w):
+                    if uid not in dicc_usuarios[w]:
+                        dicc_usuarios[w].append(uid)
                 else:
-                    dicc_usuarios[wl] = [uid]
+                    dicc_usuarios[w] = [uid]
                 # cant_words += 1
     return dicc,dicc_usuarios
 
@@ -117,17 +118,17 @@ def save_texts(provincia):
 #     tokens =  word_tokenize(texto)
 #     return tokens
 
-def tokenize(texto):
-    #import ipdb; ipdb.set_trace()
-    #print m
-    texto = re.sub('@[\S]+', '', texto)
-    texto = re.sub('#[\S]+', '', texto)
-    texto = re.sub(r'http\S+', '', texto)
-    texto =  re.sub(r'\w+[\d!¡\"#$%&*+,-./():\';<=>¿?@[\]^_`{|}~]+\w+', '', texto).replace(r'\b\d+\b', '').replace(r'\w*[jaja|ajaj]+\w*', '')
-    texto = re.findall('[^\W\d]+', texto, re.UNICODE)
-    texto =' '.join(texto)
-    tokens =  word_tokenize(texto)
-    return tokens
+# def tokenize(texto):
+#     #import ipdb; ipdb.set_trace()
+#     #print m
+#     texto = re.sub('@[\S]+', '', texto)
+#     texto = re.sub('#[\S]+', '', texto)
+#     texto = re.sub(r'http\S+', '', texto)
+#     texto =  re.sub(r'\w+[\d!¡\"#$%&*+,-./():\';<=>¿?@[\]^_`{|}~]+\w+', '', texto).replace(r'\b\d+\b', '').replace(r'\w*[jaja|ajaj]+\w*', '')
+#     texto = re.findall('[^\W\d]+', texto, re.UNICODE)
+#     texto =' '.join(texto)
+#     tokens =  word_tokenize(texto)
+#     return tokens
 
 
 def ztest(x1,x2,n1,n2):
