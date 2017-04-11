@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     for prov in argentina:
         i = 0
-        paths = ['tweetsFinal/pares/','tweetsFinal/impares/']
+        paths = ['tweetsFinal/pares/']
         with open('csv/{0}.csv'.format(prov),'a') as fi:
             csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
             csvwriter.writerow(('tweet_created_at','text','tweet_id','user_id','screen_name', 'friends', 'followers','statuses_count','favorites','geo_enabled','created_at','location'))
