@@ -189,7 +189,7 @@ def save_list_words(pvalores,words,cant_words,p1,p2,dicc_usuarios_region):
 
 
 
-    with open(path_listas + str(p1) + '_' + str(p2) + '.csv','a') as fi:
+    with open(path_listas + str(p1) + '_' + str(p2) + '.csv','w') as fi:
         csvwriter = csv.writer(fi, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
         csvwriter.writerow(('Palabra','cant P1' ,'cant P2' ,'Total P1','Total P2','Total P1 + P2', 'Pvalue' ,'fnorm1' ,'fnorm2'))
         for w in sorted(pvalores,key=pvalores.get):
