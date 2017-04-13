@@ -1,4 +1,15 @@
-# tesis
+# Tesis de Licenciatura
+
+## Scripts
+
+- `users.py`: Realiza una búsqueda de usuarios de twitter en la provincia indicada por parámetro.  
+
+
+- `datosUsuarios.py`: Separa el conjunto de train de test. Guarda los datos de train en `train/` y los de test en `test/`  
+
+- `textos.py`: Tokeniza todos los tweets y arma un listado de palabras por provincia con su cantidad de ocurrencias, fnorm y pvalor del ztest entre la cantidad de ocurrencias de cada palabra entre par de provincias. Separa los conjuntos de palabras por regiones dialectales.
+
+-  `getlines.py`: Genera el csv con la columna maxDif que representa la máxima diferencia de frecuencias normalizadas para cada palabra.
 
 
 ## Datos
