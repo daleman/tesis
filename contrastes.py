@@ -255,6 +255,6 @@ if __name__ == "__main__":
 
     dfResumida = dfRes[['FnormMin', 'FnormMax', 'provFnormMin', 'provFnormMax',
                         'cantProvinciasSinEsaPalabra', 'maxDif']].sort_values(by=['maxDif', 'cantProvinciasSinEsaPalabra'], axis=0, ascending=[False, False], inplace=False)
-    dfResumida.to_excel('contrastePalabrasResumido.xls')
+    dfResumida.to_excel('contrastePalabrasResumido.xlsx')
     # agregarSugerencias(dfRes)
-    dfRes.to_excel('contrasteExtendido.xls')
+    dfRes.to_excel('contrasteExtendido.xlsx')
