@@ -1,5 +1,5 @@
 # coding: utf-8
-from textos import dictionary, cant_palabras, load_dicts
+from textos import dictionary, cant_palabras, load_dicts, load_regions, regiones
 import enchant
 import datetime
 from apps import *
@@ -183,26 +183,29 @@ def agregarSugerencias(df):
     # encoding="utf-8")
 
 
-if __name__ == "__main__":
+def contrastes(tipoDeListado='provincia'):
+    if tipoDeListado == 'region':
+        wcd = load_regions()
+        lugares = set(regiones.values())
+    else:
+        wcd = load_dicts(argentina)
+        lugares = argentina
 
-    path = 'train/train_'
-
-    wcd = load_dicts(argentina)  # save_dicts(argentina, True)
     words = wcd[0]
     cant_words = wcd[1]
     dicc_usuarios = wcd[2]
 
-    cantPorProvincia = {prov: sum(words[prov].values()) for prov in argentina}
+    cantPorLugar = {lugar: sum(words[lugar].values()) for lugar in lugares}
 
     users_cant = {}
-    for prov in argentina:
-        for pal, lista in dicc_usuarios[prov].iteritems():
-            # print prov,pal,lista
-            if not users_cant.has_key(prov):
-                users_cant[prov] = {}
-                users_cant[prov][pal] = len(lista)
+    for lugar in lugares:
+        for pal, lista in dicc_usuarios[lugar].iteritems():
+            # print lugar,pal,lista
+            if not users_cant.has_key(lugar):
+                users_cant[lugar] = {}
+                users_cant[lugar][pal] = len(lista)
             else:
-                users_cant[prov][pal] = len(lista)
+                users_cant[lugar][pal] = len(lista)
     df = pd.DataFrame(words)
     df1 = pd.DataFrame(users_cant)
     print df.shape
@@ -216,45 +219,40 @@ if __name__ == "__main__":
 
     result = pd.concat([df, df1], axis=1)
 
-    for prov in argentina:
-        result['fnorm_' + prov] = result[prov + 'Palabras'] / \
-            (cantPorProvincia[prov] / 1000000.0)
+    for lugar in lugares:
+        result['fnorm_' + lugar] = result[lugar + 'Palabras'] / \
+            (cantPorLugar[lugar] / 1000000.0)
 
     df_resultado = filtrarPalabras(
         df=result, cantUsuarios=5, cantOcurrencias=40)
 
-    listaRisas = risas(df_resultado)
-    # listaPalabrasConLetrasRepetidas = palabrasRepetidas(df_resultado)
-    palabrasASacar = listaRisas  # + listaPalabrasConLetrasRepetidas
-    # print 'La cantidad de palabras a sacar es ', len(palabrasASacar)
-    dfRes = df_resultado[-df_resultado.index.isin(palabrasASacar)].copy()
-    # print df_resultado.shape[0], dfRes.shape[0]
-
-    # Le agrego la columna de MaxDif
-
-    dfRes['cantProvinciasSinEsaPalabra'] = dfRes.filter(
+    df_resultado['{0}SinEsaPalabra'.format(tipoDeListado)] = df_resultado.filter(
         regex=("fnorm.*")).apply(lambda s: s.value_counts().get(0, 0), axis=1)
-    idmax = dfRes.filter(regex=("fnorm.*")).idxmax(1)
-    maxi = dfRes.filter(regex=("fnorm.*")).max(1)
-    dfRes['provFnormMax'] = idmax
-    dfRes['FnormMax'] = maxi
-    idmin = dfRes.filter(
-        regex=("fnorm.*"))[dfRes > 0.0000000000000001].idxmin(1)
-    mini = dfRes.filter(
-        regex=("fnorm.*"))[dfRes > 0.0000000000000001].min(1)
-    dfRes['provFnormMin'] = idmin
-    dfRes['FnormMin'] = mini
+    idmax = df_resultado.filter(regex=("fnorm.*")).idxmax(1)
+    maxi = df_resultado.filter(regex=("fnorm.*")).max(1)
+    df_resultado['{0}FnormMax'.format(tipoDeListado)] = idmax
+    df_resultado['FnormMax'.format(tipoDeListado)] = maxi
+    idmin = df_resultado.filter(
+        regex=("fnorm.*"))[df_resultado > 0.0000000000000001].idxmin(1)
+    mini = df_resultado.filter(
+        regex=("fnorm.*"))[df_resultado > 0.0000000000000001].min(1)
+    df_resultado['{0}FnormMin'.format(tipoDeListado)] = idmin
+    df_resultado['FnormMin'] = mini
 
-    # print dfRes.columns
-    # minFnorm=dfRes['FnormMin'].min()
-    # print minFnorm
-    dfRes['maxDif'] = dfRes.FnormMax / dfRes.FnormMin
+    df_resultado['maxDif'] = df_resultado.FnormMax / df_resultado.FnormMin
 
-    dfRes[['provFnormMin', 'provFnormMax']] = dfRes[['provFnormMin',
-                                                     'provFnormMax']].replace(to_replace='fnorm_', value='', regex=True)
+    df_resultado[['{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado)]] = df_resultado[['{0}FnormMin'.format(tipoDeListado),
+                                                                                                             '{0}FnormMax'.format(tipoDeListado)]].replace(to_replace='fnorm_', value='', regex=True)
 
-    dfResumida = dfRes[['FnormMin', 'FnormMax', 'provFnormMin', 'provFnormMax',
-                        'cantProvinciasSinEsaPalabra', 'maxDif']].sort_values(by=['maxDif', 'cantProvinciasSinEsaPalabra'], axis=0, ascending=[False, False], inplace=False)
-    dfResumida.to_excel('contrastePalabrasResumido.xlsx')
-    # agregarSugerencias(dfRes)
-    dfRes.to_excel('contrasteExtendido.xlsx')
+    df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
+                                '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False], inplace=False)
+    df_resumida.to_excel(
+        '{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
+    # agregarSugerencias(df_resultado)
+    df_resultado.to_excel('{0}contrasteExtendido.xlsx'.format(tipoDeListado))
+
+
+if __name__ == "__main__":
+
+    contrastes('provincia')
+    contrastes('region')
