@@ -68,7 +68,7 @@ def dictionary(provincia, completo):
             # print provincia,i,len(row)
             # row[2] es la columna de texto
             if (completo):
-                texto = [w for w in tknzr.tokenize(row[2]) if w.isalpha()]
+                texto = [w for w in tknzr.tokenize(row[2].lower()) if w.isalpha()]
             else:
                 texto = [w for w in tknzr.tokenize(
                     row[2]) if w.isalpha() and (not d.check(w))]
@@ -308,12 +308,12 @@ def save_regions(words, cant_words, dicc_usuarios):
 
 def load_regions():
     words_region = {}
-    cant_words = {}
+    cant_words_region = {}
     dicc_usuarios_region = {}
     with open(path + 'regiones.json', 'r') as fp:
         words_region = json.load(fp, encoding="utf-8")
     with open(path + 'cant_words_region.json', 'r') as fp:
-        cant_words = json.load(fp, encoding="utf-8")
+        cant_words_region = json.load(fp, encoding="utf-8")
     with open(path + 'users_dicc_region.json', 'r') as fp:
         dicc_usuarios_region = json.load(fp, encoding="utf-8")
     return (words_region, cant_words_region, dicc_usuarios_region)
