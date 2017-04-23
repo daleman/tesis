@@ -247,9 +247,9 @@ def contrastes(tipoDeListado='provincia'):
     df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
                                 '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False], inplace=False)
     df_resumida.to_excel(
-        '{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
+        'contrastes/{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
     # agregarSugerencias(df_resultado)
-    df_resultado.to_excel('{0}contrasteExtendido.xlsx'.format(tipoDeListado))
+    df_resultado.to_excel('contrastes/{0}contrasteExtendido.xlsx'.format(tipoDeListado))
 
 
 if __name__ == "__main__":
