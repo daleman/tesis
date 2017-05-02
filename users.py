@@ -25,9 +25,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 
-ids= {}
+ids = {}
 loc = {}
-#word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
+# word_tokenizer=nltk.data.load('tokenizers/punkt/spanish.pickle')
+
+
 def autenticar(n_app):
 
     n_app = n_app % 259
@@ -36,22 +38,22 @@ def autenticar(n_app):
     consumer_secret = app['consumer_secret']
     access_token = app['access_token']
     access_token_secret = app['access_token_secret']
-    
 
-    auth = tweepy.OAuthHandler(consumer_key=consumer_key, consumer_secret=consumer_secret)
+    auth = tweepy.OAuthHandler(
+        consumer_key=consumer_key, consumer_secret=consumer_secret)
 
     auth.set_access_token(access_token, access_token_secret)
 
     # Creation of the actual interface, using authentication
     api = tweepy.API(auth)
 
-    #Error handling
+    # Error handling
     if (not api):
-        print ("Problem Connecting to API")
+        print("Problem Connecting to API")
     else:
         print "Autenticado " + str(n_app)
 
-    #print api.rate_limit_status()
+    # print api.rate_limit_status()
     return api
 
 
@@ -64,103 +66,128 @@ def autenticar_app(n_app):
     access_token = app['access_token']
     access_token_secret = app['access_token_secret']
 
-    #Switching to application authentication
+    # Switching to application authentication
     auth = tweepy.AppAuthHandler(consumer_key, consumer_secret)
 
-    #Setting up new api wrapper, using authentication only
-    api = tweepy.API(auth) #wait_on_rate_limit=True
-     
-    #Error handling
+    # Setting up new api wrapper, using authentication only
+    api = tweepy.API(auth)  # wait_on_rate_limit=True
+
+    # Error handling
     if (not api):
-        print ("Problem Connecting to API")
+        print("Problem Connecting to API")
     else:
         print "Autenticado App" + str(n_app)
     return api
 
+NO_TIEMPO = -1
 
 
-def buscar_tweets(prov,api,n_app,printi,cant_tweets):
-    
+def paso_tiempo(start, end, td, n_app):
+    if end - start > td:
+        print 'pasaron' + str(td)
+        return n_app
+    else:
+        return NO_TIEMPO
+
+
+def buscar_tweets(prov, api, n_app, printi, cant_tweets):
+
     tweet_count = 0
-    coords = uruguay[prov]['coords']
-    
-    f_tweets = open('users/' + prov+'_tweets.json','a')
-    f_users = open('users/' + prov+'_users.json','a')
-    f_coord = open('users/' + prov + '_coord.csv','a')
-    csvwriter = csv.writer(f_coord, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    usr_prov = 0
-    cant_por_coord = 40000
-    start = datetime.datetime.now()
-    td = timedelta(days = 0, hours = 0, minutes=2, seconds = 10)
-    
-    while (usr_prov < cant_tweets):
-        for coord in coords:
-            end = datetime.datetime.now()
-            if end-start > td:
-                return n_app
-            if usr_prov >= cant_tweets:
-                #print 'break2'
-                break
+    coords = argentina[prov]['coords']
 
-            icoord = 0
-            #print str(coords.index(coord)) +  '/' + str(len(coords))
-            prev = 0
-            
-            #print 'coord, tweet' ,coord, tweet_count
-            #print "Intento " + str(tweet_count)
-            try:
-                for tweet in tweepy.Cursor(api.search, count=100,lang="es",geocode=(coord + ',20mi')).items():
-                    #print(tweet.id,tweet.user.location)
-                    tweet_count += 1
-                    icoord += 1
-                    if tweet_count % printi == 0:
-                        print '\t' , tweet_count, icoord, usr_prov, prev, coord
-                        if prev and usr_prov - prev < 2:
-                            break
-                        prev = usr_prov
+    with open('users/' + prov + '_tweets.json', 'w') as f_tweets, \
+            open('users/' + prov + '_users.json', 'w') as f_users, \
+            open('users/' + prov + '_coord.csv', 'w') as f_coord:
+        # f_tweets = open('users/' + prov + '_tweets.json', 'a')
+        # f_users = open('users/' + prov + '_users.json', 'a')
+        # f_coord = open('users/' + prov + '_coord.csv', 'a')
+        csvwriter = csv.writer(f_coord, delimiter=',',
+                               quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        usr_prov = 0
+        cant_por_coord = 200000
+        start = datetime.datetime.now()
+        td = timedelta(days=0, hours=1, minutes=0, seconds=10)
+        t_por_coord = {}
 
-                    
+        while (usr_prov < cant_tweets):
+            for coord in coords:
+                end = datetime.datetime.now()
+                tiempo = paso_tiempo(start, end, td, n_app)
+                if tiempo != NO_TIEMPO:
+                    return n_app
+                # if end-start > td:
+                #     print 'pasaron' + str(td)
+                #     return n_app
+                if usr_prov >= cant_tweets:
+                    # print 'break2'
+                    break
 
-                    if tweet.user.location!="":  
-                        location=unicodedata.normalize('NFKD',tweet.user.location).encode('ASCII', 'ignore').lower().replace('-',' ').replace(';',' ').replace(',',' ').replace('|',' ').replace('?',' ').replace('¿',' ').replace("\ ",' ').replace('/',' ')
-                        location = word_tokenize(location)
-                        #print location
-                        words = uruguay[prov]['words']
-                        matches=[x for x in location if x in words]
-                        if len(matches)>0 and tweet.user.id not in ids:
-                            usr_prov += 1
-                            f_users.write(json.dumps(tweet._json['user']))
-                            f_users.write("\n")
-                            f_tweets.write(json.dumps(tweet._json))
-                            f_tweets.write("\n")
-                            csvwriter.writerow((tweet.user.id,coord))
-                            ids[tweet.user.id] = 1
-                            location = tweet.user.location
-                            loc[location] = 1 if not loc.has_key(location) else loc[location] +1
-                            if usr_prov >= cant_tweets:
-                                #print 'break2'
+                icoord = 0
+                # print str(coords.index(coord)) +  '/' + str(len(coords))
+                prev = 0
+                print t_por_coord
+                        
+                # print 'coord, tweet' ,coord, tweet_count
+                # print "Intento " + str(tweet_count)
+                try:
+                    for tweet in tweepy.Cursor(api.search, count=100, lang="es", geocode=(coord + ',20mi')).items():
+                        # print(tweet.id,tweet.user.location)
+                        tweet_count += 1
+                        icoord += 1
+                        if tweet_count % printi == 0:
+                            print '\t', tweet_count, icoord, usr_prov, prev, coord
+                            if prev and usr_prov - prev < 2:
                                 break
-                    end = datetime.datetime.now()
-                    if end-start > td:
-                        return n_app
+                            prev = usr_prov
 
-                    if icoord >= cant_por_coord:
-                        #print 'break1'
-                        break
-                            
-            except tweepy.TweepError,e:
-                n_app += 1
-                #print "Error " + str(e)
-                api = autenticar_app(n_app)
-                continue
-            except Exception, e:
-                print "Error " + str(e)
-                continue
+                        if tweet.user.location != "":
+                            location = unicodedata.normalize('NFKD', tweet.user.location).encode('ASCII', 'ignore').lower().replace(
+                                '-', ' ').replace(';', ' ').replace(',', ' ').replace('|', ' ').replace('?', ' ').replace('¿', ' ').replace("\ ", ' ').replace('/', ' ')
+                            location = word_tokenize(location)
+                              # print location
+                            words = argentina[prov]['words']
+                            matches = [x for x in location if x in words]
+                            if len(matches) > 0 and tweet.user.id not in ids and 'argentina' in location:
+                                usr_prov += 1
+                                if coord in t_por_coord:
+                                    t_por_coord[coord] += 1
+                                else:
+                                    t_por_coord[coord] = 1
+                                f_users.write(json.dumps(tweet._json['user']))
+                                f_users.write("\n")
+                                f_tweets.write(json.dumps(tweet._json))
+                                f_tweets.write("\n")
+                                csvwriter.writerow((tweet.user.id, coord))
+                                ids[tweet.user.id] = 1
+                                location = tweet.user.location
+                                loc[location] = 1 if not loc.has_key(
+                                    location) else loc[location] + 1
+                                if usr_prov >= cant_tweets:
+                                    # print 'break2'
+                                    break
+                        end = datetime.datetime.now()
+                        tiempo = paso_tiempo(start, end, td, n_app)
+                        if tiempo != NO_TIEMPO:
+                            return n_app
 
-    f_tweets.close()
-    f_users.close()
-    f_coord.close()
+                        if icoord >= cant_por_coord:
+                            # print 'break1'
+                            break
+
+                except tweepy.TweepError, e:
+                    n_app += 1
+                    # print "Error " + str(e)
+                    api = autenticar_app(n_app)
+                    continue
+                except Exception, e:
+                    print "Error " + str(e)
+                    continue
+
+    # f_tweets.close()
+    # f_users.close()
+    # f_coord.close()
     return n_app
+
 
 def plot(canti):
     plt.title("Histograma de lugares")
@@ -170,50 +197,51 @@ def plot(canti):
     index = np.arange(len(loc.keys()))
     bar_width = 0.35
 
-
     cant = canti
-    valores = sorted(loc.values(),reverse=True)
-    claves = sorted(loc, key=loc.get,reverse=True)
+    valores = sorted(loc.values(), reverse=True)
+    claves = sorted(loc, key=loc.get, reverse=True)
 
     opacity = 0.4
     plt.xticks(index + bar_width, claves[:cant], size=6, rotation="vertical")
-    plt.bar(range(cant),valores[:cant],alpha=opacity,color='b',)
+    plt.bar(range(cant), valores[:cant], alpha=opacity, color='b',)
     plt.tight_layout()
     plt.show()
 
-    
-def usuarios_prov(pais,mod_print,tot_tweets,n_app):
+
+def usuarios_prov(pais, mod_print, tot_tweets, n_app):
     api = autenticar_app(n_app)
     for prov in pais.keys():
         start = datetime.datetime.now()
-        #print provincias[prov]['name']
-        n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
+        # print provincias[prov]['name']
+        n_app = buscar_tweets(prov, api, n_app, mod_print, tot_tweets)
         end = datetime.datetime.now()
         diff = (end - start)
-        print pais[prov]['name'] , diff
+        print pais[prov]['name'], diff
 
     print str(tot_tweets * len(pais.keys())), len(ids)
-    with open('users/' + 'location.json','w') as a_file:
+    with open('users/' + 'location.json', 'w') as a_file:
         a_file.write(json.dumps(loc))
     return n_app
 
-def listDict_toDataFrame(pais,locs):
 
-    data=[] 
+def listDict_toDataFrame(pais, locs):
+
+    data = []
     for loc in locs:
-        li = []        
+        li = []
         for prov in pais:
             li.append(loc[prov])
         data.append(li)
-    
-    df=pd.DataFrame(data=data,columns=pais.keys())
+
+    df = pd.DataFrame(data=data, columns=pais.keys())
 
     return df
 
-def followers(pais,prov, n_app, f_out):
+
+def followers(pais, prov, n_app, f_out):
     api = autenticar_app(n_app)
-    with open(f_out,'a') as f:
-        f.write( prov + "={" )
+    with open(f_out, 'a') as f:
+        f.write(prov + "={")
         f.write('\n')
     locs = []
     screen_names = []
@@ -222,58 +250,59 @@ def followers(pais,prov, n_app, f_out):
             d = json.loads(line)
             sc = d["screen_name"]
             screen_names.append(sc)
-    
+
     ind = -1
     while ind < (len(screen_names)):
-        ind +=1
+        ind += 1
         sc = screen_names[ind]
         loc_d = {}
         for pr in pais:
             loc_d[pr] = 0
         folls = 0.0
         try:
-            print ind,sc
-            for user in tweepy.Cursor(api.followers,count=200, screen_name=sc).items():
-                #print '\t',user.screen_name, user.location
-                
-                if user.location!="":  
-                    location=unicodedata.normalize('NFKD',user.location).encode('ASCII', 'ignore').lower().replace('-',' ').replace(';',' ').replace(',',' ').replace('|',' ').replace('?',' ').replace('¿',' ').replace("\ ",' ').replace('/',' ')
+            print ind, sc
+            for user in tweepy.Cursor(api.followers, count=200, screen_name=sc).items():
+                # print '\t',user.screen_name, user.location
+
+                if user.location != "":
+                    location = unicodedata.normalize('NFKD', user.location).encode('ASCII', 'ignore').lower().replace('-', ' ').replace(
+                        ';', ' ').replace(',', ' ').replace('|', ' ').replace('?', ' ').replace('¿', ' ').replace("\ ", ' ').replace('/', ' ')
                     location = word_tokenize(location)
-                    #print location
+                    # print location
                     for pr in pais:
                         words = pais[pr]['words']
-                        matches=[x for x in location if x in words]
-                        if len(matches)>0:
+                        matches = [x for x in location if x in words]
+                        if len(matches) > 0:
                             folls += 1
                             loc_d[pr] += 1
             for k in loc_d.keys():
-                loc_d[k] =  loc_d[k] / folls
+                loc_d[k] = loc_d[k] / folls
             locs.append(loc_d)
-            with open(f_out,'a') as f:
-                f.write( "'" +str(sc) + "':" + str(loc_d) +',')
+            with open(f_out, 'a') as f:
+                f.write("'" + str(sc) + "':" + str(loc_d) + ',')
                 f.write('\n')
-        except tweepy.TweepError,e:
-            ind = ind -1
+        except tweepy.TweepError, e:
+            ind = ind - 1
             print ind
             n_app += 1
-            #print "Error " + str(e)
+            # print "Error " + str(e)
             api = autenticar_app(n_app)
             continue
         except Exception, e:
-            #print "Error " + str(e)
+            # print "Error " + str(e)
             continue
-    with open(f_out,'a') as f:
-        f.write( "}" )
+    with open(f_out, 'a') as f:
+        f.write("}")
         f.write('\n')
     print 'guardo en archivo ' + prov
     df = listDict_toDataFrame(locs)
     df['class'] = prov
-    df.to_pickle(pr + '.pkl')                
+    df.to_pickle(pr + '.pkl')
     return n_app
 
-    
+
 if __name__ == "__main__":
-    
+
     # nombres de archivos por conf file
     # parametros de busqueda por parametro
     # poner funciones de "tweepy" en un archivo
@@ -283,7 +312,7 @@ if __name__ == "__main__":
     # hacer funcion para buscar palabra en los tweets
 
     start = datetime.datetime.now()
-   
+
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("n_app", help="el numero de aplicacion con que empieza la busqueda",
@@ -294,30 +323,29 @@ if __name__ == "__main__":
                         type=int)
     parser.add_argument("provincia", help="la provincia donde se van a buscar los usuarios",
                         type=str)
- 
+
     args = parser.parse_args()
     n_app = args.n_app
     mod_print = args.mod_print
     tot_tweets = args.tot_tweets
     prov = args.provincia
-    
+
     api = autenticar(n_app)
     api = autenticar_app(n_app)
-    
-    n_app = buscar_tweets(prov,api,n_app,mod_print,tot_tweets)
-   
-    
+
+    n_app = buscar_tweets(prov, api, n_app, mod_print, tot_tweets)
+
     # ##n_app = int(sys.argv[1])
     # ##pr = sys.argv[2]
     # ##print n_app, pr
     # n_app = followers(pr,n_app, pr + '_followers.json')
-    
+
     # for prov in provincias:
     #     start = datetime.datetime.now()
     #     n_app = followers(prov,n_app, prov + '_followers.json')
     #     end = datetime.datetime.now()
     #     print provincias[prov]['name'] ,str(end -start)
-    
+
     # #plot(20)
 
     # frames = []
