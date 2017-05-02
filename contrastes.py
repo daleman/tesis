@@ -10,6 +10,7 @@ import json
 import re
 import operator
 import jellyfish
+import argparse
 
 
 def save_dicts(pais, completo):
@@ -183,7 +184,7 @@ def agregarSugerencias(df):
     # encoding="utf-8")
 
 
-def contrastes(tipoDeListado='provincia'):
+def cargarYGuardarDataframe(tipoDeListado):
     if tipoDeListado == 'region':
         wcd = load_regions()
         lugares = set(regiones.values())
@@ -223,9 +224,29 @@ def contrastes(tipoDeListado='provincia'):
         result['fnorm_' + lugar] = result[lugar + 'Palabras'] / \
             (cantPorLugar[lugar] / 1000000.0)
 
-    df_resultado = filtrarPalabras(
-        df=result, cantUsuarios=5, cantOcurrencias=40)
+    # Guardo el dataframe en /contrastes
 
+    return result
+
+
+def toExcel(df_res, tipoDeListado, filename):
+    # Create a Pandas Excel writer using XlsxWriter as the engine.
+    writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+    print type(df_res)
+    # Convert the dataframe to an XlsxWriter Excel object.
+    df_res.to_excel(writer, sheet_name='Sheet1')
+    # Close the Pandas Excel writer and output the Excel file.
+    writer.save()
+
+
+def contrastes(tipoDeListado='provincia'):
+
+    # pd.read_excel(  'contrastes/{0}prev.xlsx'.format(tipoDeListado))
+    df_resultado = cargarYGuardarDataframe(tipoDeListado)
+    # df_resultado = filtrarPalabras(
+    #     df=result, cantUsuarios=5, cantOcurrencias=40)
+
+    print 'df cargado'
     df_resultado['{0}SinEsaPalabra'.format(tipoDeListado)] = df_resultado.filter(
         regex=("fnorm.*")).apply(lambda s: s.value_counts().get(0, 0), axis=1)
     idmax = df_resultado.filter(regex=("fnorm.*")).idxmax(1)
@@ -243,16 +264,22 @@ def contrastes(tipoDeListado='provincia'):
 
     df_resultado[['{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado)]] = df_resultado[['{0}FnormMin'.format(tipoDeListado),
                                                                                                              '{0}FnormMax'.format(tipoDeListado)]].replace(to_replace='fnorm_', value='', regex=True)
-
+    print 'a ordenar'
     df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
-                                '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False], inplace=False)
-    df_resumida.to_excel(
-        'contrastes/{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
-    # agregarSugerencias(df_resultado)
-    df_resultado.to_excel('contrastes/{0}contrasteExtendido.xlsx'.format(tipoDeListado))
+                                '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False])
+    print 'a guardar'
+    toExcel(df_resumida, tipoDeListado,
+            'contrastes/{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
+    toExcel(df_resultado, tipoDeListado,
+            'contrastes/{0}contrasteExtendido.xlsx'.format(tipoDeListado))
 
 
 if __name__ == "__main__":
 
-    contrastes('provincia')
-    contrastes('region')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tipoDeLugar", help="el tipo de lugar para hacer el contraste, puede ser provincia o region",
+                        type=str)
+
+    args = parser.parse_args()
+    tipoDeLugar = args.tipoDeLugar
+    contrastes(tipoDeLugar)
