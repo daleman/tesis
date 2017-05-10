@@ -2,6 +2,8 @@
 
 ## Scripts
 
+- `users_sc.py`: Llama a `users.py` para todas las provincias con los argumentos pasados por parámetro.
+
 - `users.py`: Realiza una búsqueda de usuarios de twitter en la provincia indicada por parámetro.  
 
 
