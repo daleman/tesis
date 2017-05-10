@@ -9,36 +9,40 @@
 
 \title{Propuesta de Tesis}
 \author{Alumno: Damián Eliel Aleman \\
-Director: Agustín Gravano \\
-Codirector: Juan Manuel Pérez}
+Directores: Juan Manuel Pérez y Santiago Kalinowski \\
+Codirector: Agustín Gravano}
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-
-La \emph{lingüística de corpus} es un área que ha tenido desarrollo sostenido desde los años cincuenta, acompañando los avances que fue haciendo la tecnología. El problema principal con el que debe lidiar la disciplina es que resulta trabajoso generar un dataset que sea válido científicamente sin dedicar una enorme cantidad de recursos a su recolección.
-
-En esta tesis, nos proponemos realizar una herramienta automática para recolectar textos de Twitter. Una vez recolectado este conjunto de datos, queremos poder analizar sobre una base estadística ciertos fenómenos lingüísticos del habla hispana utlizando el dataset recolectado.
-
-\end{abstract}
-
 
 \section*{Introducción}
 
-Actualmente, las herramientas para la detección de reconocimiento de palabras con contraste léxico en distintas regiones % o de distintos dialectos%
-consisten en cuestionarios como el de \emph{Almeida}\cite{ALMEIDA1995}. Con este trabajo planteamos cambiar el paradigma y detectar automáticamente estas palabras.\\
+La \emph{lingüística de corpus} es un área que ha tenido desarrollo sostenido desde los años cincuenta, acompañando los avances que fue haciendo la tecnología. El problema principal con el que debe lidiar la disciplina es que resulta trabajoso generar un dataset que sea válido científicamente sin dedicar una enorme cantidad de recursos a su recolección.
 
-Uno de los corpus linguisticos del español más reconocidos es el \emph{corpes XXI}\cite{CORPES XXI}, pero la cantidad de palabras de América Latina están subrepresentados ya que el 70\% de las palabras del dataset provienen de textos España y 30\% de los demás países hispanoparlantes . Por otro lado, uno no dispone de todo el dataset, si no que solamente se pueden hacer las consultas de su página web.
-Es por esto que decidimos realizar nuestro propio dataset obteniendo los textos de Twitter\cite{KILG2003} , la cual agilizaría el proceso de recolección de datos y disminuiría en gran proporción los recursos necesarios para el desarrollo del mismo comparado con un dataset creado a partir de la digitalización de textos.
+En esta tesis queremos poder analizar sobre una base estadística ciertos
+ fenómenos lingüísticos del habla hispana utlizando un dataset propio con
+ textos recolectados de \emph{Twitter}.
 
+Este trabajo se realizará en colaboración con el Departamento de Investigaciones de la
+Academia Argentina de Letras, cuyo director, el Dr. Santiago Kalinowski, es uno de los directores de esta tesis.
+
+\par Actualmente, las herramientas para la detección de palabras con contraste léxico en distintas regiones
+consisten en cuestionarios como el de \emph{Almeida}\cite{ALMEIDA1995}.
+%EXPLICAR EL CUESTIONARIO DE ALMEIDA%
+Con este trabajo planteamos cambiar el paradigma y detectar automáticamente estas palabras.
+
+Uno de los corpus lingüísticos del español más reconocidos es el \emph{corpes XXI}\cite{CORPES XXI}, creado por la Real Academia Española con una distribución de 25 millones de formas por cada uno de los años comprendidos en el periodo 2001 a 2012. Sin
+embargo, dicho corpus tiene dos desventajas importantes: por un
+lado, la cantidad de palabras de América Latina están subrepresentados ya que el 70\% de las palabras del dataset provienen de textos de España y 30\% de los demás países hispanoparlantes . Por otro lado, uno no dispone de todo el dataset, sino que solamente se pueden hacer las consultas de su página web. Estas consultas están limitadas en cuanto a la cantidad de solicitudes y a las funcionalidades que estas proveen.
 
 
 \section*{Objetivo de la tesis}
 
-El objetivo del presente trabajo sería, en primer lugar, construir un corpus lingüístico en español de alguna fuente digital, conteniendo información del dialecto de dónde proviene. \\
+El objetivo del presente trabajo sería, en primer lugar, construir un dataset\cite{CORPLING} sobre textos en español de Argentina extraídos de \emph{Twitter}\cite{KILG2003}. 
+Sobre este dataset, además del texto nos interesará tener información de quién lo escribe y en particular de qué parte de la Argentina proviene.
 
-Teniendo el conjunto de datos, se realizará un análisis estadístico sobre el listado de frecuencias de palabras, para poder detectar neologismos y contrastes de uso en distintas regiones ya sea a nivel provincia, o entre conjuntos de provincias. Luego, se analizará la correlación entre las frecuencias de palabras de las regiones dialectales provistas por \emph{Vidal de Batini}\cite{VIDAL1964}.\\
+Teniendo el conjunto de datos, se realizará un análisis estadístico sobre el listado de frecuencias de palabras, para poder detectar neologismos y contrastes de uso en distintas regiones ya sea a nivel provincia, o entre conjuntos de provincias. Luego, se analizará la correlación entre las frecuencias de palabras de las regiones dialectales provistas por \emph{Vidal de Batini}\cite{VIDAL1964}.
 
 Un éxito en esta etapa, aunque sea parcial, abre infinidad de posibilidades de trabajo con la lengua en Internet que tiene muchas aplicaciones más allá del interés puramente lingüístico: sondeos de opinión, publicidad, detección de tendencias en distintas áreas (deporte, cine, televisión, consumo de bienes, etc.).   
 
@@ -47,30 +51,46 @@ Un éxito en esta etapa, aunque sea parcial, abre infinidad de posibilidades de 
 
 Para extraer los tweets se utilizará la librería de \textit{python} llamada \textit{tweepy}.
 A través de la librería se hará una búsqueda de usuarios de forma localizada para después extraer tweets de estos.
-Luego se procesará el texto, para limpiar aquellas secuencias que no nos interesan para el análisis linguistico,
-como los números,emoticones,o signos de puntuación entre otros.
-Finalmente haremos un listado de frecuencias de palabras por provincia,
-y por las regiones dialectales obtenidas del trabajo de  \emph{Vidal de Batini}.
+Luego se procesará el texto, para limpiar aquellas secuencias que no nos interesan para el análisis lingüístico,
+como los números, emoticones o signos de puntuación entre otros.
+Finalmente haremos un listado de frecuencias de palabras\cite{BAAYEN} por provincia,
+y por las regiones dialectales obtenidas del trabajo de  \emph{Vidal de Batini}. Sobre estos listados realizaremos análisis estadísticos para detectar las palabras con contrastes significativos. 
 
-%Agregar los métodos estadísticos a utilizar
+En esta tesis se plantearán varios desafíos computacionales para la
+creación del corpus y para el posterior análisis estadístico de las
+distribuciones de palabras. Como resultado, realizará mejoras significativas
+a la metodología empleada por la Academia Argentina de Letras al
+estudio del uso del español en nuestro país.
+
 
 \begin{thebibliography}{9}
 \bibitem{ALMEIDA1995}
-    Manuel Almeida, Carmelo Vidal,
+     Almeida Manuel, Vidal Carmelo,
     \emph{Variación socioestilística del léxico, Boletín de Filología ,35.1 Pág. 50-64}
     1995
-\bibitem{KILG2003}
-   Kilgarriff, Adam, Gregory Grefenstette,
-   \emph{Introduction to the special issue on the web as corpus},
-   Computational linguistics 29.3 (2003): 333-347.
+
 \bibitem{CORPES XXI}
-    Real Academia Española:
+    Real Academia Española,
     \emph{Banco de datos (CORPES XXI) [en línea]. Corpus del Español del
     Siglo XXI (CORPES). <http://www.rae.es>}
+\bibitem{CORPLING}
+    McEnery, Tony,  Andrew Hardie.
+    \emph{Corpus linguistics: method, theory and practice}
+    2012
+\bibitem{KILG2003}
+   Kilgarriff, Adam, Grefenstette Gregory,
+   \emph{Introduction to the special issue on the web as corpus},
+   Computational linguistics 29.3 (2003): 333-347.
+
 \bibitem{VIDAL1964}
     Vidal de Battini, Berta Elena,
     \emph{El español en la Argentina}
     1964
+\bibitem{BAAYEN}
+    Baayen, R. Harald
+    \emph{Word frequency distributions. Vol. 18. Springer Science \& Business Media}
+    2001
+
 
 \end{thebibliography}
 
