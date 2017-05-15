@@ -1,7 +1,6 @@
 #! coding: utf-8
 """Helpers para las notebooks de Information Value."""
 import nltk
-import math
 from scipy.stats import entropy
 from nltk.corpus import stopwords, gutenberg
 
@@ -77,26 +76,19 @@ def random_balls_in_bins(balls, bins):
     return bins
 
 
-def simulated_shuffled_entropy(word_series, no_tokens, window_size):
+def simulated_shuffled_entropy(n, p):
     """Calculate simulated-shuffled entropy.
 
     Parameters
     ----------
 
-    word_series: pandas.Series
-        row of a dataframe built with occurrence_dataframe function
-    no_tokens: int
-        Number of tokens (N) in text
-    window_size: int
-        Number of tokens per window
-    hypergeom: function with parameters k, M, N, n
-        Function calculating the mass function of a Hypergeometric with parameters M, N, n
+    n: int
+        Number of occurrences of word
+    p: int
+        Number of parts in text
     """
-    p = int(math.ceil(no_tokens / window_size))
-    n = word_series.total
-
     shuffled_words = random_balls_in_bins(balls=n, bins=p)
-
+    assert(sum(shuffled_words) == n)
     return entropy(shuffled_words)
 
 
