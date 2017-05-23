@@ -3,6 +3,10 @@
 import nltk
 from scipy.stats import entropy
 from nltk.corpus import stopwords, gutenberg
+from numpy.random import multinomial
+
+def shuffle(balls,bins):
+    return multinomial(balls, [1./bins] * bins)
 
 
 def is_punctuation(c):
@@ -90,6 +94,23 @@ def simulated_shuffled_entropy(n, p):
     shuffled_words = random_balls_in_bins(balls=n, bins=p)
     assert(sum(shuffled_words) == n)
     return entropy(shuffled_words)
+
+
+def simulated_shuffled_entropy_multinomial(n, p):
+    """Calculate simulated-shuffled entropy.
+
+    Parameters
+    ----------
+
+    n: int
+        Number of occurrences of word
+    p: int
+        Number of parts in text
+    """
+    shuffled_words = shuffle(balls=n, bins=p)
+    assert(sum(shuffled_words) == n)
+    return entropy(shuffled_words)
+
 
 
 def get_moby_dick_tokens():
