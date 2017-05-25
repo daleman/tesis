@@ -11,7 +11,7 @@ Los departamentos y partidos de la Argentina son la subdivisión de 2.º orden d
 
 % La cantidad de usuarios debería ser igual para todas las provincias, o debería ser en función de la población de la provincia.
 
-\section{Búsqueda geolocalizadas}
+\subsection{Búsqueda geolocalizadas}
 Una vez obtenida esta lista de ubicaciones, por cada provincia se realizaron búsquedas con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia.
 
 Hubo varios problemas con las búsquedas localizadas:
@@ -20,11 +20,13 @@ Hubo varios problemas con las búsquedas localizadas:
     \item Dentro de los que tienen geolocalización activada, no todos viven allí (posibilidad de turistas)
     \item Las búsquedas geolocalizadas también dan como resultados los tweets que son retweets de personas que tienen la ubicación solicitada.
 \end{itemize}
-
+%Revisar%
+El primer problema, solo afecta a la cantidad de tweets que se pueden recolectar.
+El segundo y el tercer problema, son solucionados con el chequeo del campo \textit{location}.
 %When conducting geo searches, the search API will first attempt to find Tweets which have lat/long within the queried geocode, and in case of not having success, it will attempt to find Tweets created by users whose profile location can be reverse geocoded into a lat/long within the queried geocode, meaning that is possible to receive Tweets which do not include lat/long information.
 Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar Tweets cuyas coordenadas sean las que fueron las buscadas, y en caso de no tener éxito, buscará los Tweets creados por usuarios que tienen en el campo textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.  
 
-A continuación se muestra un gráfico con las ubicaciones donde se buscaron los usuarios:
+A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios:
 
 % \begin{figure}[ht]
 % \centering
@@ -36,7 +38,7 @@ A continuación se muestra un gráfico con las ubicaciones donde se buscaron los
 
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios si no que son una mera copia de otros tweets. %Buscar mejor justificación
 
-\section{Datos de entrenamiento y de validación}
+\subsection{Datos de entrenamiento y de validación}
 
 Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de entrenamiento y uno de validación.
 La división fue de la siguiente manera:
@@ -48,12 +50,22 @@ Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo 
 
 Después de saber la fecha se dividió al conjunto de tweets producidos por estos usuarios, con el conjunto de entrenamiento con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
 
-\section{Tokenización}
-Dados los textos, hubo que realizar una limpieza de estos debido a que en \textit{Twitter} ocurren palabras que contienen números dentro de ellas, emoticones y signos de puntuación. Luego se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, signos de puntiación ni emotiones. Esto se realizó con la librería \textit{}
+\section{Tokenización y Normalización}
+Dados los textos, hubo que realizar una limpieza de estos debido a que en \textit{Twitter} ocurren palabras que contienen números dentro de ellas, emoticones y signos de puntuación. Luego se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, signos de puntuación ni emotiones, es decir solo las secuencias de caracteres alfabéticos. 
+Además de la tokenización del texto, se realizó una normalización sobre el. Todas las palabras fueron Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
 
 \section{Caracterización de la muestra}
-
 
 % Cantidad de usuarios por provincia, en train y en test
 % cantidad de tweets por usuario, cantidad media de palabras por usuario
 % Cantidad de tweets por fecha en el conjunto de datos 
+
+% Ley de zipf, ver que vale con nuestro dataset
+
+
+% las metricas para encontrar las palabras con contrastes
+% entropia, defincion, de donde viene, formula
+% usamos la multinomial
+% valor de informacion de zanette. ejemplos de como extrae las palabras más importantes/
+% nos inspiramos en el valor de informacion, explicar la formula utilizada
+%
