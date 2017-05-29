@@ -29,5 +29,5 @@ presentacion_eci:
 
 clean:
 	cd src/ && \
-	latexmk -c tesis.tex presentacion.tex presentacion_eci.tex concurso.tex $(options)
-	rm -f tesis.pdf presentacion.pdf concurso.pdf
+	latexmk -c tesis.tex $(options)
+	rm -f tesis.pdf 
