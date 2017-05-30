@@ -38,7 +38,7 @@ A continuación se muestra un gráfico con las ubicaciones donde se encuentran l
 
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios si no que son una mera copia de otros tweets. %Buscar mejor justificación
 
-\subsection{Datos de entrenamiento y de validación}
+\section{Datos de entrenamiento y de validación}
 
 Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de entrenamiento y uno de validación.
 La división fue de la siguiente manera:
@@ -58,6 +58,12 @@ Además de la tokenización del texto, se realizó una normalización sobre él.
 \section{Caracterización de la muestra}
 
 Para tener una noción más completa de la muestra, presentamos una serie de gráficos que muestran las cantidades de palabras y tweets por provincia.
+
+\subsection{Cantidad de Palabras}
+%Cantidad de palabras promedio por tweet
+%Cantidad de palabras por usuario + varianza por provincia
+\subsection{Tweets a lo largo del tiempo}
+%Cantidad de tweets a través del tiempo (por provincia?)
 
 % \begin{table}[]
 % \centering
@@ -92,16 +98,18 @@ Para tener una noción más completa de la muestra, presentamos una serie de gr�
 % \end{table}
 
 
-% Cantidad de usuarios por provincia, en train y en test
+% Cantidad de usuarios por provincia
 % cantidad de tweets por usuario, cantidad media de palabras por usuario
 % Cantidad de tweets por fecha en el conjunto de datos 
 
+\section{Frecuencia de las palabras}
 % Ley de zipf, ver que vale con nuestro dataset
 
-% las metricas para encontrar las palabras con contrastes
 
 \subsection{Métricas para medir el contraste en la frecuencia de las palabras}
-
+Dado que se quiere encontrar las palabras con contrastes significativos en distintas
+regiones se propone generar una métrica basada en la cantidad de información
+ para poder realizar esta tarea.
 \subsubsection{La entropía como médida del desorden}
 
 Para ver la cantidad de información que nos aporta cada palabra se hará una introducción a la teoría de la información, especificamente
@@ -126,6 +134,49 @@ Dado que la entropía es máxima cuando los eventos de X son equiprobables, se s
 
 Una médida que se puede usar para comparar las frecuencias de las palabras en las difentes regiones del país puede ser la entropía de Shannon, debido a que podemos tener un valor que informe que tan uniforme es la distribución de las frecuencias de cada palabra.
 Sin embargo, la entropía como única médida tiene sus desventajas. Principalmente, una palabra con una sola ocurrencia en una provincia y ninguna en las demás tiene la entropía máxima. Debido a que nos interesan las palabras con más de una ocurrencia se trató de elaborar otrá métrica que tenga en cuenta la entropía, pero que no sea la única variable a tener en cuenta.
+
+
+\subsection{Valor de información}
+La métrica que utilizamos para ordenar los listados de palabras y detectar cuales son
+las que tienen altos contrastes en su uso en distintas regiones fue inspirada sobre el
+trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
+Ellos a diferencia de Shannon estudiaron una relación entre una médida de la información y su función semántica en el lenguaje.
+A continuación detallamos el procedimiento para calcular lo que ellos llamaron
+el valor de la información: \\
+
+Dado un texto dividido en P partes iguales (), se calcula la entropía  $\eta(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
+Luego se define $\widehat{\eta(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
+%% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
+Es decir, se distribuyen uniformemente las palabras en P partes y se calcula la
+entropía como se hizo con el texto original. Es de esperar que en la mayoría de casos 
+la entropía del texto permutado sea mayor que la médida en el calculo original. Esto 
+se debe a que las palabras se distribuyen de forma más uniforme 
+en las distintas partes.
+Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$ , con $p(w)$ la frecuencia total de la palabra en el texto. 
+De esta manera se le da más importancia a las palabtas que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.\\
+
+Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
+\textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
+En los tres libros las palabras con mayor valor de la información están 
+altamente relacionadas con los temas principales.
+
+Si bien esta métrica tiene en cuenta la frecuencia de las palabras además de la 
+entropía, el texto en Twitter resulta dificil dividirlo en partes iguales. 
+Esto es porque la división está pensada para dividir al texto en secciones que 
+posiblemente hablen de distintos temas y nuestros textos son tweets que por lo general no superan las 10 palabras.
+Otra dificultad que surge de esta métrica es la imposibilidad de realizar la media 
+de todas las posibles permutaciones del texto por la limitación computacional ya que 
+tenemos una cantidad muy grande de datos.
+
+Es por eso que realizamos una métrica parecida:
+Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece.
+Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
+utilizan la palabra p en cada provincia.
+$C(W) = \log(#Palabras) * (\widehat{\eta(w)} - \eta(w)) $  donde
+$\widehat{\eta(w)$ se corresponde a la entropía de un vector simulado de apariciones.
+Esta simulación se realiza con una distribución multinomial ya que se distribuye la 
+suma de los valores de la variable aleatoria uniformemente. 
+
 
 
 % entropia, defincion, de donde viene, formula
