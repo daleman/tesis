@@ -1,12 +1,34 @@
 #! coding: utf-8
 """Helpers para las notebooks de Information Value."""
 import nltk
+import json
 from scipy.stats import entropy
 from nltk.corpus import stopwords, gutenberg
 from numpy.random import multinomial
+from nltk import word_tokenize
 
-def shuffle(balls,bins):
-    return multinomial(balls, [1./bins] * bins)
+
+def lugares():
+    with open('tesis/localidades/cabeceras.geojson') as cab,\
+            open('tesis/localidades/capitales.geojson') as cap,\
+            open('tesis/localidades/localidades.geojson') as loc,\
+            open('tesis/localidades/departamentos.geojson') as dep:
+        cabeceras = json.load(cab)
+        capitales = json.load(cap)
+        localidades = json.load(loc)
+        departamentos = json.load(dep)
+        lugares = Set([])
+        for a in [cabeceras, capitales, localidades, departamentos]:
+            for n in a['features']:
+                for w in nltk.word_tokenize(n['properties']['nombre']):
+                    if w.isalpha():
+                        lugares.add(w.lower())
+
+    return lugares
+
+
+def shuffle(balls, bins):
+    return multinomial(balls, [1. / bins] * bins)
 
 
 def is_punctuation(c):
@@ -110,7 +132,6 @@ def simulated_shuffled_entropy_multinomial(n, p):
     shuffled_words = shuffle(balls=n, bins=p)
     assert(sum(shuffled_words) == n)
     return entropy(shuffled_words)
-
 
 
 def get_moby_dick_tokens():
