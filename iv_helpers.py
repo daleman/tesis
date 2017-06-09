@@ -9,20 +9,19 @@ from nltk import word_tokenize
 
 
 def lugares():
-    with open('tesis/localidades/cabeceras.geojson') as cab,\
-            open('tesis/localidades/capitales.geojson') as cap,\
-            open('tesis/localidades/localidades.geojson') as loc,\
-            open('tesis/localidades/departamentos.geojson') as dep:
+    with open('../localidades/cabeceras.geojson') as cab,\
+            open('../localidades/capitales.geojson') as cap,\
+            open('../localidades/localidades.geojson') as loc,\
+            open('../localidades/departamentos.geojson') as dep:
         cabeceras = json.load(cab)
         capitales = json.load(cap)
         localidades = json.load(loc)
         departamentos = json.load(dep)
-        lugares = Set([])
+        lugares = set([])
         for a in [cabeceras, capitales, localidades, departamentos]:
             for n in a['features']:
                 for w in nltk.word_tokenize(n['properties']['nombre']):
-                    if w.isalpha():
-                        lugares.add(w.lower())
+                    lugares.add(w.lower())
 
     return lugares
 
