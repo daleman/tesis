@@ -106,6 +106,20 @@ Para tener una noción más completa de la muestra, presentamos una serie de gr�
 % Ley de zipf, ver que vale con nuestro dataset
 
 
+El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
+en cada par de prinvincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
+en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
+recolectado tweets con esa palabra, se tomaba en cuenta la frecuencia de la palabra con menos ocurrencias en esa provincia.
+De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. \\
+Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados
+y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
+listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
+En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy díficil poder identificar en que regiones había una diferencia significativa de frecuencias. Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
+
+Por otro lado, nos pareció interesante hacer el análisis de contraste tomando como unidad regional las regiones dialectales presentadas por Vidal de Battini mencionadas previamente, para ver de alguna manera si estas regiones siguen vigentes teniendo en cuenta un análisis cuantitativo. %Hacer referencia a esa sección
+
+De este modo, nos enfocamos a analizar el contraste de frecuencias de palabras sobre las regiones dialectales y las provincias a través de una métrica superadora.
+
 \subsection{Métricas para medir el contraste en la frecuencia de las palabras}
 Dado que se quiere encontrar las palabras con contrastes significativos en distintas
 regiones se propone generar una métrica basada en la cantidad de información
@@ -172,8 +186,8 @@ Es por eso que realizamos una métrica parecida:
 Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece.
 Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
 utilizan la palabra p en cada provincia.
-$C(W) = \log(#Palabras) * (\widehat{\eta(w)} - \eta(w)) $  donde
-$\widehat{\eta(w)$ se corresponde a la entropía de un vector simulado de apariciones.
+$C(W) = \log(\#Palabras) * (\widehat{ H(w)} -  H(w)) $  donde
+$\widehat{H(w)}$ se corresponde a la entropía de un vector simulado de apariciones.
 Esta simulación se realiza con una distribución multinomial ya que se distribuye la 
 suma de los valores de la variable aleatoria uniformemente. 
 
