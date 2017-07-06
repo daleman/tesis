@@ -5,8 +5,7 @@
 Para extraer los tweets se utilizó la librería de \textit{python} llamada \textit{tweepy}. Con ella primero se extrajo una cantidad de usuarios de forma localizada para después extraer tweets de estos.
 Los usuarios se buscaron por provinicia para tener una cantidad de usuarios aproximadamente equitativa.
 La búsqueda de los usuarios se hizo de la siguiente manera:
-Por cada provincia de la Argentina, se extrajo las ubicaciones de los departamentos de cada provincia, de los partidos de la provincia de buenos aires y de las comunas de la ciudad de buenos aires. El conjunto de estas forman la subdivisión de segundo orden de la republica Argentina. La lista de departamentos/partidos/comunas fue extraida a partir de los datos publicados del Censo Argentino realizado en el año 2010. 
-Los departamentos y partidos de la Argentina son la subdivisión de 2.º orden de las provincias de la Argentina. En todas ellas se las denomina departamentos, excepto en la provincia de Buenos Aires donde por razones históricas se las llama partidos. La Ciudad Autónoma de Buenos Aires se organiza en comunas (no tienen nombre, sino que se denominan por número, del 1 al 15).
+Por cada provincia de la Argentina, se extrajo las ubicaciones de los departamentos de cada provincia, de los partidos de la provincia de buenos aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la republica Argentina. La lista de departamentos/partidos/comunas fue extraida a partir de los datos publicados del Censo Argentino realizado en el año 2010. 
 
 
 % La cantidad de usuarios debería ser igual para todas las provincias, o debería ser en función de la población de la provincia.
@@ -24,7 +23,7 @@ Hubo varios problemas con las búsquedas localizadas:
 El primer problema, solo afecta a la cantidad de tweets que se pueden recolectar.
 El segundo y el tercer problema, son solucionados con el chequeo del campo \textit{location}.
 %When conducting geo searches, the search API will first attempt to find Tweets which have lat/long within the queried geocode, and in case of not having success, it will attempt to find Tweets created by users whose profile location can be reverse geocoded into a lat/long within the queried geocode, meaning that is possible to receive Tweets which do not include lat/long information.
-Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar Tweets cuyas coordenadas sean las que fueron las buscadas, y en caso de no tener éxito, buscará los Tweets creados por usuarios que tienen en el campo textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.  
+Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar Tweets cuyas coordenadas sean las que fueron las buscadas, y en caso de no tener éxito, buscará los Tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.  
 
 A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios:
 
@@ -65,37 +64,37 @@ Para tener una noción más completa de la muestra, presentamos una serie de gr�
 \subsection{Tweets a lo largo del tiempo}
 %Cantidad de tweets a través del tiempo (por provincia?)
 
-% \begin{table}[]
-% \centering
-% \caption{Cantidades del dataset}
-% \label{my-label}
-% \begin{tabular}{lllllll}
-% Provincia      & cantPalabras & cantUsuarios & cantTweets & cantTotal & Primer tweet & Último tweet \\
-% Buenos Aires    & 191919       & 920          & 1125042    & 8974372   & 2007-09-20   & 2016-03-11   \\
-% Catamarca      & 173104       & 957          & 1057019    & 8161309   & 2007-06-15   & 2015-11-30   \\
-% Chaco          & 169476       & 964          & 976943     & 7605991   & 2009-09-18   & 2016-05-13   \\
-% Chubut         & 182592       & 954          & 1023373    & 8884745   & 2009-08-03   & 2016-07-12   \\
-% Córdoba        & 207307       & 987          & 1224266    & 10075932  & 2009-03-05   & 2016-06-28   \\
-% Corrientes     & 183292       & 939          & 1044951    & 8426940   & 2009-08-11   & 2016-06-19   \\
-% Entre Ríos      & 188679       & 969          & 1193693    & 9462986   & 2009-07-16   & 2016-06-23   \\
-% Formosa        & 169254       & 903          & 923352     & 7184382   & 2009-08-09   & 2016-05-20   \\
-% Jujuy          & 171064       & 971          & 678004     & 5951778   & 2008-04-17   & 2015-08-25   \\
-% La Pampa        & 186593       & 935          & 1085757    & 8996318   & 2009-04-21   & 2016-05-12   \\
-% La Rioja        & 186041       & 946          & 704044     & 6757277   & 2009-04-13   & 2015-08-06   \\
-% Mendoza        & 193708       & 945          & 1099717    & 9402399   & 2009-01-14   & 2016-07-18   \\
-% Misiones       & 168400       & 972          & 984218     & 7790197   & 2009-07-03   & 2016-05-30   \\
-% Neuquen        & 188038       & 927          & 1111201    & 9021449   & 2009-09-24   & 2016-07-23   \\
-% Río Negro       & 194383       & 965          & 1215361    & 9991831   & 2009-11-21   & 2016-06-01   \\
-% Salta          & 188402       & 884          & 830916     & 7506652   & 2009-05-13   & 2016-02-24   \\
-% San Juan        & 183546       & 926          & 1002322    & 8377792   & 2009-06-19   & 2016-06-14   \\
-% San Luis        & 164185       & 896          & 1006464    & 8327093   & 2009-07-01   & 2016-05-26   \\
-% Santa Cruz      & 174089       & 935          & 876621     & 7432923   & 2009-05-20   & 2015-12-30   \\
-% Santa Fe        & 201879       & 937          & 1019620    & 8862328   & 2009-05-11   & 2016-04-13   \\
-% Santiago del Estero       & 166540       & 887          & 944109     & 7355729   & 2009-07-05   & 2016-05-25   \\
-% Tierra del Fuego & 197273       & 964          & 976426     & 8559218   & 2008-05-17   & 2016-02-24   \\
-% Tucuman        & 195643       & 962          & 1093874    & 9238526   & 2009-01-21   & 2016-06-15  
-% \end{tabular}
-% \end{table}
+\begin{table}[]
+\centering
+\caption{Cantidades del dataset}
+\label{my-label}
+\begin{tabular}{lllllll}
+Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras & Primer tweet & Último tweet \\
+Buenos Aires    & 191919       & 920          & 1125042    & 8974372   & 2007-09-20   & 2016-03-11   \\
+Catamarca      & 173104       & 957          & 1057019    & 8161309   & 2007-06-15   & 2015-11-30   \\
+Chaco          & 169476       & 964          & 976943     & 7605991   & 2009-09-18   & 2016-05-13   \\
+Chubut         & 182592       & 954          & 1023373    & 8884745   & 2009-08-03   & 2016-07-12   \\
+Córdoba        & 207307       & 987          & 1224266    & 10075932  & 2009-03-05   & 2016-06-28   \\
+Corrientes     & 183292       & 939          & 1044951    & 8426940   & 2009-08-11   & 2016-06-19   \\
+Entre Ríos      & 188679       & 969          & 1193693    & 9462986   & 2009-07-16   & 2016-06-23   \\
+Formosa        & 169254       & 903          & 923352     & 7184382   & 2009-08-09   & 2016-05-20   \\
+Jujuy          & 171064       & 971          & 678004     & 5951778   & 2008-04-17   & 2015-08-25   \\
+La Pampa        & 186593       & 935          & 1085757    & 8996318   & 2009-04-21   & 2016-05-12   \\
+La Rioja        & 186041       & 946          & 704044     & 6757277   & 2009-04-13   & 2015-08-06   \\
+Mendoza        & 193708       & 945          & 1099717    & 9402399   & 2009-01-14   & 2016-07-18   \\
+Misiones       & 168400       & 972          & 984218     & 7790197   & 2009-07-03   & 2016-05-30   \\
+Neuquen        & 188038       & 927          & 1111201    & 9021449   & 2009-09-24   & 2016-07-23   \\
+Río Negro       & 194383       & 965          & 1215361    & 9991831   & 2009-11-21   & 2016-06-01   \\
+Salta          & 188402       & 884          & 830916     & 7506652   & 2009-05-13   & 2016-02-24   \\
+San Juan        & 183546       & 926          & 1002322    & 8377792   & 2009-06-19   & 2016-06-14   \\
+San Luis        & 164185       & 896          & 1006464    & 8327093   & 2009-07-01   & 2016-05-26   \\
+Santa Cruz      & 174089       & 935          & 876621     & 7432923   & 2009-05-20   & 2015-12-30   \\
+Santa Fe        & 201879       & 937          & 1019620    & 8862328   & 2009-05-11   & 2016-04-13   \\
+Santiago del Estero       & 166540       & 887          & 944109     & 7355729   & 2009-07-05   & 2016-05-25   \\
+Tierra del Fuego & 197273       & 964          & 976426     & 8559218   & 2008-05-17   & 2016-02-24   \\
+Tucumán        & 195643       & 962          & 1093874    & 9238526   & 2009-01-21   & 2016-06-15  
+\end{tabular}
+\end{table}
 
 
 % Cantidad de usuarios por provincia

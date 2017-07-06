@@ -1,3 +1,26 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{Sha01}
+
+\bibitem[AV95]{almeida1995variacion}
+Manuel Almeida and Carmelo Vidal.
+\newblock Variaci{\'o}n socioestil{\'\i}stica del l{\'e}xico: un estudio
+  contrastivo.
+\newblock {\em Bolet{\'\i}n de filolog{\'\i}a}, 35(1):P{\'a}g--50, 1995.
+
+\bibitem[Esp]{espanolabanco}
+Real~Academia Espa{\~n}ola.
+\newblock Banco de datos (corpes xxi)[en l{\'\i}nea].
+\newblock {\em Corpus del espa{\~n}ol del siglo XXI (CORPES)}.
+
+\bibitem[MZ10]{montemurro2010towards}
+Marcelo~A Montemurro and Dami{\'a}n~H Zanette.
+\newblock Towards the quantification of the semantic information encoded in
+  written language.
+\newblock {\em Advances in Complex Systems}, 13(02):135--153, 2010.
+
+\bibitem[Sha01]{shannon2001mathematical}
+Claude~Elwood Shannon.
+\newblock A mathematical theory of communication.
+\newblock {\em ACM SIGMOBILE Mobile Computing and Communications Review},
+  5(1):3--55, 2001.
 
 \end{thebibliography}

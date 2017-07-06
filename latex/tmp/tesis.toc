@@ -1,7 +1,19 @@
 \select@language {spanish}
 \contentsline {chapter}{\numberline {1.}Introducci\IeC {\'o}n}{1}
+\contentsline {subsection}{\numberline {1.0.1}Trabajo previo en el \IeC {\'a}rea}{2}
 \contentsline {chapter}{\numberline {2.}Materiales y M\IeC {\'e}todo}{3}
-\contentsline {chapter}{\numberline {3.}Resultados}{5}
-\contentsline {chapter}{\numberline {4.}Conclusiones y trabajo futuro}{7}
-\contentsline {chapter}{\numberline {5.}Ap\IeC {\'e}ndice}{8}
-\contentsline {chapter}{\numberline {6.}Bibliograf\IeC {\'\i }a}{9}
+\contentsline {section}{\numberline {2.1}Extracci\IeC {\'o}n de Datos}{4}
+\contentsline {subsection}{\numberline {2.1.1}B\IeC {\'u}squeda geolocalizadas}{4}
+\contentsline {section}{\numberline {2.2}Datos de entrenamiento y de validaci\IeC {\'o}n}{4}
+\contentsline {section}{\numberline {2.3}Tokenizaci\IeC {\'o}n y Normalizaci\IeC {\'o}n}{5}
+\contentsline {section}{\numberline {2.4}Caracterizaci\IeC {\'o}n de la muestra}{5}
+\contentsline {subsection}{\numberline {2.4.1}Cantidad de Palabras}{5}
+\contentsline {subsection}{\numberline {2.4.2}Tweets a lo largo del tiempo}{5}
+\contentsline {section}{\numberline {2.5}Frecuencia de las palabras}{5}
+\contentsline {subsection}{\numberline {2.5.1}M\IeC {\'e}tricas para medir el contraste en la frecuencia de las palabras}{7}
+\contentsline {subsubsection}{La entrop\IeC {\'\i }a como m\IeC {\'e}dida del desorden}{7}
+\contentsline {subsection}{\numberline {2.5.2}Valor de informaci\IeC {\'o}n}{8}
+\contentsline {chapter}{\numberline {3.}Resultados}{9}
+\contentsline {chapter}{\numberline {4.}Conclusiones y trabajo futuro}{13}
+\contentsline {chapter}{\numberline {5.}Ap\IeC {\'e}ndice}{14}
+\contentsline {chapter}{\numberline {6.}Bibliograf\IeC {\'\i }a}{15}
