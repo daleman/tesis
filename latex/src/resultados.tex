@@ -1,24 +1,136 @@
 %Qué resultados obtuvimos del análisis en cuestión. Acá vamos a poner qué palabras fueron significativas, dónde lo fueron, y demás.
 
 % Distribucion de entropía vs frecuencia  
+% Distribucion de frecuencias de las palabras
+% Distr entropia
+% de valor de la inf. a partir de los 5000 se ve que se estanca (graficar hasta 10**5)
 
+% subsection de la region de las palabras --> muestro tabla
+% se muestra que las regiones son contiguas geograficamente (hablarlo con santiago)
+
+% Las palabras que se vieron
+% las primeras generalmente se refieren a lugares o gentilicios
+
+% los problemas que surgieron: logroño se ve reflejado en las palabras
+
+% ver los graficos que hace zanette en su paper
+
+% se busco el dataset de localidades para filtrar las palabras que son lugares
+
+\subsection{Frecuencia de las Palabras}
+\label{sub: frecuenciaPalabras}
+% Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
+A continuación podemos ver la distribución de la cantidad de ocurrencias de las palabras.
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.6]{./images/PropAcum.pdf}
-\caption{Ubicaciones de los usuarios} 
-\label{fig:propAcum} 
+\includegraphics[scale=0.6]{./images/DistribucionOcurrenciasPalabras.pdf} 
+\caption{Frecuencia de las palabras} 
+\label{fig:cantPalabras} 
 \end{figure}
 
+En la figura \ref{fig:cantPalabras} podemos observar que la mayoría de las palabras ocurren entre 1 . Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
+
+\begin{table}[]
+\centering
+\caption{Cantidad de apariciones de las 20 palabras más frecuentes}
+\label{tabla:palabrasMasOcurrentes}
+\begin{tabular}{ll}
+Palabra & Cantidad de Ocurrencias \\
+que     & 7509160                 \\
+de      & 6527014                 \\
+a       & 4962492                 \\
+la      & 4913854                 \\
+no      & 4177810                 \\
+me      & 4101998                 \\
+y       & 3838370                 \\
+el      & 3773455                 \\
+en      & 2969783                 \\
+te      & 2060662                 \\
+se      & 1976027                 \\
+un      & 1863075                 \\
+es      & 1825892                 \\
+con     & 1799979                 \\
+lo      & 1712189                 \\
+mi      & 1643777                 \\
+por     & 1553382                 \\
+los     & 1498941                 \\
+para    & 1398757                 \\
+las     & 1212452                
+\end{tabular}
+\end{table}
+
+Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $s$ la posición de la palabra en el listado ordenado y sea $f(s)$ la frecuencia de la palabra, es decir la cantidad de ocurrencias de esta dividido por el total de palabras, se puede hacer la siguiente aproximación:
+
+$$f(s) \approx \frac{A}{s^{\alpha}}$$
+donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
+
+AGREGAR GRAFICO DE POSICION VS FRECUENCIA DE PALABRA
+
+
+
+% \begin{figure}[ht]
+% \centering
+% \includegraphics[scale=0.6]{./images/zipf.pdf}
+% \caption{Frecuencia de palabra vs posición en listado ordenado} 
+% \label{fig:zipf} 
+% \end{figure}
+
+\subsection{Entropía}
+Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. A continuación podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios:
+
+
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.6]{./images/PropAcum5000.pdf}
+\includegraphics[scale=0.4]{./images/DistribucionEntropia.pdf}
+\caption{Entropía de las Palabras} 
+\label{fig:entropiaPalabras} 
+\end{figure}
+
+En el gráfico \ref{fig:entropiaPalabras} podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas útlimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
+
+Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
+
+\subsection{Valor de la información}
+\label{sub:ValorDeLaInformacion}
+En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color que tiene. A su vez, se nota que el valor de la información suele ser mayor a médida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{./images/entropiaPersonasxNormCantPersonas.pdf}
+\caption{Entropía de las Palabras} 
+\label{fig:infoValue} 
+\end{figure}
+
+A continuación se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la misma.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{./images/ivaluesLog.pdf}
+\caption{Valor de la información} 
+\label{fig:ivalue} 
+\end{figure}
+
+
+\subsection{Proporción de ocurrencias} % (fold)
+\label{sub:proporcionDeOcurrencias}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{./images/PropAcum.pdf}
+\caption{Proporción acumulada según la muestra de palabras} 
+\label{fig:propAcum} 
+\end{figure}
+En la figura \ref{fig:propAcum} muestra la proporción acumulada de las palabras. Para esto, se ordeno para cada palabra las provincias según la cantidad de ocurrencias. Es notable la proporción acumulada según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
+
+En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento de ocurrencias a médida que se aumenta la cantidad de provincias. 
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.4]{./images/PropAcum5000.pdf}
 \caption{Proporciones Acumuladas} 
 \label{fig:propAcum5000} 
 \end{figure}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[scale=0.6]{./images/ivaluesLog.pdf}
-\caption{Information Value} 
-\label{fig:ivalue} 
-\end{figure}
+
+
