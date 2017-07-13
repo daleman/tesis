@@ -35,7 +35,7 @@ A continuación se muestra un gráfico con las ubicaciones donde se encuentran l
 % \end{figure}
 
 
-De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios si no que son una mera copia de otros tweets. %Buscar mejor justificación
+De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios sino que son una mera copia de otros tweets. %Buscar mejor justificación
 
 \section{Datos de entrenamiento y de validación}
 
@@ -67,7 +67,7 @@ Para tener una noción más completa de la muestra, presentamos una serie de gr�
 \begin{table}[]
 \centering
 \caption{Cantidades del dataset}
-\label{my-label}
+\label{tab:cantidades}
 \begin{tabular}{lllllll}
 Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras & Primer tweet & Último tweet \\
 Buenos Aires    & 191919       & 920          & 1125042    & 8974372   & 2007-09-20   & 2016-03-11   \\
@@ -157,7 +157,7 @@ Ellos a diferencia de Shannon estudiaron una relación entre una médida de la i
 A continuación detallamos el procedimiento para calcular lo que ellos llamaron
 el valor de la información: \\
 
-Dado un texto dividido en P partes iguales (), se calcula la entropía  $\eta(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
+Dado un texto dividido en P partes iguales, se calcula la entropía  $\eta(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
 Luego se define $\widehat{\eta(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
 %% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
 Es decir, se distribuyen uniformemente las palabras en P partes y se calcula la
@@ -182,14 +182,44 @@ de todas las posibles permutaciones del texto por la limitación computacional y
 tenemos una cantidad muy grande de datos.
 
 Es por eso que realizamos una métrica parecida:
-Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece.
+Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
 utilizan la palabra p en cada provincia.
-$C(W) = \log(\#Palabras) * (\widehat{ H(w)} -  H(w)) $  donde
-$\widehat{H(w)}$ se corresponde a la entropía de un vector simulado de apariciones.
-Esta simulación se realiza con una distribución multinomial ya que se distribuye la 
-suma de los valores de la variable aleatoria uniformemente. 
 
+### Normalizo el valor de la cantidad de ocurrencias de una palabra y de usuarios que la utilizan.
+
+
+Luego,
+\begin{equation}
+InformationValue_{PersonasPalabras} =  norm_{CantPalabras} * norm_{CantPersonas} * (\widehat{H}_{personas} - H_{personas}) * (\widehat{H}_{palabras} - H_{palabras})
+    
+\end{equation}
+
+donde:
+\begin{equation}
+norm_{CantPalabras} = \frac{log_2(\#Palabra)- min(log_2(\#Palabra))}{max(log_2(\#Palabra)) - min(log_2(\#Palabra))}
+    
+\end{equation}}
+
+\begin{equation}
+norm_{CantPersonas} = \frac{log_2(\#Usuarios)- min(log_2(\#Usuarios))}{max(log_2(\#Usuarios)) - min(log_2(\#Usuarios))}
+    
+\end{equation}
+
+$\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
+
+Tanto $norm_{CantPalabras}$ como $norm_{CantPersonas}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
+
+$C(W) = \log(\#Palabras) * (\widehat{ H(w)} -  H(w)) $  donde
+$\widehat{H}_{personas}$ y $\widehat{H}_{palabras}$ se corresponde a la entropías de los vectores simulados de apariciones.
+Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\textwidth]{./images/cantNorms.pdf}
+\caption{Cantidades y sus normalizaciones} 
+\label{fig:cantNorms} 
+\end{figure}
 
 
 % entropia, defincion, de donde viene, formula
