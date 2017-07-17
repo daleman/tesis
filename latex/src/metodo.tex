@@ -38,9 +38,15 @@ A continuación se muestra un gráfico con las ubicaciones donde se encuentran l
 
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios sino que son una mera copia de otros tweets. %Buscar mejor justificación
 
-\section{Datos de entrenamiento y de validación}
+\section{Datos de desarrollo y de validación}
 
-Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de entrenamiento y uno de validación.
+Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de desarrollo y uno de validación. El conjunto de validación servirá para poder corroborar que los resultados obtenidos por el análisis del conjunto de desarrollo no sean algo intrínseco de esta muestra, sino que se pueden extrapolar a toda la población. 
+La división de los datos se realizó con el fin de tener dos conjuntos que sean lo más independientes posibles: 
+\begin{description}
+    \item [Usuarios disjuntos] Debido a que ciertos usuarios repiten palabras constantemente, ya sea porque son bots o simplemente porque hablan siempre de los mismos temas, es adecuado validar los resultados con textos producidos por distintos usuarios. De esta manera se intenta mitigar el ruido generado por estos usuarios particulares.
+    \item [Fechas disjuntas] Al analizar los resultados sobre los textos generados en un tiempo acotado de tiempo, estamos trabajando con una muestra específica que es de esperar que tenga fenómenos inesperados. Por ejemplo debido a cierto fenómeno climático o en el transcurso de un evento polémico, como un debate presidencial o un torneo deportivo se pueden obtener tweets con una frecuencia de ciertas palabras muy distinta a la frecuencia de la población. Es por esto que se dividió los tweets producidos por los usuarios de manera tal que sus fechas sean disjuntas.
+\end{description}
+
 La división fue de la siguiente manera:
 Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{Div}$ por la cual había una cantidad equiparable entre el conjunto de tweets producidos por  $Usuarios_1$ antes de $Fecha_{Div}$ y el conjunto de tweets producidos por $Usuarios_2$ despúes de $Fecha_{Div}$.Es decir:
 
@@ -48,7 +54,7 @@ Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo 
 \sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_2,f) 
 \end{equation}
 
-Después de saber la fecha se dividió al conjunto de tweets producidos por estos usuarios, con el conjunto de entrenamiento con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
+Después de saber la fecha se dividió al conjunto de tweets producidos por estos usuarios, con el conjunto de desarrollo con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
 
 \section{Tokenización y Normalización}
 
@@ -102,21 +108,17 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526
 % Cantidad de usuarios por provincia
 % cantidad de tweets por usuario, cantidad media de palabras por usuario
 % Cantidad de tweets por fecha en el conjunto de datos 
+% Ley de zipf, ver que vale con nuestro dataset
 
 \section{Búsqueda de contrastes}
 
+% Definir que es un contraste, que tiene un uso significativo en una region más que en otra. LAs alternativas que propusimos, z test binomial.
 Diremos que una palabra tiene un contraste cuando esta tiene un uso con diferencias significativas en
 distintas regiones. En este trabajo nos proponemos crear un listado con palabras con contrastes que tengan
 importancia a nivel lingüistico. En este sentido, los nombres de personas, lugares, organizaciones no 
 serán consideradas de interés a pesar de tener contrastes en su uso.
 Este listado será ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
 se seleccionará un subconjunto de palabras, de acuerdo a la métrica, las cuales serán analizadas manualmente en otros textos por la Academia Argentina de Letras.\\
-
-% Definir que es un contraste, que tiene un uso significativo en una region más que en otra. LAs alternativas que propusimos, z test binomial.
-
-% Ley de zipf, ver que vale con nuestro dataset
-
-
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
 en cada par de prinvincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
 en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
@@ -125,39 +127,15 @@ De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
 En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy díficil poder identificar en que regiones había una diferencia significativa de frecuencias. Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
-
-% Por otro lado, nos pareció interesante hacer el análisis de contraste tomando como unidad regional las regiones dialectales presentadas por Vidal de Battini mencionadas previamente, para ver de alguna manera si estas regiones siguen vigentes teniendo en cuenta un análisis cuantitativo. %Hacer referencia a esa sección
-
 De este modo, nos enfocamos a analizar el contraste de frecuencias de palabras sobre las provincias a través de una métrica superadora.
 
 \subsection{Métricas para medir el contraste en la frecuencia de las palabras}
 Dado que se quiere encontrar las palabras con contrastes significativos en distintas 
 regiones se propone generar una métrica basada en la cantidad de información 
 para poder realizar esta tarea.
-\subsubsection{La entropía como médida del desorden}
 
-Para ver la cantidad de información que nos aporta cada palabra se hará una introducción a la teoría de la información, especificamente
-los conceptos que introdujo Claude Shannon\cite{shannon2001mathematical}.
-Para entender estos conceptos es útil tener una descripción matemática del mecanismo que genera la información. Para eso se define a 
-la \textit{fuente} que emite señales de un alfabeto $ S = \{s_1, s_2, \dots\, s_q\}$ de acuerdo a una función de probabilidad fija.
-Si la fuente emite señáles estadísticamente independientes decimos que es una \textit{fuente de memoria nula} y un símbolo $s$ está completamente determinado por el alfabeto $S$ y las probabilidades:
-$P(s_1)\,P(s_2)\, \dots\, P(s_q)$
-
-Sea X una variable aleatoria discreta con posibles valores $\{x_1, x_2, \dots\, x_q\}$ y una función de probabilidad P(X), luego:
-${\displaystyle \mathrm {H} (X)=\mathrm {E} [\mathrm {I} (X)]=\mathrm {E} [-\log(\mathrm {P} (X))].}$
-donde X es una variable aleatoria con posibles valores $\{x_1, ... , x_n\}$ y P es una función de probabilidad.
-
-Los símbolos con menor probabilidad son los que aportan más información. Esto va de la mano con nuestra intuición ya que si entendemos a los símbolos como palabras de un texto, las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
-Observaciones:
-\begin{itemize}
-    \item La entropía es máxima cuando los eventos de X son equiprobables. En este caso, si hay n eventos con una probabilidad de $\frac{1}{n}$ cada uno , el valor de la entropía es de $\log n$.
-    \item La entropía es 0 si y solo sí todas las probabilidades son 0 a excepeción de una con probabilidad igual a la unidad. 
-\end{itemize}
-
-Dado que la entropía es máxima cuando los eventos de X son equiprobables, se suele decir que es una médida del desorden
-
-Una médida que se puede usar para comparar las frecuencias de las palabras en las difentes regiones del país puede ser la entropía de Shannon, debido a que podemos tener un valor que informe que tan uniforme es la distribución de las frecuencias de cada palabra.
-Sin embargo, la entropía como única médida tiene sus desventajas. Principalmente, una palabra con una sola ocurrencia en una provincia y ninguna en las demás tiene la entropía máxima. Debido a que nos interesan las palabras con más de una ocurrencia se trató de elaborar otrá métrica que tenga en cuenta la entropía, pero que no sea la única variable a tener en cuenta.
+Una médida que se puede usar para comparar las frecuencias de las palabras en las difentes regiones del país puede ser la entropía definida por Shannon\ref{sub:entropiaShannon}, debido a que podemos tener un valor que informe que tan uniforme es la distribución de las frecuencias de cada palabra.
+Sin embargo, la entropía como única médida tiene sus desventajas. Principalmente, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima. A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas eligiremos las que tienne mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, pero que no sea la única variable a tener en cuenta.
 
 
 \subsection{Valor de información}
@@ -168,7 +146,6 @@ trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
 Ellos a diferencia de Shannon estudiaron una relación entre una médida de la información y su función semántica en el lenguaje.
 A continuación detallamos el procedimiento para calcular lo que ellos llamaron
 el valor de la información: \\
-
 Dado un texto dividido en P partes iguales, se calcula la entropía  $\eta(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
 Luego se define $\widehat{\eta(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
 %% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
@@ -179,7 +156,6 @@ se debe a que las palabras se distribuyen de forma más uniforme
 en las distintas partes.
 Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$ , con $p(w)$ la frecuencia total de la palabra en el texto. 
 De esta manera se le da más importancia a las palabtas que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.\\
-
 Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
 \textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
@@ -236,19 +212,11 @@ El término de la diferencia de la entropía sobre la cantidad de personas que u
 Para eliminar outliers se procedió a eliminar las palabras que tenían una cantidad de usuarios menor o igual a 40 ocurrencias, como también las palabras que eran dichas por menos de 6 personas. 
 
 
-% Describir la eliminacion de outliers por la cota minima de usuarios y de palabras
 
-% entropia, defincion, de donde viene, formula
 % usamos la multinomial
 % valor de informacion de zanette. ejemplos de como extrae las palabras más importantes/
 % nos inspiramos en el valor de informacion, explicar la formula utilizada
 %
-
-
-% Contar que con esta medida hicimos una lista
-% comentar al principio que queremos un listado con las palabras con contraste
-% motivacion de agregar la medida de las personas ademas de las palabras -> para mitigar el ruido 
-% creado por bots o personas que hablan siempre de lo mismo (publicidades, etc)
 
 \subsection{Test Hipergeométrico}
 
