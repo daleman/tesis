@@ -66,7 +66,7 @@ En la figura \ref{fig:propAcum} muestra la proporción acumulada de las palabras
 En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento de ocurrencias a médida que se aumenta la cantidad de provincias. 
 
 
-\begin{figure}[!ht]
+\begin{figure}[]
 \centering
 \includegraphics[width=1.0\textwidth]{./images/PropAcum5000.pdf}
 \caption{Proporciones Acumuladas} 
@@ -90,7 +90,104 @@ los lugares del listado original.
 \subsection{Regiones de Palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un cierto umbral para cada palabra, nos propusimos analizar las regiones más frecuentes.
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. A continuación se puede ver los primeros conjuntos de provincias:
+
+\begin{table}[]
+\centering
+\label{tab:regiones}
+\begin{tabular}{|c|c|}
+\hline
+Conjunto de provincias                                 & Cantidad de Palabras  \\ \hline
+(Jujuy,Salta)                                          & 24          \\
+(Mendoza, San Juan)                                    & 19          \\
+(Neuquén, Río Negro)                                   & 18          \\
+(Corrientes, Misiones)                                 & 16          \\
+(Chaco, Corrientes, Formosa)                           & 16          \\
+(Chaco, Corrientes)                                    & 16          \\
+(chubut, Santa Cruz)                                   & 13          \\
+(Catamarca, La Rioja)                                  & 12          \\
+(Santa Cruz, Tierra del Fuego)                         & 12          \\
+(Corrientes, Entre Ríos, Formosa, La Rioja, Misiones)  & 12          \\  %La Rioja está de más
+(Formosa, Misiones)                                    & 12          \\
+(Corrientes, Formosa, Misiones)                        & 12          \\
+(Córdoba, La Rioja)                                    & 11          \\
+(Catamarca, Salta, Santiago del Estero, Tucumán)       & 11          \\
+(Catamarca, Jujuy, La Rioja, Salta, Santiago del Estero, Tucumán) & 10          \\
+(Chaco, Corrientes, Misiones)                          & 10          \\
+(Chaco, Corrientes, Formosa, Misiones)                 & 9           \\
+(Catamarca, Santiago del Estero, Tucumán)              & 9           \\
+(Catamarca, Tucumán)                                   & 9           \\
+(Salta, Tucumán)                                       & 8           \\
+(Catamarca, Jujuy, Salta, Santiago del Estero, Tucumán)& 8           \\
+(Neuquén, San Juan)                                    & 7           \\ %no son contiguas pero están cercanas
+(chubut, Santa Cruz, Tierra del Fuego)                 & 7           \\
+(Buenos Aires, lapampa)                                & 7           \\
+(Salta, Santiago del Estero, Tucumán)                  & 7           \\
+(Buenos Aires, lapampa, Río Negro)                     & 6           \\
+(Corrientes, Formosa)                                  & 6           \\
+(Catamarca, Jujuy, Salta, Tucumán)                     & 6           \\
+(Chaco, Corrientes, Entre Ríos, Formosa, Misiones)     & 6           \\
+(Catamarca, Santiago del Estero)                       & 6           \\
+\hline
+\end{tabular}
+\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias.}
+\end{table}
+
+De la tabla \ref{tab:regiones} podemos destacar que la mayoría de las regiones son compuestas por provincias contiguas.
+
+\begin{table}[]
+\centering
+{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Conjunto de Provincias} \\ \hline
+Salta-Tucumán & Mendoza-San Juan & Chaco-Corrientes-Formosa & Chubut-Santa Cruz-T. del Fuego \\
+\hline
+tribuno & mza & anga & austral \\
+salteño & zonda & teresss & chilote \\
+orán & secamente & músicas  & calafa\\
+tartagal & sanjuaninos & argela & chilota\\
+salteña & sanjuanino & angaaa & palmaso\\
+martearena & asar & olo & vueltines\\
+oran & tomba & cuchale & riviera\\
+yuto & queras & corrientesss & varadero\\
+purmamarca & traica & angá & \\
+yutos & sopaipillas & cts & \\
+gorriti & ardente & correntinas & \\
+quijano & secamentes & iburrr & \\
+tabacal & jáchal & cheraa & \\
+desentierro & virreina & cheraá & \\
+huaico & tombaaa & bofill & \\
+pichanal & mansooo & receppp & \\
+diableros & tombino & munda & \\
+bandy & parisi &  &  \\
+aramayo & asadaaa &  & \\
+ñaño & rosquitos &  & \\
+colque & ciclística &  & \\
+urkupiña & influencers &  & \\
+juy & beata &  & \\
+guachipas &  &  & \\
+boombox &  &  & \\
+lovatic &  &  & \\
+lajitas &  &  & \\
+ramasco &  &  & \\
+fighting &  & & \\ 
+\hline
+\end{tabular}%
+}
+\caption{Palabras cubiertas sobre el 80\% de las ocurrencias totales por el conjunto de provincias.}
+\label{tab:palabrasRegiones}
+\end{table}
+
+palabra
+austral      [tierradelfuego, santacruz, chubut]
+chilote      [chubut, santacruz, tierradelfuego]
+calafa       [santacruz, tierradelfuego, chubut]
+chilota      [santacruz, chubut, tierradelfuego]
+palmaso      [chubut, tierradelfuego, santacruz]
+vueltines    [santacruz, chubut, tierradelfuego]
+riviera      [chubut, tierradelfuego, santacruz]
+varadero     [chubut, santacruz, tierradelfuego]
 
 \subsection{Validación}
 
