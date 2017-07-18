@@ -23,7 +23,7 @@ Hubo varios problemas con las búsquedas localizadas:
 %Revisar%
 El primer problema, solo afecta a la cantidad de tweets que se pueden recolectar.
 El segundo y el tercer problema, son solucionados con el chequeo del campo \textit{location}.
-%When conducting geo searches, the search API will first attempt to find Tweets which have lat/long within the queried geocode, and in case of not having success, it will attempt to find Tweets created by users whose profile location can be reverse geocoded into a lat/long within the queried geocode, meaning that is possible to receive Tweets which do not include lat/long information.
+
 Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar Tweets cuyas coordenadas sean las que fueron las buscadas, y en caso de no tener éxito, buscará los Tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.  
 
 A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios:
@@ -69,14 +69,33 @@ Para tener una noción más completa de la muestra, presentamos una serie de gr�
 %Cantidad de palabras promedio por tweet
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Tweets a lo largo del tiempo}
-%Cantidad de tweets a través del tiempo (por provincia?)
+Los tweets recolectados para el conjunto de datos de desarrollo tienen una particularidad: a médida que pasan los años hubo mayor cantidad de tweets durante un año. Esto se 
+refleja en los gráficos que presentamos a continuación.
+
+\begin{figure}[!htb]\centering
+   \begin{minipage}{0.49\textwidth}
+     \frame{\includegraphics[width=\linewidth]{./images/histTweetsProvincia1.pdf}}
+     \caption{}
+     \label{fig:histTweetsProvincia1}
+   \end{minipage}
+   \begin {minipage}{0.49\textwidth}
+     \frame{\includegraphics[width=\linewidth]{./images/histTweetsProvincia2.pdf}}
+     \caption{}
+     \label{fig:histTweetsProvincia2}
+   \end{minipage}
+   \caption { En la figura \ref{fig:histTweetsProvincia1} se presenta un histograma donde se muestra la cantidad de tweets que se hiceron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. En la figura \ref{fig:histTweetsProvincia2}, se presenta el gráfico para Chaco y Neuquén.}
+\end{figure}
+
+
+
 
 \begin{table}[ht]
 \centering
-\caption{Cantidades del dataset}
+
 \label{tab:cantidades}
-\begin{tabular}[width=0.7\textwidth]{lllllll}
-Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras \\
+\begin{tabular}[width=0.7\textwidth]{|l|c|c|c|c|c|c|}
+\hline
+Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras \\ \hline
 Buenos Aires    & 191919       & 920          & 1125042    & 8974372  \\
 Catamarca      & 173104       & 957          & 1057019    & 8161309   \\
 Chaco          & 169476       & 964          & 976943     & 7605991   \\
@@ -90,7 +109,7 @@ La Pampa        & 186593       & 935          & 1085757    & 8996318  \\
 La Rioja        & 186041       & 946          & 704044     & 6757277  \\
 Mendoza        & 193708       & 945          & 1099717    & 9402399   \\
 Misiones       & 168400       & 972          & 984218     & 7790197   \\
-Neuquen        & 188038       & 927          & 1111201    & 9021449   \\
+Neuquén        & 188038       & 927          & 1111201    & 9021449   \\
 Río Negro       & 194383       & 965          & 1215361    & 9991831  \\
 Salta          & 188402       & 884          & 830916     & 7506652   \\
 San Juan        & 183546       & 926          & 1002322    & 8377792  \\
@@ -99,15 +118,15 @@ Santa Cruz      & 174089       & 935          & 876621     & 7432923  \\
 Santa Fe        & 201879       & 937          & 1019620    & 8862328  \\
 Santiago del Estero       & 166540       & 887          & 944109     & 7355729  \\
 Tierra del Fuego & 197273       & 964          & 976426     & 8559218   \\
-Tucumán        & 195643       & 962          & 1093874    & 9238526  
+Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
+  \hline
 \end{tabular}
+\caption{Cantidades del dataset}
 \end{table}
 
 % Tweets promedio por usuario, por provincia. (varianza)
 
-% Cantidad de usuarios por provincia
 % cantidad de tweets por usuario, cantidad media de palabras por usuario
-% Cantidad de tweets por fecha en el conjunto de datos 
 % Ley de zipf, ver que vale con nuestro dataset
 
 \section{Búsqueda de contrastes}
@@ -190,14 +209,12 @@ Análogamente,
 \begin{equation}
 norm_{p} = \frac{cp(u)- min(cp(u))}{max(cp(u)) - min(cp(u))}
 \end{equation}
-donde $cu(u)$ es la cantidad de usuarios que utilizan dicha palabra en la Argentina, $c(u)= log_2(cantidadUsuarios(w)))$.
+donde $cu(u)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, $c(u)= log_2(cantidadUsuarios(w)))$.
 
 
 $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
 
 Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
-
-$C(W) = \log(\#Palabras) * (\widehat{ H(w)} -  H(w)) $  donde
 $\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a las entropías de los vectores simulados de apariciones.
 Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
 
@@ -208,7 +225,7 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
 \label{fig:cantNorms} 
 \end{figure}
 
-El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. Esto se debe a que una determinada provincia  o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenomeno podría ser la de usuarios de ciertas organizacioenes que hablan de personas, lugares o marcas de forma constante. 
+El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia  o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenomeno podría ser la de usuarios de ciertas organizacioenes que hablan de personas, lugares o marcas de forma constante. 
 Para eliminar outliers se procedió a eliminar las palabras que tenían una cantidad de usuarios menor o igual a 40 ocurrencias, como también las palabras que eran dichas por menos de 6 personas. 
 
 
@@ -220,12 +237,6 @@ Para eliminar outliers se procedió a eliminar las palabras que tenían una cant
 
 \subsection{Test Hipergeométrico}
 
-%Comentar porque se dividieron los datos, para hacer el test
-
-% Describir que se va a hacer un listado, del que se va a dar un subconjunto a la academia de letras
-% al que van a aplicarle una inspeccion manual
-% validar con un test hipergeometrico
-
 
 \subsection{Frecuencia de las Palabras}
 \label{sub: frecuenciaPalabras}
@@ -233,19 +244,19 @@ Para eliminar outliers se procedió a eliminar las palabras que tenían una cant
 A continuación podemos ver la distribución de la cantidad de ocurrencias de las palabras.
 \begin{figure}[ht]
 \centering
-\includegraphics[scale=0.6]{./images/DistribucionOcurrenciasPalabras.pdf} 
-\caption{Frecuencia de las palabras} 
+\includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabras.pdf} 
+\caption{Histograma de la cantidad de ocurrencias de las palabras} 
 \label{fig:cantPalabras} 
 \end{figure}
 
-En la figura \ref{fig:cantPalabras} podemos observar que la mayoría de las palabras ocurren entre 1 . Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
+En la figura \ref{fig:cantPalabras} podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
 \begin{table}[ht]
 \centering
-\caption{Cantidad de apariciones de las 20 palabras más frecuentes}
 \label{tabla:palabrasMasOcurrentes}
-\begin{tabular}{ll}
-Palabra & Cantidad de Ocurrencias \\
+\begin{tabular}{|c|c|}
+\hline
+Palabra & Cantidad de Ocurrencias \\ \hline
 que     & 7509160                 \\
 de      & 6527014                 \\
 a       & 4962492                 \\
@@ -265,23 +276,21 @@ mi      & 1643777                 \\
 por     & 1553382                 \\
 los     & 1498941                 \\
 para    & 1398757                 \\
-las     & 1212452                
+las     & 1212452                 \\
+\hline
 \end{tabular}
+\caption{Cantidad de apariciones de las 20 palabras más frecuentes}
+
 \end{table}
 
-Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $s$ la posición de la palabra en el listado ordenado y sea $f(s)$ la frecuencia de la palabra, es decir la cantidad de ocurrencias de esta dividido por el total de palabras, se puede hacer la siguiente aproximación:
+Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $s$ la posición de la palabra en el listado ordenado y sea $f(s)$ la cantidad de ocurrencias de la palabra, es decir la cantidad de ocurrencias de esta dividido por el total de palabras, se puede hacer la siguiente aproximación:
 
 $$f(s) \approx \frac{A}{s^{\alpha}}$$
 donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 
-AGREGAR GRAFICO DE POSICION VS FRECUENCIA DE PALABRA
-
-
-
-% \begin{figure}[h]
-% \centering
-% \includegraphics[scale=0.6]{./images/zipf.pdf}
-% \caption{Frecuencia de palabra vs posición en listado ordenado} 
-% \label{fig:zipf} 
-% \end{figure}
-
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{./images/zipf.pdf}
+\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$} 
+\label{fig:zipf} 
+\end{figure}
