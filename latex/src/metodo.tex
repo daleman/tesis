@@ -291,3 +291,14 @@ donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 
 
 \subsection{Test Hipergeométrico}
+Luego de realizar el listado de palabras ordenado por el valor de la información se realizará un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. La Academia Argentina de Letras seleccionarán un conjunto de palabras que les son significativas a nivel lingüistico a partir de las 10000 palabras consideradas más contrastivas por nuestra métrica. Sobre ellas se realizará un test hipergeométrico en el cual la hipótesis alternativa consiste en que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
+Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias observada de la palabra en la región a analizar.
+
+$$
+\begin{cases}
+H_0 : \mu \leq cantPalabrasW(Region) \\
+H_1 : \mu > cantPalabrasW(Region)
+\end{cases}
+$$  
+
+Las regiones que utilizamos para cada palabra, son el conjunto de provincias que cubren el 80\% de las ocurrencias de dicho término.
