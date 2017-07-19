@@ -23,8 +23,8 @@ import enchant
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-path = 'train/train_'
-path_listas = 'train/listas/'
+path = 'test/test_'
+path_listas = 'test/listas/'
 
 # grep -wio 'independiente' ../impares/buenosaires_tokens.txt | wc -l
 
