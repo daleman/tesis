@@ -1,7 +1,7 @@
 # coding: utf-8
 import json
 from apps import *
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import re
 from nltk import word_tokenize
@@ -79,12 +79,47 @@ def dictionary(provincia, completo):
                 dicc[w] = 1 if not dicc.has_key(w) else dicc[w] + 1
                 if dicc_usuarios.has_key(w):
                     if uid not in dicc_usuarios[w]:
+                        dicc_usuarios[w][uid]=1
+                    else:
+                        dicc_usuarios[w][uid]+=1
+                else:
+                    dicc_usuarios[w] = {uid:1}
+                # cant_words += 1
+    return dicc, dicc_usuarios
+
+def dictionaryUsers(provincia, completo):
+    tknzr = TweetTokenizer(preserve_case=False,
+                           reduce_len=True, strip_handles=True)
+    dicc = {}
+    dicc_usuarios = {}
+    cant_words = 0
+    file_path = path + provincia + '.csv'
+    d = enchant.Dict("es_AR")
+    #i = 0
+    with open(file_path, 'r') as f:
+        reader = unicodecsv.reader(
+            f, encoding="utf-8", delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        for row in reader:
+            #i += 1
+            # print provincia,i,len(row)
+            # row[2] es la columna de texto
+            if (completo):
+                texto = [w for w in tknzr.tokenize(row[2].lower()) if w.isalpha()]
+            else:
+                texto = [w for w in tknzr.tokenize(
+                    row[2]) if w.isalpha() and (not d.check(w))]
+            uid = row[1]    # la columna de user id
+
+            for w in texto:
+                #wl = w.lower()
+                dicc[w] = 1 if not dicc.has_key(w) else dicc[w] + 1
+                if dicc_usuarios.has_key(w):
+                    if uid not in dicc_usuarios[w]:
                         dicc_usuarios[w].append(uid)
                 else:
                     dicc_usuarios[w] = [uid]
                 # cant_words += 1
     return dicc, dicc_usuarios
-
 
 def remove_words(dicc, thresh):
     n_dict = {k: v for k, v in dicc.items() if v > thresh}
@@ -325,16 +360,16 @@ if __name__ == "__main__":
     start_todo = datetime.datetime.now()
     wcd = save_dicts(argentina,True)
     #wcd = load_dicts(argentina)
-    words = wcd[0]
-    cant_words = wcd[1]
-    dicc_usuarios = wcd[2]
-    #tup= load_regions()
-    tup = save_regions(words, cant_words, dicc_usuarios)
-    words_region = tup[0]
-    cant_words_region = tup[1]
-    dicc_usuarios_region = tup[2]
-    # test_par_provincias(words,cant_words,argentina)
-    test_par_provincias(words_region, cant_words_region, list(
-        set(regiones.values())), dicc_usuarios_region)
-    end_todo = datetime.datetime.now()
-    print end_todo - start_todo
+    # words = wcd[0]
+    # cant_words = wcd[1]
+    # dicc_usuarios = wcd[2]
+    # #tup= load_regions()
+    # tup = save_regions(words, cant_words, dicc_usuarios)
+    # words_region = tup[0]
+    # cant_words_region = tup[1]
+    # dicc_usuarios_region = tup[2]
+    # # test_par_provincias(words,cant_words,argentina)
+    # test_par_provincias(words_region, cant_words_region, list(
+    #     set(regiones.values())), dicc_usuarios_region)
+    # end_todo = datetime.datetime.now()
+    # print end_todo - start_todo
