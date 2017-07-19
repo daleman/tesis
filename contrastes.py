@@ -12,6 +12,7 @@ import operator
 import jellyfish
 import argparse
 
+trainOTest = 'test'
 
 def save_dicts(pais, completo):
     words = {}
@@ -244,7 +245,7 @@ def contrastes(tipoDeListado='provincia'):
     # pd.read_excel(  'contrastes/{0}prev.xlsx'.format(tipoDeListado))
     df_resultado = cargarYGuardarDataframe(tipoDeListado)
     # df_resultado = filtrarPalabras(
-    #     df=result, cantUsuarios=5, cantOcurrencias=40)
+    #      df=result, cantUsuarios=5, cantOcurrencias=40)
 
     print 'df cargado'
     df_resultado['{0}SinEsaPalabra'.format(tipoDeListado)] = df_resultado.filter(
@@ -268,10 +269,12 @@ def contrastes(tipoDeListado='provincia'):
     df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
                                 '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False])
     print 'a guardar'
-    toExcel(df_resumida, tipoDeListado,
-            'contrastes/{0}contrastePalabrasResumido.xlsx'.format(tipoDeListado))
-    toExcel(df_resultado, tipoDeListado,
-            'contrastes/{0}contrasteExtendido.xlsx'.format(tipoDeListado))
+    df_resumida.to_csv('contrastes/usuarios/{0}_{1}contrastePalabrasResumido.csv'.format(tipoDeListado,trainOTest),)
+    df_resultado.to_csv('contrastes/usuarios/{0}_{1}contrasteExtendido.csv'.format(tipoDeListado,trainOTest))
+    # toExcel(df_resumida, tipoDeListado,
+    #         'contrastes/usuarios/{0}contrastePalabrasResumidoESTE.xlsx'.format(tipoDeListado))
+    # toExcel(df_resultado, tipoDeListado,
+    #         'contrastes/usuarios/{0}contrasteExtendidoESTE.xlsx'.format(tipoDeListado))
 
 
 if __name__ == "__main__":
