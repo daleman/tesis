@@ -265,12 +265,12 @@ def contrastes(tipoDeListado='provincia'):
 
     df_resultado[['{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado)]] = df_resultado[['{0}FnormMin'.format(tipoDeListado),
                                                                                                              '{0}FnormMax'.format(tipoDeListado)]].replace(to_replace='fnorm_', value='', regex=True)
-    print 'a ordenar'
-    df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
+    # print 'a ordenar'
+    # df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
                                 '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False])
     print 'a guardar'
-    df_resumida.to_csv('contrastes/usuarios/{0}_{1}contrastePalabrasResumido.csv'.format(tipoDeListado,trainOTest),)
-    df_resultado.to_csv('contrastes/usuarios/{0}_{1}contrasteExtendido.csv'.format(tipoDeListado,trainOTest))
+    # df_resumida.to_csv('contrastes/usuarios/{0}_{1}contrastePalabrasResumido.csv'.format(tipoDeListado,trainOTest),)
+    df_resultado.to_csv('contrastes/usuarios/{0}_{1}.csv'.format(tipoDeListado,trainOTest))
     # toExcel(df_resumida, tipoDeListado,
     #         'contrastes/usuarios/{0}contrastePalabrasResumidoESTE.xlsx'.format(tipoDeListado))
     # toExcel(df_resultado, tipoDeListado,
