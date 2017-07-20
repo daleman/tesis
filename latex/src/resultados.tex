@@ -10,7 +10,7 @@
 
 % Las palabras que se vieron, las primeras generalmente se refieren a lugares o gentilicios
 
-% los problemas que surgieron: logroño se ve reflejado en las palabras
+
 
 % ver los graficos que hace zanette en su paper
 
@@ -44,36 +44,38 @@ En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la canti
 
 A continuación se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la misma.
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1.0\textwidth]{./images/ivaluesLog.pdf}
-\caption{Valor de la información} 
-\label{fig:ivalue} 
+\begin{figure}[!ht]\centering
+   \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/ivaluesLog.pdf}
+    \caption{Valor de la información} 
+    \label{fig:ivalue}
+   \end{minipage}
+   \begin {minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/PropAcum.pdf}
+    \caption{Proporción acumulada según la muestra de palabras} 
+    \label{fig:propAcum} 
+   \end{minipage}
 \end{figure}
+
 
 
 \subsection{Proporción de ocurrencias} % (fold)
 \label{sub:proporcionDeOcurrencias}
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1.0\textwidth]{./images/PropAcum.pdf}
-\caption{Proporción acumulada según la muestra de palabras} 
-\label{fig:propAcum} 
-\end{figure}
+
 En la figura \ref{fig:propAcum} muestra la proporción acumulada de las palabras. Para esto, se ordenó para cada palabra las provincias según la cantidad de ocurrencias. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
 
 En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento de ocurrencias a médida que se aumenta la cantidad de provincias. 
 
 
-\begin{figure}[]
+\begin{figure}[h]
 \centering
-\includegraphics[width=1.0\textwidth]{./images/PropAcum5000.pdf}
+\includegraphics[width=0.5\textwidth]{./images/PropAcum5000.pdf}
 \caption{Proporciones Acumuladas} 
 \label{fig:propAcum5000} 
 \end{figure}
 
-\subsection{Palabras Candidatas} % (fold)
+\subsection{Palabras candidatas} % (fold)
 \label{sub:palabras_candidatas}
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
 diez mil (10000) palabras con valor de la información más altas. El número 10000 surgió de ver la distribución de los valores de la información. Cómo se puede ver en 
@@ -87,10 +89,10 @@ mayor interés lingüistico buscamnos un conjunto de datos con los nombres de la
 los lugares del listado original.
 
 
-\subsection{Regiones de Palabras} % (fold)
+\subsection{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. A continuación se puede ver los primeros conjuntos de provincias:
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. A continuación se puede ver los primeros conjuntos de provincias obtenidos a partir de los primeras 5000 palabras más contrastivas de acuerdo al valor de la información:
 
 \begin{table}[]
 \centering
@@ -130,7 +132,7 @@ Conjunto de provincias                                 & Cantidad de Palabras  \
 (Catamarca, Santiago del Estero)                       & 6           \\
 \hline
 \end{tabular}
-\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias.}
+\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras más contrastivas (de acuerdo al valor de la información).}
 \end{table}
 
 De la tabla \ref{tab:regiones} podemos destacar que la mayoría de las regiones son compuestas por provincias contiguas.
@@ -141,47 +143,43 @@ De la tabla \ref{tab:regiones} podemos destacar que la mayoría de las regiones 
 \begin{tabular}{|c|c|c|c|}
 \hline
 \multicolumn{4}{|c|}{Conjunto de Provincias} \\ \hline
-Salta-Tucumán & Mendoza-San Juan & Chaco-Corrientes-Formosa & Chubut-Santa Cruz-T. del Fuego \\
 \hline
-tribuno & mza & anga & austral \\
-salteño & zonda & teresss & chilote \\
-orán & secamente & músicas  & calafa\\
-tartagal & sanjuaninos & argela & chilota\\
-salteña & sanjuanino & angaaa & palmaso\\
-martearena & asar & olo & vueltines\\
-oran & tomba & cuchale & riviera\\
-yuto & queras & corrientesss & varadero\\
-purmamarca & traica & angá & \\
-yutos & sopaipillas & cts & \\
-gorriti & ardente & correntinas & \\
-quijano & secamentes & iburrr & \\
-tabacal & jáchal & cheraa & \\
-desentierro & virreina & cheraá & \\
-huaico & tombaaa & bofill & \\
-pichanal & mansooo & receppp & \\
-diableros & tombino & munda & \\
-bandy & parisi &  &  \\
-aramayo & asadaaa &  & \\
-ñaño & rosquitos &  & \\
-colque & ciclística &  & \\
-urkupiña & influencers &  & \\
-juy & beata &  & \\
-guachipas &  &  & \\
-boombox &  &  & \\
-lovatic &  &  & \\
-lajitas &  &  & \\
-ramasco &  &  & \\
-fighting &  & & \\ 
-\hline
+Salta-Jujuy & Mendoza-San Juan & Chubut-Santa Cruz-T. Del Fuego & Chaco-Corrientes-Formosa   \\ \hline
+tribuno     & mza              & austral                        & anga                       \\
+salteño     & zonda            & chilote                        & teresss                    \\
+orán        & secamente        & calafa                         & músicas                    \\
+tartagal    & sanjuaninos      & chilota                        & argela                     \\
+salteña     & sanjuanino       & palmaso                        & angaaa                     \\
+martearena  & asar             & vueltines                      & olo                        \\
+oran        & tomba            & riviera                        & cuchale                    \\
+yuto        & queras           &                                & corrientesss               \\
+purmamarca  & traica           &                                & angá                       \\
+yutos       & sopaipillas      &                                & cts                        \\
+gorriti     & ardente          &                                & correntinas                \\
+quijano     & secamentes       &                                & iburrr                     \\
+tabacal     & jáchal           &                                & cheraa                     \\
+desentierro & virreina         &                                & cheraá                     \\
+huaico      & tombaaa          &                                & bofill                     \\
+pichanal    & mansooo          &                                & receppp                    \\
+diableros   & tombino          &                                &                            \\
+bandy       & parisi           &                                &                            \\
+aramayo     & asadaaa          &                                &                            \\
+ñaño        &                  &                                &                            \\
+colque      &                  &                                &                            \\
+urkupiña    &                  &                                &                            \\
+juy         &                  &                                &                            \\
+guachipas   &                  &                                &                            \\ \hline
 \end{tabular}%
 }
-\caption{Palabras cubiertas sobre el 80\% de las ocurrencias totales por el conjunto de provincias.}
+\caption{Palabras cubiertas sobre el 80\% de las ocurrencias totales por el conjunto de provincias a partir de las 5000 palabras más contrastivas (de acuerdo al valor de la información).}
 \label{tab:palabrasRegiones}
 \end{table}
 
-\subsection{Validación}
 
-\subsection{Ruido} % (fold)
+\subsection{Validación}
+ACA VA LOS RESULTADOS DEL TEST HIPERGEOMETRICO EN EL CONJUNTO DE VALIDACIÓN
+
+\subsection{Ruido}
 \label{ssub:ruido}
 
 

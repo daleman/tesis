@@ -3,31 +3,22 @@
 
 \section{Extracción de Datos}
 
-Para la recolección de tweets, primero se extrajo una cantidad de usuarios de forma localizada para después extraer tweets de estos.
-Los usuarios se buscaron por provinicia de modo tal que haya una cantidad de usuarios aproximadamente equitativa.
+Para la recolección de tweets, primero se extrajo una cantidad de usuarios de forma localizada con el fin de obtener todos los tweets de estos.
+Los usuarios se buscaron por provinicia de modo tal que haya una cantidad aproximadamente equitativa.
 La búsqueda de los usuarios se hizo de la siguiente manera:\\
-Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos , de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la republica Argentina. La lista de departamentos/partidos/comunas fue extraida a partir de los datos publicados del Censo Argentino realizado en el año 2010. Para extraer los tweets se utilizó la librería de \textit{python} llamada \textit{tweepy}.
+Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos , de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la republica Argentina. La lista de departamentos/partidos/comunas fue extraída a partir de los datos publicados del Censo Argentino realizado en el año 2010. Para extraer los tweets se utilizó la librería de \textit{python} llamada \textit{tweepy}.
+De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios sino que son una mera copia de otros tweets. 
 
-
-% La cantidad de usuarios debería ser igual para todas las provincias, o debería ser en función de la población de la provincia.
 
 \subsection{Búsqueda geolocalizadas}
-Una vez obtenida esta lista de ubicaciones, por cada provincia se realizaron búsquedas con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia.
 
-Hubo varios problemas con las búsquedas localizadas:
-\begin{itemize}
-    \item No todos los usuarios tienen geolocalización activada.
-    \item Dentro de los que tienen geolocalización activada, no todos viven allí (posibilidad de turistas)
-    \item Las búsquedas geolocalizadas también dan como resultados los tweets que son retweets de personas que tienen la ubicación solicitada.
-\end{itemize}
-%Revisar%
-El primer problema, solo afecta a la cantidad de tweets que se pueden recolectar.
-El segundo y el tercer problema, son solucionados con el chequeo del campo \textit{location}.
+Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar tweets cuyas coordenadas sean las buscadas. En caso de no tener éxito, buscará aquellos tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.\\
 
-Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar Tweets cuyas coordenadas sean las que fueron las buscadas, y en caso de no tener éxito, buscará los Tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.  
+Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. Con esta precaución eliminamos los posibles tweets de turistas que escribieron en un lugar pero que no viven allí.
 
-A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios:
+A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios de la muestra de desarrollo:
 
+FALTA GRÁFICO
 % \begin{figure}[ht]
 % \centering
 % \includegraphics[scale=0.6]{imagenes/ubicacion_usuarios.png}
@@ -36,15 +27,13 @@ A continuación se muestra un gráfico con las ubicaciones donde se encuentran l
 % \end{figure}
 
 
-De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios sino que son una mera copia de otros tweets. %Buscar mejor justificación
-
 \section{Datos de desarrollo y de validación}
 
-Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de desarrollo y uno de validación. El conjunto de validación servirá para poder corroborar que los resultados obtenidos por el análisis del conjunto de desarrollo no sean algo intrínseco de esta muestra, sino que se pueden extrapolar a toda la población. 
-La división de los datos se realizó con el fin de tener dos conjuntos que sean lo más independientes posibles: 
+Por cada provincia se tomó a los usuarios de la misma y se los dividió para tener un conjunto de datos de desarrollo y uno de validación. El conjunto de validación fue creado para poder corroborar que los resultados obtenidos por el análisis del conjunto de desarrollo no sean algo intrínseco de esta muestra, sino que se pueden extrapolar a toda la población. 
+La división de los datos se realizó de manera tal que los conjuntos resultantes sean lo más independientes posibles: 
 \begin{description}
-    \item [Usuarios disjuntos] Debido a que ciertos usuarios repiten palabras constantemente, ya sea porque son bots o simplemente porque hablan siempre de los mismos temas, es adecuado validar los resultados con textos producidos por distintos usuarios. De esta manera se intenta mitigar el ruido generado por estos usuarios particulares.
-    \item [Fechas disjuntas] Al analizar los resultados sobre los textos generados en un tiempo acotado de tiempo, estamos trabajando con una muestra específica que es de esperar que tenga fenómenos inesperados. Por ejemplo debido a cierto fenómeno climático o en el transcurso de un evento polémico, como un debate presidencial o un torneo deportivo se pueden obtener tweets con una frecuencia de ciertas palabras muy distinta a la frecuencia de la población. Es por esto que se dividió los tweets producidos por los usuarios de manera tal que sus fechas sean disjuntas.
+    \item [Usuarios disjuntos] Debido a que ciertos usuarios repiten palabras constantemente, ya sea porque son bots o simplemente porque hablan siempre de los mismos temas, es adecuado validar los resultados con textos producidos por distintos usuarios. De esta manera se intentó mitigar el ruido generado por estos usuarios particulares.
+    \item [Fechas disjuntas] Al analizar los resultados sobre los textos generados en un tiempo acotado de tiempo, estamos trabajando con una muestra específica que es de esperar que tenga fenómenos particulares debido al momento en que fueron escritos. Por ejemplo, debido a cierto fenómeno climático o en el transcurso de un evento polémico (como un debate presidencial o un torneo deportivo) se pueden obtener tweets con una frecuencia de ciertas palabras muy distinta a la frecuencia de la población. Por esta razón se dividió los tweets producidos por los usuarios de manera tal que sus fechas sean disjuntas.
 \end{description}
 
 La división fue de la siguiente manera:
@@ -54,25 +43,66 @@ Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo 
 \sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_2,f) 
 \end{equation}
 
-Después de saber la fecha se dividió al conjunto de tweets producidos por estos usuarios, con el conjunto de desarrollo con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
+Después de fijar la fecha se dividió al conjunto de tweets producidos por estos usuarios: el conjunto de desarrollo con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
 
-\section{Tokenización y Normalización}
+\section{Tokenización y normalización}
 
-Dados los textos, hubo que realizar una limpieza de estos debido a que en \textit{Twitter} ocurren palabras que contienen números dentro de ellas, emoticones y signos de puntuación. Luego se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, signos de puntuación ni emoticones, es decir solo las secuencias de caracteres alfabéticos. 
-Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se llevaron a letra minúscula y las palabras con más de tres letras repetidas se redujeran para que solo tengan tres repeticiones. Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
+Dados los textos, hubo que realizar una limpieza de estos debido a que en \textit{Twitter} ocurren palabras que 
+contienen números dentro de ellas, emoticones y signos de puntuación. Luego se decidió tomar como palabra, aquellas 
+secuencias de caracteres separadas por espacios que no contienen números, signos de puntuación ni emoticones, es decir solo 
+las secuencias de caracteres alfabéticos. 
+Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se llevaron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeran para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
 
 \section{Caracterización de la muestra}
 
-Para tener una noción más completa de la muestra, presentamos una serie de gráficos que muestran las cantidades de palabras y tweets por provincia.
+Para tener una noción más completa de la muestra, presentamos la siguiente tabla que indica las cantidades de palabras y tweets por provincia.
 
-\subsection{Cantidad de Palabras}
+
+\begin{table}[ht]
+\centering
+
+\label{tab:cantidades}
+\begin{tabular}[width=0.7\textwidth]{|l|c|c|c|c|c|c|}
+\hline
+Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras \\ \hline
+Buenos Aires   & 191919       & 920          & 1125042    & 8974372  \\
+Catamarca      & 173104       & 957          & 1057019    & 8161309   \\
+Chaco          & 169476       & 964          & 976943     & 7605991   \\
+Chubut         & 182592       & 954          & 1023373    & 8884745   \\
+Córdoba        & 207307       & 987          & 1224266    & 10075932  \\
+Corrientes     & 183292       & 939          & 1044951    & 8426940   \\
+Entre Ríos     & 188679       & 969          & 1193693    & 9462986  \\
+Formosa        & 169254       & 903          & 923352     & 7184382   \\
+Jujuy          & 171064       & 971          & 678004     & 5951778   \\
+La Pampa       & 186593       & 935          & 1085757    & 8996318  \\
+La Rioja       & 186041       & 946          & 704044     & 6757277  \\
+Mendoza        & 193708       & 945          & 1099717    & 9402399   \\
+Misiones       & 168400       & 972          & 984218     & 7790197   \\
+Neuquén        & 188038       & 927          & 1111201    & 9021449   \\
+Río Negro      & 194383       & 965          & 1215361    & 9991831  \\
+Salta          & 188402       & 884          & 830916     & 7506652   \\
+San Juan       & 183546       & 926          & 1002322    & 8377792  \\
+San Luis       & 164185       & 896          & 1006464    & 8327093  \\
+Santa Cruz     & 174089       & 935          & 876621     & 7432923  \\
+Santa Fe       & 201879       & 937          & 1019620    & 8862328  \\
+Santiago del Estero       & 166540       & 887          & 944109     & 7355729  \\
+Tierra del Fuego & 197273       & 964          & 976426     & 8559218   \\
+Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
+  \hline
+\end{tabular}
+\caption{Cantidades del dataset}
+\end{table}
+
+
+
+\subsection{Cantidad de palabras}
 %Cantidad de palabras promedio por tweet
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Tweets a lo largo del tiempo}
-Los tweets recolectados para el conjunto de datos de desarrollo tienen una particularidad: a médida que pasan los años hubo mayor cantidad de tweets durante un año. Esto se 
-refleja en los gráficos que presentamos a continuación.
+Los tweets recolectados para el conjunto de datos de desarrollo tienen una particularidad: a médida que pasan los años 
+hubo mayor cantidad de tweets durante un año. Esto se refleja en los gráficos que presentamos a continuación.
 
-\begin{figure}[!htb]\centering
+\begin{figure}[!ht]\centering
    \begin{minipage}{0.49\textwidth}
      \includegraphics[width=\linewidth]{./images/histTweetsProvincia1.pdf}
      \caption{}
@@ -86,43 +116,6 @@ refleja en los gráficos que presentamos a continuación.
    \caption { En la figura \ref{fig:histTweetsProvincia1} se presenta un histograma donde se muestra la cantidad de tweets que se hiceron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. En la figura \ref{fig:histTweetsProvincia2}, se presenta el gráfico para Chaco y Neuquén.}
 \end{figure}
 
-
-
-
-\begin{table}[ht]
-\centering
-
-\label{tab:cantidades}
-\begin{tabular}[width=0.7\textwidth]{|l|c|c|c|c|c|c|}
-\hline
-Provincia      & \#Palabras Distintas & \#Usuarios & \#Tweets & \#Total Palabras \\ \hline
-Buenos Aires    & 191919       & 920          & 1125042    & 8974372  \\
-Catamarca      & 173104       & 957          & 1057019    & 8161309   \\
-Chaco          & 169476       & 964          & 976943     & 7605991   \\
-Chubut         & 182592       & 954          & 1023373    & 8884745   \\
-Córdoba        & 207307       & 987          & 1224266    & 10075932  \\
-Corrientes     & 183292       & 939          & 1044951    & 8426940   \\
-Entre Ríos      & 188679       & 969          & 1193693    & 9462986  \\
-Formosa        & 169254       & 903          & 923352     & 7184382   \\
-Jujuy          & 171064       & 971          & 678004     & 5951778   \\
-La Pampa        & 186593       & 935          & 1085757    & 8996318  \\
-La Rioja        & 186041       & 946          & 704044     & 6757277  \\
-Mendoza        & 193708       & 945          & 1099717    & 9402399   \\
-Misiones       & 168400       & 972          & 984218     & 7790197   \\
-Neuquén        & 188038       & 927          & 1111201    & 9021449   \\
-Río Negro       & 194383       & 965          & 1215361    & 9991831  \\
-Salta          & 188402       & 884          & 830916     & 7506652   \\
-San Juan        & 183546       & 926          & 1002322    & 8377792  \\
-San Luis        & 164185       & 896          & 1006464    & 8327093  \\
-Santa Cruz      & 174089       & 935          & 876621     & 7432923  \\
-Santa Fe        & 201879       & 937          & 1019620    & 8862328  \\
-Santiago del Estero       & 166540       & 887          & 944109     & 7355729  \\
-Tierra del Fuego & 197273       & 964          & 976426     & 8559218   \\
-Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
-  \hline
-\end{tabular}
-\caption{Cantidades del dataset}
-\end{table}
 
 % Tweets promedio por usuario, por provincia. (varianza)
 
@@ -199,16 +192,18 @@ I(w) =  norm_{w}(w) * norm_{p}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{
 
 donde:
 % hacer renombre de logpalabras para que quede claro que la normalización es lineal
-\begin{equation}
-norm_{w} = \frac{cw(w)- min(cw(w))}{max(cw(w)) - min(cw(w))}    
-\end{equation}
-donde $c(w)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(w) = log_2(cantidadOcurrencias(w))$.
+
+\[ norm_{w}(p) = \frac{cw(p)- \min_{\substack{\\w \in Palabras}} (cw(w)) }{\max_{\substack{w \in Palabras}} (cw(w)) - \min_{w \in Palabras}(cw(w))} \]
+
+donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = log_2(cantidadOcurrencias(p))$.
 
 Análogamente,
-\begin{equation}
-norm_{p} = \frac{cp(u)- min(cp(u))}{max(cp(u)) - min(cp(u))}
-\end{equation}
-donde $cu(u)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, $c(u)= log_2(cantidadUsuarios(w)))$.
+
+\[
+norm_{u}(p) = \frac{cu(p)- \min_{\substack{w \in Palabras}} (cu(p)) }{max_{w \in Palabras}(cu(p)) - \min_{w \in Palabras}(cu(p))}
+\] 
+
+donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= log_2(cantidadUsuarios(p)))$.
 
 
 $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
@@ -232,7 +227,7 @@ Para eliminar outliers se procedió a eliminar las palabras que tenían una cant
 %
 
 
-\subsection{Frecuencia de las Palabras}
+\subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
 A continuación podemos ver la distribución de la cantidad de ocurrencias de las palabras.
@@ -247,7 +242,7 @@ En la figura \ref{fig:cantPalabras} podemos observar que la mayoría de las pala
 
 \begin{table}[ht]
 \centering
-\label{tabla:palabrasMasOcurrentes}
+\label{tab:palabrasMasOcurrentes}
 \begin{tabular}{|c|c|}
 \hline
 Palabra & Cantidad de Ocurrencias \\ \hline
@@ -277,28 +272,50 @@ las     & 1212452                 \\
 
 \end{table}
 
-Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $s$ la posición de la palabra en el listado ordenado y sea $f(s)$ la cantidad de ocurrencias de la palabra, es decir la cantidad de ocurrencias de esta dividido por el total de palabras, se puede hacer la siguiente aproximación:
+Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $s$ la posición de la palabra en el listado ordenado y sea $f(s)$ la cantidad de ocurrencias de la palabra, se puede hacer la siguiente aproximación:
 
 $$f(s) \approx \frac{A}{s^{\alpha}}$$
 donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{./images/zipf.pdf}
+\includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
 \caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$} 
 \label{fig:zipf} 
 \end{figure}
 
 
 \subsection{Test Hipergeométrico}
-Luego de realizar el listado de palabras ordenado por el valor de la información se realizará un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. La Academia Argentina de Letras seleccionarán un conjunto de palabras que les son significativas a nivel lingüistico a partir de las 10000 palabras consideradas más contrastivas por nuestra métrica. Sobre ellas se realizará un test hipergeométrico en el cual la hipótesis alternativa consiste en que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
+Luego de realizar el listado de palabras ordenado por el valor de la información se realizó un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. Se seleccionó un conjunto de palabras significativas a nivel lingüistico a partir de las 10000 palabras consideradas más contrastivas por nuestra métrica. 
+
+Decidimos elegir el test hipergeométrico ya que querémos ver que la palabra sobre la que se hace el test no estuvo sobrerrepresentada en comparación con la población. Asumimos que la cantidad de ocurrencias de una palabra se puede modelar con una distribución hipergeométrica ya que se puede pensar como un experimento donde se obtuvieron k palabras exitosas en una región con n palabras y un total de N palabras en la Argentina. Las regiones que utilizamos para cada palabra, son el conjunto de provincias que cubren el 80\% de las ocurrencias de dicho término. Luego, queremos calcular la significancia estadística de haber obtenido esas k palabras exitosas.
+
+
+
+La hipótesis nula consiste en que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
 Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias observada de la palabra en la región a analizar.
+
+
+\begin{table}[ht]
+\centering
+\label{tab:contingencia}
+\begin{tabular}{lccc}
+\hline
+& \#Palabras Sobre Region &\#Palabras en el resto de Argentina &Total \\ \hline
+\# Palabras w &   k & K-k & K \\ 
+\# Palabras $\neq$ w & n-k & N + k - n - K  & N - K \\ 
+Total & n & N -n & N \\ \hline
+\end{tabular}
+\caption{Tabla de contingencia}
+
+\end{table}
+
+
 
 $$
 \begin{cases}
-H_0 : \mu \leq cantPalabrasW(Region) \\
-H_1 : \mu > cantPalabrasW(Region)
+H_0 :  x > cantPalabrasW(Region) \\
+H_1 : x \leq cantPalabrasW(Region)
 \end{cases}
 $$  
-
-Las regiones que utilizamos para cada palabra, son el conjunto de provincias que cubren el 80\% de las ocurrencias de dicho término.
+siendo x la esperanza de la variable aleatoria que representa la cantidad de palabras exitosas en esa región.
