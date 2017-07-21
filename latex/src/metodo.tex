@@ -47,11 +47,9 @@ Después de fijar la fecha se dividió al conjunto de tweets producidos por esto
 
 \section{Tokenización y normalización}
 
-Dados los textos, hubo que realizar una limpieza de estos debido a que en \textit{Twitter} ocurren palabras que 
-contienen números dentro de ellas, emoticones y signos de puntuación. Luego se decidió tomar como palabra, aquellas 
-secuencias de caracteres separadas por espacios que no contienen números, signos de puntuación ni emoticones, es decir solo 
-las secuencias de caracteres alfabéticos. 
-Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se llevaron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeran para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
+Se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, 
+signos de puntuación ni emoticones, es decir solo las secuencias de caracteres alfabéticos. De esta manera todos los hashtags, las direcciones de páginas web, o las menciones mediante @ son filtradas.\\
+Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
 
 \section{Caracterización de la muestra}
 
@@ -125,15 +123,15 @@ hubo mayor cantidad de tweets durante un año. Esto se refleja en los gráficos 
 
 % Definir que es un contraste, que tiene un uso significativo en una region más que en otra. LAs alternativas que propusimos, z test binomial.
 Diremos que una palabra tiene un contraste cuando esta tiene un uso con diferencias significativas en
-distintas regiones. En este trabajo nos proponemos crear un listado con palabras con contrastes que tengan
-importancia a nivel lingüistico. En este sentido, los nombres de personas, lugares, organizaciones no 
-serán consideradas de interés a pesar de tener contrastes en su uso.
-Este listado será ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
-se seleccionará un subconjunto de palabras, de acuerdo a la métrica, las cuales serán analizadas manualmente en otros textos por la Academia Argentina de Letras.\\
+distintas regiones. En este trabajo nos propusimos crear un listado con palabras con contrastes que tengan
+importancia a nivel lingüistico. En este sentido, los nombres de personas, lugares u organizaciones no 
+fueron considerados de interés a pesar de tener contrastes en su uso.
+Este listado fue ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
+se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por la Academia Argentina de Letras.\\
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
 en cada par de prinvincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
 en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
-recolectado tweets con esa palabra, se tomaba en cuenta la frecuencia de la palabra con menos ocurrencias en esa provincia.
+recolectado tweets con esa palabra, se tomaba como frecuencia mínima a aquella que provenía de una provincia con la menor cantidad de ocurrencias aunque distinta de 0.
 De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. \\
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
@@ -157,8 +155,8 @@ trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
 Ellos a diferencia de Shannon estudiaron una relación entre una médida de la información y su función semántica en el lenguaje.
 A continuación detallamos el procedimiento para calcular lo que ellos llamaron
 el valor de la información: \\
-Dado un texto dividido en P partes iguales, se calcula la entropía  $\eta(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
-Luego se define $\widehat{\eta(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
+Dado un texto dividido en P partes iguales, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
+Luego se define $\widehat{H(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
 %% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
 Es decir, se distribuyen uniformemente las palabras en P partes y se calcula la
 entropía como se hizo con el texto original. Es de esperar que en la mayoría de casos 
@@ -195,7 +193,7 @@ donde:
 
 \[ norm_{w}(p) = \frac{cw(p)- \min_{\substack{\\w \in Palabras}} (cw(w)) }{\max_{\substack{w \in Palabras}} (cw(w)) - \min_{w \in Palabras}(cw(w))} \]
 
-donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = log_2(cantidadOcurrencias(p))$.
+donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
 
 Análogamente,
 
@@ -203,7 +201,7 @@ Análogamente,
 norm_{u}(p) = \frac{cu(p)- \min_{\substack{w \in Palabras}} (cu(p)) }{max_{w \in Palabras}(cu(p)) - \min_{w \in Palabras}(cu(p))}
 \] 
 
-donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= log_2(cantidadUsuarios(p)))$.
+donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
 
 
 $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
