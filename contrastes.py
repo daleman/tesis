@@ -12,8 +12,6 @@ import operator
 import jellyfish
 import argparse
 
-trainOTest = 'test'
-
 def save_dicts(pais, completo):
     words = {}
     cant_words = {}
@@ -266,22 +264,22 @@ def contrastes(tipoDeListado='provincia'):
     df_resultado[['{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado)]] = df_resultado[['{0}FnormMin'.format(tipoDeListado),
                                                                                                              '{0}FnormMax'.format(tipoDeListado)]].replace(to_replace='fnorm_', value='', regex=True)
     # print 'a ordenar'
-    # df_resumida = df_resultado[['FnormMin', 'FnormMax', '{0}FnormMin'.format(tipoDeListado), '{0}FnormMax'.format(tipoDeListado),
-                                '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False])
+    # df_resumida = df_resultado[['FnormMin', 'FnormMax',
+    # '{0}FnormMin'.format(tipoDeListado),
+    # '{0}FnormMax'.format(tipoDeListado),
+    # '{0}SinEsaPalabra'.format(tipoDeListado), 'maxDif', 'cantUsuariosTotal']].sort_values(by=['maxDif', '{0}SinEsaPalabra'.format(tipoDeListado)], axis=0, ascending=[False, False])
     print 'a guardar'
-    # df_resumida.to_csv('contrastes/usuarios/{0}_{1}contrastePalabrasResumido.csv'.format(tipoDeListado,trainOTest),)
-    df_resultado.to_csv('contrastes/usuarios/{0}_{1}.csv'.format(tipoDeListado,trainOTest))
-    # toExcel(df_resumida, tipoDeListado,
-    #         'contrastes/usuarios/{0}contrastePalabrasResumidoESTE.xlsx'.format(tipoDeListado))
-    # toExcel(df_resultado, tipoDeListado,
-    #         'contrastes/usuarios/{0}contrasteExtendidoESTE.xlsx'.format(tipoDeListado))
-
+    df_resultado.to_csv(
+        'contrastes/usuarios/{0}_{1}.csv'.format(tipoDeListado, trainOTest))
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("tipoDeLugar", help="el tipo de lugar para hacer el contraste, puede ser provincia o region",
                         type=str)
+    parser.add_argument("trainOTest", help="indicat si se analizaran los contrastes del conjunto de desarrollo o validacion",
+                        type=str)
+
 
     args = parser.parse_args()
     tipoDeLugar = args.tipoDeLugar
