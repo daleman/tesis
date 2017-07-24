@@ -40,7 +40,7 @@ La división fue de la siguiente manera:
 Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{Div}$ por la cual había una cantidad equiparable entre el conjunto de tweets producidos por  $Usuarios_1$ antes de $Fecha_{Div}$ y el conjunto de tweets producidos por $Usuarios_2$ despúes de $Fecha_{Div}$.Es decir:
 
 \begin{equation}
-\sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_2,f) 
+\sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = Fecha_{Div}}^{FechaFinal} tweets(Usuarios_2,f) 
 \end{equation}
 
 Después de fijar la fecha se dividió al conjunto de tweets producidos por estos usuarios: el conjunto de desarrollo con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
@@ -88,7 +88,7 @@ Tierra del Fuego & 197273       & 964          & 976426     & 8559218   \\
 Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
   \hline
 \end{tabular}
-\caption{Cantidades del dataset}
+\caption{Cantidades del conjunto de datos de desarrollo}
 \end{table}
 
 
@@ -131,7 +131,7 @@ se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
 en cada par de prinvincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
 en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
-recolectado tweets con esa palabra, se tomaba como frecuencia mínima a aquella que provenía de una provincia con la menor cantidad de ocurrencias aunque distinta de 0.
+recolectado tweets con esa palabra, se tomaba como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero.
 De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. \\
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
@@ -148,7 +148,6 @@ Sin embargo, la entropía como única médida tiene sus desventajas. Principalme
 
 
 \subsection{Valor de información}
-% Describir que hace informalmente la médida de información, pondera el desorden de las palabras teniendo en cuenta sus frecuencias.
 La métrica que utilizamos para ordenar los listados de palabras y detectar cuales son
 las que tienen altos contrastes en su uso en distintas regiones fue inspirada sobre el
 trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
@@ -189,16 +188,15 @@ I(w) =  norm_{w}(w) * norm_{p}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{
 \end{equation}
 
 donde:
-% hacer renombre de logpalabras para que quede claro que la normalización es lineal
 
-\[ norm_{w}(p) = \frac{cw(p)- \min_{\substack{\\w \in Palabras}} (cw(w)) }{\max_{\substack{w \in Palabras}} (cw(w)) - \min_{w \in Palabras}(cw(w))} \]
+\[ norm_{w}(p) = \frac{cw(p)- \min\limits_{w \in Palabras} cw(w) }{\max\limits_{w \in Palabras} cw(w) - \min\limits_{w \in Palabras} cw(w)} \]
 
 donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
 
 Análogamente,
 
 \[
-norm_{u}(p) = \frac{cu(p)- \min_{\substack{w \in Palabras}} (cu(p)) }{max_{w \in Palabras}(cu(p)) - \min_{w \in Palabras}(cu(p))}
+norm_{u}(p) = \frac{cu(p)- \min\limits_{w \in Palabras} cu(w) }{\max\limits_{w \in Palabras} cu(w) - \min\limits_{w \in Palabras} cu(w)}
 \] 
 
 donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
@@ -217,13 +215,8 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
 \label{fig:cantNorms} 
 \end{figure}
 
-El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia  o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenomeno podría ser la de usuarios de ciertas organizacioenes que hablan de personas, lugares o marcas de forma constante. 
+El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenomeno podría ser la de usuarios de ciertas organizacioenes que hablan de personas, lugares o marcas de forma constante. 
 Para eliminar outliers se procedió a eliminar las palabras que tenían una cantidad de usuarios menor o igual a 40 ocurrencias, como también las palabras que eran dichas por menos de 6 personas. 
-
-% valor de informacion de zanette. ejemplos de como extrae las palabras más importantes/
-% nos inspiramos en el valor de informacion, explicar la formula utilizada
-%
-
 
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
