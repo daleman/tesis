@@ -59,15 +59,21 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("trainOTest", help="Indicar si querés analizar el conjunto de train o de test",
                         type=str)
+    parser.add_argument("conFiltro", help="Indicar si querés analizar los datos filtrados por la cantidad o no",
+                        type=str)
+
 
     args = parser.parse_args()
     trainOTest = args.trainOTest
+    filtro = args.conFiltro
 
+    pathFiltro = '' if (filtro.lower()=='conFiltro') else '_sinFiltro' 
     path = '_test' if (trainOTest.lower() =='test') else ''
 
     print('cargo el dataframe')
 
-    df = pd.read_csv("contrastes/provincias{0}.csv".format(path),index_col=0)
+    df = pd.read_csv("contrastes/provincias{0}{1}.csv".format(path,pathFiltro),index_col=0)
+    print("contrastes/provincias{0}{1}.csv".format(path,pathFiltro))
 
     fnorm_vars = [c for c in df.columns if re.match(r'fnorm_.*', c)]
     cant_palabras = [c for c in df.columns if re.match(r'.*Palabras$', c)]
@@ -151,12 +157,12 @@ if __name__ == "__main__":
     percent = sort_xs.div(sort_xs.sum(axis=1), axis='index')
 
     # Proporciones acumuladas linea
-    print('gráfico linea')
-    propAcumLinea(percent,palabras)
+    # print('gráfico linea')
+    # propAcumLinea(percent,palabras)
 
-    # Proporciones acumuladas boxplot
-    print('gráfico proporciones acumuladas boxplot')
-    propAcum5000(percent)
+    # # Proporciones acumuladas boxplot
+    # print('gráfico proporciones acumuladas boxplot')
+    # propAcum5000(percent)
 
     provincias = [x.replace("Palabras","") for x in cant]
     regiones = pd.DataFrame()
@@ -182,9 +188,9 @@ if __name__ == "__main__":
     df['cantPalabrasWEnRegion'] = df.apply(lambda x: cantPalabrasWEnRegion(x.name,x.regionTest),axis=1)
 
     print('guardo el dataframe en un csv')
-    df.sort_values(by="information_value_personas_palabras", ascending=False, inplace=True)
-    resumed = df[df.columns.difference(cant_palabras+fnorm_vars + palabrasPersonas)]
-    resumed = resumed[['cantPalabra','esLugar','regionTest','cantUsuariosTotal','fnormArgentina','provinciaFnormMax','rankPalabras','rankPersonas','rankPalabras_Personas','cantPalabrasWEnRegion','cantPalabrasTotalesEnRegion']]
-    resumed.to_csv('ivalue_entropia_personas_palabras_resumida{0}.csv'.format(path))
+    # df.sort_values(by="information_value_personas_palabras", ascending=False, inplace=True)
+    # resumed = df[df.columns.difference(cant_palabras+fnorm_vars + palabrasPersonas)]
+    # resumed = resumed[['cantPalabra','esLugar','regionTest','cantUsuariosTotal','fnormArgentina','provinciaFnormMax','rankPalabras','rankPersonas','rankPalabras_Personas','cantPalabrasWEnRegion','cantPalabrasTotalesEnRegion']]
+    # resumed.to_csv('ivalue_entropia_personas_palabras_resumida{0}{1}.csv'.format(path,pathFiltro))
 
-    df.to_csv('ivalue_entropia_personas_palabras{0}.csv'.format(path))
+    df.to_csv('ivalue_entropia_personas_palabras{0}{1}.csv'.format(path,pathFiltro))
