@@ -50,6 +50,7 @@ Después de fijar la fecha se dividió al conjunto de tweets producidos por esto
 Se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, 
 signos de puntuación ni emoticones, es decir solo las secuencias de caracteres alfabéticos. De esta manera todos los hashtags, las direcciones de páginas web, o las menciones mediante @ son filtradas.\\
 Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
+Se descartó la idea de filtrar las palabras que no estuvieran en un diccionario ya que si bien hubiera eliminado mucho ruido, también nos hubiera filtrado palabras de interés. Este es el caso de los neologismos, o las palabras que si bien se utilizan hace mucho tiempo no están en los diccionarios actuales.
 
 \section{Caracterización de la muestra}
 
@@ -207,6 +208,9 @@ $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H 
 Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
 $\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a las entropías de los vectores simulados de apariciones.
 Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
+
+% La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
+% Si las cantidades de ocurrencias (o de personas que utilizan) de un término están distribuidas uniformemente a través de todas las provincias, quiere decir que no aporta demasiada información 
 
 \begin{figure}[!ht]
 \centering
