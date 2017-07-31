@@ -95,3 +95,15 @@ ENV/
 .fls
 .bbl
 .blg
+.snm
+.nav
+.log
+*.tex~
+
+# R
+.RData
+.Rhistory
+
+users/
+marcadores/
+corpus/
