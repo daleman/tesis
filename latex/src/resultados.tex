@@ -82,7 +82,6 @@ diez mil (10000) palabras con valor de la información más altas. El número 10
 el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a establizarse y los valores son 
 muy cercanos a 0. Es por esto que nos pareción razonable dar un márgen de 10000 palabras para seleccionar las palabras con contrastes significativos.
 
-
 Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en las provinicias que estas indican. Es por esto que tienen una gran variación en 
 la cantidad de ocurrencias en las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para detectar las palabras que tienen 
 mayor interés lingüistico buscamnos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos filtrar 
@@ -181,7 +180,6 @@ ACA VA LOS RESULTADOS DEL TEST HIPERGEOMETRICO EN EL CONJUNTO DE VALIDACIÓN
 
 \subsection{Ruido}
 \label{ssub:ruido}
-
 
 Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tweets geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tweets de España. A pesar de que los tweets no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
 

@@ -5,14 +5,15 @@
 
 Para la recolección de tweets, primero se extrajo una cantidad de usuarios de forma localizada con el fin de obtener todos los tweets de estos.
 Los usuarios se buscaron por provinicia de modo tal que haya una cantidad aproximadamente equitativa.
-La búsqueda de los usuarios se hizo de la siguiente manera:\\
+La búsqueda de los usuarios se hizo de la siguiente manera:
+
 Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos , de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la republica Argentina. La lista de departamentos/partidos/comunas fue extraída a partir de los datos publicados del Censo Argentino realizado en el año 2010. Para extraer los tweets se utilizó la librería de \textit{python} llamada \textit{tweepy}.
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tweets realizados por estos. Se decidió no tener en cuenta los retweets dado que estos no son escritos por los usuarios sino que son una mera copia de otros tweets. 
 
 
 \subsection{Búsqueda geolocalizadas}
 
-Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar tweets cuyas coordenadas sean las buscadas. En caso de no tener éxito, buscará aquellos tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.\\
+Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar tweets cuyas coordenadas sean las buscadas. En caso de no tener éxito, buscará aquellos tweets creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.
 
 Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. Con esta precaución eliminamos los posibles tweets de turistas que escribieron en un lugar pero que no viven allí.
 
@@ -25,6 +26,7 @@ FALTA GRÁFICO
 % \caption{Ubicaciones de los usuarios} 
 % \label{fig:busqueda_usuarios} 
 % \end{figure}
+Si bien en este trabajo nos enfocamos en las coordenadas de las localidades dentro de Argentina, basta con cambiar las coordenadas y los nombres de las localidades que tienen que tener los campos \textit{location} para realizar un análisis sobre otros países.
 
 
 \section{Datos de desarrollo y de validación}
@@ -37,18 +39,22 @@ La división de los datos se realizó de manera tal que los conjuntos resultante
 \end{description}
 
 La división fue de la siguiente manera:
-Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{Div}$ por la cual había una cantidad equiparable entre el conjunto de tweets producidos por  $Usuarios_1$ antes de $Fecha_{Div}$ y el conjunto de tweets producidos por $Usuarios_2$ despúes de $Fecha_{Div}$.Es decir:
+Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, obteniendo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{DIV}$ por la cual había una cantidad equiparable entre el conjunto de tweets producidos por  $Usuarios_1$ antes de $Fecha_{DIV}$ y el conjunto de tweets producidos por $Usuarios_2$ despúes de $Fecha_{DIV}$.Es decir:
 
 \begin{equation}
-\sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = Fecha_{Div}}^{FechaFinal} tweets(Usuarios_2,f) 
+%\sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = Fecha_{Div}}^{FechaFinal} tweets(Usuarios_2,f) 
+ Fecha_{DIV}  = \operatorname*{arg\,min}_{F} \left|\sum_{ f = FechaInicial}^{F} tweets(Usuarios_1,f) - \sum_{ f = F}^{FechaFinal} tweets(Usuarios_2,f)\right|
 \end{equation}
 
-Después de fijar la fecha se dividió al conjunto de tweets producidos por estos usuarios: el conjunto de desarrollo con los tweets producidos antes de $Fecha_{Div}$ y el conjunto de test producidos posteriormente a esa fecha.
+Después de fijar la fecha se dividió al conjunto de tweets producidos por estos usuarios: el conjunto de desarrollo con los tweets producidos antes de $Fecha_{DIV}$ y el conjunto de test producidos posteriormente a esa fecha.
 
 \section{Tokenización y normalización}
 
-Se decidió tomar como palabra, aquellas secuencias de caracteres separadas por espacios que no contienen números, 
-signos de puntuación ni emoticones, es decir solo las secuencias de caracteres alfabéticos. De esta manera todos los hashtags, las direcciones de páginas web, o las menciones mediante @ son filtradas.\\
+
+En cuanto al análisis del texto surge una primer problemática: ¿qué es una palabra?. En principio podemos definir a una palabra como cualquier secuencia de caracteres delimitados por espacios blancos. Con esta definición 523456 y ? serían palabras. Debido a esto podemos restringir nuestra definición a una secuencia de caracteres alfabéticos. Ahora los ejemplos mencionados anteriormente dejarían de estar dentro de la definición. Sin embargo términos como asdsdafsdf también serían palabras. Para restringir aún más la definición podríamos tener un diccionario como filtro para saber si una secuencia de caracteres dada es una palabra. Si bien esto tendría mucha precisión al momento de filtrar los términos, no seríamos capaces de palabras que existen en un lenguaje pero que no están representadas bajo el diccionario elegido. Es por eso que decidimos tomar a una palabra como una secuencia de caracteres alfabéticos.
+
+Es muy posible que tengamos palabras que no sean interesantes a nivel lingüistico, como errores de tipeo (e.g computadira, escribur), errores ortográficos o  nombres propios. Es importante destacar que Twitter tiene caracteres especiales para mencionar a la gente, como el @, o #(hashtag) para agrupar mensajes. Estos caracteres aparecen mucho, ya que los usuarios suelen responderse en la red, mencionando los mismos temas (aclarando el hashtag), o respondiendo a otros usuarios. Ya que esos caracteres no son alfabéticos, cualquier término que los utilice no va a ser parte del conjunto de palabras, como tampoco lo serán las direcciones de páginsa web. Decidimos que se filtren estos terminos ya que no tienen interés lingüistico y además agregarían mucho ruido a los datos.
+
 Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se realizó con la librería \textit{TweetTokenizer de NLTK}. 
 Se descartó la idea de filtrar las palabras que no estuvieran en un diccionario ya que si bien hubiera eliminado mucho ruido, también nos hubiera filtrado palabras de interés. Este es el caso de los neologismos, o las palabras que si bien se utilizan hace mucho tiempo no están en los diccionarios actuales.
 
@@ -103,12 +109,12 @@ hubo mayor cantidad de tweets durante un año. Esto se refleja en los gráficos 
 
 \begin{figure}[!ht]\centering
    \begin{minipage}{0.49\textwidth}
-     \includegraphics[width=\linewidth]{./images/histTweetsProvincia1.pdf}
+     \includegraphics[width=\linewidth]{./images/train/sinFiltro/histTweetsProvincia1_sinFiltro.pdf}
      \caption{}
      \label{fig:histTweetsProvincia1}
    \end{minipage}
    \begin {minipage}{0.49\textwidth}
-     \includegraphics[width=\linewidth]{./images/histTweetsProvincia2.pdf}
+     \includegraphics[width=\linewidth]{./images/train/sinFiltro/histTweetsProvincia2_sinFiltro.pdf}
      \caption{}
      \label{fig:histTweetsProvincia2}
    \end{minipage}
@@ -128,15 +134,18 @@ distintas regiones. En este trabajo nos propusimos crear un listado con palabras
 importancia a nivel lingüistico. En este sentido, los nombres de personas, lugares u organizaciones no 
 fueron considerados de interés a pesar de tener contrastes en su uso.
 Este listado fue ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
-se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por la Academia Argentina de Letras.\\
+se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por la Academia Argentina de Letras.
+
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
 en cada par de prinvincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
 en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
 recolectado tweets con esa palabra, se tomaba como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero.
-De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. \\
+De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. 
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
-En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy díficil poder identificar en que regiones había una diferencia significativa de frecuencias. Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
+En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy díficil poder identificar en que regiones había una diferencia significativa de frecuencias.
+
+Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
 De este modo, nos enfocamos a analizar el contraste de frecuencias de palabras sobre las provincias a través de una métrica superadora.
 
 \subsection{Métricas para medir el contraste en la frecuencia de las palabras}
@@ -154,17 +163,19 @@ las que tienen altos contrastes en su uso en distintas regiones fue inspirada so
 trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
 Ellos a diferencia de Shannon estudiaron una relación entre una médida de la información y su función semántica en el lenguaje.
 A continuación detallamos el procedimiento para calcular lo que ellos llamaron
-el valor de la información: \\
+el valor de la información:
+
 Dado un texto dividido en P partes iguales, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
 Luego se define $\widehat{H(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
 %% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
+
 Es decir, se distribuyen uniformemente las palabras en P partes y se calcula la
 entropía como se hizo con el texto original. Es de esperar que en la mayoría de casos 
 la entropía del texto permutado sea mayor que la médida en el calculo original. Esto 
 se debe a que las palabras se distribuyen de forma más uniforme 
 en las distintas partes.
 Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$ , con $p(w)$ la frecuencia total de la palabra en el texto. 
-De esta manera se le da más importancia a las palabtas que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.\\
+De esta manera se le da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
 \textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
@@ -179,30 +190,54 @@ de todas las posibles permutaciones del texto por la limitación computacional y
 tenemos una cantidad muy grande de datos.
 
 Es por eso que realizamos una métrica parecida:
+
 Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
 utilizan la palabra p en cada provincia.
 
 Luego,
 \begin{equation}
-I(w) =  norm_{w}(w) * norm_{p}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w))
+%I(w) =  norm_{p}(w) * norm_{u}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
+I(w) =  I_p(w) * I_u(w)\\
+\end{equation}
+\begin{equation}
+I_p(w) = norm_{p}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) \\
+\end{equation}
+\begin{equation}
+I_u(w) = norm_{u}(w) * (\widehat{H}_{u}(u) - H_{u}(w))
 \end{equation}
 
+\begin{equation}
+norm_{p}(p) = \frac{cw(p)- MIN_W }{MAX_W - MIN_W}
+\end{equation}
 donde:
-
-\[ norm_{w}(p) = \frac{cw(p)- \min\limits_{w \in Palabras} cw(w) }{\max\limits_{w \in Palabras} cw(w) - \min\limits_{w \in Palabras} cw(w)} \]
-
+\noindent\begin{minipage}{.5\linewidth}
+\begin{equation}
+  MIN_W = \min\limits_{p \in Palabras} cw(w)
+\end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+\begin{equation}
+  MAX_W = \max\limits_{p \in Palabras} cw(w)
+\end{equation}
+\end{minipage}
 donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
 
 Análogamente,
-
-\[
-norm_{u}(p) = \frac{cu(p)- \min\limits_{w \in Palabras} cu(w) }{\max\limits_{w \in Palabras} cu(w) - \min\limits_{w \in Palabras} cu(w)}
-\] 
-
+\begin{equation}
+norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
+\end{equation}
+\noindent\begin{minipage}{.5\linewidth}
+\begin{equation}
+  MIN_U = \min\limits_{p \in Palabras} cu(p)
+\end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+\begin{equation}
+  MAX_U = \max\limits_{p \in Palabras} cu(p)
+\end{equation}
+\end{minipage}
 donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
-
-
 $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
 
 Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
@@ -214,7 +249,7 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=1.0\textwidth]{./images/cantNorms.pdf}
+\includegraphics[width=1.0\textwidth]{./images/train/sinFiltro/cantNorms_sinFiltro.pdf}
 \caption{Cantidades y sus normalizaciones} 
 \label{fig:cantNorms} 
 \end{figure}
@@ -284,8 +319,6 @@ donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 Luego de realizar el listado de palabras ordenado por el valor de la información se realizó un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. Se seleccionó un conjunto de palabras significativas a nivel lingüistico a partir de las 10000 palabras consideradas más contrastivas por nuestra métrica. 
 
 Decidimos elegir el test hipergeométrico ya que querémos ver que la palabra sobre la que se hace el test no estuvo sobrerrepresentada en comparación con la población. Asumimos que la cantidad de ocurrencias de una palabra se puede modelar con una distribución hipergeométrica ya que se puede pensar como un experimento donde se obtuvieron k palabras exitosas en una región con n palabras y un total de N palabras en la Argentina. Las regiones que utilizamos para cada palabra, son el conjunto de provincias que cubren el 80\% de las ocurrencias de dicho término. Luego, queremos calcular la significancia estadística de haber obtenido esas k palabras exitosas.
-
-
 
 La hipótesis nula consiste en que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
 Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias observada de la palabra en la región a analizar.
