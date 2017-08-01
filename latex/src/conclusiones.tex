@@ -1,13 +1,15 @@
 
 \subsection{Conclusiones}
+En el presente trabajo recolectamos un conjunto de datos de texto de la Argentina a través de la API de Twitter. Este conjunto lo dividimos en dos, un conjunto para desarrollar una métrica que indique el valor contrastivo de una palabra. El segundo conjunto de datos, independiente del primero en cuanto a usuarios y al período temporal de los textos lo utilizamos para hacer un test estadístico para corroborar que las palabras detectadas como contrastivas según nuestra métrica, no estaban sobrerepresentadas en el conjunto de desarrollo.
 
+La métrica que realizamos usaba la entropía para medir la variación de la cantidad de ocurrencias y de la cantidad de usuarios que la utilizaban en las distintas provincias del país. Creamos un listado de palabras ordenado según el valor de la información calculada, y a partir de ella filtramos las palabras de forma manual eliminando los términos que no tengan valor lingüistico, como los nombres propios (como los nombres de personas, o de lugares). Sobre estas palabras realizamos el test estadístico. 
 
 \subsection{Trabajo Futuro}
 
 
 Uno de los desafíos que quedan para hacer es el de clasificar las regiones en clusters, obteniendo así las regiones dialectales. De esta manera se podría ver la vigencia de las regiones descriptas por Vidal de Battini. % Hacer referencia a la sección de la introdcucción que se habla de eso
-Queda como trabajo futuro un proceso de normalización del texto más exhaustivo.
 
+El proceso de normalización se podría mejorar para tener una mejor precisión de las palabras utilizadas. También se podría agregar un sistema de reocnocimiento de nombres de entidades para filtrar los nombres propios de manera tal que el listado de palabras contrastivas tengan menos términos sin interés lingüistico.
 
 Por otro lado, este trabajo se podría realizar sobre todo el conjunto de países hispanoparlantes, de modo tal que se puedan hacer comparaciones entre los mismos y comparar las variaciones entre regiones más grandes.\\
 

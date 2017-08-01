@@ -107,3 +107,8 @@ ENV/
 users/
 marcadores/
 corpus/
+train/
+test/
+ult_json/
+tweetsFinal/
+provs/
