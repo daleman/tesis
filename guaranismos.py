@@ -2,6 +2,8 @@
 import pandas as pd
 import csv
 import os
+pd.set_option('display.max_colwidth', 140)
+
 
 # Regiones dialectales definidas por Vidal de Batini
 litoral = ['santacruz', 'tierradelfuego', 'chubut', 'rionegro',
