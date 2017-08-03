@@ -9,10 +9,10 @@ argentina = ['jujuy', 'catamarca', 'sanjuan', 'salta', 'rionegro',
  'santafe', 'santiago', 'cordoba', 'larioja', 'tierradelfuego', 'tucuman', 'sanluis']
 
 coords = {}
-path = '../tweetsFinal/pares/'
+path = 'tweets/'
 for p in argentina:
     with open('{0}{1}_tweets.json'.format(path,p)) as f:
-        df = pd.read_csv('../train/train_{0}.csv'.format(p),encoding='utf-8', delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        df = pd.read_csv('train/train_{0}.csv'.format(p),encoding='utf-8', delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         usuarios = (df.user_id.unique())        
         for line in f:
             tweet = json.loads(line)
@@ -25,8 +25,9 @@ for p in argentina:
                 else:
                     coords[coordenadas] +=1
 
-with open('latex/src/resultados/coords.txt','a') as f: 
+with open('coords','a') as f: 
+    f.write('var coordenadas = [\n')
     for c,w in coords.iteritems():
-        f.write('{location: new google.maps.LatLng(' + c.split(',')[1][1:] +','+ c.split(',')[0] + '), weight: '+ str(w)+'},')
-
-print(str(len(coords)))
+        f.write('[' + c.split(',')[1][1:] +','+ c.split(',')[0] + ','+ str(w)+'],\n')
+    f.write('];')
+len(coords)
