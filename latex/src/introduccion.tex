@@ -23,7 +23,7 @@ lado, la cantidad de palabras de América Latina están subrepresentados ya que 
 Una de las virtudes de hacer un corpus con un método de recolección de textos de forma automática se desprende de la cantidad superadora de longitud del corpus en comparación con métodos manuales como digitalización de textos.
 
 A pesar de haber comenzado hace varias decadas la recolección de textos de la web para realizar corpus, no hay muchos en el idioma español.
-Uno que se pudo encontrar es el de \textit{Mark Davies}, el cual se utilizó las páginas web para recolectar los textos, con dos billones de palabras en español y divide a las páginas en regiones a través de  
+Uno que se pudo encontrar es el de \textit{Mark Davies}, el cual se utilizó las páginas web para recolectar los textos, con dos billones de palabras en español y divide a las páginas a partir del país de orígen identificado por Google.
 
 Las ventajas de Twitter son claras: da una interfaz pública para obtener tweets de cualquier persona. Además a diferencia de un portal de noticias donde los comentarios suelen estar relacionados con estas, en Twitter son más amplio los tópicos de los comentarios.
 Por otro lado, Twitter es una tecnología que permite hacer escalabale el trabajo a diferentes paises ya que con una misma interfaz se pueden obtener los textos de cualquier región. En cambio, si se elige un portal de noticias para sacar comentarios de usuarios, deberíamos ver la estructura de cada página para obtener esos datos.
@@ -32,13 +32,17 @@ Por último una ventaja sobre otro método de recolección, es que a través de 
 Existen otras redes sociales que se podrían obtener textos para analizar , pero tienen la desventaja de ser privadas como Facebook o ser acotadas en términos de los temas que se hablan en la misma, un caso de esto es Linkedin. 
 
 
+
 \subsection{Twitter}
-Twitter es un servicio de microblogging creado en el 2006. Los usuarios son variados, desde personas, instituciones gubernamuentales, no gubernamentales y bots(i.e programa que corre tareas automáticamente). Cada usuario puede escribir textos llamados tuits, que tienen una longitud máxima de 140 caracteres. Las relaciones en Twitter no necesitan ser recíprocas, uno puede seguir a una persona, en cuyo caso va a poder leer todos los tuits generado por ella, como también puede ser seguido por una persona. Un tuit puede ser respondido, como también puede ser retuiteado. El retuit es un mecanismo para diseminar por la red tuits generados por otros usuarios. De esta manera si un usuario A realiza un retuit generado por el usuario B, cualquier seguidor de A también va a recibir ese tuit en su panel, al cual llamaremos t\textit{timeline}. Si bien los tuits que se ven en el timeline son solo aquellos generados por los usuarios que uno sigue, todos los tuits son públicos, es decir que pueden ser accedidos a tavés de búsquedas en la plataforma.
+Twitter\footnote{www.twitter.com} es un servicio de microblogging creado en el 2006. Los usuarios son variados, desde personas, instituciones gubernamuentales, no gubernamentales y bots(i.e programa que corre tareas automáticamente). Cada usuario puede escribir textos llamados tuits, que tienen una longitud máxima de 140 caracteres. Las relaciones en Twitter no necesitan ser recíprocas, uno puede seguir a una persona, en cuyo caso va a poder leer todos los tuits generado por ella, como también puede ser seguido por una persona. Un tuit puede ser respondido, como también puede ser retuiteado. El retuit es un mecanismo para diseminar por la red tuits generados por otros usuarios. De esta manera si un usuario A realiza un retuit generado por el usuario B, cualquier seguidor de A también va a recibir ese tuit en su panel, al cual llamaremos \textit{timeline}. Si bien los tuits que se ven en el timeline son solo aquellos generados por los usuarios que uno sigue, todos los tuits son públicos, es decir que pueden ser accedidos a tavés de búsquedas en la plataforma.
 Para dar una noción de la cantidad de usaurios en la Argentina,en el 2016 había 11,8 millones de usuarios de Twitter en la Argentina, con 15 millones de personas con smartphones, lo cual el 70 de la gente con smartphones tenía Twitter.%{ref de lanacion}
 
-Qué es Twitter
-Nombrar trabajos donde se utilizo
-Ventajas, desventajas
+En los últimos años se han publicado numerosos trabajos que utilizaron datos de Twitter, desde la detección y monitoreo de terremotos en tiempo real\cite{sakaki2010earthquake},análisis de sentimientos y de la opinión pública \cite{liu2012sentiment},  predecir el mercado de valores \cite{pak2010twitter} o los resultados de elecciones nacionales \cite{tumasjan2010predicting}. También se ha utilizado para localizar enferemedades por región \cite{paul2011you}.
+
+En cuanto a trabajos relacionados con la lingüística cabe mencionar el trabajo de Eisenstein et al. \cite{eisenstein2010latent} en el que identifica palabras con una gran afinidad regional y detecta regiones dialectales \cite{eisenstein2014identifying} % y detecta regiones dialectales. 
+Este trabjo se realizó realizando un modelo probabílistico.
+Por otro lado \cite{doyle2014mapping} 
+El trabajo de Gonçalves et al.\cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales.
 
 \subsection{Lingüistica computacional} % (fold)
 \label{sub:linguistica_computacional}
@@ -48,3 +52,15 @@ Ventajas, desventajas
 \cite{kilgarriff2003introduction}
 \cite{mcenery2011corpus}
 
+
+
+%Que es el trabajo que realizamos, y como lo presentamos
+
+En este trabajo presentamos un método no supervisado para la detección de palabras contrastivas a través de un conjunto de textos recolectados de Twitter.
+
+En la sección [\ref{ch:metodo}]
+explicaremos la metodología para extraer los datos de Twitter, una caracterización de la muestra y la métrica creada para medir la contrastividad de una palabra.
+
+En la sección [\ref{ch:resultados}] mostramos las palabras identificadas como más contrastivas y la proporción acumulada en regiones de pocas provincias. También detallamos los resultados del test estadístico sobre el conjunto de validación y los guaranismos detectados. 
+
+Finalmente en la sección [\ref{ch:conclusiones}] sacamos conclusiones a partir de los resultados obtenidos e indicamos trabajos posibles para seguir la investigación.

@@ -15,6 +15,28 @@
 \usepackage[spanish]{babel}
 \usepackage[left=3cm,right=3cm,bottom=3.5cm,top=3.5cm]{geometry}
 \usepackage{xspace}
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Damián Eliel Aleman},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1, key2, key3}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
 
 \begin{document}
 
@@ -47,18 +69,23 @@
 
 %%%% ACA VA EL CONTENIDO DE LA TESIS
 \chapter{Introducción}
+\label{ch:introduccion}
 \include{introduccion}
 
 \chapter{Materiales y Método}
+\label{ch:metodo}
 \include{metodo}
 
 \chapter{Resultados}
+\label{ch:resultados}
 \include{resultados}
 
 \chapter{Conclusiones y trabajo futuro}
+\label{ch:conclusiones}
 \include{conclusiones}
 
 \chapter{Apéndice}
+\label{ch:apendice}
 \include{apendice}
 
 
