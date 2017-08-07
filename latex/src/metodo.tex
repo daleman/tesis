@@ -17,15 +17,15 @@ Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de 
 
 Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. Con esta precaución eliminamos los posibles tweets de turistas que escribieron en un lugar pero que no viven allí.
 
-A continuación se muestra un gráfico con las ubicaciones donde se encuentran los usuarios de la muestra de desarrollo:
+En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones donde se encuentran los usuarios de la muestra de desarrollo:
 
-FALTA GRÁFICO
-% \begin{figure}[ht]
-% \centering
+\begin{figure}[ht]
+\centering
 % \includegraphics[scale=0.6]{imagenes/ubicacion_usuarios.png}
-% \caption{Ubicaciones de los usuarios} 
-% \label{fig:busqueda_usuarios} 
-% \end{figure}
+\caption{Ubicaciones de los usuarios} 
+\label{fig:busqueda_usuarios} 
+\end{figure}
+
 Si bien en este trabajo nos enfocamos en las coordenadas de las localidades dentro de Argentina, basta con cambiar las coordenadas y los nombres de las localidades que tienen que tener los campos \textit{location} para realizar un análisis sobre otros países.
 
 
@@ -60,7 +60,7 @@ Se descartó la idea de filtrar las palabras que no estuvieran en un diccionario
 
 \section{Caracterización de la muestra}
 
-Para tener una noción más completa de la muestra, presentamos la siguiente tabla que indica las cantidades de palabras y tweets por provincia.
+Para tener una noción más completa de la muestra, se peresenta en la tabla \ref{tab:cantidades} la cual indica las cantidades de palabras y tweets por provincia.
 
 
 \begin{table}[ht]
@@ -105,7 +105,7 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Tweets a lo largo del tiempo}
 Los tweets recolectados para el conjunto de datos de desarrollo tienen una particularidad: a médida que pasan los años 
-hubo mayor cantidad de tweets durante un año. Esto se refleja en los gráficos que presentamos a continuación.
+hubo mayor cantidad de tweets durante un año. Esto se refleja en los gráficos de las figuras \ref{fig:histTweetsProvincia1} y \ref{histTweetsProvincia2}.
 
 \begin{figure}[!ht]\centering
    \begin{minipage}{0.49\textwidth}
@@ -143,6 +143,7 @@ recolectado tweets con esa palabra, se tomaba como frecuencia mínima a la frecu
 De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. 
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
+% Mencionar que la idea era realizar un z test para obtener las palabras más significativas.
 En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy díficil poder identificar en que regiones había una diferencia significativa de frecuencias.
 
 Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
@@ -260,15 +261,14 @@ Para eliminar outliers se procedió a eliminar las palabras que tenían una cant
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
-A continuación podemos ver la distribución de la cantidad de ocurrencias de las palabras.
+En la figura \ref{fog:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras.Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabras.pdf} 
 \caption{Histograma de la cantidad de ocurrencias de las palabras} 
 \label{fig:cantPalabras} 
 \end{figure}
-
-En la figura \ref{fig:cantPalabras} podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
 \begin{table}[ht]
 \centering
@@ -307,7 +307,7 @@ Si comparamos la posición de la palabra en un listado ordenado podemos ver que 
 $$f(s) \approx \frac{A}{s^{\alpha}}$$
 donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
 \caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$} 

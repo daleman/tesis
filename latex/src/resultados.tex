@@ -17,7 +17,11 @@
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
 \subsection{Entropía}
-Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. A continuación podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios:
+Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios.
+
+Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas útlimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
+
+Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
 
 \begin{figure}[ht]
@@ -27,9 +31,7 @@ Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada
 \label{fig:entropiaPalabras} 
 \end{figure}
 
-En el gráfico \ref{fig:entropiaPalabras} podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas útlimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
 
-Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
 \subsection{Valor de la información}
 \label{sub:ValorDeLaInformacion}
@@ -42,21 +44,15 @@ En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la canti
 \label{fig:infoValue} 
 \end{figure}
 
-A continuación se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la misma.
+En la figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la misma. Notamos que la métrica se estabiliza en el rango de 1000 a 10000 palabras tomando un valor cercano a 0.
 
-\begin{figure}[!ht]\centering
-   \begin{minipage}{0.49\textwidth}
-    \includegraphics[width=\linewidth]{./images/ivaluesLog.pdf}
-    \caption{Valor de la información} 
-    \label{fig:ivalue}
-   \end{minipage}
-   \begin {minipage}{0.49\textwidth}
-    \includegraphics[width=\linewidth]{./images/PropAcum.pdf}
-    \caption{Proporción acumulada según la muestra de palabras} 
-    \label{fig:propAcum} 
-   \end{minipage}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{./images/ivaluesLog.pdf}
+\caption{Valor de la información} 
+\label{fig:ivalue}
 \end{figure}
-
 
 
 \subsection{Proporción de ocurrencias} % (fold)
@@ -68,12 +64,27 @@ En la figura \ref{fig:propAcum} muestra la proporción acumulada de las palabras
 En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento de ocurrencias a médida que se aumenta la cantidad de provincias. 
 
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{./images/PropAcum5000.pdf}
-\caption{Proporciones Acumuladas} 
-\label{fig:propAcum5000} 
+
+\begin{figure}[!ht]\centering
+  \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/PropAcum.pdf}
+    \caption{Proporción acumulada según la muestra de palabras} 
+    \label{fig:propAcum} 
+   \end{minipage}
+   \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/PropAcum5000.pdf}
+    \caption{Proporciones Acumuladas} 
+    \label{fig:propAcum5000} 
+   \end{minipage}
+   
 \end{figure}
+
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=0.5\textwidth]{./images/PropAcum5000.pdf}
+% \caption{Proporciones Acumuladas} 
+% \label{fig:propAcum5000} 
+% \end{figure}
 
 \subsection{Palabras candidatas} % (fold)
 \label{sub:palabras_candidatas}
@@ -91,7 +102,7 @@ los lugares del listado original.
 \subsection{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. A continuación se puede ver los primeros conjuntos de provincias obtenidos a partir de los primeras 5000 palabras más contrastivas de acuerdo al valor de la información:
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de los primeras 5000 palabras más contrastivas de acuerdo al valor de la información:
 
 \begin{table}[]
 \centering
@@ -178,10 +189,9 @@ guachipas   &                  &                                &               
 \subsection{Validación}
 ACA VA LOS RESULTADOS DEL TEST HIPERGEOMETRICO EN EL CONJUNTO DE VALIDACIÓN
 
-\subsection{Ruido}
-\label{ssub:ruido}
+\subsection{Problemas en el conjunto de datos}
+\label{sub:problemas_datos}
 
-Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tweets geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tweets de España. A pesar de que los tweets no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
+Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tweets geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tweets de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tweets no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
 
 % Histograma de la distribucion del valor de la información
-
