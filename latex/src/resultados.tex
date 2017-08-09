@@ -19,7 +19,7 @@
 \subsection{Entropía}
 Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios.
 
-Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas útlimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
+Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
 
 Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
@@ -35,7 +35,7 @@ Sin embargo, ver solamente la entropía de las palabras nos puede generar la det
 
 \subsection{Valor de la información}
 \label{sub:ValorDeLaInformacion}
-En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color que tiene. A su vez, se nota que el valor de la información suele ser mayor a médida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
+En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color que tiene. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
 
 \begin{figure}[ht]
 \centering
@@ -90,12 +90,12 @@ En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento d
 \label{sub:palabras_candidatas}
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
 diez mil (10000) palabras con valor de la información más altas. El número 10000 surgió de ver la distribución de los valores de la información. Cómo se puede ver en 
-el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a establizarse y los valores son 
-muy cercanos a 0. Es por esto que nos pareción razonable dar un márgen de 10000 palabras para seleccionar las palabras con contrastes significativos.
+el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a estabilizarse y los valores son 
+muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 10000 palabras para seleccionar las palabras con contrastes significativos.
 
-Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en las provinicias que estas indican. Es por esto que tienen una gran variación en 
+Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en las provincias que estas indican. Es por esto que tienen una gran variación en 
 la cantidad de ocurrencias en las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para detectar las palabras que tienen 
-mayor interés lingüistico buscamnos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos filtrar 
+mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos filtrar 
 los lugares del listado original.
 
 
@@ -116,7 +116,7 @@ Conjunto de provincias                                 & Cantidad de Palabras  \
 (Corrientes, Misiones)                                 & 16          \\
 (Chaco, Corrientes, Formosa)                           & 16          \\
 (Chaco, Corrientes)                                    & 16          \\
-(chubut, Santa Cruz)                                   & 13          \\
+(Chubut, Santa Cruz)                                   & 13          \\
 (Catamarca, La Rioja)                                  & 12          \\
 (Santa Cruz, Tierra del Fuego)                         & 12          \\
 (Corrientes, Entre Ríos, Formosa, La Rioja, Misiones)  & 12          \\  %La Rioja está de más
@@ -132,10 +132,10 @@ Conjunto de provincias                                 & Cantidad de Palabras  \
 (Salta, Tucumán)                                       & 8           \\
 (Catamarca, Jujuy, Salta, Santiago del Estero, Tucumán)& 8           \\
 (Neuquén, San Juan)                                    & 7           \\ %no son contiguas pero están cercanas
-(chubut, Santa Cruz, Tierra del Fuego)                 & 7           \\
-(Buenos Aires, lapampa)                                & 7           \\
+(Chubut, Santa Cruz, Tierra del Fuego)                 & 7           \\
+(Buenos Aires, La Pampa)                                & 7           \\
 (Salta, Santiago del Estero, Tucumán)                  & 7           \\
-(Buenos Aires, lapampa, Río Negro)                     & 6           \\
+(Buenos Aires, La Pampa, Río Negro)                     & 6           \\
 (Corrientes, Formosa)                                  & 6           \\
 (Catamarca, Jujuy, Salta, Tucumán)                     & 6           \\
 (Chaco, Corrientes, Entre Ríos, Formosa, Misiones)     & 6           \\
@@ -192,6 +192,32 @@ ACA VA LOS RESULTADOS DEL TEST HIPERGEOMETRICO EN EL CONJUNTO DE VALIDACIÓN
 \subsection{Problemas en el conjunto de datos}
 \label{sub:problemas_datos}
 
-Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tweets geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tweets de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tweets no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
+Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tuits geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tuits de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tuits no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
 
 % Histograma de la distribucion del valor de la información
+
+\subsection{Guaranismos}
+\label{sub:guaranismos}
+
+Dentro de las palabras contrastivas, cabe destacar la detección de términos en guaraní en la región 
+guaranítica\footnote{Teniendo a las regiones dialectales marcadas por Vidal de Battini}.
+Un ejemplo de esto fueron las palabras \textit{angá}, \textit{angaú} y \textit{mitaí}.  Si bien estas palabras provienen del guaraní, son utilizadas en oraciones en español.
+Este fenómeno, donde un hablante utiliza términos de distntos idiomas en un discurso es conocido como code-switching(alternancia de código).
+Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
+
+\begin{table}[]
+\centering
+\label{tab:guaranismos}
+\begin{tabular}{|l|cc|cc|}
+\hline
+ & \multicolumn{2}{c}{Región Guaraníticia} & \multicolumn{2}{c}{Región Litoral} \\ \hline
+      & \#Ocurrencias & Frecuencia Normalizada & \#Ocurrencias & Frecuencia Normalizada \\
+Angá  & 548              & 45,03       & 6             & 0,21                  \\
+Angaú & 205               & 16,84   & 0               & 0                     \\
+Mitai & 175              & 15,69      & 1              & 0,036    \\ \hline              
+\end{tabular}
+\caption{Cantidad de ocurrencias y frecuencias normalizadas de las palabras en la región guaranítica y la del litoral. La cantidad total de palabras en la región guaranítica es de 12.167.635, mientras que la cantidad de términos en la región litoral es 27.477.861 }
+
+\end{table}
+
+Estos términos serán agregados al diccionario Argentino
