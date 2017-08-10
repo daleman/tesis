@@ -2,14 +2,19 @@
 import pandas as pd
 import csv
 import json
+import pprint
 
 argentina = ['jujuy', 'catamarca', 'sanjuan', 'salta', 'rionegro',
  'lapampa', 'chaco', 'mendoza', 'buenosaires', 'entrerios',
  'chubut', 'santacruz', 'neuquen', 'misiones', 'corrientes', 'formosa',
  'santafe', 'santiago', 'cordoba', 'larioja', 'tierradelfuego', 'tucuman', 'sanluis']
 
-coords = {}
+coords,locations = {},{}
 path = 'tweets/'
+for p in argentina:
+    locations[p] = {}
+uids = set()
+    
 for p in argentina:
     with open('{0}{1}_tweets.json'.format(path,p)) as f:
         df = pd.read_csv('train/train_{0}.csv'.format(p),encoding='utf-8', delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
@@ -17,17 +22,15 @@ for p in argentina:
         for line in f:
             tweet = json.loads(line)
             uid = tweet['user']['id']
-            coord = tweet['coordinates']
-            if coord and uid in usuarios:
-                coordenadas = str(coord['coordinates'])[1:-1]
-                if coordenadas not in coords:
-                    coords[coordenadas] = 1
+            # coord = tweet['coordinates']
+            # pp = pprint.PrettyPrinter(indent=4)
+            location = tweet['user']['location'].lower() 
+            if uid in usuarios and uid not in uids:
+                if location not in locations[p]:
+                    locations[p][location] = 1
                 else:
-                    coords[coordenadas] +=1
-
-with open('coords','a') as f: 
-    f.write('var coordenadas = [\n')
-    for c,w in coords.iteritems():
-        f.write('[' + c.split(',')[1][1:] +','+ c.split(',')[0] + ','+ str(w)+'],\n')
-    f.write('];')
-len(coords)
+                    locations[p][location] += 1
+                uids.add(uid)
+                
+with open('locations.json', 'w') as fp:
+    json.dump(locations, fp)

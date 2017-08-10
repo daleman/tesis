@@ -6,6 +6,7 @@
 
 - `users.py`: Realiza una búsqueda de usuarios de twitter en la provincia indicada por parámetro.  
 
+- `Corpus.py`: Realiza una búsqueda de todos los tweets de cada usuario.  
 
 - `datosUsuarios.py`: Separa el conjunto de train de test. Guarda los datos de train en `train/` y los de test en `test/`  
 
@@ -16,12 +17,14 @@
 
 ## Datos
 
+- `users/` todos los usuarios recolectados con las búsquedas geolocalizadas.
+
 - `tweets/`: todos los tweets, en arrays de `json`. Datos crudos
 
 Los archivos `*_tweets.json` tienen los tweets segmentados por provincia.
 Los archivos `.dat` indican la cantidad acumulada de tweets según voy agregando usuarios (podemos ignorarlos)
 
-- `train/` tiene los datos de entrenamiento/discovery.
+- `train/` tiene los datos de desarrollo.
 
 `train_provincia.csv` tiene los tweets reducidos de la siguiente manera:
 
