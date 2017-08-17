@@ -16,7 +16,7 @@
 
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
-\subsection{Entropía}
+\section{Entropía}
 Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios.
 
 Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
@@ -55,8 +55,8 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 \end{figure}
 
 
-\subsection{Proporción de ocurrencias} % (fold)
-\label{sub:proporcionDeOcurrencias}
+\section{Proporción de ocurrencias} % (fold)
+\label{proporcionDeOcurrencias}
 
 
 En la figura \ref{fig:propAcum} muestra la proporción acumulada de las palabras. Para esto, se ordenó para cada palabra las provincias según la cantidad de ocurrencias. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
@@ -86,8 +86,8 @@ En el gráfico \ref{fig:propAcum5000} se observa la variación del cubrimiento d
 % \label{fig:propAcum5000} 
 % \end{figure}
 
-\subsection{Palabras candidatas} % (fold)
-\label{sub:palabras_candidatas}
+\section{Palabras candidatas} % (fold)
+\label{palabras_candidatas}
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
 diez mil (10000) palabras con valor de la información más altas. El número 10000 surgió de ver la distribución de los valores de la información. Cómo se puede ver en 
 el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a estabilizarse y los valores son 
@@ -186,23 +186,33 @@ guachipas   &                  &                                &               
 \end{table}
 
 
-\subsection{Validación}
+\section{Validación}
 ACA VA LOS RESULTADOS DEL TEST HIPERGEOMETRICO EN EL CONJUNTO DE VALIDACIÓN
 
-\subsection{Problemas en el conjunto de datos}
-\label{sub:problemas_datos}
+\section{Problemas en el conjunto de datos}
+\label{problemas_datos}
 
 Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tuits geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tuits de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tuits no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
 
 % Histograma de la distribucion del valor de la información
 
+\section{Caracterización de las palabras identificadas como contrastivas}
+\label{caracterizacion_resultados}
+
+Dentro de las palabras contrastivas identificadas a través de la métrica, podemos hacer una caracterización de ellas según el fenómeno lingüístico representan, a saber:
+
+\begin{itemize}
+  \item Guaranismos: Incorporación de palabras de orígen guaranítico.
+  \item Vesres: Creación de palabras por inversión de sílabas que se usa jergalmente o con fines humorísticos.
+  \item \footnote{Falta agregar caracterización según resultados de la AAL}
+\end{itemize}
+
+A continuación presentamos en detalle cada fenómeno lingüístivo y ejemplificamos con las palabras encontradas:
+
 \subsection{Guaranismos}
 \label{sub:guaranismos}
-
-Dentro de las palabras contrastivas, cabe destacar la detección de términos en guaraní en la región 
-guaranítica\footnote{Teniendo a las regiones dialectales marcadas por Vidal de Battini}.
+Cabe destacar la detección de términos en guaraní en la región  guaranítica\footnote{Teniendo a las regiones dialectales marcadas por Vidal de Battini}.
 Un ejemplo de esto fueron las palabras \textit{angá}, \textit{angaú} y \textit{mitaí}.  Si bien estas palabras provienen del guaraní, son utilizadas en oraciones en español.
-Este fenómeno, donde un hablante utiliza términos de distntos idiomas en un discurso es conocido como code-switching(alternancia de código).
 Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
 
 \begin{table}[]
@@ -220,4 +230,7 @@ Mitai & 175              & 15,69      & 1              & 0,036    \\ \hline
 
 \end{table}
 
-Estos términos serán agregados al diccionario Argentino
+Estos términos serán agregados al diccionario del habla de los argentinos \cite{academia2008diccionario}.
+
+\subsection{Vesres}
+\label{sub:versres}
