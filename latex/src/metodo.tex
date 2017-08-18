@@ -19,12 +19,32 @@ Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada prov
 
 En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones donde se encuentran los usuarios de la muestra de desarrollo:
 
-\begin{figure}[ht]
-\centering
-% \includegraphics[scale=0.6]{imagenes/ubicacion_usuarios.png}
-\caption{Ubicaciones de los usuarios} 
-\label{fig:busqueda_usuarios} 
+
+\begin{figure}[!ht]\centering
+  \begin{minipage}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{./images/mapaprovincias.pdf}
+    %\caption{} 
+    \label{fig:mapaProvincias} 
+   \end{minipage}
+   \begin{minipage}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{./images/mapadepartamentos.pdf}
+    %\caption{} 
+    \label{fig:mapaDepartamentos} 
+   \end{minipage}
+   \begin{minipage}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{./images/mapaprovinciasConPuntos.pdf}
+    %\caption{} 
+    \label{fig:mapaPuntos} 
+   \end{minipage}
+   
+
+
+   \caption{Ubicaciones de los usuarios: En la figura \ref{fig:mapaProvincias} se muestra un mapa de Argentina con la distribución de los usuarios en las provincias sobre el conjunto de desarrollo. El mapa de la figura \ref{fig:mapaDepartamentos} permite visualizar la distribución de los usuarios en los departamentos sobre el conjunto de desarrollo. Se muestra con áreas grises los departamentos que no poseen usuarios que hayan definido el campo ubicación de su perfil en ese lugar. El mapa \ref{fig:mapaPuntos} muestra la distribución de las coordenadas obtenidas a partir de todos los usuarios del conjunto de desarrollo. Las coordenadas fueron obtenidas a través de un proceso de geocodificación. } 
+  \label{fig:busqueda_usuarios} 
+
 \end{figure}
+
+En la figura \ref{fig:mapaProvincias} que la distribución de usuarios en las provincias es bastante pareja. Si bien en la figura \ref{fig:mapaDepartamentos} hay regiones grises que indican la ausencia de usaurios en ese lugar, cabe destacar que los mapas se realizaron obteniendo las coordenadas geográficas a partir de la ubicación definida en el perfil del usuario. Por lo tanto, si una persona declara que vive en \textit{Tucuman, Argentina}, contabilizamos como que esa persona vive en la capital de esa provincia, lo cual puede no ser cierto. Finalmente para ver la distribución de las coordenadas de los usuarios a lo largo del país mostramos la figura \ref{fig:mapaPuntos}. Se puede observar que en la mayoría de las grandes ciudades hay usuarios en nuestro conjunto de datos. En el apéndice se puede encontrar un mapa \ref{mapaGPS} donde se contabilizaron todos los tuits con coordenadas geográficas del conjunto de datos. En este gráfico se puede observar que la distribución es mucho más amplia, aunque sigue habiendo más concentración de usuarios en aquellos departamentos con más densidad poblacional.
 
 Si bien en este trabajo nos enfocamos en las coordenadas de las localidades dentro de Argentina, basta con cambiar las coordenadas y los nombres de las localidades que tienen que tener los campos \textit{location} para realizar un análisis sobre otros países.
 
@@ -101,6 +121,21 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 
 
 \subsection{Cantidad de palabras}
+Debido a que los tuits están limitados a 140 caracteres, era de esperar que no haya demasiadas palabras promedio por cada tuit. En la figura \ref{fig:cantPalabrasUsuario} podemos observar que la la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
+\begin{figure}[!ht]\centering
+  \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/train/conFiltro/cantPalabrasUsuario.pdf}
+    \caption{Histograma de la cantidad de palabras totales por cada usuario (del conjunto de desarrollo).} 
+    \label{fig:cantPalabrasUsuario} 
+   \end{minipage}
+   \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/train/conFiltro/cantPalabrasPromedio.pdf}
+    \caption{Histograma de la cantidad de palabras promedio para todos los usuarios (del conjunto de desarrollo).} 
+    \label{fig:cantPalabrasPromedio} 
+   \end{minipage}
+   
+\end{figure}
+
 %Cantidad de palabras promedio por tweet
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Tuits a lo largo del tiempo}
@@ -210,6 +245,7 @@ I_u(w) = norm_{u}(w) * (\widehat{H}_{u}(u) - H_{u}(w))
 
 \begin{equation}
 norm_{p}(p) = \frac{cw(p)- MIN_W }{MAX_W - MIN_W}
+\label{eq:norm1}
 \end{equation}
 donde:
 \noindent\begin{minipage}{.5\linewidth}
@@ -227,6 +263,7 @@ donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa pala
 Análogamente,
 \begin{equation}
 norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
+\label{eq:norm2}
 \end{equation}
 \noindent\begin{minipage}{.5\linewidth}
 \begin{equation}
@@ -251,7 +288,7 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1.0\textwidth]{./images/train/sinFiltro/cantNorms_sinFiltro.pdf}
-\caption{Cantidades y sus normalizaciones} 
+\caption{Cantidades y sus normalizaciones: Mediante los histogramas presentamos la distribución de los valores de la cantidad de los usuarios totales que utilizaron cada palabra, como la cantidad de ocurrencias de una palabra. A la derecha se pueden observar la normalización de las variables descriptas en \ref{eq:norm1} y \ref{eq:norm2}.} 
 \label{fig:cantNorms} 
 \end{figure}
 
@@ -298,7 +335,7 @@ para    & 1398757                 \\
 las     & 1212452                 \\
 \hline
 \end{tabular}
-\caption{Cantidad de apariciones de las 20 palabras más frecuentes}
+\caption{Cantidad de apariciones de las 20 palabras más frecuentes.}
 
 \end{table}
 
@@ -310,7 +347,7 @@ donde $\alpha$ toma un valor levemente mayor a 1 y A es una constante.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
-\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$} 
+\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$.} 
 \label{fig:zipf} 
 \end{figure}
 
