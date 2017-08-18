@@ -110,39 +110,39 @@ Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos 
 \begin{tabular}{|c|c|}
 \hline
 Conjunto de provincias                                 & Cantidad de Palabras  \\ \hline
-(Jujuy,Salta)                                          & 24          \\
-(Mendoza, San Juan)                                    & 19          \\
-(Neuquén, Río Negro)                                   & 18          \\
-(Corrientes, Misiones)                                 & 16          \\
-(Chaco, Corrientes, Formosa)                           & 16          \\
-(Chaco, Corrientes)                                    & 16          \\
-(Chubut, Santa Cruz)                                   & 13          \\
-(Catamarca, La Rioja)                                  & 12          \\
-(Santa Cruz, Tierra del Fuego)                         & 12          \\
-(Corrientes, Entre Ríos, Formosa, La Rioja, Misiones)  & 12          \\  %La Rioja está de más
-(Formosa, Misiones)                                    & 12          \\
-(Corrientes, Formosa, Misiones)                        & 12          \\
-(Córdoba, La Rioja)                                    & 11          \\
-(Catamarca, Salta, Santiago del Estero, Tucumán)       & 11          \\
-(Catamarca, Jujuy, La Rioja, Salta, Santiago del Estero, Tucumán) & 10          \\
-(Chaco, Corrientes, Misiones)                          & 10          \\
-(Chaco, Corrientes, Formosa, Misiones)                 & 9           \\
-(Catamarca, Santiago del Estero, Tucumán)              & 9           \\
-(Catamarca, Tucumán)                                   & 9           \\
-(Salta, Tucumán)                                       & 8           \\
-(Catamarca, Jujuy, Salta, Santiago del Estero, Tucumán)& 8           \\
-(Neuquén, San Juan)                                    & 7           \\ %no son contiguas pero están cercanas
-(Chubut, Santa Cruz, Tierra del Fuego)                 & 7           \\
-(Buenos Aires, La Pampa)                                & 7           \\
-(Salta, Santiago del Estero, Tucumán)                  & 7           \\
-(Buenos Aires, La Pampa, Río Negro)                     & 6           \\
-(Corrientes, Formosa)                                  & 6           \\
-(Catamarca, Jujuy, Salta, Tucumán)                     & 6           \\
-(Chaco, Corrientes, Entre Ríos, Formosa, Misiones)     & 6           \\
-(Catamarca, Santiago del Estero)                       & 6           \\
+Jujuy - Salta                                          & 24          \\
+Mendoza - San Juan                                    & 19          \\
+Neuquén - Río Negro                                   & 18          \\
+Corrientes - Misiones                                 & 16          \\
+Chaco - Corrientes - Formosa                           & 16          \\
+Chaco - Corrientes                                    & 16          \\
+Chubut - Santa Cruz                                   & 13          \\
+Catamarca - La Rioja                                  & 12          \\
+Santa Cruz - Tierra del Fuego                         & 12          \\
+Corrientes - Entre Ríos - Formosa - La Rioja - Misiones  & 12          \\  %La Rioja está de más
+Formosa - Misiones                                    & 12          \\
+Corrientes - Formosa - Misiones                        & 12          \\
+Córdoba - La Rioja                                    & 11          \\
+Catamarca - Salta - Santiago del Estero - Tucumán       & 11          \\
+Catamarca - Jujuy - La Rioja - Salta - Santiago del Estero - Tucumán & 10          \\
+Chaco - Corrientes - Misiones                          & 10          \\
+Chaco - Corrientes - Formosa - Misiones                 & 9           \\
+Catamarca - Santiago del Estero - Tucumán              & 9           \\
+Catamarca - Tucumán                                   & 9           \\
+Salta - Tucumán                                       & 8           \\
+Catamarca - Jujuy - Salta - Santiago del Estero - Tucumán& 8           \\
+Neuquén - San Juan                                    & 7           \\ %no son contiguas pero están cercanas
+Chubut - Santa Cruz - Tierra del Fuego                 & 7           \\
+Buenos Aires - La Pampa                                & 7           \\
+Salta - Santiago del Estero - Tucumán                  & 7           \\
+Buenos Aires - La Pampa - Río Negro                     & 6           \\
+Corrientes - Formosa                                  & 6           \\
+Catamarca - Jujuy - Salta - Tucumán                     & 6           \\
+Chaco - Corrientes - Entre Ríos - Formosa - Misiones     & 6           \\
+Catamarca - Santiago del Estero                       & 6           \\
 \hline
 \end{tabular}
-\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras más contrastivas (de acuerdo al valor de la información).}
+\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras más contrastivas (de acuerdo al valor de la información). Se filtraron las regiones compuestas por una sola una provincia.}
 \label{tab:regiones}
 \end{table}
 
@@ -165,12 +165,12 @@ Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta d
 Dentro de las palabras contrastivas identificadas a través de la métrica, podemos hacer una caracterización de ellas según el fenómeno lingüístico representan, a saber:
 
 \begin{itemize}
-  \item Guaranismos: Incorporación de palabras de orígen guaranítico.
+  \item Guaranismos: Incorporación de palabras de origen guaranítico.
   \item Vesres: Creación de palabras por inversión de sílabas que se usa jergalmente o con fines humorísticos.
   \item \footnote{Falta agregar caracterización según resultados de la AAL.}
 \end{itemize}
 
-A continuación presentamos en detalle cada fenómeno lingüístivo y ejemplificamos con las palabras encontradas:
+A continuación presentamos en detalle cada fenómeno lingüístico y ejemplificamos con las palabras encontradas:
 
 \subsection{Guaranismos}
 \label{sub:guaranismos}
@@ -183,7 +183,7 @@ Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecu
 \label{tab:guaranismos}
 \begin{tabular}{|l|cc|cc|}
 \hline
- & \multicolumn{2}{c}{Región Guaraníticia} & \multicolumn{2}{c}{Región Litoral} \\ \hline
+ & \multicolumn{2}{c}{Región Guaranítica} & \multicolumn{2}{c}{Región Litoral} \\ \hline
       & \#Ocurrencias & Frecuencia Normalizada & \#Ocurrencias & Frecuencia Normalizada \\
 Angá  & 548              & 45,03       & 6             & 0,21                  \\
 Angaú & 205               & 16,84   & 0               & 0                     \\
