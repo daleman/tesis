@@ -7,7 +7,7 @@ Para la recolección de tuits, primero se extrajo una cantidad de usuarios de fo
 Los usuarios se buscaron por provincia de modo tal que haya una cantidad aproximadamente equitativa.
 La búsqueda de los usuarios se hizo de la siguiente manera:
 
-Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos , de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la república Argentina. La lista de departamentos/partidos/comunas fue extraída a partir de los datos publicados del Censo Argentino realizado en el año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
+Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos, de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la república Argentina. La lista de departamentos/partidos/comunas fue extraída a partir de los datos publicados del Censo Argentino realizado en el año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia lo que resume en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits realizados por estos. Se decidió no tener en cuenta los retuits dado que estos no son escritos por los usuarios sino que son una mera copia de otros tuits. 
 
 
@@ -210,7 +210,7 @@ entropía como se hizo con el texto original. Es de esperar que en la mayoría d
 la entropía del texto permutado sea mayor que la medida en el calculo original. Esto 
 se debe a que las palabras se distribuyen de forma más uniforme 
 en las distintas partes.
-Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$ , con $p(w)$ la frecuencia total de la palabra en el texto. 
+Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$, con $p(w)$ la frecuencia total de la palabra en el texto. 
 De esta manera se le da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
 \textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 

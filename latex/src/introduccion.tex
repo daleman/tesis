@@ -13,7 +13,9 @@
 %Comentar el problema de la lingüística de Corpus, trabajo previo en el área, comentar brevemente qué queremos hacer. Acá va a ir mucho de lo que nos pasó Santiago como literatura, incluso mencionando (por ejemplo) el trabajo de Vidal de Battini
 
 \section{Trabajo previo en el área}
-La dialectología es un campo que estudia la variación del lenguaje según la región geográfica y el contexto social en los que se utiliza. La investigación cuatitativa en estos campo suele utilizar las frecuencias de variables lingüísticas: atributos fonéticos, sintácticos y léxicos.
+La dialectología es un campo que estudia la variación del lenguaje según la región geográfica y el contexto social en los que se utiliza. La investigación cuantitativa en estos campo suele utilizar las frecuencias de variables lingüísticas: atributos fonéticos, sintácticos y léxicos.
+
+%Ampliar sobre dialectologia (fijarse en la enciclopedia)
 
 Actualmente, las herramientas para la detección de palabras con contraste léxico en distintas regiones
 consisten en cuestionarios como el de \emph{Almeida}\cite{almeida1995variacion}.  Estos cuestionarios están integrados por grupos temáticos centrales como la casa, la familia, la enseñanza, el cuerpo humano, etc. Sobre cada grupo temático se les indicaba a las personas entrevistadas un repertorio de palabras por cada noción, para ver si las conocían y con que frecuencia se las usaba. 
@@ -21,39 +23,42 @@ Con este trabajo planteamos cambiar el paradigma y detectar automáticamente las
 
 Uno de los corpus lingüísticos del español más reconocidos es el \emph{corpes XXI}\cite{espanolabanco}, creado por la Real Academia Española con una distribución de 25 millones de formas por cada uno de los años comprendidos en el periodo 2001 
 a 2012. Sin embargo, dicho corpus tiene dos desventajas importantes: por un
-lado, la cantidad de palabras de América Latina están subrepresentados ya que el $65,70$\% de las palabras del dataset provienen de textos de España y $34,30$\% de los demás países hispanoparlantes. Por otro lado, uno no dispone de todo el dataset, sino que solamente se pueden hacer las consultas de su página web. Estas consultas están limitadas en cuanto a la cantidad de solicitudes y a las funcionalidades que estas proveen.
+lado, la cantidad de palabras de América Latina están subrepresentados en relación a la demografía ya que el $34,30$\% de las palabras del dataset provienen de textos de España y $65,70$\% de los demás países hispanoparlantes. Por otro lado, uno no dispone de todo el dataset, sino que solamente se pueden hacer las consultas de su página web. Estas consultas están limitadas en cuanto a la cantidad de solicitudes y a las funcionalidades que estas proveen.
 
-Una de las virtudes de hacer un corpus con un método de recolección de textos de forma automática se desprende de la cantidad superadora de longitud del corpus en comparación con métodos manuales como digitalización de textos.
+Una de las virtudes de hacer un corpus con un método de recolección de textos de forma automática se desprende del mayor tamaño del corpus en comparación con métodos manuales como digitalización de textos.
 
 A pesar de haber comenzado hace varias décadas la recolección de textos de la web para realizar corpus, no hay muchos en el idioma español.
-Uno que se pudo encontrar es el de \textit{Mark Davies}, el cual se utilizó las páginas web para recolectar los textos, con dos billones de palabras en español y divide a las páginas a partir del país de origen identificado por Google.
+Uno es el de \textit{Mark Davies}, en el cual se utilizó las páginas web para recolectar los textos, con dos billones de palabras en español y dividió las páginas a partir del país de origen identificado por \textit{Google}.
 
-Las ventajas de Twitter son claras: provee una da una interfaz pública para obtener tuits de cualquier persona, independientemente de que haya una relación con el usuario que escribió los tuits en la red social. Además a diferencia de un portal de noticias donde los comentarios suelen estar relacionados con estas, en Twitter son más amplio los tópicos de los comentarios.
-Por otro lado, Twitter es una tecnología que permite hacer escalabale el trabajo a diferentes países ya que con una misma interfaz se pueden obtener los textos de cualquier región. En cambio, si se elige un portal de noticias para sacar comentarios de usuarios, deberíamos ver la estructura de cada página para obtener esos datos.
-Otra ventaja de Twitter es que cada usuario está identificado y se podría llegar a inferir datos como género, edad y ubicación de cada uno.
-Por último una ventaja sobre otro método de recolección, es que a través de Twitter se puede recolectar textos con una granularidad regional muy variable y obtener información de quienes lo escriben.
-Existen otras redes sociales que se podrían obtener textos para analizar , pero tienen la desventaja de ser privadas como Facebook o ser acotadas en términos de los temas que se hablan en la misma, un caso de esto es Linkedin. 
+Las ventajas de Twitter son claras: provee una interfaz pública para obtener tuits de cualquier persona, independientemente de que haya una relación con el usuario que escribió los tuits en la red social. Es decir, uno puede ver los tuits de otra persona, sin necesidad de ser un \textit{seguidor} de esta. Además a diferencia de un portal de noticias donde los comentarios suelen estar relacionados con estas, en Twitter son más amplios los tópicos de los comentarios.
+Por otro lado, Twitter es una tecnología que permite hacer escalable el trabajo a diferentes países ya que con una misma interfaz se pueden obtener los textos de cualquier región. En cambio, si se elige un portal de noticias para sacar comentarios de usuarios, es necesario conocer la estructura de cada página para obtener esos datos.
+Otra ventaja de Twitter es que cada usuario está identificado y se podrían llegar a inferir datos como género, edad y ubicación de cada uno.
+Por último, una ventaja sobre otro método de recolección es que a través de Twitter se pueden recolectar textos con una granularidad regional muy variable y obtener información de quienes los escriben.
+Existen otras redes sociales de las que se podrían obtener textos para analizar, pero tienen la desventaja de ser privadas,como \textit{Facebook}, o acotadas en términos de los temas que se hablan, como \textit{Linkedin}. 
 
 
 
 \section{Twitter}
-Twitter\footnote{www.twitter.com} es un servicio de microblogging creado en el 2006. Los usuarios son variados, desde personas, instituciones gubernamentales, no gubernamentales y bots(i.e programa que corre tareas automáticamente). Cada usuario puede escribir textos llamados tuits, que tienen una longitud máxima de 140 caracteres. Las relaciones en Twitter no necesitan ser recíprocas, uno puede seguir a una persona, en cuyo caso va a poder leer todos los tuits generado por ella, como también puede ser seguido por una persona. Un tuit puede ser respondido, como también puede ser retuiteado. El retuit es un mecanismo para diseminar por la red tuits generados por otros usuarios. De esta manera si un usuario A realiza un retuit generado por el usuario B, cualquier seguidor de A también va a recibir ese tuit en su panel, al cual llamaremos \textit{timeline}. Si bien los tuits que se ven en el timeline son solo aquellos generados por los usuarios que uno sigue, todos los tuits son públicos, es decir que pueden ser accedidos a través de búsquedas en la plataforma.
-Para dar una noción de la cantidad de usuarios en la Argentina,en el 2016 había 11,8 millones de usuarios de Twitter en la Argentina, con 15 millones de personas con smartphones, lo cual el 70 de la gente con smartphones tenía Twitter.%{ref de lanacion}
+Twitter\footnote{www.twitter.com} es un servicio de microblogging creado en 2006. Los usuarios son variados, desde personas, instituciones gubernamentales y no gubernamentales hasta bots (i.e programa que corre tareas automáticamente). Cada usuario puede escribir textos llamados tuits, que tienen una longitud máxima de 140 caracteres. Las relaciones en Twitter no necesitan ser recíprocas, uno puede seguir a una persona, en cuyo caso va a poder leer todos los tuits generados por ella, como también puede ser seguido por una persona. Un tuit puede ser respondido, como también puede ser retuiteado. El retuit es un mecanismo para diseminar por la red tuits generados por otros usuarios. De esta manera si un usuario A realiza un retuit generado por el usuario B, cualquier seguidor de A también va a recibir ese tuit en su panel, al cual llamaremos \textit{timeline}. Si bien los tuits que se ven en el timeline son solo aquellos generados por los usuarios que uno sigue, todos los tuits son públicos, es decir que pueden ser accedidos a través de búsquedas en la plataforma.
+Para dar una noción de la cantidad de usuarios en la Argentina, en el 2016 había 11,8 millones de usuarios de Twitter en la Argentina, con 15 millones de personas con smartphones, lo cual significa que el $70$\% de la gente con smartphones tenía Twitter.%{ref de lanacion}
 
 En los últimos años se han publicado numerosos trabajos que utilizaron datos de Twitter, desde la detección y monitoreo de terremotos en tiempo real\cite{sakaki2010earthquake},análisis de sentimientos y de la opinión pública \cite{liu2012sentiment},  predecir el mercado de valores \cite{pak2010twitter} o los resultados de elecciones nacionales \cite{tumasjan2010predicting}. También se ha utilizado para localizar enfermedades por región \cite{paul2011you}.
 
 En cuanto a trabajos relacionados con la lingüística cabe mencionar el trabajo de Eisenstein et al. \cite{eisenstein2010latent} en el que identifica palabras con una gran afinidad regional realizando un modelo probabilístico en el que asumen que las distribuciones léxicas dependen de la región geográfica y de una división de tópicos. Es decir que hay una división de temas sobre todo el dataset y dependiendo de la región del autor, este es más propenso a escribir con una variación dada. El mismo autor realizó un trabajo para identificar variables léxicas y detectar regiones dialectales \cite{eisenstein2014identifying}.
-El trabajo de Gonçalves et al.\cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales. Por otro lado G. Doyle et al. \cite{doyle2014mapping} 
+El trabajo de Gonçalves et al. \cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales. Por otro lado G. Doyle et al. \cite{doyle2014mapping} 
+
+% ......................................... TERMINAR
+
 
 \section{Lingüística computacional} % (fold)
 \label{linguistica_computacional}
 
-La lingüística de corpus es una area que utiliza una serie de procedimientos o métodos para estudiar el lenguaje. Esta rama de la la lingüística intenta responder 
+La lingüística de corpus es una área que utiliza una serie de procedimientos o métodos para estudiar el lenguaje. Esta rama de la la lingüística intenta responder 
 preguntas asociadas a la utilización del lenguaje a través de conjuntos de textos. Si bien esta rama nació realizando y analizando corpus de forma manual, el rápido crecimiento
 tecnológico de las últimas décadas dio la posibilidad de tener corpus con millones de palabras y realizar algunos estudios de manera automatizada, utilizando menos recursos humanos y ahorrando tiempo. 
-Tal es así que el año 2003 Kilgariff et al. \cite{kilgarriff2003introduction} se preguntaron acerca de la posibilidad de utilizar la Web como fuente para recolectar textos. Hay varias críticas que se le pueden hacer al contenido que se encuentra en la web, como los errores sintácticos y  gramáticales. Sin embargo, la inmensa cantidad de datos que es posible recolectar ofrece una oportunidad única para realizar estudios lingüísticos. En particular, la lengua utilizada en las redes sociales que posee una fuerte presencia de coloquialismos nos brinda la posibilidad de identificar fenómenos nacientes en la actualidad como los neologismos.
+Tal es así que el año 2003 Kilgariff et al. \cite{kilgarriff2003introduction} se preguntaron acerca de la posibilidad de utilizar la Web como fuente para recolectar textos. Hay varias críticas que se le pueden hacer al contenido que se encuentra en la web, como los errores sintácticos y  gramaticales. Sin embargo, la inmensa cantidad de datos que es posible recolectar ofrece una oportunidad única para realizar estudios lingüísticos. En particular, la lengua utilizada en las redes sociales que posee una fuerte presencia de coloquialismos nos brinda la posibilidad de identificar fenómenos nacientes en la actualidad como los neologismos.
 
-FALTARÍA CONTEXTUALIZAR LOS CONTRASTES LEXICOS , EN ESPECIAL EL TRABAJO SOBRE EL ESPAÑOL (VIDAL DE BATTINI).
+FALTARÍA CONTEXTUALIZAR LOS CONTRASTES LEXICOS, EN ESPECIAL EL TRABAJO SOBRE EL ESPAÑOL (VIDAL DE BATTINI).
 
 \cite{baayen2001word}
 % Lingüisitca de corpus
@@ -61,7 +66,7 @@ FALTARÍA CONTEXTUALIZAR LOS CONTRASTES LEXICOS , EN ESPECIAL EL TRABAJO SOBRE E
 
 %Que es el trabajo que realizamos, y como lo presentamos
 
-En este trabajo presentamos un método no supervisado para la detección de palabras contrastivas a través de un conjunto de textos recolectados de Twitter.
+En este trabajo presentamos un método semi-supervisado para la detección de palabras contrastivas a través de un conjunto de textos recolectados de Twitter. Si bien se recolectaron textos de la Argentina, este trabajo puede ser replicado sobre otras regiones.
 
 En la sección [\ref{ch:metodo}]
 explicaremos la metodología para extraer los datos de Twitter, una caracterización de la muestra y la métrica creada para medir la contrastividad de una palabra.
