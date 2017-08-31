@@ -21,7 +21,7 @@ Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada
 
 Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
 
-Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
+Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa de veces o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
 
 \begin{figure}[ht]
@@ -35,12 +35,12 @@ Sin embargo, ver solamente la entropía de las palabras nos puede generar la det
 
 \section{Valor de la información}
 \label{sec:ValorDeLaInformacion}
-En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color que tiene. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
+En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el colo: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{./images/entropiaPersonasxNormCantPersonas.pdf}
-\caption{Gráfico de dispersión que muestra la posición en el listado ordenado según el valor de la información a partir de la escala cromática. Las posiciones más bajas aparecen más blancas. A su vez se muestra para cada palabra, el valor de la entropía de las personas ($H_u$) y la cantidad normalizada de personas que utiliza dicho término($norm_p$). } 
+\caption{Gráfico de dispersión que muestra la posición en el listado ordenado según el valor de la información a partir de la escala cromática. Las posiciones más bajas aparecen más blancas. A su vez se muestra para cada palabra el valor de la entropía de las personas ($H_u$) y la cantidad normalizada de personas que utiliza dicho término($norm_p$). } 
 \label{fig:infoValue} 
 \end{figure}
 
@@ -58,7 +58,7 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 \section{Proporción acumulada de ocurrencias} % (fold)
 \label{proporcionDeOcurrencias}
 
-Para tener una mejor noción sobre la métrica, medimos el porcentaje de las ocurrencias de las palabras contrastivas según nuestra métrica cubiertas por subconjuntos de provincias de manera tal que para cada palabra y un número fijo de provincias, la región con esa cantidad de provincias tenga un cubrimiento máximo. 
+Para tener una mejor noción sobre la métrica, medimos el porcentaje de las ocurrencias de las palabras que muestran contrastes según nuestra métrica cubiertas por subconjuntos de provincias de manera tal que para cada palabra y un número fijo de provincias, la región con esa cantidad de provincias tenga un cubrimiento máximo. 
 En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
 
 En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
@@ -91,9 +91,9 @@ En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimien
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
 cinco mil (5000) palabras con valor de la información más altas. El número 5000 surgió de ver la distribución de los valores de la información. Cómo se puede ver en 
 el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a estabilizarse y los valores son 
-muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para filtrar manualmente las palabras del listado y con estas seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
+muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para evaluar manualmente las palabras del listado y entre estas seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
 
-Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en las provincias que estas indican. Es por esto que tienen una gran variación en 
+Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en sus respectivas regiones. Es por esto que tienen una gran variación en 
 la cantidad de ocurrencias en las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para detectar las palabras que tienen 
 mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos filtrar 
 los lugares del listado original.
@@ -102,7 +102,7 @@ los lugares del listado original.
 \subsection{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de los primeras 5000 palabras más contrastivas de acuerdo al valor de la información:
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor o igual a 6 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de los primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información.
 
 \begin{table}[]
 \centering
@@ -142,7 +142,7 @@ Chaco - Corrientes - Entre Ríos - Formosa - Misiones     & 6           \\
 Catamarca - Santiago del Estero                       & 6           \\
 \hline
 \end{tabular}
-\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras más contrastivas (de acuerdo al valor de la información). Se filtraron las regiones compuestas por una sola una provincia.}
+\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras con mayor contrastes (de acuerdo al valor de la información). Se suprimieron las regiones compuestas por una sola una provincia.}
 \label{tab:regiones}
 \end{table}
 
