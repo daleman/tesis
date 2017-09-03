@@ -3,7 +3,7 @@
 
 \section{Extracción de Datos}
 
-Para la recolección de tuits, primero se extrajo una cantidad de usuarios de forma localizada con el fin de obtener todos sus tuits.
+Para la recolección de tuits, primero se extrajo una cantidad de usuarios con información geográfica disponible con el fin de obtener todos sus tuits.
 Los usuarios se buscaron por provincia de modo tal que haya una cantidad aproximadamente equitativa de cada una.
 La búsqueda de los usuarios se hizo de la siguiente manera:
 
@@ -16,7 +16,7 @@ De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que
 Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar tuits cuyas coordenadas sean las buscadas. En caso de no tener éxito, buscará aquellos tuits creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.
 
 Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. Con esta precaución eliminamos los posibles tuits de turistas que escribieron en un lugar pero que no viven allí.
-
+/h
 En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones de los usuarios de la muestra de desarrollo:
 
 
@@ -59,7 +59,7 @@ La división de los datos se realizó de manera tal que los conjuntos resultante
 \end{description}
 
 La división fue de la siguiente manera:
-Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, con lo que se obtuvo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{DIV}$ por la cual había una cantidad equiparable entre el conjunto de tuits producidos por  $Usuarios_1$ antes de $Fecha_{DIV}$ y el conjunto de tuits producidos por $Usuarios_2$ después de $Fecha_{DIV}$. Para encontrar la fecha se hizo una búsqueda binaria: dada una fecha $Fecha_{temp}$ (inicialmente es el día intermedio entre la fecha del primer y último tuit recolectado) se calcula la cantidad de tuits que hay con fechas anteriores sobre el conjunto de usuarios $Usuarios_1$ y análogamente se calcula la cantidad de tuits posteriores a esa fecha sobre el otro conjunto de usuarios. Si la cantidad del primer conjunto de tuits es menor que la del segundo conjunto, la $Fecha_DIV$ se busca en  el intervalo [$Fecha_{temp}-FechaFinal$] y se repite el procedimiento. Por lo tanto se cumple la siguiente ecuación:
+Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, con lo que se obtuvo $Usuarios_1$ y $Usuarios_2$. Luego se buscó la fecha $Fecha_{DIV}$ por la cual había una cantidad equiparable entre el conjunto de tuits producidos por  $Usuarios_1$ antes de $Fecha_{DIV}$ y el conjunto de tuits producidos por $Usuarios_2$ después de $Fecha_{DIV}$. Para encontrar la fecha se hizo una búsqueda binaria: dada una fecha $Fecha_{temp}$ (inicialmente es el día intermedio entre la fecha del primer y último tuit recolectado) se calcula la cantidad de tuits que hay con fechas anteriores sobre el conjunto de usuarios $Usuarios_1$ y análogamente se calcula la cantidad de tuits posteriores a esa fecha sobre el otro conjunto de usuarios. Si la cantidad del primer conjunto de tuits es menor que la del segundo conjunto, la $Fecha_{DIV}$ se busca en  el intervalo [$Fecha_{temp}-FechaFinal$] y se repite el procedimiento. Por lo tanto se cumple la siguiente ecuación:
 
 \begin{equation}
 %\sum_{ f = FechaInicial}^{Fecha_{Div}} tweets(Usuarios_1,f) \approx \sum_{ f = Fecha_{Div}}^{FechaFinal} tweets(Usuarios_2,f) 
@@ -67,14 +67,11 @@ Sobre el conjunto de usuarios se dividió en dos de forma aleatoria, con lo que 
 \end{equation}
 Donde $FechaInicial$ es la fecha del primer tuit recolectado  y $FechaFinal$ es la del último.\\
 
-
-
 Después de fijar la fecha se dividió el conjunto de tuits producidos por estos usuarios: el conjunto de desarrollo con los tuits producidos antes de $Fecha_{DIV}$ y el conjunto de test producidos posteriormente a esa fecha.
 
 \section{Tokenización y normalización}
 
-
-En cuanto al análisis del texto surge una primer problemática: ¿qué es una palabra? En principio podemos definir a una palabra como cualquier secuencia de caracteres delimitados por espacios blancos. Con esta definición \textit{523456} y \textit{?} serían palabras. Debido a esto podemos restringir nuestra definición a una secuencia de caracteres alfabéticos. Ahora los ejemplos mencionados anteriormente dejarían de estar dentro de la definición. Sin embargo términos como \textit{asdsdafsdf} también serían palabras. Para restringir aún más la definición podríamos tener un diccionario como filtro para saber si una secuencia de caracteres dada es una palabra. Si bien esto tendría mucha precisión al momento de filtrar los términos, no sería capaz de detectar palabras que existen en una lengua pero que no están incluídos en el diccionario elegido. Es por eso que decidimos tomar a una palabra como una secuencia de caracteres alfabéticos.
+En cuanto al análisis del texto surge una primer problemática: ¿qué es una palabra? En principio podemos definir a una palabra como cualquier secuencia de caracteres delimitados por espacios blancos. Con esta definición \textit{523456} y \textit{?} serían palabras. Debido a esto podemos restringir nuestra definición a una secuencia de caracteres alfabéticos. Ahora los ejemplos mencionados anteriormente dejarían de estar dentro de la definición. Sin embargo términos como \textit{asdsdafsdf} también serían palabras. Para restringir aún más la definición podríamos tener un diccionario como filtro para saber si una secuencia de caracteres dada es una palabra. Si bien esto tendría mucha precisión al momento de filtrar los términos, no sería capaz de detectar palabras que existen en una lengua pero que no están incluidos en el diccionario elegido. Además , dada la cantidad de palabras recogidas, es altamente improbable que una secuencia al azar de caracteres alfabéticos reúna las condiciones de frecuencia necesarias para resultar destacas por la métrica que utilizamos. Es por eso que decidimos tomar a una palabra como una secuencia de caracteres alfabéticos.
 
 Es muy posible que tengamos palabras que no sean interesantes a nivel lingüístico, como errores de tipeo (e.g computadira, escribur), errores ortográficos o  nombres propios. Es importante destacar que Twitter tiene caracteres especiales para mencionar a la gente, como el @, o el \#(hashtag) utilizado para agrupar mensajes. Estos caracteres aparecen mucho, ya que los usuarios suelen responderse en la red, mencionando los mismos temas (aclarando el hashtag), o respondiendo a otros usuarios. Ya que esos caracteres no son alfabéticos, cualquier término que los utilice no va a ser parte del conjunto de palabras, como tampoco lo serán las direcciones de páginas web. Decidimos que se filtren estos términos ya que no tienen interés lingüístico y además agregarían mucho ruido a los datos.
 
@@ -175,9 +172,30 @@ Este listado fue ordenado por una métrica que capte en un único valor el nivel
 se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por la Academia Argentina de Letras.
 
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
-en cada par de provincias de la Argentina. Para esto calculamos el cociente entre la frecuencia máxima de la palabra
-en las dos provincias sobre la frecuencia mínima, al que llamaremos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
-recolectado tuits con esa palabra, se tomaba como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero.
+en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra, la frecuencia de ocurrencias sobre cada una de las dos provincias. La mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la frecuencia máxima y la frecuencia mínima tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
+recolectado tuits con esa palabra, se tomaba como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero. Esta métrica se resumen en la ecuación \ref{eq:maxDif}.
+
+
+\begin{equation}
+  \label{eq:maxDif} 
+  maxDif(w,prov_1,prov_2) = \frac{F_{max}(w,prov_1,prov_2)}{F_{Min}(w,prov_1,prov_2)}
+\end{equation}
+donde 
+\begin{equation}
+F_{max}(w) = \max(frec(w,prov_1),frec(w,prov_2))
+\end{equation}
+
+\begin{equation}
+ F_{min}(w) = \left\{ \begin{array}{ll}
+             \min(frec(w,prov_1),frec(w,prov_2))  \text{ si } frec(w,prov_1) > 0 \text{ y } frec(w,prov_2) > 0 & \\
+             \\\min(frec(w,p)) \forall w \in palabras(p) , \text{ con } p=\{prov_1,prov_2\} \setminus \{P_{max}\} \text{sino} &  \\
+             \end{array}
+   \right.
+\end{equation}
+   donde $P_{max}$ es la provincia que tiene la mayor frecuencia de ambas.\\
+
+
+
 De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. 
 Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
@@ -192,7 +210,7 @@ Dado que se quieren encontrar las palabras con contrastes significativos en dist
 regiones se propone generar una métrica basada en la cantidad de información 
 para poder realizar esta tarea.
 
-Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país puede ser la entropía definida por Shannon\ref{sub:entropiaShannon}, debido a que podemos tener un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra.
+Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país puede ser la entropía definida por Shannon ( ver en el apéndice: \ref{sub:entropiaShannon}), debido a que podemos tener un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra.
 Sin embargo, la entropía como única medida tiene sus desventajas. Principalmente, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima. A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas elegiremos las que tienen mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, entre otras variables a tener en cuenta.
 
 
@@ -213,8 +231,10 @@ entropía como se hizo con el texto original. Es de esperar que en la mayoría d
 la entropía del texto permutado sea mayor que la medida en el calculo original. Esto 
 se debe a que las palabras se distribuyen de forma más uniforme 
 en las distintas partes.
+
 Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$, con $p(w)$ la frecuencia total de la palabra en el texto. 
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
+
 Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
 \textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
@@ -295,8 +315,9 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
 \label{fig:cantNorms} 
 \end{figure}
 
-El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios de ciertas organizaciones que hablan de personas, lugares o marcas de forma constante. 
-Para eliminar outliers se procedió a eliminar las palabras que tenían una cantidad de usuarios menor o igual a 40 ocurrencias, como también las palabras que eran dichas por menos de 6 personas. 
+El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios de ciertas organizaciones que hablan de personas, lugares o marcas de forma constante.
+
+Para eliminar los valores atípicos se procedió a remover las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. 
 
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}

@@ -17,8 +17,8 @@ La dialectología es un campo que estudia la variación del lenguaje según la r
 
 %Ampliar sobre dialectologia (fijarse en la enciclopedia)
 
-Actualmente, las herramientas para la detección de palabras con contraste léxico en distintas regiones
-consisten en cuestionarios como el de \emph{Almeida}\cite{almeida1995variacion}.  Estos cuestionarios están integrados por grupos temáticos centrales como la casa, la familia, la enseñanza, el cuerpo humano, etc. Sobre cada grupo temático se les indicaba a las personas entrevistadas un repertorio de palabras por cada noción, para ver si las conocían y con que frecuencia se las usaba. 
+Actualmente, los métodos por los cuales se descubren palabras con contraste léxico en distintas regiones
+consisten en cuestionarios como el de \emph{Almeida}\cite{almeida1995variacion}.  Estas encuestas están integradas por grupos temáticos centrales como la casa, la familia, la enseñanza, el cuerpo humano, etc. Sobre cada grupo temático se les indicaba a las personas entrevistadas un repertorio de palabras por cada noción, para ver si las conocían y con que frecuencia se las usaba. 
 Con este trabajo planteamos cambiar el paradigma y detectar automáticamente las palabras usadas en distintas regiones y sus frecuencias.
 
 Uno de los corpus lingüísticos del español más reconocidos es el \emph{corpes XXI}\cite{espanolabanco}, creado por la Real Academia Española con una distribución de 25 millones de formas por cada uno de los años comprendidos en el periodo 2001 
@@ -45,7 +45,7 @@ Para dar una noción de la cantidad de usuarios en la Argentina, en el 2016 hab�
 En los últimos años se han publicado numerosos trabajos que utilizaron datos de Twitter, desde la detección y monitoreo de terremotos en tiempo real\cite{sakaki2010earthquake},análisis de sentimientos y de la opinión pública \cite{liu2012sentiment},  predecir el mercado de valores \cite{pak2010twitter} o los resultados de elecciones nacionales \cite{tumasjan2010predicting}. También se ha utilizado para localizar enfermedades por región \cite{paul2011you}.
 
 En cuanto a trabajos relacionados con la lingüística cabe mencionar el trabajo de Eisenstein et al. \cite{eisenstein2010latent} en el que identifica palabras con una gran afinidad regional realizando un modelo probabilístico en el que asumen que las distribuciones léxicas dependen de la región geográfica y de una división de tópicos. Es decir que hay una división de temas sobre todo el dataset y dependiendo de la región del autor, este es más propenso a escribir con una variación dada. El mismo autor realizó un trabajo para identificar variables léxicas y detectar regiones dialectales \cite{eisenstein2014identifying}.
-El trabajo de Gonçalves et al. \cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales. Por otro lado G. Doyle et al. \cite{doyle2014mapping} 
+El trabajo de Gonçalves et al. \cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales. Por otro lado G. Doyle et al. \cite{doyle2014mapping} propone un método bayesiano para estimar la distribución de la frecuencia de una palabra (o frase) condicional a la ubicación de la persona que la escribe. 
 
 % ......................................... TERMINAR
 
@@ -54,9 +54,10 @@ El trabajo de Gonçalves et al. \cite{gonccalves2014crowdsourcing} consistió en
 \label{linguistica_computacional}
 
 La lingüística de corpus es una área que utiliza una serie de procedimientos o métodos para estudiar el lenguaje. Esta rama de la la lingüística intenta responder 
-preguntas asociadas a la utilización del lenguaje a través de conjuntos de textos. Si bien esta rama nació realizando y analizando corpus de forma manual, el rápido crecimiento
+preguntas asociadas a la utilización del lenguaje a través de conjuntos de muestras de uso de la lengua. Aunque lo más común es que estas muestras provengan de textos, también se puede extraer datos a partir de grabaciones de voz o vídeos. Si bien esta rama nació realizando y analizando corpus de forma manual, el rápido crecimiento
 tecnológico de las últimas décadas dio la posibilidad de tener corpus con millones de palabras y realizar algunos estudios de manera automatizada, utilizando menos recursos humanos y ahorrando tiempo. 
-Tal es así que el año 2003 Kilgariff et al. \cite{kilgarriff2003introduction} se preguntaron acerca de la posibilidad de utilizar la Web como fuente para recolectar textos. Hay varias críticas que se le pueden hacer al contenido que se encuentra en la web, como los errores sintácticos y  gramaticales. Sin embargo, la inmensa cantidad de datos que es posible recolectar ofrece una oportunidad única para realizar estudios lingüísticos. En particular, la lengua utilizada en las redes sociales que posee una fuerte presencia de coloquialismos nos brinda la posibilidad de identificar fenómenos nacientes en la actualidad como los neologismos.
+Tal es así que el año 2003 Kilgariff et al. \cite{kilgarriff2003introduction} se preguntaron acerca de la posibilidad de utilizar la Web como fuente para recolectar textos. Hay varias críticas que se le pueden hacer al contenido que se encuentra en la web, como los errores sintácticos y  gramaticales. Sin embargo, la inmensa cantidad de datos que es posible recolectar ofrece una oportunidad única para realizar estudios lingüísticos. En particular, los  En particular, la lengua utilizada en las redes sociales que posee una fuerte presencia de coloquialismos nos brinda la posibilidad de identificar palabras muy asentadas en determinada región del español, difícil de detectar manualmente en la literatura. Esta dificultad proviene de varios factores. Uno de ellos es que es difícil encontrar gran cantidad de autores nativos de diferentes lugares. Por otro lado, en la literatura se suele utilizar un vocabulario más restringido, normalmente excluyendo (o utilizando con menos frecuencia) términos del habla cotidiana. 
+
 
 FALTARÍA CONTEXTUALIZAR LOS CONTRASTES LEXICOS, EN ESPECIAL EL TRABAJO SOBRE EL ESPAÑOL (VIDAL DE BATTINI).
 
@@ -66,7 +67,7 @@ FALTARÍA CONTEXTUALIZAR LOS CONTRASTES LEXICOS, EN ESPECIAL EL TRABAJO SOBRE EL
 
 %Que es el trabajo que realizamos, y como lo presentamos
 
-En este trabajo presentamos un método semi-supervisado para la detección de palabras contrastivas a través de un conjunto de textos recolectados de Twitter. Si bien se recolectaron textos de la Argentina, este trabajo puede ser replicado sobre otras regiones.
+En este trabajo presentamos un método semi-supervisado para la detección de palabras contrastivas a través de un conjunto de textos recolectados de Twitter. Si bien se recolectaron textos de la Argentina, este trabajo puede ser replicado sobre otras regiones. Cabe mencionar que la herramienta detecta palabras con valores significativos de contraste en su uso, es necesaria la supervisión de investigadores lexicógrafos entrenados para seleccionar los términos con interés lingüístico.
 
 En la sección [\ref{ch:metodo}]
 explicaremos la metodología para extraer los datos de Twitter, una caracterización de la muestra y la métrica creada para medir la contrastividad de una palabra.

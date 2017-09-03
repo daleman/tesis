@@ -1,0 +1,43 @@
+Colaboración entre el DILyF y el Departamento de computación de la UBA:
+el caso de tres guaranismos
+
+      El Departamento de Investigaciones Lingüísticas y Filológicas de la AAL inició durante el año 2016 una colaboración con el Laboratorio de Inteligencia Artificial Aplicada, dependiente del Departamento de Computación de la Universidad de Buenos Aires, para desarrollar tecnologías de detección de léxico con contrastes de uso dentro del territorio de la Argentina. Por razones de accesibilidad, consistencia y la disponibilidad de información geográfica, la fuente de información que se está usando es la red social Twitter. En la primera etapa, se recolectaron más de 188 millones de palabras divididas en partes aproximadamente iguales por cada provincia del país. Más allá de ciertos problemas que esto acarrea, como por ejemplo que los hablantes de las provincias más densamente pobladas resultan sobrepresentados y viceversa, esto provee una “fotografía” del estado actual del léxico en la cual todas las regiones tienen un peso específico similar.
+
+      El corpus así formado tiende hacia lo coloquial, puesto que el uso que le dan los hablantes a Twitter suele tener características conversacionales. Esto implica el intento de representar ortográficamente muchos de los rasgos de la conversación oral, como el alargamiento vocálico, los aumentos de volumen, las pronunciaciones alternativas, las onomatopeyas, la risa y demás elementos, además de vacilaciones ortográficas aleatorias. Todas estas características sumadas convierten la labor de procesar la información en un desafío complejo, puesto que la lematización (la reunión de todo un grupo de palabras bajo una forma prototípica; por ejemplo, amé, amaba, amaría, bajo el infinitivo amar) tiene que poder dar cuenta de un repertorio abierto y en expansión de recursos expresivos que los usuarios aprovechan constantemente. En relación a la labor lexicográfica, estas características convierten al corpus en una herramienta de enorme valor para la detección de coloquialismos, una categoría elusiva por definición puesto que resulta difícil, en muchos casos, que lleguen a publicarse en medios escritos tradicionales.
+
+      Esta primera etapa del proyecto está usando las diferencias en el léxico de la Argentina como un primer paso para luego avanzar sobre todo el mundo hispanoparlante, en la pretensión de encontrar diferencias léxicas entre países enteros. Bajo la perspectiva de la etapa actual, por ejemplo, una palabra que se usa de manera homogénea en todas las provincias del país pero no en Chile ni en Bolivia no resulta destacada. Una vez que estén afinadas las herramientas estadísticas para determinar lo más adecuadamente posible diferencias en la extensión de uso de palabras dentro de la Argentina, confiamos en que una gran parte del trabajo de ampliar la perspectiva hacia el todo el mundo hispanoparlante puede aprovecharse sin mayores modificaciones, ya que, una vez reemplazadas las coordenadas geográficas de recolección de la información, el resto del trabajo estadístico puede, con ajustes menores, trasladarse.
+
+      Como un ejemplo de las posibilidades que brinda esta tecnología, se pueden citar tres palabras propias de la región guaranítica: angá, angaú y mitaí. Ninguna de las tres figuraba en las ediciones anteriores del Diccionario del habla de los argentinos ni tampoco eran palabras que hubieran llamado la atención de los investigadores del DILyF con anterioridad a su aparición en los tuits de los hablantes de las provincias que conforman esa región. Esta omisión hubiera privado a la próxima edición de nuestro de diccionario de dar cuenta de tres elementos léxicos importantes para millones de hablantes de nuestro país. La información estadística que surge del corpus da testimonio de esa importancia:
+
+      Total de palabras recolectadas de la región guaranítica: 12 167 635.
+
+Casos de angá (incluyendo anga, angaaa y angacito): 548. 
+Frecuencia normalizada¹: 45,03.
+
+Casos de angaú (incluyendo angau, engauu y engau): 205. 
+Frecuencia normalizada: 16,84.
+
+Casos de mitaí (incluyendo mitaí, mitaii, mitai, mitaises, mitaices, mitais): 175. 
+Frecuencia normalizada: 15,69.
+
+      Esto es un fuerte contraste respecto de las demás regiones dialectales argentinas. Por ejemplo, en lo que Vidal de Battini llama "litoral". 
+
+      Total de palabras recolectadas de la región litoral: 27 477 861.
+
+Casos de angá: 6. 
+Frecuencia normalizada: 0,21.
+
+Casos de angaú: 0. 
+Frecuencia normalizada: 0.
+
+Casos de mitaí: 1. 
+Frecuencia normalizada: 0,036.
+
+
+
+      Es decir, angá y mitaí son, respectivamente, 206 y 431² veces más frecuentes en la región guaranítica que en litoral. Con angaú este cálculo no arroja resultados porque no hay casos de esta palabra en la región litoral.
+
+—————————————
+
+1      La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.
+2      Esto se traduce en que, si uno se pone a leer Twitter de la región guaranítica, angá aparece una vez cada 22 222 palabras, mientras que en litoral es preciso leer 4 761 904 palabras para eso. Similarmente, mitaí aparece en la región guaranítica una vez cada 63 734 palabras, mientras que en litoral es preciso leer las 27 477 861 palabras recolectadas para eso.
