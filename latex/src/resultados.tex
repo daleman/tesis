@@ -95,8 +95,9 @@ muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 p
 
 Como era de esperar las ciudades y provincias son palabras que ocurren mayormente en sus respectivas regiones. Es por esto que tienen una gran variación en 
 la cantidad de ocurrencias en las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para detectar las palabras que tienen 
-mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos filtrar 
-los lugares del listado original.
+mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos resaltar para que el equipo de filólogos tenga una primera alerta sobre posible toponimia.
+
+% Agregar algún comentario sobre regiones dialectales conocidas
 
 
 \subsection{Regiones de palabras} % (fold)
@@ -162,21 +163,156 @@ Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta d
 \section{Caracterización de las palabras identificadas como contrastivas}
 \label{caracterizacion_resultados}
 
-Dentro de las palabras contrastivas identificadas a través de la métrica, podemos hacer una caracterización de ellas según el fenómeno lingüístico representan, a saber:
+Dentro de las palabras contrastivas identificadas a través de la métrica, podemos hacer una caracterización de ellas según el fenómeno lingüístico representan.
+
+%A continuación presentamos en detalle cada fenómeno lingüístico y ejemplificamos con las palabras encontradas:
+
+Los criterios seguidos para la asignación de relevancia privilegiaron las posibilidades de que la palabra forme parte del repertorio léxico de una comunidad de hablantes. Esto excluye, como es tradicional en lingüística, nombres propios y topónimos locales, que la métrica sube a los puestos altos de las listas porque efectivamente su uso es abundante y contrastivo. La siguiente es una lista muy parcial, en la que hay apenas algunos ejemplos en cada categoría. La lista completa arroja un resultado dentro del rango de las 300 palabras dignas de estudio por cada 5000 palabras, es decir, 1 palabra cada 17 aproximadamente. A pesar de que no existen otros proyectos que provean un término de comparación para evaluar el grado de éxito implicado en esta relación, no cabe ninguna duda de que, al menos en la detección de coloquialismos locales actualmente en uso, la herramienta plantea un verdadero punto de inflexión para la lexicografía contrastiva. Esta área del léxico es justamente la más elusiva, puesto que su impacto en cualquier medio impreso llega notablemente más tarde y, todavía más importante, en la mayoría de los casos no llega nunca. Se incluyeron como relevantes palabras que ya están incluidas en el Diccionario del habla de los argentinos, dado que ese hecho es una confirmación adicional de la pertinencia de la ubicación que asignó la métrica.
+
+Las formas cuyo uso se ejemplifica son las que están en negrita y solo en ellas se normalizó la tildación.
+
+
 
 \begin{itemize}
-  \item Guaranismos: Incorporación de palabras de origen guaranítico.
-  \item Vesres: Creación de palabras por inversión de sílabas que se usa jergalmente o con fines humorísticos.
-  \item \footnote{Falta agregar caracterización según resultados de la AAL.}
-\end{itemize}
+  \item \textbf{Guaranismos}: Incorporación de palabras de origen guaranítico.
 
-A continuación presentamos en detalle cada fenómeno lingüístico y ejemplificamos con las palabras encontradas:
+  \blockquote[Córdoba]{Perdon pero tenes que ser muy \textbf{culiado/a} para ir a mc y pedirte una ensalada}
 
-\subsection{Guaranismos}
+  \item \textbf{Coloquialismos o vulgarismos}
+
+    \blockquote[Córdoba]{Perdon pero tenes que ser muy \textbf{culiado/a} para ir a mc y pedirte una ensalada}
+
+
+    \blockquote[Mendoza]{Q \textbf{chombi} hacer un chiste y q la otra persona no se ría o no lo entienda}
+
+    \blockquote[Neuquén]{Que \textbf{carnasas} poniendole rosas rojas a toda la ropa, para mi queda horrible sorry}
+
+\item Indigenismos
+
+    \blockquote[Formosa]{Te regalo ser \textbf{mitaí} y ir a jurar la bandera con el guardapolvo caliente ese y la corbata que te ahorca todo (Del guaraní mitaí “pequeño”)}
+
+    \blockquote[Corrientes]{\textbf{Angá} mi negrito, esta triste (Del guaraní angá aprox. “pobre”) (Corrientes)}
+
+    \blockquote[Tucumán]{Gracias tormenta \textbf{ura} por sonar como una pochoclera de chasquibums a las 3 de la mañana en mi ventana durante 50 minutos. (Valor despectivo. Del quechua ura “vulva, vagina”) }
+
+\item \textbf{Gentilicios}
+
+  \textbf{Casildense} (de Casilda), \textbf{concordiense} (de Concordia) y \textbf{obereño} (de Oberá).
+
+\item \textbf{Voces no marcadas en registro, que aluden a una realidad local}
+
+  \blockquote[San Juan]{Quiero a alguien que me diga vamos a comer \textbf{piadinas}, un pancho, un chori, una hamburguesa lo que sea y soy feliz}
+
+  \blockquote[Misiones]{\textbf{Tareferos} que reclamaban asistencia interzafra en Posadas estarían preparando una protesta para hoy en la Fiesta del Inmigrante en Oberá.}
+
+  \blockquote[Jujuy]{Me encantan los bohemios anti sistema que usan vans. Es como que seas ecologista y uses un cuaderno hecho con media \textbf{yunga}.}
+
+\item \textbf{Voces sinónimas de otras más usuales en Buenos Aires}
+
+  \blockquote[Chaco]{Teres, \textbf{pororós} y pelis con Carlita y Flor}
+
+  \blockquote[San Juan]{Ver un negro \textbf{chuño} con musculosa y gorro.. se ve que el tipo no quería pasar ni frío ni calor.}
+
+  \blockquote[Formosa]{Tenía la re expectativa para este sábado y al final \textbf{trancó} todo }
+
+\item \textbf{Leísmo}
+
+  \blockquote[Misiones]{No te olvides de \textbf{saludarle} a tu suegro hoy}
+
+  \blockquote[Misiones]{Vine a \textbf{visitarle} a mis primas y estan re colgadas, para eso me quedaba en mi casa no maaa }
+
+  \blockquote[Formosa]{A \textbf{esperarle} a nahuel, que traiga los teresss }
+
+\item \textbf{Fusiones y acrónimos que pueden señalar pronunciación o alta frecuencia de uso}
+
+  \blockquote[Buenos Aires]{Los sueños de la siesta me dejan \textbf{patra} }
+
+  \blockquote[Córdoba]{Si mañana me dice q no, voy sola, necesito ver esa pelicula en el cine siosi}
+
+\item \textbf{Voces consideradas generales pero que, al aparecer en la lista, permitieron verificar su contrastividad en frecuencia de uso al menos con respecto a España}
+
+Ejemplos: \textbf{pavada}, \textbf{distrital} y \textbf{cariño}.
+
+\item \textbf{Voces sospechadas generales pero con acepción local diferente}
+
+  \blockquote[Mendoza]{Mañana que alguien \textbf{atine} con parque y porrones}
+
+  \blockquote[San Juan]{\textbf{Mansas} ganas de sentarme a tomar un te con semitas}
+
+  \blockquote[Tierra del Fuego]{\textbf{Habilítenme} una nueva espaldaa}
+
+  \blockquote[San Juan]{sigo \textbf{asada} por cosas que han pasado hace como dos dias, que falla (Mendoza) / Que \textbf{asada} estoy, tengo la cabeza echa un lío}
+
+
+\item \textbf{Voces con una morfología propia de una región}
+
+Ejemplo: terminación aso/asa con base adjetiva.
+
+  \blockquote[San Juan]{Creo que va a estar \textbf{malaso} lo de esta noche } 
+
+  \blockquote[San Luis]{estoy subiendo un mix re \textbf{chomaso} que hice anoche }
+
+  \blockquote[Córdoba]{Esta \textbf{locasa} esa mina para hacer eso}
+
+\item \textbf{Formas indicadoras de pronunciación usual}
+
+  \blockquote[Tucumán]{Menos mal que soy de los chetos de la carne y mañana tengo \textbf{asao} todo el dia jajajajaj}
+
+  \blockquote[Catamarca]{Un lunes con buen humor ta \textbf{pasao} }
+
+  \blockquote[Corrientes]{Ahora a la mañana tengo q ir hacerme la tarjebus jajajajj \textbf{mavale} q me estoy por levantarrr jajajaj}
+
+\item \textbf{Formas verbales coloquiales con sustantivos o adjetivos como base}
+
+  \blockquote[Neuquén]{Me calma mucho \textbf{mimosear} a mi perro }
+
+  \blockquote[Buenos Aires]{Me vine a acostar y ya me dicen que parezco de 80 años ME CHUPA UN HUEVO LO QUE PIENSEN, DEJENME \textbf{ABUELEAR} }
+
+  \blockquote[Tierra del Fuego]{Estaría bueno que ari venga aunque sea a saludarme y que no se quede todo el tiempo \textbf{pollereando}.}
+
+\item \textbf{Variantes ortográficas, operativas para incorporarlas algunas como tales y también para verificar la alta frecuencia de uso}
+
+Ejemplos: culiado (adj. despect. o fórmula de tratamiento de confianza) y tereré.
+
+  \blockquote[Córdoba]{Q paja volver al colegio \textbf{culiaa}}
+
+  \blockquote[Córdoba]{Que pajero el \textbf{qliao} este.}
+
+  \blockquote[Córdoba]{Quiero recitaaal \textbf{qliaaaa}}
+
+  \blockquote[Entre Ríos]{\textbf{Tereresss} y pile con todos mis primisss}
+
+  \blockquote[Corrientes]{No se si hacerme un \textbf{tere} o un mate para pasar la siesta}
+
+  \blockquote[Chaco]{Es lo mas lindo no ir al colegio y quedarme a tomar \textbf{teresss}}
+
+
+\item \textbf{Vesres} : Creación de palabras por inversión de sílabas que se usa jergalmente o con fines humorísticos.
+
+  \blockquote[Corrientes]{Estoy en lo de villa mateando con él y jimmy. Pinta \textbf{sogui} abundante más tarde dijeron }
+
+  \blockquote[Chaco]{Uhhh me acuerdo si no habré saltado el muro del aguapey par colarme a los \textbf{cequin}. (cequín “fiesta de quince”)}
+
+\item \textbf{Intejercciones}
+
+  \blockquote[Formosa]{\textbf{Aijué}, encima me decís vieja, re que no pinta esto facundo jaja ya te dije como es la onda, fin }
+
+  \blockquote[Formosa]{\textbf{Ains}, una mujer hablando de fútbol.}
+
+  \blockquote[Corrientes]{Al fin una buena: hora libreeee! \textbf{Yirr} }
+
+\item \textbf{Guaranismos}
 \label{sub:guaranismos}
 Cabe destacar la detección de términos en guaraní en la región  guaranítica\footnote{Teniendo a las regiones dialectales marcadas por Vidal de Battini}.
 Un ejemplo de esto fueron las palabras \textit{angá}, \textit{angaú} y \textit{mitaí}.  Si bien estas palabras provienen del guaraní, son utilizadas en oraciones en español.
 Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
+
+
+\end{itemize}
+
+
+
+
 
 \begin{table}[]
 \centering
@@ -195,6 +331,8 @@ Mitai & 175              & 15,69      & 1              & 0,036    \\ \hline
 
 Estos términos serán agregados al diccionario del habla de los argentinos \cite{academia2008diccionario}.
 
-\subsection{Vesres}
-\label{sub:versres}
-TANTO ESTA CARACTERIZACIÓN COMO LAS FALTANTES HAY QUE ESCRIBIR A PARTIR DE LAS PALABRAS QUE SELECCIONE LA AAL.
+
+
+%TODO: agregar los resultados de las palabras del test hipergeometrico.
+% las palabras raras, y el grafico de pvalores. a partir de eso comentar el trabajo de kilgariff 
+% que habla de test de hipotesis, el error de asumir que las palabras vienen de un proceso aleatorio.
