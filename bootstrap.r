@@ -3,7 +3,6 @@
 ### antes de correr este script se deben generar los .csv de las provincias que indican cuantas ocurrencias
 ### de una palabra tiene cada usuario
 
-library(rjson)
 setwd("~/tesis")
 
 # Step function
@@ -104,7 +103,7 @@ lista<- function(palabra,region){
 #cat(paste('la',pvalor('la',N = 100000),'\n'))
 #cat(paste('racing',pvalor('racing',N = 100000),'\n'))
 
-def = read.csv('definitivo.csv')[1:4999,]
+def = read.csv('definitivo.csv')[1:100,] #4999
 colnames(def)[1]<- 'palabra'
 x = def[def$Palabra.Candidata ==1,'palabra']
 #x = x[1:10]   # Sacar esta línea para testear sobre todas las palabras candidatas
@@ -115,7 +114,7 @@ df3$palabra = rownames(df3)
 df3$pvalor = lapply(X = rownames(df3), FUN = function(x) { pvalor(x[1])} )
 df3 = df3[,c('pvalor','regionTest')]
 df3$BH = p.adjust(df3$pvalor,method = 'BH')
-df3 = df3[order(df3$BH),]
-View(df3)
+df3 = df3[order(df3$BH),c('pvalor','BH')]
+write.csv(df3,'PbootstrapUsuarios.csv')
 #df3hist(unlist(frecuenciasRegion('que',c('cordoba'))), col=rgb(1,0,0,0.5), main="Overlapping Histogram", xlab="Variable",freq = TRUE)
 #hist(unlist(frecuenciasRegion('que',c('buenosaires'))), col=rgb(0,0,1,0.5),add=T)
