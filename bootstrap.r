@@ -100,6 +100,17 @@ pvalor<-function(palabra,N=10000){
   bootstraptest(data1 = freqs1,data2 = freqs2,N)
 }
 
+pvalorRegiones<-function(palabra,region1,region2,N=10000){
+  freqs1 = (frecuenciasRegion(palabra,region1))
+  freqs2 = (frecuenciasRegion(palabra,region2))
+  freqs1[is.na(freqs1)] = 0
+  freqs2[is.na(freqs2)] = 0
+  freqs1 = unlist(freqs1)
+  freqs2 = unlist(freqs2)
+  
+  bootstraptest(data1 = freqs1,data2 = freqs2,N)
+}
+
 # obtiene la media de una palabra en el vector de provincias
 media<- function(palabra,region){
   mean(lista(palabra,region))
@@ -121,35 +132,34 @@ lista<- function(palabra,region){
 #cat(paste('racing',pvalor('racing',N = 100000),'\n'))
 
 # asigno en def el listado de palabras analizado por la AAL
-def = read.csv('definitivo.csv')[1:20000,] #4999
+def = read.csv('definitivo.csv') #4999
 colnames(def)[1]<- 'palabra'
 
 # filtro unicamente las palabras seleccionadas como candidatas
 #x = def[def$Palabra.Candidata ==1,'palabra']
 
 #x = x[1:10]   # Sacar esta línea para testear sobre todas las palabras candidatas
-#x = c('hola','que','de','cuando','la','el')
+#x = c('ambientar','abrigos','de','cuando','la','el','hoy') # Sacar esta línea para testear sobre todas las palabras candidatas
 
-#Rprof()
+Rprof()
 
 # creo un dataframe con las palabras candidatas
 #df3 = df2[is.element(row.names(df2) ,x),]
-
+#df3$palabra = row.names(df3)
+df3 = def[1:10000,c('palabra','regionTest')]
 # elimino la palabra '' para evitar problemas
-#df3 = df3[!(rownames(df3)==''),] # elimino del dataframe la palabra ''
-df3 = df2[!(rownames(df2)==''),]
+df3 = df3[!(rownames(df3)==''),] # elimino del dataframe la palabra ''
 # calculo el pvalor para cada palabra candidata y lo guardo en una columna del dataframe
-df3$pvalor = lapply(X = rownames(df3), FUN = function(x) { pvalor(x[1],10000)} )
+df3$pvalor = unlist(lapply(X = df3$palabra, FUN = function(x) { pvalor(x[1],2000)} ))
 
 # realizo la correccion por multiples test de Benjamini-Hochberg
 df3$BH = p.adjust(df3$pvalor,method = 'BH')
 
 # ordeno segun el p-valor despues de aplicar la correccion de Benjamini-Hochberg
-df3 = df3[order(df3$BH),c('pvalor','BH')]
-#Rprof(NULL)
-#summaryRprof()
+df3 = df3[order(df3$BH),c('palabra','pvalor','BH')]
+Rprof(NULL)
+summaryRprof()
 #View(df3)
-df3$pvalor = unlist(df3$pvalor)
 #write.csv(df3,'PbootstrapUsuarios.csv')
 
 #df3hist(unlist(frecuenciasRegion('que',c('cordoba'))), col=rgb(1,0,0,0.5), main="Overlapping Histogram", xlab="Variable",freq = TRUE)
