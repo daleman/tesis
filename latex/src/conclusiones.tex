@@ -1,20 +1,19 @@
-
 \section{Conclusiones}
-En el presente trabajo recolectamos un conjunto de datos de texto de la Argentina a través de la API de Twitter. Este conjunto lo dividimos en dos, un conjunto para desarrollar una métrica que indique el contrastes en el uso de una palabra en relación a la región. El segundo conjunto de datos, independiente del primero en cuanto a usuarios y al período temporal de los textos lo utilizamos para hacer un test estadístico para corroborar que las palabras detectadas como contrastivas según nuestra métrica, no estaban sobrerepresentadas en el conjunto de desarrollo.
+En el presente trabajo recolectamos un conjunto de datos de textos de la Argentina a través de la API de Twitter. Sobre este conjunto desarrollamos una métrica que de un índice contrastivo en el uso de una palabra en distintas regiones.
 
-La métrica que realizamos usaba la entropía para medir la variación de la cantidad de ocurrencias y de la cantidad de usuarios que la utilizaban en las distintas provincias del país. Creamos un listado de palabras ordenado según el valor de la información calculada, y a partir de ella filtramos las palabras de forma manual eliminando los términos que no tengan valor lingüístico, como los nombres propios (como los nombres de personas, o de lugares). Varias palabras del listado, como \textit{mitaí, anga,angau} resultaron muy interesantes a nivel lingüístico... Estas palabras serán agregadas a la próxima edición del Diccionario de habla de los argentinos.
+La métrica que realizamos usa la entropía para medir la variación de la cantidad de ocurrencias y de la cantidad de usuarios que la utilizaban en las distintas provincias del país. Creamos un listado de palabras ordenado según el valor de la información calculada. A partir de la validación lingüística sobre el listado de 5000 palabras con mayor valor de contrastividad una de cada diecisiete palabras fueron consideradas relevantes a nivel língüístico. Varias de estas palabras serán agregadas al Diccionario del habla de los Argentinos. identificadas  y a partir de ella filtramos las palabras de forma manual eliminando los términos que no tengan valor lingüístico, como los nombres propios (como los nombres de personas, o de lugares). Varias palabras del listado, como \textit{mitaí, anga,angau} resultaron muy interesantes a nivel lingüístico... Estas palabras serán agregadas a la próxima edición del Diccionario de habla de los argentinos.
 
 % Comentar que la metrica evidentemente detecta palabras contrastivas e interesantes a nivel linguistico.
 % Hablar tambien de los problemas encontrados.
 \section{Trabajo Futuro}
 
 %Separar los nuevos desafios de las mejoras tecnicas a realizar sobre este trabajo
-Uno de los desafíos que quedan para hacer es el de clasificar las regiones en clusters, obteniendo así las posibles regiones dialectales. De esta manera se podría considerar la vigencia de las regiones propuestas por Vidal de Battini. % Hacer referencia a la sección de la introdcucción que se habla de eso
+Uno de los desafíos que quedan para hacer es el de clasificar las regiones en clusters, obteniendo así un indicio de las regiones dialectales actuales. De esta manera se podría considerar la vigencia de las regiones propuestas por Vidal de Battini. % Hacer referencia a la sección de la introdcucción que se habla de eso
 
 El proceso de normalización se podría mejorar para tener una mayor precisión de las palabras utilizadas. También se podría agregar un sistema de reconocimiento de nombres de entidades para destacar también ciertos nombres propios de manera tal que el listado de palabras tenga más alertas sobre términos sin interés lingüístico.
 
-Por otro lado, este trabajo se podría realizar sobre todo el conjunto de países hispanoparlantes, de modo tal que se puedan hacer comparaciones entre los mismos y comparar las variaciones entre regiones más grandes.\\
+Por otro lado, este trabajo se podría realizar sobre todo el conjunto de países hispanoparlantes, de modo tal que se puedan hacer comparaciones entre los mismos y comparar las variaciones entre regiones más grandes.
 
-También queda por hacer un análisis sintáctico de las oraciones, y un análisis estadístico de bigramas.
+También queda por hacer un análisis sintáctico de las oraciones, y un análisis estadístico de n-gramas.
 Otro desafío es el de analizar los tuits modelados por cadenas de markov (analizando así bigramas y n-gramas), pudiendo generar un bot que cree tuits, este bot podría ser parametrizado de modo tal que genere textos, teniendo en cuenta únicamente los tuits de determinada región.
 

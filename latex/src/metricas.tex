@@ -22,9 +22,10 @@ donde
 F_{max}(w) = \max(frec(w,prov_1),frec(w,prov_2))
 \end{equation}
 
+%TODO: arreglar el overfull
 \begin{equation}
  F_{min}(w) = \left\{ \begin{array}{ll}
-             \min(frec(w,prov_1),frec(w,prov_2))  \text{ si } frec(w,prov_1) > 0 \text{ y } frec(w,prov_2) > 0 & \\
+             \min(frec(w,prov_1),frec(w,prov_2))  \text{ si } frec(w,prov_1) * frec(w,prov_2) > 0  & \\
              \\\min(frec(w,p)) \forall w \in palabras(p) , \text{ con } p=\{prov_1,prov_2\} \setminus \{P_{max}\} \text{sino} &  \\
              \end{array}
    \right.
@@ -107,10 +108,10 @@ I_u(w) = norm_{u}(w) * (\widehat{H}_{u}(u) - H_{u}(w))
 norm_{p}(p) = \frac{cw(p)- MIN_W }{MAX_W - MIN_W}
 \label{eq:norm1}
 \end{equation}
-donde:
+
 \noindent\begin{minipage}{.5\linewidth}
 \begin{equation}
-  MIN_W = \min\limits_{p \in Palabras} cw(w)
+\text{donde:}  MIN_W = \min\limits_{p \in Palabras} cw(w)
 \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
@@ -118,7 +119,7 @@ donde:
   MAX_W = \max\limits_{p \in Palabras} cw(w)
 \end{equation}
 \end{minipage}
-donde $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
+y $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
 
 Análogamente,
 \begin{equation}
@@ -127,7 +128,7 @@ norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
 \end{equation}
 \noindent\begin{minipage}{.5\linewidth}
 \begin{equation}
-  MIN_U = \min\limits_{p \in Palabras} cu(p)
+ \text{donde: } MIN_U = \min\limits_{p \in Palabras} cu(p)
 \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
@@ -135,11 +136,11 @@ norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
   MAX_U = \max\limits_{p \in Palabras} cu(p)
 \end{equation}
 \end{minipage}
-donde $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
+y $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
 $\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
 
 Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
-$\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a las entropías de los vectores simulados de apariciones.
+$\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a las entropías de los vectores simulados de apariciones. %TODO: explicar más en detalle
 Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
 
 % La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
@@ -161,6 +162,7 @@ Para eliminar los valores atípicos se procedió a remover las palabras que no s
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
 En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras.Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
+%TODO: agregar anotaciones en la figura en las palabras mas frecuentes (de,que,a)
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabras.pdf} 
@@ -206,7 +208,8 @@ $$f(n) \approx \frac{1}{n^{\alpha}}$$
 donde $\alpha$ toma un valor levemente mayor a 1.
 Entonces, bajo la ley de Zipf uno puede saber que la frecuencia de la segunda palabra más dicha en un corpus, es aproximadamente la mitad que la primera. La palabra con posición 3 en el listado ordenado por frecuencias, va a tener aproximadamente la tercera parte de la cantidad de ocurrencias que la primera y así sucesivamente. Otra forma de utilizar esta ley empírica es la siguiente:
 sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecuencias de un corpus \textbf{A} y sabiendo la cantidad de palabras totales de un corpus \textbf{B}, puede estimarse la cantidad de ocurrencias de \textit{w} en el corpus \textbf{B}.
-% HACER EJEMPLO
+%TODO: HACER EJEMPLO de calculo de frecuencias a traves de la frecuencia de nuestro corpus
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
@@ -279,6 +282,7 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 Para tener una mejor noción sobre la métrica, medimos el porcentaje de las ocurrencias de las palabras que muestran contrastes según nuestra métrica cubiertas por subconjuntos de provincias de manera tal que para cada palabra y un número fijo de provincias, la región con esa cantidad de provincias tenga un cubrimiento máximo. 
 En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
 
+%TODO: cambiar el grafico con todas las palabras candidatas 
 En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
 
 
