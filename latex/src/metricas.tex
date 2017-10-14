@@ -15,18 +15,19 @@ recolectado tuits con esa palabra, se tomaba como frecuencia mínima a la frecue
 
 \begin{equation}
   \label{eq:maxDif} 
-  maxDif(w,prov_1,prov_2) = \frac{F_{max}(w,prov_1,prov_2)}{F_{Min}(w,prov_1,prov_2)}
+  maxDif(w,p_1,p_2) = \frac{F_{max}(w,p_1,p_2)}{F_{Min}(w,p_1,p_2)}
 \end{equation}
 donde 
 \begin{equation}
-F_{max}(w) = \max(frec(w,prov_1),frec(w,prov_2))
+F_{max}(w) = \max(frec(w,p_1),frec(w,p_2))
 \end{equation}
 
 %TODO: arreglar el overfull
 \begin{equation}
  F_{min}(w) = \left\{ \begin{array}{ll}
-             \min(frec(w,prov_1),frec(w,prov_2))  \text{ si } frec(w,prov_1) * frec(w,prov_2) > 0  & \\
-             \\\min(frec(w,p)) \forall w \in palabras(p) , \text{ con } p=\{prov_1,prov_2\} \setminus \{P_{max}\} \text{sino} &  \\
+             \min(frec(w,p_1),frec(w,p_2))  \text{ si } frec(w,p_1) * frec(w,p_2) > 0  & \\
+             \\
+             \min(frec(w,p))  \forall w \in palabras(p) , \text{ con } p=\{p_1,p_2\} \setminus \{P_{max}\} \text{sino} &  \\
              \end{array}
    \right.
 \end{equation}
@@ -84,9 +85,7 @@ Esto es porque la división está pensada para dividir el texto en secciones que
 posiblemente hablen de distintos temas y nuestros textos son tuits que por lo general no superan las 10 palabras.
 Otra dificultad que surge de esta métrica es la imposibilidad de realizar la media 
 de todas las posibles permutaciones del texto por la limitación computacional ya que 
-tenemos una cantidad muy grande de datos.
-
-Es por eso que realizamos una métrica parecida:
+tenemos una cantidad muy grande de datos.Es por eso que realizamos una métrica parecida.
 
 Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
@@ -162,10 +161,9 @@ Para eliminar los valores atípicos se procedió a remover las palabras que no s
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
 En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras.Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
-%TODO: agregar anotaciones en la figura en las palabras mas frecuentes (de,que,a)
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabras.pdf} 
+\includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf} 
 \caption{Histograma de la cantidad de ocurrencias de las palabras} 
 \label{fig:cantPalabras} 
 \end{figure}
