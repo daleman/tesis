@@ -11,13 +11,13 @@ Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de su
 De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que resulta en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
 
 
-\subsection{Búsqueda geolocalizadas}
+\subsection{Búsquedas geolocalizadas}
 
-Las búsquedas geolocalizadas de la API de \textit{twitter} primero intentan de buscar tuits cuyas coordenadas sean las buscadas. En caso de no tener éxito, buscará aquellos tuits creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.
+Las búsqueda geolocalizada es una herramienta provista por la API (\textit{Application Programming Interface}) de \textit{Twitter} en la cual primero se intenta de buscar tuits cuyas coordenadas sean las buscadas. En caso de no tener éxito, se busca aquellos tuits creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.
 
 Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. Con esta precaución eliminamos los posibles tuits de turistas que escribieron en un lugar pero que no viven allí.
-/h
-En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones de los usuarios de la muestra de desarrollo:
+
+En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones de los usuarios.
 
 
 \begin{figure}[!ht]\centering
@@ -121,7 +121,7 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 
 
 
-Tambien analizamos la cantidad de palabras por tuit promediadas sobre cada usuario.
+También analizamos la cantidad de palabras por tuit promediadas sobre cada usuario.
 Debido a que los tuits están limitados a 140 caracteres, era de esperar que no hubiera demasiadas palabras promedio por cada tuit. En la figura \ref{fig:cantPalabrasUsuario} podemos observar que la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
 \begin{figure}[!ht]\centering
   \begin{minipage}{0.49\textwidth}

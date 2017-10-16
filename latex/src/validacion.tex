@@ -1,13 +1,11 @@
 \section{Palabras candidatas} % (fold)
 \label{palabras_candidatas}
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
-cinco mil (5000) palabras con valor de la información más altas. El número 5000 surgió de ver la distribución de los valores de la información. Cómo se puede ver en 
-el gráfico \ref{fig:ivalue} hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se ve que empieza a estabilizarse y los valores son 
-muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para evaluar manualmente las palabras del listado y, entre estas, seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
+cinco mil (5000) palabras con mayor valor de la información. El número 5000 surgió de ver la distribución de los valores de la información graficado en la figura \ref{fig:ivalue}, donde hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se observa que empieza a estabilizarse con valores muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para evaluar manualmente las palabras del listado y, entre estas, seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
 
-Como era de esperar los topónimos como los nombres de ciudades y provincias son palabras que ocurren mayormente en sus respectivas regiones. Esto causa que haya gran variación en 
-la cantidad de ocurrencias en las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para detectar las palabras que tienen 
-mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos resaltar para que el equipo de filólogos tenga una primera alerta sobre posible toponimia.
+Como era de esperar los topónimos, como los nombres de ciudades y provincias, son palabras que ocurren mayormente en sus respectivas regiones. Esto causa que haya una gran variación en 
+la cantidad de ocurrencias sobre las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para facilitar la detección de palabras contrastivas con 
+mayor interés lingüístico buscamos un conjunto de datos con los nombres de las localidades y departamentos de la República Argentina de modo tal que podamos resaltarlas para que el equipo de filólogos tenga una primera alerta sobre posible toponimia.
 
 % Agregar algún comentario sobre regiones dialectales conocidas
 
@@ -15,7 +13,7 @@ mayor interés lingüístico buscamos un conjunto de datos con los nombres de la
 \subsection{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor a 7 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de las primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información.
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor a 7 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de las primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información. Más precisamente se muestran las 30 regiones con mayor cantidad de palabras y cuya cantidad de provincias sea mayor a uno. Analizando esta tabla pudimos notar que la mayoría de las regiones están compuestas por provincias contiguas, es decir que para cada provincia dentro de una región hay otra provincia limítrofe. Mostramos algunos de los conjuntos de palabras de cada región en la tabla \ref{tab:palabrasRegiones} (ver apéndice). 
 
 \begin{table}
 \centering
@@ -44,7 +42,7 @@ Catamarca - Santiago del Estero - Tucumán              & 9           \\
 Catamarca - Tucumán                                   & 9           \\
 Salta - Tucumán                                       & 8           \\
 Catamarca - Jujuy - Salta - Santiago del Estero - Tucumán& 8           \\
-Neuquén - San Juan                                    & 7           \\ %no son contiguas pero están cercanas
+Neuquén - San Juan                                    & 7           \\ %no son contiguas pero son cercanas
 Chubut - Santa Cruz - Tierra del Fuego                 & 7           \\
 Buenos Aires - La Pampa                                & 7           \\
 Salta - Santiago del Estero - Tucumán                  & 7           \\
@@ -55,17 +53,15 @@ Chaco - Corrientes - Entre Ríos - Formosa - Misiones     & 6           \\
 Catamarca - Santiago del Estero                       & 6           \\
 \hline
 \end{tabular}
-\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras con mayor contrastes (de acuerdo al valor de la información). Se suprimieron las regiones compuestas por una sola una provincia.}
+\caption{Indica cuantas palabras tienen un cubrimiento del 80\% de sus ocurrencias en cada conjunto de provincias a partir de las 5000 palabras con mayor contrastes (de acuerdo al valor de la información).}
 \label{tab:regiones}
 \end{table}
-
-Mostramos algunos de los conjuntos de palabras de cada región en la tabla \ref{tab:palabrasRegiones} (ver apéndice). Sobre esta, podemos destacar que la mayoría de las regiones son compuestas por provincias contiguas.
 
 
 \section{Problemas en el conjunto de datos}
 \label{problemas_datos}
 
-Cuando vimos las palabras con mayor valor de la información, nos dimos cuenta de que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este ruido, nos dimos cuenta que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tuits geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tuits de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tuits no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
+Cuando vimos las palabras con mayor valor de la información, observamos que algunas palabras de la provincia de La Rioja eran provenientes de España. Analizando la causa de este problema, notamos que la API de Twitter no realiza las búsquedas localizadas como uno esperaría. En particular, no solo se fija en los tuits geolocalizados, sino que también hace una búsqueda inversa a través de los nombres de las ciudades que tienen esa coordenada. Específicamente, La Rioja es una provincia Argentina, como así también una provincia de España. Es por eso que al hacer búsquedas con las coordenadas de ciudades de La Rioja en Argentina, tuvimos resultados de tuits de España. Lo mismo sucedió con San Juan (capital de Puerto Rico), Santiago Del Estero (Santiago de Chile) y Córdoba (ciudad de Andalucía, España). A pesar de que los tuits no fueron escritos en Argentina, consideramos que su cantidad no es lo suficientemente grande como para tener resultados incorrectos.
 
 % Histograma de la distribucion del valor de la información
 
@@ -78,7 +74,7 @@ Dentro de las palabras contrastivas identificadas a través de la métrica, pode
 
 En base al listado de palabras identificados como contrastivas a partir de la métrica, se realizó una validación lingüística por lexicógrafos de la Academia Argentina de Letras. En esta, se realizó un estudio pormenorizado, palabra por palabra, en el cual los criterios seguidos para que una palabra sea relevante privilegiaron las posibilidades de que aquella forme parte del repertorio léxico de una comunidad de hablantes. Esto excluyó, como es tradicional en lingüística, nombres propios y topónimos locales, que la métrica sube a los puestos altos de las listas porque efectivamente su uso es abundante y contrastivo. 
 
-En la lista \ref{it:caracterizacionLinguistica} presentamos una caracterización de las palabras La siguiente es una lista muy parcial, en la que hay apenas algunos ejemplos en cada categoría. Sin embargo sirve para ilustrar ejemplos de uso en el habla cotidiana de las palabras contrastivas identificadas. La lista completa arroja un resultado dentro del rango de las 300 palabras dignas de estudio por cada 5000 palabras, es decir, 1 palabra cada 17 aproximadamente. A pesar de que no existen otros proyectos que provean un término de comparación para evaluar el grado de éxito implicado en esta relación, no cabe ninguna duda de que, al menos en la detección de coloquialismos locales actualmente en uso, la herramienta plantea un verdadero punto de inflexión para la lexicografía contrastiva. Esta área del léxico es justamente la más elusiva, puesto que su impacto en cualquier medio impreso llega notablemente más tarde y, todavía más importante, en la mayoría de los casos no llega nunca. Se incluyeron como relevantes palabras que ya están incluidas en el Diccionario del habla de los argentinos \cite{academia2008diccionario}, dado que ese hecho es una confirmación adicional de la pertinencia de la ubicación que asignó la métrica.
+En la lista \ref{it:caracterizacionLinguistica} presentamos una caracterización de las palabras. La lista apenas posee algunos ejemplos en cada categoría. Sin embargo sirve para ilustrar ejemplos de uso en el habla cotidiana de las palabras contrastivas identificadas. La lista completa arroja un resultado dentro del rango de las 300 palabras dignas de estudio por cada 5000 palabras, es decir, 1 palabra cada 17 aproximadamente. A pesar de que no existen otros proyectos que provean un término de comparación para evaluar el grado de éxito implicado en esta relación, no cabe ninguna duda de que, al menos en la detección de coloquialismos locales actualmente en uso, la herramienta plantea un verdadero punto de inflexión para la lexicografía contrastiva. Esta área del léxico es justamente la más elusiva, puesto que su impacto en cualquier medio impreso llega notablemente más tarde y, todavía más importante, en la mayoría de los casos no llega nunca. Se incluyeron como relevantes palabras que ya están incluidas en el Diccionario del Habla de los Argentinos \cite{academia2008diccionario}, dado que ese hecho es una confirmación adicional de la pertinencia de la ubicación que asignó la métrica.
 
 Las formas cuyo uso se ejemplifica son las que están en negrita y solo en ellas se normalizó la tildación.
 
@@ -215,11 +211,7 @@ Cabe destacar la detección de términos en guaraní en la región  guaranítica
 Un ejemplo de esto fueron las palabras \textit{angá}, \textit{angaú} y \textit{mitaí}.  Si bien estas palabras provienen del guaraní, son utilizadas en oraciones en español.
 Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
 
-
 \end{itemize}
-
-
-
 
 
 \begin{table}
@@ -242,19 +234,21 @@ Estos términos serán agregados al diccionario del habla de los argentinos \cit
 
 
 \section{Test Hipergeométrico}
-Luego de realizar el listado de palabras ordenado por el valor de la información se aplicó un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. Se seleccionó un conjunto de palabras significativas a nivel lingüístico a partir de las 5000 palabras consideradas más contrastivas por nuestra métrica. 
+Luego de realizar el listado de palabras ordenado por el valor de la información, se aplicó un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. Se seleccionó un conjunto de palabras significativas a nivel lingüístico a partir de las 5000 palabras consideradas más contrastivas por nuestra métrica. 
+
+% La distribucion hipergeometrica generalmente es conocida por el modelo de la extracción con reemplazo de bolas de una urna. Hay dos colores posibles de cada bola en la urna y las bolas de un mismo color son indistinguibles. Luego, en cada extracción se puede sacar una bola exitosa En nuestro caso, la urna es el total de todas las ocurrencias de las palabras. Cada palabra se puede pensar como una bola, donde   
 
 Decidimos elegir el test hipergeométrico ya que queremos ver que la palabra sobre la que se hace el test no estuvo sobrerrepresentada en comparación con la población. Asumimos que la cantidad de ocurrencias de una palabra se puede modelar con una distribución hipergeométrica ya que se puede pensar como un experimento donde se obtuvieron $k$ palabras exitosas en una región con $n$ palabras y un total de $N$ palabras en la Argentina. Las regiones que utilizamos para cada palabra son el conjunto de provincias que cubren el 80\% de las ocurrencias de dicho término. Luego, queremos calcular la significancia estadística de haber obtenido esas $k$ palabras exitosas.
 
 Luego, por cada palabra seleccionada como contrastiva le aplicamos el test estadístico con la siguiente hipótesis nula: la palabra tienen un uso homogéneo en las distintas regiones de la Argentina, es decir que la frecuencia de ocurrencias de cada palabra debería ser similar independientemente de la región.
-Por lo tanto, en caso de que la palabra sea contrastiva deberíamos obtener una baja probabilidad de haber obtenido diferencias entre las frecuencias de la palabra en una región con el resto del país.  
+Por lo tanto, en caso de que la palabra sea contrastiva deberíamos obtener una baja probabilidad de haber obtenido diferencias entre las frecuencias de la palabra en una región con el resto del país. 
+Para aplicar el test hipergeométrico representamos los datos sobre la palabra en una tabla de 2x2 como la de la tabla \ref{tab:contingencia}.
 % que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
-Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias observada de la palabra en la región a analizar.
+
 
 
 \begin{table}[ht]
 \centering
-\label{tab:contingencia}
 \begin{tabular}{lccc}
 \hline
 & \#Palabras Sobre Region &\#Palabras en el resto de Argentina &Total \\ \hline
@@ -263,44 +257,45 @@ Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias obse
 Total & n & N -n & N \\ \hline
 \end{tabular}
 \caption{Tabla de contingencia}
-
+\label{tab:contingencia}
 \end{table}
 
 
-
-$$
-\begin{cases}
-H_0 :  x > cantPalabrasW(Region) \\
-H_1 : x \leq cantPalabrasW(Region)
-\end{cases}
-$$  
-siendo x la esperanza de la variable aleatoria que representa la cantidad de palabras exitosas en esa región.
+% Por lo tanto, sea  cantPalabrasW(Region) igual a la cantidad de ocurrencias observada de la palabra en la región a analizar.
+% $$
+% \begin{cases}
+% H_0 :  x > cantPalabrasW(Region) \\
+% H_1 : x \leq cantPalabrasW(Region)
+% \end{cases}
+% $$  
+% siendo x la esperanza de la variable aleatoria que representa la cantidad de palabras exitosas en esa región.
 
 % agregar gráficos de palabras comunes, con los parametros de la distribucion
 % hacer un grafico de la distribución estimada (y la observada) de la cantidad de ocurrencias de la palabra 
-En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre palabras candidatas a ser contrastivas informadas por nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Benjamini–Hochberg.
+En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Benjamini–Hochberg \cite{benjamini1995controlling} con $\alpha = 0.5$.
  % Hablar sobre test multiples y correcciones posibles 
 
 
 \begin{figure}[!ht]\centering
     \includegraphics[width=\linewidth]{./images/pvalores.png}
-    \caption{Gráfico de dispersión de los p-valores del test hipergeométrico sobre las primeras 5000 palabras} 
+    \caption{Gráfico de dispersión de los p-valores del test hipergeométrico sobre las primeras 10000 palabras} 
     \label{fig:p-valores}   
 \end{figure}
 
 
-Ante los p-valores tan bajos, decidimos hacer el test estadístico sobre palabras que consideramos que no tendrían porque tener una frecuencia muy distinta en las distintas regiones. Realizamos el test para las palabras \{que, cuando, hola\} y estos también dieron p-valores menores a 0.001. Frente a esta situación investigamos las posibles causas de este fenómeno.
+Ante los p-valores tan bajos, decidimos hacer el test estadístico sobre palabras que consideramos que no deberían tener una frecuencia muy variada en las distintas regiones. Realizamos el test para las palabras \{que, cuando, hola\} y estos también dieron p-valores menores a 0.001. Frente a esta situación investigamos las posibles causas de este fenómeno.
 
 
-Un estudio de Adam Kilgariff titulado \textit{Language is never, ever, ever, random}\cite {kilgarriff2005language} comenta que debido el lenguaje no es aleatorio realizar test estadísticos ... llega a conclusiones que no aportan nada de información ya que la premisa del test estadístico es falsa. Por lo tanto, al ser falsa la premisa uno obtiene una implicación, en nuestro caso el resultado del test, trivialmente verdadera. 
+Un estudio de Adam Kilgariff titulado \textit{Language is never, ever, ever, random}\cite {kilgarriff2005language} analiza la asunción de la aleatoriedad del lenguaje. Debido a que el lenguaje no es aleatorio y que la hipótesis nula de los test estadísticos asumen aleatoriedad, cuando los datos provienen de fenómenos lingüísticos sobre corpus, la hipótesis nula nunca es cierta. Además Kilgariff afirma que cuando hay suficientes datos (casi) siempre podemos ser capaces de rechazar la hipótesis nula. 
+% llega a conclusiones que no aportan nada de información ya que la premisa del test estadístico es falsa. Por lo tanto, al ser falsa la premisa uno obtiene una implicación, en nuestro caso el resultado del test, trivialmente verdadera. 
 % Hacer el grafico dependiendo de las frecuencias
 % Comentar acerca del experimento en el que ve que para las palabras con mas frecuencia hay un mayor error. esto quizas explica porque las palabras con menos valor de la informacion tienen p-valores mas altos 
-Kilgariff también hace un análisis sobre trabajos previos y comenta el caso en el que un estudio quería encontrar palabras con frecuencias significativas entre el inglés británico y el americano, representados por el Corpus Brown(inglés americano) y el Lancaster-Oslo-Bergen Corpus(inglés británico). Para cada palabra testearon la hipótesis nula la cual afirmaba que la diferencia entre las frecuencias sobre los dos corpus se debía a una fluctuación  aleatoria. El test lo hicieron a partir de muestras obtenidas aleatoriamente de los corpus mencionados. En este estudio se marcaron las palabras donde la hipótesis nula se rechazaba con distintos niveles de confianza. Las listas sugieren que la mayor parte de las palabras \textit{comunes} fueron marcadas, es decir que el test estadístico sugería que todas estas palabras tenían diferencias significativas en su uso. Esto que comenta Kilgariff es lo que tuvimos como resultado a partir de nuestro test hipergeométrico. Lo interesante es que el autor atribuye ese fenómeno a la esencia no aleatoria del lenguaje.Si bien sabíamos que al realizar el test hipergeométrico asumíamos que la probabilidad de que ocurra una palabra era independiente, pensamos que esta suposición no iba a afectar tanto los resultados como lo hizo.
+Kilgariff también hace un análisis sobre trabajos previos y comenta el caso en el que un estudio quería encontrar palabras con frecuencias significativas entre el inglés británico y el americano, representados por el Corpus Brown(inglés americano) y el Lancaster-Oslo-Bergen Corpus(inglés británico). Para cada palabra testearon la hipótesis nula la cual afirmaba que la diferencia entre las frecuencias sobre los dos corpus se debía a una fluctuación  aleatoria. El test lo hicieron a partir de muestras obtenidas aleatoriamente de los corpus mencionados. En este estudio se marcaron las palabras donde la hipótesis nula se rechazaba con distintos niveles de confianza. Las listas sugieren que la mayor parte de las palabras \textit{comunes} fueron marcadas, es decir que el test estadístico sugería que todas estas palabras tenían diferencias significativas en su uso. Esto que comenta Kilgariff es lo que tuvimos como resultado a partir de nuestro test hipergeométrico. Lo interesante es que el autor atribuye ese fenómeno a la esencia no aleatoria del lenguaje.Si bien sabíamos que al realizar el test hipergeométrico asumíamos que todas las palabras son estadísticamente independientes, pensamos que esta suposición no iba a afectar tanto los resultados como lo hizo.
 
-Un estudio más reciente, Lijffijt et al. \cite{lijffijtsignificance} propone ciertas alternativas para hacer un test de hipótesis en los cuales no se asume el modelo de \textit{bag-of-words}. En ese trabajo se analizaron el test t de Welch, el test de los rangos con signo de Wilcoxon(Wilcoxon rank sum), el de Bootrstrap y el de tiempo entre llegadas (inter-arrival time). Lijffijt explica que \blockquote[lijffijtsignificance]{la diferencia entre estos tests con los que asumen el modelo de \textit{bag-of-words}( ${\chi}^2$ y log-likelihood test) reside en la representación de los datos, ergo la unidad de observación:
-Para los tests que suponen los modelos \textit{bag-of-words}, los datos se representan en una tabla de contingencia de 2x2 y el número de muestras equivale al número de palabras en el corpus, mientras que en los otros cuatro tests, los datos son representados en una lista de frecuencias o una lista de \textit{tiempos de llegada}. En estos casos, el número de muestras es mucho menor que la cantidad de palabras en el corpus(...) El número de muestras generalmente determina nuestro nivel de seguridad en relación a los valores estimados, y los resultados expermientales muestran que los tests de modelos de \textit{bag-of-words} tienen una excesiva alta confianza en los valores estimados de la frecuencia media de las palabras, en el contexto de comparación estadística entre dos corpus}
+Un estudio más reciente, Lijffijt et al. \cite{lijffijtsignificance} propone ciertas alternativas para hacer un test de hipótesis en los cuales no se asume el modelo de \textit{bag-of-words}.  En ese trabajo se analizaron el test t de Welch, el test de los rangos con signo de Wilcoxon(Wilcoxon rank sum), el de Bootrstrap y el de tiempo entre llegadas (inter-arrival time). Lijffijt explica que \blockquote[lijffijtsignificance]{la diferencia entre estos tests con los que asumen el modelo de \textit{bag-of-words}( ${\chi}^2$ y log-likelihood test) reside en la representación de los datos, ergo la unidad de observación:
+Para los tests que suponen los modelos \textit{bag-of-words}, los datos se representan en una tabla de contingencia de 2x2 y el número de muestras equivale al número de palabras en el corpus, mientras que en los otros cuatro tests, los datos son representados en una lista de frecuencias o una lista de \textit{tiempos de llegada}. En estos casos, el número de muestras es mucho menor que la cantidad de palabras en el corpus(...) El número de muestras generalmente determina nuestro nivel de seguridad en relación a los valores estimados, y los resultados experimentales muestran que los tests de modelos de \textit{bag-of-words} tienen una excesiva alta confianza en los valores estimados de la frecuencia media de las palabras, en el contexto de comparación estadística entre dos corpus}. 
+Representando los datos de manera diferente se asume la independencia entre los textos y no entre las palabras. Además se puede observar la distribución de las palabras dentro de un corpus.
 
-% Hablar sobre las alternativas que propone Lijffijt
 %TODO: agregar los resultados de las palabras del test hipergeometrico.
 % las palabras raras, y el grafico de pvalores. a partir de eso comentar el trabajo de kilgariff 
 % que habla de test de hipotesis, el error de asumir que las palabras vienen de un proceso aleatorio.

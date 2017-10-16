@@ -171,9 +171,10 @@ En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad d
 \begin{table}[ht]
 \centering
 \label{tab:palabrasMasOcurrentes}
-\begin{tabular}{|c|c|}
-\hline
-Palabra & Cantidad de Ocurrencias \\ \hline
+\begin{tabular}{ c c }
+\toprule
+Palabra & Cantidad de Ocurrencias \\ 
+\midrule
 que     & 7509160                 \\
 de      & 6527014                 \\
 a       & 4962492                 \\
@@ -194,7 +195,7 @@ por     & 1553382                 \\
 los     & 1498941                 \\
 para    & 1398757                 \\
 las     & 1212452                 \\
-\hline
+\bottomrule
 \end{tabular}
 \caption{Cantidad de apariciones de las 20 palabras más frecuentes.}
 
@@ -211,7 +212,7 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
-\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(s)$ y $\frac{1}{s^{\alpha}}$.} 
+\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(n)$ y $\frac{1}{n^{\alpha}}$.} 
 \label{fig:zipf} 
 \end{figure}
 
@@ -236,11 +237,11 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
 \section{Entropía}
-Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las palabras con más de 40 ocurrencias y dichas por más de 5 usuarios.
+Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios.
 
-Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
+Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo, hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
 
-Sin embargo, ver solamente la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa de veces o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
+Tener en cuenta únicamente a la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa de veces o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
 
 \begin{figure}[ht]
@@ -287,12 +288,12 @@ En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimien
 
 \begin{figure}[!ht]\centering
   \begin{minipage}{0.49\textwidth}
-    \includegraphics[width=\linewidth]{./images/PropAcum.pdf}
+    \includegraphics[width=\linewidth]{images/PropAcumSinCandidatas.pdf}
     \caption{Proporción de ocurrencias acumulada según la muestra de palabras.} 
     \label{fig:propAcum} 
    \end{minipage}
    \begin{minipage}{0.49\textwidth}
-    \includegraphics[width=\linewidth]{./images/PropAcum5000.pdf}
+    \includegraphics[width=\linewidth]{images/PropAcum5000SinCandidatas.pdf}
     \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
     \label{fig:propAcum5000} 
    \end{minipage}
