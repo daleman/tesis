@@ -22,7 +22,7 @@ donde
 F_{max}(w) = \max(frec(w,p_1),frec(w,p_2))
 \end{equation}
 
-%TODO: arreglar el overfull
+%TODO: arreglar el overfull OK
 \begin{equation}
  F_{min}(w) = \left\{ \begin{array}{ll}
              \min(frec(w,p_1),frec(w,p_2))  \text{ si } frec(w,p_1) * frec(w,p_2) > 0  & \\
@@ -31,7 +31,7 @@ F_{max}(w) = \max(frec(w,p_1),frec(w,p_2))
              \end{array}
    \right.
 \end{equation}
-   donde $P_{max}$ es la provincia que tiene la mayor frecuencia de ambas.\\
+   donde $P_{max}$ es la provincia que tiene la mayor frecuencia de ambas.
 
 
 
@@ -49,8 +49,8 @@ Dado que se quieren encontrar las palabras con contrastes significativos en dist
 regiones se propone generar una métrica basada en la cantidad de información 
 para poder realizar esta tarea.
 
-Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país puede ser la entropía definida por Shannon ( ver en el apéndice: \ref{sub:entropiaShannon}), debido a que podemos tener un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra.
-Sin embargo, la entropía como única medida tiene sus desventajas. Principalmente, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima. A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas elegiremos las que tienen mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, entre otras variables a tener en cuenta.
+Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país puede ser la entropía definida por Shannon ( ver en el apéndice: \ref{sub:entropiaShannon}), debido a que nos brinda un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra. La entropía es máxima cuando la probabilidad de los eventos es equiprobable y mínima en el caso que la probabilidad de un evento es 1.
+Sin embargo, la entropía como única medida tiene sus desventajas. En particular, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima. A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas elegiremos las que tienen mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, entre otras variables a tener en cuenta.
 
 
 \subsection{Valor de información}
@@ -61,17 +61,17 @@ Ellos, a diferencia de Shannon, estudiaron una relación entre una medida de la 
 A continuación detallamos el procedimiento para calcular lo que ellos llamaron
 el valor de la información:
 
-Dado un texto dividido en P partes iguales, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las P ventanas.
+Dado un texto dividido en $P$ partes iguales llamadas ventanas, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
 Luego se define $\widehat{H(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. 
-%% CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
+%% TODO: CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
 
-Es decir, se distribuyen uniformemente las palabras en P partes y se calcula la
+Es decir, se distribuyen uniformemente las palabras en $P$ partes y se calcula la
 entropía como se hizo con el texto original. Es de esperar que en la mayoría de casos 
 la entropía del texto permutado sea mayor que la medida en el calculo original. Esto 
 se debe a que las palabras se distribuyen de forma más uniforme 
 en las distintas partes.
 
-Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{\eta(w)} - \eta(w))$, con $p(w)$ la frecuencia total de la palabra en el texto. 
+Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{H(w)} - H(w))$, con $p(w)$ la frecuencia total de la palabra en el texto. 
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 
 Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
@@ -85,11 +85,11 @@ Esto es porque la división está pensada para dividir el texto en secciones que
 posiblemente hablen de distintos temas y nuestros textos son tuits que por lo general no superan las 10 palabras.
 Otra dificultad que surge de esta métrica es la imposibilidad de realizar la media 
 de todas las posibles permutaciones del texto por la limitación computacional ya que 
-tenemos una cantidad muy grande de datos.Es por eso que realizamos una métrica parecida.
+tenemos una cantidad muy grande de datos. Es por eso que realizamos una métrica parecida.
 
-Podemos pensar a las palabras del texto como una variable aleatoria W, donde cada palabra w tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
-Por otro lado sea P una variable aleatoria que cuenta la cantidad de personas que 
-utilizan la palabra p en cada provincia.
+Podemos pensar a las palabras del texto como una variable aleatoria $W$, donde cada palabra $w$ tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
+Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
+utilizan la palabra $p$ en cada provincia.
 
 Luego,
 \begin{equation}
@@ -136,37 +136,70 @@ norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
 \end{equation}
 \end{minipage}
 y $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
-$\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y H es la entropía común.
+$\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y $H$ es la entropía común.
 
-Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores. Esto se puede ver en la figura \ref{fig:cantNorms}.
-$\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a las entropías de los vectores simulados de apariciones. %TODO: explicar más en detalle
+Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos y separa los valores pequeños que estaban concentrados. 
+% en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores
+Esto se puede ver en la figura \ref{fig:cantNorms}.
+$\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a los valores de entropía de los vectores simulados de apariciones. %TODO: explicar más en detalle
 Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
 
 % La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
 % Si las cantidades de ocurrencias (o de personas que utilizan) de un término están distribuidas uniformemente a través de todas las provincias, quiere decir que no aporta demasiada información 
 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1.0\textwidth]{./images/train/sinFiltro/cantNorms_sinFiltro.pdf}
-\caption{Cantidades y sus normalizaciones: Mediante los histogramas presentamos la distribución de los valores de la cantidad de los usuarios totales que utilizaron cada palabra, como la cantidad de ocurrencias de una palabra. A la derecha se pueden observar la normalización de las variables descriptas en \ref{eq:norm1} y \ref{eq:norm2}.} 
-\label{fig:cantNorms} 
+% \begin{figure}[!ht]
+% \centering
+% \includegraphics[width=1.0\textwidth]{./images/train/sinFiltro/cantNorms_sinFiltro.pdf}
+% \caption{Cantidades y sus normalizaciones: Mediante los histogramas presentamos la distribución de los valores de la cantidad de los usuarios totales que utilizaron cada palabra, como la cantidad de ocurrencias de una palabra. A la derecha se pueden observar la normalización de las variables descriptas en \ref{eq:norm1} y \ref{eq:norm2}.} 
+% \label{fig:cantNorms} 
+% \end{figure}
+
+
+\begin{figure}[!ht]\centering
+  \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf}
+    \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
+    \label{fig:cantPalabras} 
+   \end{minipage}
+   \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images2/cantUsuarios_sinFiltro.pdf}
+    \caption{Histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
+    \label{fig:cantPalabrasPromedio} 
+   \end{minipage}
+   
 \end{figure}
 
-El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios de ciertas organizaciones que hablan de personas, lugares o marcas de forma constante.
+
+El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
 
 Para eliminar los valores atípicos se procedió a remover las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. 
 
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
-En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras.Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
+En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras. Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf} 
-\caption{Histograma de la cantidad de ocurrencias de las palabras} 
-\label{fig:cantPalabras} 
+% \begin{figure}[ht]
+% \centering
+% \includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf} 
+% \caption{Histograma de la cantidad de ocurrencias de las palabras} 
+% \label{fig:cantPalabras} 
+% \end{figure}
+
+\begin{figure}[!ht]\centering
+  \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{./images2/cantNormUsuarios_sinFiltro.pdf}
+    \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
+    \label{fig:cantNormUsuarios} 
+   \end{minipage}
+   \begin{minipage}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images2/cantNormPalabras_sinFiltro.pdf}
+    \caption{Histograma de la distribución de cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
+    \label{fig:cantNormPalabras} 
+   \end{minipage}
+   
 \end{figure}
+
 
 \begin{table}[ht]
 \centering
@@ -201,13 +234,16 @@ las     & 1212452                 \\
 
 \end{table}
 
-Si comparamos la posición de la palabra en un listado ordenado podemos ver que se cumple con la ley de Zipf. Esta es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente. En particular, sea $n$ la posición de la palabra en el listado ordenado y sea $f(n)$ la cantidad de ocurrencias de la n-esima palabra, se puede hacer la siguiente aproximación:
+Si comparamos la posición de la palabra en un listado ordenado podemos ver que  las cantidades de ocurrencias parecieran seguir una distribución zipfiana. La ley de Zipf es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente \cite{montemurro2001beyond,zipf2016human}. En particular, sea $n$ la posición de la palabra en el listado ordenado y sea $f(n)$ la cantidad de ocurrencias de la n-ésima palabra, se puede hacer la siguiente aproximación:
 
-$$f(n) \approx \frac{1}{n^{\alpha}}$$
-donde $\alpha$ toma un valor levemente mayor a 1.
-Entonces, bajo la ley de Zipf uno puede saber que la frecuencia de la segunda palabra más dicha en un corpus, es aproximadamente la mitad que la primera. La palabra con posición 3 en el listado ordenado por frecuencias, va a tener aproximadamente la tercera parte de la cantidad de ocurrencias que la primera y así sucesivamente. Otra forma de utilizar esta ley empírica es la siguiente:
+$$f(n) \approx \frac{A}{n^{\alpha}}$$
+donde $\alpha$ toma un valor levemente mayor a 1 y $A$ es una constante normalizadora.
+Entonces, bajo la ley de Zipf uno puede saber que la frecuencia de la segunda palabra más dicha en un corpus, es aproximadamente la mitad que la primera. La palabra con posición 3 en el listado ordenado por frecuencias, va a tener aproximadamente la tercera parte de la cantidad de ocurrencias que la primera y así sucesivamente. De esta manera hay una relación lineal entre el logaritmo de la posición del listado ordenado por frecuencias y el logaritmo de la cantidad de ocurrencias de cada palabra.
+% TODO: escribirlo en ecuación,
+Otra forma de utilizar esta ley empírica es la siguiente:
 sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecuencias de un corpus \textbf{A} y sabiendo la cantidad de palabras totales de un corpus \textbf{B}, puede estimarse la cantidad de ocurrencias de \textit{w} en el corpus \textbf{B}.
 %TODO: HACER EJEMPLO de calculo de frecuencias a traves de la frecuencia de nuestro corpus
+%TODO: chequar ecuación de ley de zipf
 
 \begin{figure}[!ht]
 \centering
@@ -236,7 +272,7 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
-\section{Entropía}
+\section{Distribución de la entropía}
 Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios.
 
 Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo, hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
@@ -253,7 +289,7 @@ Tener en cuenta únicamente a la entropía de las palabras nos puede generar la 
 
 
 
-\section{Valor de la información}
+\section{Distribución del valor de la información}
 \label{sec:ValorDeLaInformacion}
 En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el colo: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
 
@@ -281,7 +317,7 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 Para tener una mejor noción sobre la métrica, medimos el porcentaje de las ocurrencias de las palabras que muestran contrastes según nuestra métrica cubiertas por subconjuntos de provincias de manera tal que para cada palabra y un número fijo de provincias, la región con esa cantidad de provincias tenga un cubrimiento máximo. 
 En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
 
-%TODO: cambiar el grafico con todas las palabras candidatas 
+%TODO: cambiar el grafico con todas las palabras candidatas OK
 En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
 
 

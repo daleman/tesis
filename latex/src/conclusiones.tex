@@ -1,21 +1,34 @@
-\section{Conclusiones}
-En el presente trabajo recolectamos un conjunto de datos de textos de la Argentina a través de la API de Twitter. Sobre este conjunto desarrollamos una métrica que de un índice contrastivo del uso de una palabra en distintas regiones.
+\section{Conclusiones y trabajo futuro}
+En el presente trabajo desarrollamos una métrica que de un índice contrastivo del uso de una palabra en distintas regiones. Para usar esta métrica recolectamos un conjunto de datos de textos de la Argentina a través de la API de Twitter.
 
 La métrica que realizamos usa la entropía para medir la variación de la cantidad de ocurrencias y de la cantidad de usuarios que la utilizaban en las diferentes provincias del país. Creamos un listado de palabras ordenado según el valor de la información calculada. 
+Sobre este listado, se seleccionaron las 5000 palabras con mayor valor de contrastividad para realizar una validación lingüística por parte de la Academia Argentina de Letras. La validación arrojó un resultado con alrededor de 300 palabras dignas de estudio por cada 5000 palabras, es decir, 1 palabra cada 17. 
+A pesar de que no existen otros proyectos que provean un término de comparación para evaluar el grado de éxito implicado en esta relación, no cabe ninguna duda de que, al menos en la detección de coloquialismos locales actualmente en uso, la herramienta plantea un verdadero punto de inflexión para la lexicografía contrastiva.
+Varias de las palabras detectadas a partir de la métrica desarrollada serán agregadas al Diccionario del Habla de los Argentinos.
 
-A partir de la validación lingüística sobre el listado de 5000 palabras con mayor valor de contrastividad, una de cada diecisiete palabras fueron consideradas relevantes a nivel lingüístico. Varias de estas palabras serán agregadas al Diccionario del habla de los Argentinos. 
+En este trabajo se analizan las regiones formadas con una provincia como unidad regional, sin embargo se puede cambiar esta unidad para replicar el análisis con distinta granularidad. De esta manera se podría ver las palabras contrastivas en los distintos países hispanoparlantes y comparar las variaciones entre regiones más grandes.
 
-% Comentar que la metrica evidentemente detecta palabras contrastivas e interesantes a nivel linguistico.
+% A partir de la validación lingüística sobre el listado de 5000 palabras con mayor valor de contrastividad, una de cada diecisiete palabras fueron consideradas relevantes a nivel lingüístico. Varias de estas palabras serán agregadas al Diccionario del habla de los Argentinos. 
+
+% Hacer enfasis en  que la metrica evidentemente detecta palabras contrastivas e interesantes a nivel linguistico.
+% la recoleccion de los metodos
+% parte estadistica
+% que se puede cambiar la unidad regional para calcular la contrastividad
+% bondades y desventajas de twitter
+% COmentar que el trabajo es multidisciplinario
 % Hablar tambien de los problemas encontrados.
-\section{Trabajo Futuro}
+% \section{Trabajo Futuro}
 
 %Separar los nuevos desafios de las mejoras tecnicas a realizar sobre este trabajo
 Uno de los desafíos que quedan para hacer es el de clasificar las regiones en clusters, obteniendo así un indicio de las regiones dialectales actuales. De esta manera se podría considerar la vigencia de las regiones propuestas por Vidal de Battini. % Hacer referencia a la sección de la introdcucción que se habla de eso
 
-El proceso de normalización se podría mejorar para tener una mayor precisión de las palabras utilizadas. También se podría agregar un sistema de reconocimiento de nombres de entidades para destacar también ciertos nombres propios de manera tal que el listado de palabras tenga más alertas sobre términos sin interés lingüístico.
+También, el proceso de normalización se podría mejorar para tener una mayor precisión de las palabras utilizadas. También se podría agregar un sistema de reconocimiento de nombres de entidades para destacar también ciertos nombres propios de manera tal que el listado de palabras tenga más alertas sobre términos sin interés lingüístico.
 
-Por otro lado, este trabajo se podría realizar sobre todo el conjunto de países hispanoparlantes, de modo tal que se puedan hacer comparaciones entre los mismos y comparar las variaciones entre regiones más grandes.
+% Por otro lado, este trabajo se podría realizar sobre todo el conjunto de países hispanoparlantes, de modo tal que se puedan hacer comparaciones entre los mismos y comparar las variaciones entre regiones más grandes.
 
-También queda por hacer un análisis sintáctico de las oraciones, y un análisis estadístico de n-gramas.
-Otro desafío es el de analizar los tuits modelados por cadenas de markov (analizando así bigramas y n-gramas), pudiendo generar un bot que cree tuits, este bot podría ser parametrizado de modo tal que genere textos, teniendo en cuenta únicamente los tuits de determinada región.
+Finalmente se puede hacer un análisis sintáctico de las oraciones, y un estudio de contrastividad comparando la distribución de los n-gramas, a diferencia del análisis por palabra hecho en este trabajo.
+% Otro desafío es el de analizar los tuits modelados por cadenas de markov (analizando así bigramas y n-gramas), pudiendo generar un bot que cree tuits, este bot podría ser parametrizado de modo tal que genere textos, teniendo en cuenta únicamente los tuits de determinada región.
+
+Es importante señalar las ventajas de \textit{Twitter} ya que nos permitió recolectar un volumen grande de datos de texto, escritos por distintas personas con información de su localización. 
+Acerca de las desventajas de esta plataforma podemos los errores ortográficos de los textos, los cuales contienen abreviaciones o cambios para lograr un énfasis en el discurso. Todo esto conlleva a un aumento de la dificultad para normalizar el texto. Creemos sin embargo, que el flujo de datos prevalece a la hora de decidir una palataforma para recolectarlos.
 
