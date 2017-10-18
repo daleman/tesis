@@ -91,77 +91,87 @@ Podemos pensar a las palabras del texto como una variable aleatoria $W$, donde c
 Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
 utilizan la palabra $p$ en cada provincia.
 
-Luego,
+\medskip
+
+Luego, sea $cant_w(p)$ igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cant_w(p) = \log_2(cantidadOcurrencias(p))$ .y sean las constantes $MIN_w$ y $MAX_w$ definidas de la siguiente manera:
+
+
+% \noindent\begin{minipage}{.5\linewidth}
+% \begin{equation}
+% MIN_W = \min\limits_{p \in Palabras} cant_w(w)
+% \end{equation}
+% \end{minipage}%
+% \begin{minipage}{.5\linewidth}
+% \begin{equation}
+%   MAX_W = \max\limits_{p \in Palabras} cant_w(w)
+% \end{equation}
+% \end{minipage}
+
 \begin{equation}
-%I(w) =  norm_{p}(w) * norm_{u}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
-I(w) =  I_p(w) * I_u(w)\\
+MIN_W = \min\limits_{p \in Palabras} cant_w(w)
 \end{equation}
+
 \begin{equation}
-I_p(w) = norm_{p}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) \\
+  MAX_W = \max\limits_{p \in Palabras} cant_w(w)
 \end{equation}
+
+Realizamos una normalización lineal de la función $cant_w$, 
+
+\begin{equation}
+norm_{w}(p) = \frac{cant_w(p)- MIN_W }{MAX_W - MIN_W}
+\label{eq:norm1}
+\end{equation}
+
+De esta manera, $norm_w$ tiene su imagen en el rango $[0,1]$, tomando el valor $0$ sobre la palabra que tiene la cantidad de ocurrencias máxima y toma el valor $1$ cuando se aplica a la palabra con menor cantidad de ocurrencias. Vale la pena aclarar, que tomamos $40$ como umbral mínimo de cantidad de ocurrencias de las palabras para ser estudiadas.
+A partir de la función $norm_w$ definimos el valor de la información de las palabras $I_w$ como:
+
+\begin{equation}
+I_w(w) = norm_{w}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) \\
+\end{equation}
+
+siendo $H_w(w)$ la función de entropía calculada sobre las cantidades de ocurrencias de la palabra $w$ sobre las 23 provincias argentinas. De forma similar $\widehat{H}$ es la función de entropía sobre las cantidades de ocurrencias simuladas en todas las provincias a partir de una distribución multinomial. Elegimos esta distribución ya que con esta se distribuye la suma de los valores de la variable aleatoria, en nuestro caso la cantidad de ocurrencias de la palabra $w$, de forma uniforme.%TODO: explicar más en detalle
+
+Ahora bien, una determinada provincia o región pueden tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
+Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra . Agregandole el término $norm_u$, que es la constante normalizadora de la cantidad de usuarios descripta en la ecuación \ref{eq:norm2} obtenemos el valor de la información de las personas $I_u$,
+
 \begin{equation}
 I_u(w) = norm_{u}(w) * (\widehat{H}_{u}(u) - H_{u}(w))
 \end{equation}
 
+Donde,
 \begin{equation}
-norm_{p}(p) = \frac{cw(p)- MIN_W }{MAX_W - MIN_W}
-\label{eq:norm1}
-\end{equation}
-
-\noindent\begin{minipage}{.5\linewidth}
-\begin{equation}
-\text{donde:}  MIN_W = \min\limits_{p \in Palabras} cw(w)
-\end{equation}
-\end{minipage}%
-\begin{minipage}{.5\linewidth}
-\begin{equation}
-  MAX_W = \max\limits_{p \in Palabras} cw(w)
-\end{equation}
-\end{minipage}
-y $cw(p)$ es igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cw(p) = \log_2(cantidadOcurrencias(p))$.
-
-Análogamente,
-\begin{equation}
-norm_{u}(w) = \frac{cu(w)- MIN_U }{MAX_U - MIN_U}
+norm_{u}(w) = \frac{cant_u(w)- MIN_U }{MAX_U - MIN_U}
 \label{eq:norm2}
 \end{equation}
-\noindent\begin{minipage}{.5\linewidth}
 \begin{equation}
- \text{donde: } MIN_U = \min\limits_{p \in Palabras} cu(p)
+ \text{donde: } MIN_U = \min\limits_{p \in Palabras} cant_u(p)
 \end{equation}
-\end{minipage}%
-\begin{minipage}{.5\linewidth}
 \begin{equation}
-  MAX_U = \max\limits_{p \in Palabras} cu(p)
+  MAX_U = \max\limits_{p \in Palabras} cant_u(p)
 \end{equation}
-\end{minipage}
-y $cu(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cu(p)= \log_2(cantidadUsuarios(p)))$.
-$\widehat{H}$ es la entropía con las cantidades distribuidas uniformemente y $H$ es la entropía común.
 
-Tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos y separa los valores pequeños que estaban concentrados. 
-% en las medidas de forma tal que su distribución sea más uniforme a lo largo de todo el rango de valores
-Esto se puede ver en la figura \ref{fig:cantNorms}.
-$\widehat{H}_{u}$ y $\widehat{H}_{w}$ se corresponde a los valores de entropía de los vectores simulados de apariciones. %TODO: explicar más en detalle
-Esta simulación se realiza con una distribución multinomial ya que se distribuye la suma de los valores de la variable aleatoria uniformemente. 
+y $cant_u(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_u(p)= \log_2(cantidadUsuarios(p)))$.
 
-% La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
+Debido a que queremos tener en cuenta tanto a la variación de la cantidad de ocurrencias de la palabra como a la variación de la cantidad de usuarios, elegimos como métrica la multiplicación de ambas métricas definidas, es decir  
+
+\begin{equation}
+%I(w) =  norm_{p}(w) * norm_{u}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
+I(w) =  I_w(w) * I_u(w)\\
+\end{equation}
+
+Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver en las figuras \ref{fig:cantNormUsuarios} y \ref{fig:cantNormPalabras}.
+
+
+%TODO: ejemplificar la variacion de la entropia.  La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
 % Si las cantidades de ocurrencias (o de personas que utilizan) de un término están distribuidas uniformemente a través de todas las provincias, quiere decir que no aporta demasiada información 
 
-% \begin{figure}[!ht]
-% \centering
-% \includegraphics[width=1.0\textwidth]{./images/train/sinFiltro/cantNorms_sinFiltro.pdf}
-% \caption{Cantidades y sus normalizaciones: Mediante los histogramas presentamos la distribución de los valores de la cantidad de los usuarios totales que utilizaron cada palabra, como la cantidad de ocurrencias de una palabra. A la derecha se pueden observar la normalización de las variables descriptas en \ref{eq:norm1} y \ref{eq:norm2}.} 
-% \label{fig:cantNorms} 
-% \end{figure}
-
-
 \begin{figure}[!ht]\centering
-  \begin{minipage}{0.49\textwidth}
+  \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf}
     \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
     \label{fig:cantPalabras} 
    \end{minipage}
-   \begin{minipage}{0.49\textwidth}
+   \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantUsuarios_sinFiltro.pdf}
     \caption{Histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
     \label{fig:cantPalabrasPromedio} 
@@ -169,10 +179,7 @@ Esta simulación se realiza con una distribución multinomial ya que se distribu
    
 \end{figure}
 
-
-El término de la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra tiene como objetivo mitigar el ruido de la entropía de palabras. En particular una determinada provincia o región pueden tener muchas ocurrencias de una palabra causado por algunos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
-
-Para eliminar los valores atípicos se procedió a remover las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. 
+Para eliminar los valores atípicos se procedió a remover tanto las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. La métrica se evaluó en este conjunto filtrado de palabras. 
 
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
@@ -187,12 +194,12 @@ En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad d
 % \end{figure}
 
 \begin{figure}[!ht]\centering
-  \begin{minipage}{0.49\textwidth}
+  \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{./images2/cantNormUsuarios_sinFiltro.pdf}
     \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
     \label{fig:cantNormUsuarios} 
    \end{minipage}
-   \begin{minipage}{0.49\textwidth}
+   \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantNormPalabras_sinFiltro.pdf}
     \caption{Histograma de la distribución de cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
     \label{fig:cantNormPalabras} 
@@ -273,9 +280,9 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
 \section{Distribución de la entropía}
-Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios.
+Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios. 
 
-Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo, hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones.
+Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo, hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones. El máximo valor alcanzado de la entropía es de $3.1350$ con la palabra \textit{el}. Como aclaración la entropía calculada se realizó con logaritmos naturales, por lo tanto el máximo valor posible es de  $ln(23) = 3.1355$ donde habría una distribución uniforme en la cantidad de ocurrencias sobre las 23 provincias argentinas.
 
 Tener en cuenta únicamente a la entropía de las palabras nos puede generar la detección de palabras que no son de interés, ya sea porque no ocurren una cantidad significativa de veces o porque la variación de las ocurrencias en las distintas provincias se debe solamente a pocos usuarios que la utilizan mucho. Es por esto que también se calculó la entropía teniendo como variable la cantidad de personas que utilizaron cierto término en una determinada provincia.
 
@@ -323,12 +330,12 @@ En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimien
 
 
 \begin{figure}[!ht]\centering
-  \begin{minipage}{0.49\textwidth}
+  \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images/PropAcumSinCandidatas.pdf}
     \caption{Proporción de ocurrencias acumulada según la muestra de palabras.} 
     \label{fig:propAcum} 
    \end{minipage}
-   \begin{minipage}{0.49\textwidth}
+   \begin{minipage}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images/PropAcum5000SinCandidatas.pdf}
     \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
     \label{fig:propAcum5000} 

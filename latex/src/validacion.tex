@@ -233,7 +233,8 @@ Mitai & 175              & 15,69      & 1              & 0,036    \\ \hline
 Estos términos serán agregados al diccionario del habla de los argentinos \cite{academia2008diccionario}.
 
 
-\section{Test Hipergeométrico}
+\section{Validación estadística}
+\subsection{Test Hipergeométrico}
 %TODO: cambiar el enfoque del azar y hablar sobre si capta la nocion de contrastividad
 Luego de realizar el listado de palabras ordenado por el valor de la información, se aplicó un test estadístico para tener mayor confianza de que las palabras clasificadas como contrastivas realmente tienen esta propiedad y no fueron producto del azar. Se seleccionó un conjunto de palabras significativas a nivel lingüístico a partir de las 5000 palabras consideradas más contrastivas por nuestra métrica. 
 
@@ -300,7 +301,7 @@ Representando los datos de manera diferente se asume la independencia entre los 
 % las palabras raras, y el grafico de pvalores. a partir de eso comentar el trabajo de kilgariff 
 % que habla de test de hipotesis, el error de asumir que las palabras vienen de un proceso aleatorio.
 
-\section{Test t de Welch}
+\subsection{Test t de Welch}
 Basándonos en las propuestas de Lijffijt, decidimos utilizar el test de Welch. Este nos provee un valor de probabilidad para rechazar la hipótesis nula la cual afirma que las medias de las dos distribuciones son iguales. Sean $S$ y $T$ dos corpus y sea $q$ la palabra sobre la cual se va a hacer el test, sea $x_1$ la media de la frecuencia de la palabra $q$ sobre los textos de $S$, y sea $s_1$ la desviación estándar. Análogamente, sea $x_2$ la media de la frecuencia de $q$ en los textos $T$ y $s_2$ la desviación estándar. El estadístico $t$ se calcula con la ecuación \ref{eq:estadistico_welch}. Las suposiciones del test consisten en que todos los textos son estadísticamente independientes y que la media de las frecuencias proviene de una distribución normal. En nuestro caso, agrupamos todos los tuits de cada usuario representando un texto. De esta manera, cada provincia tiene alrededor de 900 textos formados por distintos usuarios \footnote{La cantidad de usuarios recolectados por cada provincia se encuentra detallada en la tabla \ref{tab:cantidades}}. Luego, el test es aplicado a cada palabra con las frecuencias entre dos corpus: uno está formado por todos los textos de los usuarios que provienen de las provincias en donde se cubre el 80\% de las ocurrencias, el otro consiste en los textos creados por usuarios del resto de las provincias.
 
 \begin{equation}
@@ -329,3 +330,4 @@ También es importante destacar que a medida que uno se aleja de las palabras m�
 
 \end{figure}
 
+% No queda claro si la distribución de los pvalores es la esperada. Quizás la comparación entre en el análisis estadístico y lo que quiere ver la métrica no es la más adecuada. Igualmente, no se replicó de manera idéntica el trabajo de lifjjift ya que nosotros cambiamos de Corpus por cada palabra. . El análisis de significancia de test estadísticos no es algo que este resuelto en su totalidad en la actualidad. Dejamos como trabajo futuro el cálculo de un  análisis estadístico comparable a nuestra metrica ya que está por fuera del alcance de esta tesis.
