@@ -127,6 +127,7 @@ A partir de la función $norm_w$ definimos el valor de la información de las pa
 
 \begin{equation}
 I_w(w) = norm_{w}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) \\
+\label{eq:iw}
 \end{equation}
 
 siendo $H_w(w)$ la función de entropía calculada sobre las cantidades de ocurrencias de la palabra $w$ sobre las 23 provincias argentinas. De forma similar $\widehat{H}$ es la función de entropía sobre las cantidades de ocurrencias simuladas en todas las provincias a partir de una distribución multinomial. Elegimos esta distribución ya que con esta se distribuye la suma de los valores de la variable aleatoria, en nuestro caso la cantidad de ocurrencias de la palabra $w$, de forma uniforme.%TODO: explicar más en detalle
@@ -136,6 +137,7 @@ Es por esto que realizamos una métrica similar que tenga en cuenta la diferenci
 
 \begin{equation}
 I_u(w) = norm_{u}(w) * (\widehat{H}_{u}(u) - H_{u}(w))
+\label{eq:iu}
 \end{equation}
 
 Donde,
@@ -157,6 +159,7 @@ Debido a que queremos tener en cuenta tanto a la variación de la cantidad de oc
 \begin{equation}
 %I(w) =  norm_{p}(w) * norm_{u}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
 I(w) =  I_w(w) * I_u(w)\\
+\label{eq:ivalor}
 \end{equation}
 
 Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver en las figuras \ref{fig:cantNormUsuarios} y \ref{fig:cantNormPalabras}.
