@@ -274,13 +274,13 @@ Total & n & N -n & N \\ \hline
 
 % agregar gráficos de palabras comunes, con los parametros de la distribucion
 % hacer un grafico de la distribución estimada (y la observada) de la cantidad de ocurrencias de la palabra 
-En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Benjamini–Hochberg \cite{benjamini1995controlling} con $\alpha = 0.5$.
- %TODO: Hablar sobre test multiples y correcciones posibles 
+En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre las 5000 palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Bonferroni con $\alpha = 0.5$.
+ %TODO: Hablar sobre test multiples y correcciones posibles, citar bonferroni
 
 
 \begin{figure}[!ht]\centering
-    \includegraphics[width=\linewidth]{./images/pvalores.png}
-    \caption{Gráfico de dispersión de los p-valores del test hipergeométrico sobre las primeras 10000 palabras} 
+    \includegraphics[width=\linewidth]{images/pvaloresHipergeometrico.pdf}
+    \caption{Gráfico de dispersión de los p-valores del test hipergeométrico sobre las primeras 5000 palabras del listado ordenado según la métrica del valor de la información.} 
     \label{fig:p-valores}   
 \end{figure}
 
