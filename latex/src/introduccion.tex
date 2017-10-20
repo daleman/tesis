@@ -15,7 +15,7 @@
 La dialectología es un campo que estudia la variación del lenguaje según la región geográfica y el contexto social en el que se utiliza. La investigación cuantitativa en estos campo suele utilizar las frecuencias de variables lingüísticas: atributos fonéticos, sintácticos y léxicos.
 
 %Ampliar sobre dialectologia (fijarse en la enciclopedia)
-Una palabra es contrastiva cuando la frecuencia de uso en dos regiones es muy diferente.
+Una palabra es contrastiva cuando la frecuencia de uso en dos regiones es muy diferente. Por ejemplo, la palabra ``che''\footnote{Tratamiento que se usa para llamar, pedir atención o dirigirle a alguien la palabra\cite{academia2008diccionario}}, o ``metegol''\footnote{Juego mecánico en el que con pequeños muñecos se simula un partido de fútbol(futbolín)\cite{academia2008diccionario}.} son términos más usados en la Argentina que en la región peninsular de España. Un ejemplo dentro de la Argentina, es el de ``gurisada'' conocido en el litoral y noroeste argentino como un conjunto de chicos\cite{academia2008diccionario}.
 % TODO: agregar cita
 %El criterio de contrastividad es importante especialmente para realizar diccionarios contrastivos como el 
 Actualmente, los métodos por los cuales se descubren palabras con contraste léxico en distintas regiones
@@ -29,7 +29,7 @@ lado, la cantidad de palabras de América Latina están subrepresentados en rela
 Una de las virtudes de hacer un corpus con un método de recolección de textos de forma automática se desprende del mayor tamaño del corpus en comparación con métodos manuales como digitalización de textos.
 
 A pesar de haber comenzado hace varias décadas la recolección de textos de la web para realizar corpus, no hay muchos en el idioma español.
-Uno es el de \textit{Mark Davies}, en el cual se utilizó las páginas web para recolectar los textos, con dos mil millones (2000000000) de palabras en español y dividió las páginas a partir del país de origen identificado por \textit{Google}. A pesar de ser un corpus muy grande con anotaciones no permite diferenciar las frecuencias de las palabras o los textos originados en regiones dentro de cada país. Es por eso que para este trabajo elegimos hacer nuestro propio conjunto de datos que contenga una gran cantidad de textos. Para realizar esta tarea usamos los datos de \textit{Twitter}. A continuación haremos una descripción de esta plataforma y de sus principales ventajas sobre otras alternativas posibles.  
+Uno es el de \textit{Mark Davies}, en el cual se utilizó las páginas web para recolectar los textos, con dos mil millones (2000000000) de palabras en español y dividió las páginas a partir del país de origen identificado por \textit{Google}. A pesar de ser un corpus muy grande con anotaciones, este no permite diferenciar las frecuencias de las palabras o los textos originados en regiones dentro de cada país. Es por eso que para este trabajo elegimos hacer nuestro propio conjunto de datos que contenga una gran cantidad de textos. Para realizar esta tarea usamos los datos de \textit{Twitter}. A continuación haremos una descripción de esta plataforma y de sus principales ventajas sobre otras alternativas posibles.
 %TODO: falta cita de davies
 
 \section{Twitter}
@@ -46,8 +46,6 @@ En los últimos años se han publicado numerosos trabajos que utilizaron datos d
 
 En cuanto a trabajos relacionados con la lingüística cabe mencionar el trabajo de Eisenstein et al. \cite{eisenstein2010latent} en el que identifica palabras con una gran afinidad regional realizando un modelo probabilístico en el que asumen que las distribuciones léxicas dependen de la región geográfica y de una división de tópicos. En otras palabras, suponen que hay una división de temas sobre todo el dataset y dependiendo de la región del autor, este es más propenso a escribir con una variación dada. El mismo autor realizó un trabajo para identificar variables léxicas y detectar regiones dialectales \cite{eisenstein2014identifying}.
 El trabajo de Gonçalves et al. \cite{gonccalves2014crowdsourcing} consistió en analizar las variaciones diatópicas de ciertos conceptos en las grandes ciudades hispanoparlantes. Utilizaron la técnica K-means \cite{bishop2006pattern} para obtener regiones dialectales. Por otro lado G. Doyle et al. \cite{doyle2014mapping} propone un método bayesiano para estimar la distribución de la frecuencia de una palabra (o frase) condicional a la ubicación de la persona que la escribe. 
-
-% ......................................... TERMINAR
 
 
 \section{Lingüística de Corpus y Lingüística computacional} % (fold)
