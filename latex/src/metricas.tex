@@ -40,9 +40,16 @@ Sin embargo, este método imposibilitaba el trabajo manual para la Academia Arge
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
 % Mencionar que la idea era realizar un z test para obtener las palabras más significativas.
 En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy difícil poder identificar en que regiones había una diferencia significativa de frecuencias.
+Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor. En primer lugar intentamos modificar la métrica \textit{maxDif} de la siguiente manera: 
+Sea $f_{max}(w)$ la frecuencia máxima entre las frecuencias de todas las provincias y sea $f_{min}$ la frecuencia mínima distinta de $0$ sobre todas las provincias, luego la métrica generalizada \textit{$maxDif_g$} se puede definir como
 
-Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor.
-De este modo, nos enfocamos en analizar el contraste de frecuencias de palabras sobre las provincias a través de una métrica superadora.
+\begin{equation}
+ maxDif_g(w) = \frac{f_{max}(w)}{f_{min}(w)}
+ \label{eq:maxDifg}  
+\end{equation} 
+
+Si bien esta métrica logra resumir en un único valor la diferencia de frecuencias, sigue sin considerar la dispersión de las frecuencias en todas las provincias.
+Por este motivo, nos enfocamos en analizar el contraste de frecuencias de palabras sobre las provincias a través de una métrica superadora.
 
 \subsection{Métricas para medir el contraste en la frecuencia de las palabras}
 Dado que se quieren encontrar las palabras con contrastes significativos en distintas 
@@ -58,7 +65,7 @@ La métrica que utilizamos para ordenar los listados de palabras y detectar cuá
 las que tienen altos contrastes en su uso en distintas regiones fue inspirada por el
 trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
 Ellos, a diferencia de Shannon, estudiaron una relación entre una medida de la información y su función semántica en el lenguaje.
-A continuación detallamos el procedimiento para calcular lo que ellos llamaron
+A continuación detallamos el procedimiento para calcular lo que los autores llamaron
 el valor de la información:
 
 Dado un texto dividido en $P$ partes iguales llamadas ventanas, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
@@ -74,7 +81,7 @@ en las distintas partes.
 Finalmente, definen al valor de la información como $I(w) = p(w) (\widehat{H(w)} - H(w))$, con $p(w)$ la frecuencia total de la palabra en el texto. 
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 
-Este estudio se hizo sobre tres textos, \textit{Análisis de la mente}, 
+Zanette et al. analizaron el valor de la información sobre tres textos, \textit{Análisis de la mente}, 
 \textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
 altamente relacionadas con los temas principales.
@@ -85,7 +92,7 @@ Esto es porque la división está pensada para dividir el texto en secciones que
 posiblemente hablen de distintos temas y nuestros textos son tuits que por lo general no superan las 10 palabras.
 Otra dificultad que surge de esta métrica es la imposibilidad de realizar la media 
 de todas las posibles permutaciones del texto por la limitación computacional ya que 
-tenemos una cantidad muy grande de datos. Es por eso que realizamos una métrica parecida.
+tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la entropía máxima de una palabra.
 
 Podemos pensar a las palabras del texto como una variable aleatoria $W$, donde cada palabra $w$ tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
@@ -169,17 +176,17 @@ Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normaliz
 % Si las cantidades de ocurrencias (o de personas que utilizan) de un término están distribuidas uniformemente a través de todas las provincias, quiere decir que no aporta demasiada información 
 
 \begin{figure}[!ht]\centering
-  \begin{minipage}[t]{0.49\textwidth}
+  \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf}
-    \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
+    \caption{}
     \label{fig:cantPalabras} 
-   \end{minipage}
-   \begin{minipage}[t]{0.49\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantUsuarios_sinFiltro.pdf}
-    \caption{Histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
+    \caption{}
     \label{fig:cantPalabrasPromedio} 
-   \end{minipage}
-   
+   \end{subfigure}
+   \caption{La figura \ref{fig:cantPalabras} muestra un histograma de la cantidad de ocurrencias de las palabras. En la figura \ref{fig:cantPalabrasPromedio} se puede observar un histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.}  
 \end{figure}
 
 Para eliminar los valores atípicos se procedió a remover tanto las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. La métrica se evaluó en este conjunto filtrado de palabras. 
@@ -189,25 +196,19 @@ Para eliminar los valores atípicos se procedió a remover tanto las palabras qu
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
 En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras. Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
-% \begin{figure}[ht]
-% \centering
-% \includegraphics[width=0.8\textwidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf} 
-% \caption{Histograma de la cantidad de ocurrencias de las palabras} 
-% \label{fig:cantPalabras} 
-% \end{figure}
 
 \begin{figure}[!ht]\centering
-  \begin{minipage}[t]{0.49\textwidth}
+  \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{./images2/cantNormUsuarios_sinFiltro.pdf}
-    \caption{Histograma de la cantidad de ocurrencias de las palabras.} 
+    \caption{} 
     \label{fig:cantNormUsuarios} 
-   \end{minipage}
-   \begin{minipage}[t]{0.49\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantNormPalabras_sinFiltro.pdf}
-    \caption{Histograma de la distribución de cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
+    \caption{} 
     \label{fig:cantNormPalabras} 
-   \end{minipage}
-   
+   \end{subfigure}
+   \caption{La figura \ref{fig:cantNormUsuarios} muestra un histograma de la normalización de la cantidad de ocurrencias de las palabras, definida como $norm_u$. La figura \ref{fig:cantNormPalabras} contiene un histograma de la normalización sobre la cantidad de usuarios que utilizan una determinada cantidad de palabras definida como $norm_w$.}
 \end{figure}
 
 
@@ -257,8 +258,8 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{./images/zipf.pdf}
-\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(n)$ y $\frac{1}{n^{\alpha}}$.} 
+\includegraphics[width=0.5\textwidth]{images2/zipf_sinFiltro.pdf}
+\caption{Cantidad de Ocurrencias de palabra vs posición en listado ordenado. Se aplicó el logaritmo natural a las cantidades de ocurrencias, como también a los valores de las posiciones para mostrar la proporcionalidad entre $f(n)$ y $\frac{1}{n^{\alpha}}$.} 
 \label{fig:zipf} 
 \end{figure}
 
@@ -301,7 +302,7 @@ Tener en cuenta únicamente a la entropía de las palabras nos puede generar la 
 
 \section{Distribución del valor de la información}
 \label{sec:ValorDeLaInformacion}
-En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el colo: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
+En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
 
 \begin{figure}[ht]
 \centering
@@ -313,9 +314,9 @@ En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la canti
 En la figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
 
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\textwidth]{./images/train/conFiltro/valorInformacionCorte.pdf}
+\includegraphics[width=1\textwidth]{./images/train/conFiltro/valorInformacionCorte.pdf}
 \caption{Distribución del valor de la información según la posición de la palabra en el listado de palabras. El gráfico se realizó sobre el conjunto de palabras cuya cantidad de ocurrencias era mayor a 40 y la cantidad de usuarios que utilizaron cada término era mayor a 5. } 
 \label{fig:ivalue}
 \end{figure}
@@ -331,26 +332,16 @@ En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabr
 En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
 
 
-
-\begin{figure}[!ht]\centering
-  \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[width=\linewidth]{images/PropAcumSinCandidatas.pdf}
+\begin{figure}\centering
+    \includegraphics[width=1\textwidth]{images/PropAcumSinCandidatas.pdf}
     \caption{Proporción de ocurrencias acumulada según la muestra de palabras.} 
     \label{fig:propAcum} 
-   \end{minipage}
-   \begin{minipage}[t]{0.49\textwidth}
-    \includegraphics[width=\linewidth]{images/PropAcum5000SinCandidatas.pdf}
-    \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
-    \label{fig:propAcum5000} 
-   \end{minipage}
-   
 \end{figure}
 
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=0.5\textwidth]{./images/PropAcum5000.pdf}
-% \caption{Proporciones Acumuladas} 
-% \label{fig:propAcum5000} 
-% \end{figure}
 
+\begin{figure}\centering
+    \includegraphics[width=1\textwidth]{images/PropAcum5000SinCandidatas.pdf}
+    \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
+    \label{fig:propAcum5000} 
+\end{figure}
 
