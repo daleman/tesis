@@ -314,9 +314,9 @@ En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la canti
 En la figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
 
 
-\begin{figure}[!ht]
+\begin{figure}
 \centering
-\includegraphics[width=1\textwidth]{./images/train/conFiltro/valorInformacionCorte.pdf}
+\includegraphics[width=0.9\textwidth]{./images/train/conFiltro/valorInformacionCorte.pdf}
 \caption{Distribución del valor de la información según la posición de la palabra en el listado de palabras. El gráfico se realizó sobre el conjunto de palabras cuya cantidad de ocurrencias era mayor a 40 y la cantidad de usuarios que utilizaron cada término era mayor a 5. } 
 \label{fig:ivalue}
 \end{figure}
@@ -324,23 +324,23 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 
 \section{Proporción acumulada de ocurrencias} % (fold)
 \label{proporcionDeOcurrencias}
+Además de la detección de las palabras contrastivas en su uso, nos interesa saber en que regiones se utilizan más. Para esto ordenamos, por cada palabra, las provincias de acuerdo a la cantidad de menciones, formando una lista de provincias: $ps = p_1,p_2,...,p_{23}$. Luego elegimos al conjunto de provincias que superen un cierto porcentaje de todas las ocurrencias. Para identificar cuál debiera ser ese porcentaje hicimos lo siguiente:
 
-Para tener una mejor noción sobre la métrica, medimos el porcentaje de las ocurrencias de las palabras que muestran contrastes según nuestra métrica cubiertas por subconjuntos de provincias de manera tal que para cada palabra y un número fijo de provincias, la región con esa cantidad de provincias tenga un cubrimiento máximo. 
-En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de la información.
+Por cada palabra, calculamos el porcentaje de ocurrencias sobre los conjuntos de $n$ provincias, variando $n$ de $1$ a $23$, a partir de las provincias ordenadas $ps$. Es decir, por cada región formada por una determinada cantidad de provincias calculamos el mayor porcentaje posible de ocurrencias de una palabra dada.
+En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de nuestra métrica.
 
-%TODO: cambiar el grafico con todas las palabras candidatas OK
 En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
 
 
 \begin{figure}\centering
-    \includegraphics[width=1\textwidth]{images/PropAcumSinCandidatas.pdf}
-    \caption{Proporción de ocurrencias acumulada según la muestra de palabras.} 
+    \includegraphics[width=0.9\textwidth]{images/PropAcumSinCandidatas.pdf}
+    \caption{Proporción de ocurrencias acumulada según la muestra de palabras. El número de la leyenda indica la cantidad de palabras contrastivas elegidas para la muestra respectiva, siempre seleccionando las más contrastivas según la métrica.} 
     \label{fig:propAcum} 
 \end{figure}
 
 
-\begin{figure}\centering
-    \includegraphics[width=1\textwidth]{images/PropAcum5000SinCandidatas.pdf}
+\begin{figure}[ht]\centering
+    \includegraphics[width=0.95\textwidth]{images/PropAcum5000SinCandidatas.pdf}
     \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
     \label{fig:propAcum5000} 
 \end{figure}
