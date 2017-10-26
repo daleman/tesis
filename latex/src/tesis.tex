@@ -16,7 +16,9 @@
 \usepackage[left=3cm,right=3cm,bottom=3.5cm,top=3.5cm]{geometry}
 \usepackage{xspace}
 \usepackage{caption}
-\usepackage{subcaption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{url}
 \usepackage[bookmarks=true]{hyperref}
 \hypersetup{
              % show bookmarks bar?
@@ -25,12 +27,12 @@
     pdfmenubar=true,        % show Acrobat’s menu?
     pdffitwindow=false,     % window fit to page when opened
     pdfstartview={FitH},    % fits the width of the page to the window
-    pdftitle={Damian Aleman},    % title
+    pdftitle={Tesis Damián Aleman},    % title
     pdfauthor={Damián Eliel Aleman},     % author
     pdfsubject={Subject},   % subject of the document
     pdfcreator={Creator},   % creator of the document
     pdfproducer={Producer}, % producer of the document
-    pdfkeywords={keyword1, key2, key3}, % list of keywords
+    pdfkeywords={Tesis, linguistica computacional, linguistica de corpus, lexicografía contrastiva}, % list of keywords
     pdfnewwindow=true,      % links in new PDF window
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -39,7 +41,7 @@
     urlcolor=cyan,           % color of external links
     pageanchor=true
 }
-\usepackage{csquotes}
+\usepackage[style=american]{csquotes}
 \pdfsuppresswarningpagegroup=1
 
 \begin{document}

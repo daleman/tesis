@@ -3,12 +3,13 @@
 
 \section{Extracción de Datos}
 
-Para la recolección de tuits, primero se extrajo una cantidad de usuarios con información geográfica disponible con el fin de obtener todos sus tuits.
+Para la recolección de tuits, primero se extrajo una cantidad de usuarios con información geográfica disponible.
 Los usuarios se buscaron por provincia de modo tal que haya una cantidad aproximadamente equitativa de cada una.
 La búsqueda de los usuarios se hizo de la siguiente manera:
 
-Por cada provincia de la Argentina, se extrajo las ubicaciones de cada uno de sus departamentos, de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la república Argentina. La lista de departamentos/partidos/comunas fue extraída a partir de los datos publicados del Censo Argentino del año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
-De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que resulta en 46000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
+Por cada provincia de la Argentina, se extrajo las coordenadas de cada uno de sus departamentos, de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la República Argentina. La lista de departamentos, partidos y comunas fue extraída de los datos publicados del Censo Argentino del año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
+
+De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que resulta en 46.000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits, dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
 
 
 \subsection{Búsquedas geolocalizadas}
@@ -16,36 +17,35 @@ De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que
 La búsqueda geolocalizada es una herramienta que nos da la posibilidad de obtener tuits generados en un área geográfica particular. Para esto, primero intenta buscar tuits cuyas coordenadas sean las buscadas. En caso de no tener éxito, se busca aquellos tuits creados por usuarios que tienen en el campo \textit{location} de su perfil un lugar cuyo geocódigo coincida con el de sus coordenadas. Es decir, si se hace una búsqueda inversa de las coordenadas, devuelve el lugar de su perfil.
 
 Una vez obtenida la lista de ubicaciones, se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. Sobre el resultado de esta búsqueda, únicamente se seleccionaron los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. 
-
-En el gráfico de la figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones de los usuarios.
+En el gráfico de la Figura \ref{fig:busqueda_usuarios} se muestran las ubicaciones de los usuarios.
 
 
 \begin{figure}[!ht]\centering
-  \begin{minipage}[t]{0.31\textwidth}
+  \begin{subfigure}[t]{0.31\textwidth}
     \includegraphics[width=\linewidth]{./images/mapaprovincias.pdf}
     \caption{} 
     \label{fig:mapaProvincias} 
-   \end{minipage}
-   \begin{minipage}[t]{0.31\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.31\textwidth}
     \includegraphics[width=\linewidth]{./images/mapadepartamentos.pdf}
     \caption{} 
     \label{fig:mapaDepartamentos} 
-   \end{minipage}
-   \begin{minipage}[t]{0.31\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.31\textwidth}
     \includegraphics[width=\linewidth]{./images/mapaprovinciasConPuntos.pdf}
     \caption{} 
     \label{fig:mapaPuntos} 
-   \end{minipage}
+   \end{subfigure}
    
 
 
 
-   \caption{Ubicaciones de los usuarios: En la figura \ref{fig:mapaProvincias} se muestra un mapa de Argentina con la distribución de los usuarios en las provincias sobre el conjunto de desarrollo. El mapa de la figura \ref{fig:mapaDepartamentos} permite visualizar la distribución de los usuarios en los departamentos sobre el conjunto de desarrollo. Se muestra con áreas grises los departamentos que no poseen usuarios que hayan definido el campo ubicación de su perfil en ese lugar. El mapa \ref{fig:mapaPuntos} muestra la distribución de las coordenadas obtenidas a partir de todos los usuarios del conjunto de desarrollo. Las coordenadas fueron obtenidas a través de un proceso de geocodificación. } 
+   \caption{Ubicaciones de los usuarios: \subref{fig:mapaProvincias} Mapa de Argentina con la distribución de los usuarios en las provincias sobre el conjunto de desarrollo. \subref{fig:mapaDepartamentos} Distribución de los usuarios en los departamentos sobre el conjunto de desarrollo. Se muestra con áreas grises los departamentos que no poseen usuarios que hayan definido el campo ubicación de su perfil en ese lugar. \subref{fig:mapaPuntos} Distribución de las coordenadas obtenidas a partir de todos los usuarios del conjunto de desarrollo. Las coordenadas fueron obtenidas a través de un proceso de geocodificación. } 
   \label{fig:busqueda_usuarios} 
 
 \end{figure}
 
-En la figura \ref{fig:mapaProvincias} podemos observar que los usuarios que obtuvimos en las búsquedas se distribuyen de manera uniforme a través de las provincias. Si bien en la figura \ref{fig:mapaDepartamentos} hay regiones grises que indican la ausencia de usuarios en ese lugar, cabe destacar que los mapas se realizaron obteniendo las coordenadas geográficas a partir de la ubicación definida en el perfil del usuario. Por lo tanto, si una persona declara que vive en \textit{Tucumán, Argentina}, contabilizamos como que esa persona vive en la capital de esa provincia, lo cual puede no ser cierto. Sin embargo, esto no invalida los resultados puesto que la granularidad del análisis es a nivel provincial. Finalmente para ver la distribución de las coordenadas de los usuarios a lo largo del país mostramos la figura \ref{fig:mapaPuntos}. Se puede observar que en la mayoría de las grandes ciudades hay usuarios en nuestro conjunto de datos. Podemos observar en la figura \ref{fig:mapaGPS} del apéndice un mapa donde se contabilizaron todos los tuits con coordenadas geográficas del conjunto de datos. En este gráfico se puede observar que la distribución es mucho más amplia, aunque sigue habiendo más concentración de usuarios en aquellos departamentos con más densidad poblacional.
+En la Figura \ref{fig:mapaProvincias} podemos observar que los usuarios que obtuvimos en las búsquedas se distribuyen de manera uniforme a través de las provincias. Si bien en la Figura \ref{fig:mapaDepartamentos} hay regiones grises que indican la ausencia de usuarios en ese lugar, cabe destacar que los mapas se realizaron obteniendo las coordenadas geográficas a partir de la ubicación definida en el perfil del usuario. Por lo tanto, si una persona declara que vive en \textit{Tucumán, Argentina}, contabilizamos como que esa persona vive en la capital de esa provincia, lo cual puede no ser cierto. Sin embargo, esto no invalida los resultados puesto que la granularidad del análisis es a nivel provincial. Finalmente para ver la distribución de las coordenadas de los usuarios a lo largo del país mostramos la Figura \ref{fig:mapaPuntos}. Se puede observar que en la mayoría de las grandes ciudades hay usuarios en nuestro conjunto de datos. Podemos observar en la Figura \ref{fig:mapaGPS} del apéndice un mapa donde se contabilizaron todos los tuits con coordenadas geográficas del conjunto de datos. En este gráfico se puede observar que la distribución es mucho más amplia, aunque sigue habiendo mayor concentración de usuarios en aquellos departamentos con mayor densidad poblacional.
 
 % \section{Datos de desarrollo y de validación}
 
@@ -71,14 +71,14 @@ En la figura \ref{fig:mapaProvincias} podemos observar que los usuarios que obtu
 
 En cuanto al análisis del texto surge una primer problemática: ¿qué es una palabra? En principio podemos definir a una palabra como cualquier secuencia de caracteres delimitados por espacios blancos. Con esta definición \textit{523456} y \textit{?} serían palabras. Debido a esto podríamos restringir nuestra definición a una secuencia de caracteres alfabéticos. Los ejemplos mencionados anteriormente dejarían de estar dentro de la definición. Sin embargo términos como \textit{asdsdafsdf} también serían palabras. Para evitar este problema podríamos tener un diccionario como filtro para saber si una secuencia de caracteres dada es una palabra. Si bien esto tendría mucha precisión al momento de filtrar los términos, no sería capaz de detectar palabras que existen en una lengua pero que no están incluidos en el diccionario elegido. Además, dada la cantidad de palabras recogidas, es altamente improbable que una secuencia al azar de caracteres alfabéticos reúna las condiciones de frecuencia necesarias para resultar destacada por la métrica que utilizamos. Es por eso que decidimos tomar a una palabra como una secuencia de caracteres alfabéticos.
 
-Es muy posible que tengamos palabras que no sean interesantes a nivel lingüístico, como errores de tipeo (e.g computadira, escribur), errores ortográficos o  nombres propios. Es importante destacar que Twitter tiene caracteres especiales para mencionar a la gente, como el @, o el \#(hashtag) utilizado para agrupar mensajes. Estos caracteres aparecen mucho, ya que los usuarios suelen responderse en la red, mencionando los mismos temas (aclarando el hashtag), o respondiendo a otros usuarios. Ya que esos caracteres no son alfabéticos, cualquier término que los utilice no va a ser parte del conjunto de palabras, como tampoco lo serán las direcciones de páginas web. Decidimos que se filtren estos términos ya que no tienen interés lingüístico y además agregarían mucho ruido a los datos.
+Es muy posible que tengamos palabras que no sean interesantes a nivel lingüístico, como errores de tipeo (e.g. computadira, escribur), errores ortográficos o  nombres propios. Es importante destacar que Twitter tiene caracteres especiales para mencionar a la gente, como el @, o el \#(hashtag) utilizado para agrupar mensajes. Estos caracteres aparecen mucho, ya que los usuarios suelen responderse en la red, mencionando los mismos temas (aclarando el hashtag), o respondiendo a otros usuarios. Ya que esos caracteres no son alfabéticos, cualquier término que los utilice no va a ser parte del conjunto de palabras, como tampoco lo serán las direcciones de páginas web. Decidimos ignorar estos términos ya que no tienen interés lingüístico y agregarían mucho ruido a los datos.
 
-Además de la tokenización del texto, se realizó una normalización sobre él. Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se hizo con la librería \textit{TweetTokenizer de NLTK}. 
-Se descartó la idea de filtrar las palabras que no estuvieran en un diccionario ya que si bien hubiera eliminado mucho ruido, también nos hubiera filtrado palabras de interés. Este es el caso de los neologismos, o las palabras que, si bien se utilizan hace mucho tiempo, no están en los diccionarios actuales.
+Además de la tokenización, se realizó una normalización del texto. Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se hizo con la librería \textit{TweetTokenizer de NLTK}. 
+Como ya dijimos, se descartó la idea de filtrar las palabras que no estuvieran en un diccionario ya que si bien hubiera eliminado mucho ruido, también nos hubiera filtrado palabras de interés. Este es el caso de los neologismos, o las palabras que, si bien se utilizan hace mucho tiempo, no están en los diccionarios actuales.
 
 \section{Caracterización de la muestra}
 
-Para tener una noción más completa de la muestra, se presenta la tabla \ref{tab:cantidades} que indica las cantidades de palabras y tuits por provincia.
+Para tener una noción más completa de la muestra, se presenta la Tabla \ref{tab:cantidades}, que indica las cantidades de palabras y tuits por provincia. Puede notarse que la muestra está balanceada con respecto a la cantidad de usuarios, tuits por provincia y palabras. Los tuits realizados en la Ciudad Autónoma de Buenos Aires están incluídos en los de la provincia de Buenos Aires. Tomamos esta decisión ya que debido al constante movimiento entre las personas de la ciudad y la provincia, es difícil distinguir de forma fehaciente a los usuarios de ambos territorios.
 
 
 \begin{table}[ht]
@@ -120,38 +120,39 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 
 
 También analizamos la cantidad de palabras por tuit promediadas sobre cada usuario.
-Debido a que los tuits están limitados a 140 caracteres, era de esperar que no hubieran demasiadas palabras promedio por cada tuit. En la figura \ref{fig:cantPalabrasUsuario} podemos observar que la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
+Debido a que los tuits están limitados a 140 caracteres, era de esperar que no hubieran demasiadas palabras promedio por cada tuit. En la Figura \ref{fig:cantPalabrasUsuario} podemos observar que la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
 \begin{figure}[!ht]\centering
-  \begin{minipage}[t]{0.49\textwidth}
+  \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantPalabrasUsuario_sinFiltro.pdf}
-    \caption{Histograma de la cantidad de palabras totales por cada usuario.} 
+    \caption{} 
     \label{fig:cantPalabrasUsuario} 
-   \end{minipage}
-   \begin{minipage}[t]{0.49\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantPalabrasPromedio_sinFiltro.pdf}
-    \caption{Histograma de la cantidad de palabras promedio para todos los usuarios.} 
+    \caption{} 
     \label{fig:cantPalabrasPromedio} 
-   \end{minipage}
-   
+   \end{subfigure}
+   \caption{ Histogramas: \subref{fig:cantPalabrasUsuario} Cantidad de palabras totales por usuario. \subref{fig:cantPalabrasPromedio} Cantidad de palabras en promedio por tuit, para todos los usuarios.}
 \end{figure}
 
 %Cantidad de palabras promedio por tweet
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Distribución temporal de tuits}
-Los tuits recolectados para el conjunto de datos de desarrollo tienen una particularidad: la cantidad de tuits recolectados crece año a año. Esto se refleja en los gráficos de las figuras \ref{fig:histTweetsProvincia1} y \ref{fig:histTweetsProvincia2}.
+Los tuits recolectados para el conjunto de datos de desarrollo tienen una particularidad: la cantidad de tuits recolectados crece año a año. Esto se refleja en los gráficos de la Figura \ref{fig:histTweets}, que muestran la progresión temporal de la cantidad de tuits en cuatro regiones representativas: La Pampa, Buenos Aires, Chaco y Neuquén.
 
 \begin{figure}[!ht]\centering
-   \begin{minipage}[t]{0.49\textwidth}
+   \begin{subfigure}[t]{0.49\textwidth}
      \includegraphics[width=\linewidth]{images2/histTweetsProvincia1_sinFiltro.pdf}
      \caption{}
      \label{fig:histTweetsProvincia1}
-   \end{minipage}
-   \begin {minipage}[t]{0.49\textwidth}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.49\textwidth}
      \includegraphics[width=\linewidth]{images2/histTweetsProvincia2_sinFiltro.pdf}
      \caption{}
      \label{fig:histTweetsProvincia2}
-   \end{minipage}
-   \caption { En la figura \ref{fig:histTweetsProvincia1} se presenta un histograma donde se muestra la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. En la figura \ref{fig:histTweetsProvincia2}, se presenta el gráfico para Chaco y Neuquén.}
+   \end{subfigure}
+   \caption { \subref{fig:histTweetsProvincia1} Histograma de la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. \subref{fig:histTweetsProvincia2} Gráfico para Chaco y Neuquén.}
+   \label{fig:histTweets}
 \end{figure}
 
 

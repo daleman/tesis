@@ -1,51 +1,51 @@
 \section{Búsqueda de contrastes}
 
 % Definir que es un contraste, que tiene un uso significativo en una region más que en otra. LAs alternativas que propusimos, z test binomial.
-Una palabra tiene un contraste cuando esta tiene un uso con diferencias significativas en
+Una palabra tiene un contraste cuando tiene un uso con diferencias significativas en
 distintas regiones. En este trabajo nos propusimos crear un listado con palabras con contrastes que tengan
 importancia a nivel lingüístico. En este sentido, los nombres de personas, lugares u organizaciones no 
 fueron considerados de interés a pesar de tener contrastes en su uso.
 Este listado fue ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
-se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por la Academia Argentina de Letras.
+se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por los investigadores de la Academia Argentina de Letras(AAL).
 
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
-en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra, la frecuencia de ocurrencias sobre cada una de las dos provincias. La mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la frecuencia máxima y la frecuencia mínima tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
-recolectado tuits con esa palabra, se tomaba como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero. Esta métrica se resumen en la ecuación \ref{eq:maxDif}.
+en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra $w$, la frecuencia de ocurrencias sobre cada una de las dos provincias $p_1$ y $p_2$. A la mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la \textit{frecuencia máxima} y la \textit{frecuencia mínima} tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
+recolectado tuits con esa palabra, se toma como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero. Esta métrica se resume en la ecuación \ref{eq:maxDif}.
 
 
 \begin{equation}
   \label{eq:maxDif} 
-  maxDif(w,p_1,p_2) = \frac{F_{max}(w,p_1,p_2)}{F_{Min}(w,p_1,p_2)}
+  maxDif(w,p_1,p_2) = \frac{f_{max}(w,p_1,p_2)}{f_{min}(w,p_1,p_2)}
 \end{equation}
 donde 
 \begin{equation}
-F_{max}(w) = \max(frec(w,p_1),frec(w,p_2))
+f_{max}(w) = \max (frec(w,p_1),frec(w,p_2))
 \end{equation}
 
-%TODO: arreglar el overfull OK
 \begin{equation}
- F_{min}(w) = \left\{ \begin{array}{ll}
-             \min(frec(w,p_1),frec(w,p_2))  \text{ si } frec(w,p_1) * frec(w,p_2) > 0  & \\
+ f_{min}(w) = \left\{ \begin{array}{lll}
+             \min(frec(w,p_1),frec(w,p_2)), & \text{si } frec(w,p_1) * frec(w,p_2) > 0  & \\
              \\
-             \min(frec(w,p))  \forall w \in palabras(p) , \text{ con } p=\{p_1,p_2\} \setminus \{P_{max}\} \text{sino} &  \\
+             \min\limits_{w \in palabras(P_{min})} (frec(w,P_{min}) , &  \text{si no.} &  \\
              \end{array}
    \right.
 \end{equation}
-   donde $P_{max}$ es la provincia que tiene la mayor frecuencia de ambas.
+   donde $P_{min}$ es la provincia que tiene la menor frecuencia de ambas.
 
 
 
 De esa manera se ordenó el listado de cada par de provincias teniendo en cuenta la división de frecuencias. 
-Sin embargo, este método imposibilitaba el trabajo manual para la Academia Argentina de Letras que debía mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
+Sin embargo, este método imposibilitaba el trabajo manual para los investigadores de la AAL, que debían mirar estos listados y hacer un análisis más exhaustivo sobre las palabras con mayor diferencia de frecuencias, debido a que había $\binom{23}{2} = 253$
 listados (o equivalentemente 253 columnas en un mismo listado) a analizar. Además la métrica solo permitía saber si había un contraste entre dos provincias, pero no se podía tener en cuenta la frecuencia de la palabra en el resto de las provincias. 
 % Mencionar que la idea era realizar un z test para obtener las palabras más significativas.
-En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy difícil poder identificar en que regiones había una diferencia significativa de frecuencias.
-Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor. En primer lugar intentamos modificar la métrica \textit{maxDif} de la siguiente manera: 
+En consecuencia las palabras se encontraban repetidas en los distintos listados y con diferentes valores de \textit{maxDif}, lo cual hacía muy difícil poder identificar en qué regiones había una diferencia significativa de frecuencias.
+Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor. 
 
-Sea $f_{max}(w)$ la frecuencia máxima entre las frecuencias de todas las provincias y sea $f_{min}$ la frecuencia mínima distinta de $0$ sobre todas las provincias, luego la métrica generalizada \textit{$maxDif_g$} se puede definir como
+En primer lugar intentamos modificar la métrica \textit{maxDif} de la siguiente manera. 
+Sea $f_{max}^\prime(w)$ la frecuencia máxima de $w$ entre las frecuencias de todas las provincias y sea $f_{min}^\prime(w)$ la frecuencia mínima distinta de $0$ sobre todas las provincias, luego la métrica generalizada \textit{$maxDif_g$(w)} se puede definir como en la ecuación \ref{eq:maxDifg}.
 
 \begin{equation}
- maxDif_g(w) = \frac{f_{max}(w)}{f_{min}(w)}
+ maxDif_g(w) = \frac{f_{max}^\prime(w)}{f_{min}^\prime(w)}
  \label{eq:maxDifg}  
 \end{equation} 
 
@@ -57,8 +57,11 @@ Dado que se quieren encontrar las palabras con contrastes significativos en dist
 regiones se propone generar una métrica basada en la cantidad de información 
 para poder realizar esta tarea.
 
-Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país puede ser la entropía definida por Shannon ( ver en el apéndice: \ref{sub:entropiaShannon}), debido a que nos brinda un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra. La entropía es máxima cuando la probabilidad de los eventos es equiprobable y mínima en el caso que la probabilidad de un evento es 1.
-Sin embargo, la entropía como única medida tiene sus desventajas. En particular, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima. A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas elegiremos las que tienen mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, entre otras variables a tener en cuenta.
+Una medida que se puede usar para comparar las frecuencias de las palabras en las diferentes regiones del país es la entropía definida por Shannon (ver el Apéndice \ref{sub:entropiaShannon}), debido a que nos brinda un valor que informe qué tan uniforme es la distribución de las frecuencias de cada palabra. La entropía es máxima cuando los eventos son equiprobables y mínima en el caso que la probabilidad de un evento es 1.
+
+Sin embargo, la entropía como única medida tiene sus desventajas. En particular, una palabra con una sola ocurrencia en una provincia y ninguna en las demás, tiene la entropía mínima, lo cual la pondría en igualdad de condiciones con una palabra con 1000 ocurrencias en una única provincia, algo no deseable.
+
+A pesar de que nos interesan las palabras con un contraste significativo entre regiones, dentro de ellas elegiremos las que tienen mayor cantidad de ocurrencias. Es por esto que elaboramos otra métrica que tenga en cuenta la entropía, entre otras variables.
 
 
 \subsection{Valor de información}
@@ -67,37 +70,37 @@ las que tienen altos contrastes en su uso en distintas regiones fue inspirada po
 trabajo de Zanette y Montemurro \cite{montemurro2010towards}.
 Ellos, a diferencia de Shannon, estudiaron una relación entre una medida de la información y su función semántica en el lenguaje.
 A continuación detallamos el procedimiento para calcular lo que los autores llamaron
-el valor de la información:
+el \textit{valor de la información}:
 
-Dado un texto dividido en $P$ partes iguales llamadas ventanas, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
-Luego se define $\widehat{H(w)}$  como la entropía de una permutación aleatoria del texto y promediada por todos las posibles realizaciones de la permutación de él. Es decir, se distribuyen uniformemente las palabras en $P$ partes y se calcula la
-entropía como se hizo con el texto original.
-%% TODO: CHEQUEAR LA DEFINICION DE LA ENTROPIA SHUFFLEADA
+Dado un texto dividido en $P$ partes iguales llamadas \textit{ventanas}, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
+Sea $(X_1,\dots,X_{23})$ un vector aleatorio con $X_i$ la cantidad de ocurrencias de la palabra $w$ en la provincia $i$ en un corpus con una determinada distribución de frecuencias para cada palabra y sea $X^\prime = H(X_1,\dots,X_{23})$. Luego se define $\widehat{H(w)} = \mathbb{E}(X^\prime)$, es decir la esperanza de $X$. Por lo tanto, $\widehat{H(w)}$ es el resultado de calcular la media de $H(w)$ entre todas las posibles permutaciones del texto.
+%variable aleatoria $X$ la entropía de un texto aleatorio con una distribución de frecuencias por cada provincia determinada.
+
+%$ Es decir, se distribuyen uniformemente las palabras en $P$ partes y se calcula la entropía como se hizo con el texto original.
 
 Es de esperar que en la mayoría de los casos 
 la entropía del texto permutado sea mayor que la medida en el calculo original. Esto 
-se debe a que las palabras se distribuyen de forma más uniforme 
+se debe a que en una permutación las palabras se distribuyen de forma más uniforme 
 en las distintas partes.
 
-Los autores definieron al valor de la información de un texto con la siguiente ecuación:
+Zanette y Montemurro definieron el valor de la información de un texto con la siguiente ecuación:
 
 \begin{equation}
   \Delta I(s) = \sum_{w = 1}^{K} p(w) (\widehat{H(w)} - H(w))
 \end{equation}
 
-considerando un texto de $N$ palabras, con un vocabulario de $K$ palabras distintas y siendo $s = N/P$. 
+considerando un texto de $N$ palabras, con un vocabulario de $K$ palabras distintas, siendo $s = N/P$ y  $p(w)$ la frecuencia total de la palabra en el texto.
 
-Este valor lo definieron con el objetivo de maximizar el tamaño óptimo de las $P$ ventanas y así cuantificar cuanta información, sobre partes específicas del texto, es contenida en la distribución de las palabras con respecto al texto aleatorio.
+Este valor lo definieron con el objetivo de maximizar el tamaño óptimo de las $P$ ventanas y así cuantificar la información, sobre partes específicas del texto, es contenida en la distribución de las palabras con respecto al texto aleatorio.
 Finalmente, definen al valor de la información de una palabra como
  \begin{equation}
   \Delta I_w(w) = p(w) \,  (\widehat{H(w)} - H(w))  =  p(w) \, \Delta{H(w)}
  \end{equation}
-
-  con $p(w)$ la frecuencia total de la palabra en el texto. 
+ 
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 
-Zanette et al. analizaron el valor de la información de las palabras sobre tres textos, \textit{Análisis de la mente}, 
-\textit{Moby Dick} y \textit{El origen de las especies} de Charles Darwin. 
+Zanette y Montemurro analizaron el valor de la información de las palabras sobre tres textos, \textit{Análisis de la mente} de Bertrand Russell, 
+\textit{Moby Dick} de Herman Melville y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
 altamente relacionadas con los temas principales. 
 
@@ -107,7 +110,7 @@ altamente relacionadas con los temas principales.
 % posiblemente hablen de distintos temas y nuestros textos son tuits que por lo general no superan las 10 palabras.
 
 
-Si bien el valor de la información de las palabras definidas por Zanette y Montemurro es muy bueno a la hora de calcular el tamaño óptimo de ventana que maximice el valor de la información de un texto, también refleja un valor que no es conveniente al hacer la comparación entre dos palabras cuando una de ellas es demasiado frecuente (como la palabra \textit{que}). Esto sucede ya que las palabras, al tener valores de frecuencias muy distintos (ver más detalle de esto en la sección \ref{sub: frecuenciaPalabras}), generan un valor de $\Delta I_w$ muy alto en las palabras más frecuentes en comparación con el resto. Este fenómeno se pone en evidencia en la tabla \ref{tab:zanette} donde se observa que palabras como \textit{que} y \textit{me} tienen los valores máximos de la métrica $\Delta I_w$.
+Si bien el valor de la información de las palabras definidas por Zanette y Montemurro es muy bueno a la hora de calcular el tamaño óptimo de ventana que maximice el valor de la información de un texto, también refleja un valor que no es conveniente al hacer la comparación entre dos palabras cuando una de ellas es demasiado frecuente (como la palabra \textit{que}). Esto sucede ya que las palabras, al tener valores de frecuencias muy distintos (ver más detalle de esto en la sección \ref{sub: frecuenciaPalabras}), generan un valor de $\Delta I_w$ muy alto en las palabras más frecuentes en comparación con el resto. Este fenómeno se pone en evidencia en la Tabla \ref{tab:zanette} donde se observa que palabras como \textit{que} y \textit{me} tienen los valores máximos de la métrica $\Delta I_w$.
 
 
 
@@ -135,11 +138,11 @@ y        & 29905.83                          \\
 comodoro & 25902.79                         \\
 \bottomrule
 \end{tabular}
-\caption{En la tabla \ref{tab:zanette} se muestra las 15 palabras con mayor valor de $I_w$ }
+\caption{\ref{tab:zanette} Las 15 palabras con mayor valor de $I_w$ }
 \label{tab:zanette}
 \end{table}
 
-Es por esto que, entre otras cosas, usamos al logaritmo sobre las cantidades de ocurrencias para generar una mejor dispersión de los datos. Así agrupamos a las palabras con un valor de $\Delta H(w)$ parecido y restándole relevancia a las palabras sumamente frecuentes. Otra dificultad que surge de la métrica propuesta por Zanette et al. es la imposibilidad de realizar la media de todas las posibles permutaciones del texto por la limitación computacional ya que 
+Es por esto que, entre otras cosas, usamos al logaritmo sobre las cantidades de ocurrencias para generar una mejor dispersión de los datos. Así agrupamos a las palabras con un valor de $\Delta H(w)$ parecido y le restamos relevancia a las palabras sumamente frecuentes. Otra dificultad que surge de la métrica propuesta por Zanette y Montemurro es la imposibilidad de realizar la media de todas las posibles permutaciones del texto por la limitación computacional ya que 
 tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la entropía máxima de una palabra.
 % Podemos pensar para cada palabra del corpus, una variable aleatoria que mida el total de la cantidad de ocurrencias en  las palabras del texto como una variable aleatoria $W$, donde cada palabra $w$ tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 % Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
@@ -150,21 +153,21 @@ tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica
 Luego, sea $cant_w(p)$ igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cant_w(p) = \log_2(cantidadOcurrencias(p))$ y sean las constantes $MIN_w$ y $MAX_w$ definidas de la siguiente manera:
 
 \begin{equation}
-MIN_W = \min\limits_{p \in Palabras} cant_w(w)
+MIN_w = \min\limits_{p \in Palabras} cant_w(w)
 \end{equation}
 
 \begin{equation}
-  MAX_W = \max\limits_{p \in Palabras} cant_w(w)
+  MAX_w = \max\limits_{p \in Palabras} cant_w(w)
 \end{equation}
 
 Realizamos una normalización lineal de la función $cant_w$, 
 
 \begin{equation}
-norm_{w}(p) = \frac{cant_w(p)- MIN_W }{MAX_W - MIN_W}
+norm_{w}(p) = \frac{cant_w(p)- MIN_w }{MAX_w - MIN_w}
 \label{eq:norm1}
 \end{equation}
 
-Así $norm_w$ tiene su imagen en el rango $[0,1]$, tomando el valor $0$ sobre la palabra que tiene la cantidad de ocurrencias máxima y el valor $1$ cuando se aplica a la palabra con menor cantidad de ocurrencias. Vale la pena aclarar, que tomamos $40$ como umbral mínimo de cantidad de ocurrencias de las palabras para ser estudiadas.
+Así $norm_w$ tiene su imagen en el rango $[0,1]$, tomando el valor $1$ sobre la palabra que tiene la cantidad de ocurrencias máxima y el valor $0$ cuando se aplica a la palabra con menor cantidad de ocurrencias. Vale la pena aclarar que tomamos $40$ como umbral mínimo de cantidad de ocurrencias de las palabras para ser estudiadas.
 A partir de la función $norm_w$ definimos el valor de la información de las palabras $I_w$ como:
 
 \begin{equation}
@@ -174,27 +177,29 @@ I_w(w) = norm_{w}(w) \cdot (\widehat{H}_{w}(w) - H_{w}(w)) \\
 
 siendo $H_w(w)$ la función de entropía calculada sobre las cantidades de ocurrencias de la palabra $w$ sobre las 23 provincias argentinas. De forma similar $\widehat{H}$ es la función de entropía sobre las cantidades de ocurrencias simuladas en todas las provincias a partir de una distribución multinomial. Elegimos esta distribución ya que con esta se distribuye la suma de los valores de la variable aleatoria, en nuestro caso la cantidad de ocurrencias de la palabra $w$, de forma uniforme.%TODO: explicar más en detalle
 
-Ahora bien, una determinada provincia o región pueden tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
-Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra . Agregándole el término $norm_u$, que es la constante normalizadora de la cantidad de usuarios descripta en la ecuación \ref{eq:norm2} obtenemos el valor de la información de las personas $I_u$,
+\subsection{Robusteciendo la métrica desarrollada}
+
+Ahora bien, una determinada provincia o región puede tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
+Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra $w$. Agregándole el término $norm_u(w)$, que es la constante normalizadora de la cantidad de usuarios descripta en la ecuación \ref{eq:norm2} obtenemos el valor de la información de las personas $I_u$,
 
 \begin{equation}
-I_u(w) = norm_{u}(w) \cdot (\widehat{H}_{u}(u) - H_{u}(w))
+I_u(w) = norm_{u}(w) \cdot (\widehat{H}_{u}(w) - H_{u}(w))
 \label{eq:iu}
 \end{equation}
 
 Donde,
 \begin{equation}
-norm_{u}(w) = \frac{cant_u(w)- MIN_U }{MAX_U - MIN_U}
+norm_{u}(w) = \frac{cant_u(w)- MIN_u }{MAX_u - MIN_u}
 \label{eq:norm2}
 \end{equation}
 \begin{equation}
- MIN_U = \min\limits_{p \in Palabras} cant_u(p)
+ MIN_u = \min\limits_{p \in Palabras} cant_u(w)
 \end{equation}
 \begin{equation}
-  MAX_U = \max\limits_{p \in Palabras} cant_u(p)
+  MAX_u = \max\limits_{p \in Palabras} cant_u(w)
 \end{equation}
 
-y $cant_u(p)$ es el logaritmo sobre  la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_u(p)= \log_2(cantidadUsuarios(p)))$.
+y $cant_u(w)$ es el logaritmo sobre la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_u(w)= \log_2(cantidadUsuarios(w)))$.
 
 Debido a que queremos tener en cuenta tanto a la variación de la cantidad de ocurrencias de la palabra como a la variación de la cantidad de usuarios, elegimos como métrica la multiplicación de ambas métricas definidas, es decir  
 
@@ -204,7 +209,7 @@ I(w) =  I_w(w) \cdot I_u(w)\\
 \label{eq:ivalor}
 \end{equation}
 
-Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver en las figuras \ref{fig:cantNormUsuarios} y \ref{fig:cantNormPalabras}.
+Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver comparando los histogramas de la Figura \ref{fig:cantNormFig} con los de la Figura \ref{fig:cantPalabrasSinNorm}.
 
 
 %TODO: ejemplificar la variacion de la entropia.  La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
@@ -214,22 +219,23 @@ Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normaliz
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{./images/DistribucionOcurrenciasPalabrasAnotaciones.pdf}
     \caption{}
-    \label{fig:cantPalabras} 
+    \label{fig:cantPalabrasAnotaciones} 
    \end{subfigure}
    \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantUsuarios_sinFiltro.pdf}
     \caption{}
-    \label{fig:cantPalabrasPromedio} 
+    \label{fig:cantUsuarios} 
    \end{subfigure}
-   \caption{La figura \ref{fig:cantPalabras} muestra un histograma de la cantidad de ocurrencias de las palabras. En la figura \ref{fig:cantPalabrasPromedio} se puede observar un histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.}  
+   \caption{\subref{fig:cantPalabrasAnotaciones} Histograma de la cantidad de ocurrencias de las palabras. \subref{fig:cantUsuarios} Histograma de la cantidad de usuarios que utilizan una determinada cantidad de palabras.} 
+   \label{fig:cantPalabrasSinNorm} 
 \end{figure}
 
-Para eliminar los valores atípicos se procedió a remover tanto las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. La métrica se evaluó en este conjunto filtrado de palabras. En la tabla de la figura \ref{tab:palabras_ivalue} se muestran las 20 palabras más contrastivas de acuerdo a nuestra métrica.
+Para eliminar los valores atípicos se procedió a remover tanto las palabras que no superaran las 40 ocurrencias, como también aquellas que eran dichas por menos de 6 usuarios. La métrica se evaluó en este conjunto filtrado de palabras. En la Tabla \ref{tab:palabras_ivalue} se muestran las 20 palabras más contrastivas de acuerdo a nuestra métrica.
 
 \subsection{Frecuencia de las palabras}
 \label{sub: frecuenciaPalabras}
 % Ver si se hace este gráfico con todas las palabras ya que por ahora tengo el conjunto de palabras con más de 40 ocurrencias
-En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad de ocurrencias de las palabras. Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
+En la Figura \ref{fig:cantPalabrasAnotaciones} graficamos la distribución de la cantidad de ocurrencias de las palabras. Podemos observar que la mayoría de las palabras ocurren poco. En particular el 50\% de las palabras ocurren menos de 139 veces. Por otro lado hay pocas palabras que ocurren mucho, por ejemplo la palabra \textit{que} o la preposición \textit{de}.
 
 
 \begin{figure}[!ht]\centering
@@ -243,7 +249,8 @@ En la figura \ref{fig:cantPalabras} graficamos la distribución de la cantidad d
     \caption{} 
     \label{fig:cantNormPalabras} 
    \end{subfigure}
-   \caption{La figura \ref{fig:cantNormUsuarios} muestra un histograma de la normalización de la cantidad de ocurrencias de las palabras, definida como $norm_u$. La figura \ref{fig:cantNormPalabras} contiene un histograma de la normalización sobre la cantidad de usuarios que utilizan una determinada cantidad de palabras definida como $norm_w$.}
+   \caption{\subref{fig:cantNormUsuarios} Histograma de la normalización de la cantidad de ocurrencias de las palabras, definida como $norm_u$. \ref{fig:cantNormPalabras} Histograma de la normalización sobre la cantidad de usuarios que utilizan una determinada cantidad de palabras definida como $norm_w$.}
+   \label{fig:cantNormFig}
 \end{figure}
 
 
@@ -321,7 +328,6 @@ Entonces, bajo la ley de Zipf uno puede saber que la frecuencia de la segunda pa
 Otra forma de utilizar esta ley empírica es la siguiente:
 sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecuencias de un corpus \textbf{A} y sabiendo la cantidad de palabras totales de un corpus \textbf{B}, puede estimarse la cantidad de ocurrencias de \textit{w} en el corpus \textbf{B}.
 %TODO: HACER EJEMPLO de calculo de frecuencias a traves de la frecuencia de nuestro corpus
-%TODO: chequar ecuación de ley de zipf
 
 \begin{figure}[!ht]
 \centering
@@ -351,7 +357,7 @@ sabiendo la posición de una palabra \textit{w} en el listado ordenado por frecu
 % se busco el dataset de localidades para filtrar las palabras que son lugares
 
 \section{Distribución de la entropía}
-Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios. 
+Teniendo el listado de palabras hicimos un cálculo de entropía tomando en cada provincia la cantidad de ocurrencias de cada palabra. En la Figura \ref{fig:entropiaPalabras} podemos observar la distribución del valor de la entropía sobre todas las cantidades de ocurrencias de las palabras con más de 40 apariciones y dichas por más de 5 usuarios. 
 
 Podemos ver que la mayor parte de las palabras tienen un valor de entropía entre 2.5 y 3. Esto quiere decir que hay un gran conjunto de palabras que tiene una cantidad de ocurrencias relativamente uniforme a lo largo de todas las provincias. Sin embargo, hay otro conjunto de palabras que tienen una entropía menor a 2, la cual podemos considerar como baja. Estas últimas palabras serán las que tienen mayor interés debido a que tienen una variación marcada en cuanto a su utilización en las distintas regiones. El máximo valor alcanzado de la entropía es de $3.1350$ con la palabra \textit{el}. Como aclaración la entropía calculada se realizó con logaritmos naturales, por lo tanto el máximo valor posible es de  $ln(23) = 3.1355$ donde habría una distribución uniforme en la cantidad de ocurrencias sobre las 23 provincias argentinas.
 
@@ -365,8 +371,6 @@ Tener en cuenta únicamente a la entropía de las palabras nos puede generar la 
 \label{fig:entropiaPalabras} 
 \end{figure}
 
-
-
 \section{Distribución del valor de la información}
 \label{sec:ValorDeLaInformacion}
 En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de la información, indicado por el color: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no siempre es el caso debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
@@ -378,7 +382,7 @@ En el gráfico \ref{fig:infoValue} se muestra una clara relación entre la canti
 \label{fig:infoValue} 
 \end{figure}
 
-En la figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
+En la Figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
 
 
 \begin{figure}
@@ -394,9 +398,9 @@ En la figura \ref{fig:ivalue} se puede ver el valor de la información según la
 Además de la detección de las palabras contrastivas en su uso, nos interesa saber en que regiones se utilizan más. Para esto ordenamos, por cada palabra, las provincias de acuerdo a la cantidad de menciones, formando una lista de provincias: $ps = p_1,p_2,...,p_{23}$. Luego elegimos al conjunto de provincias que superen un cierto porcentaje de todas las ocurrencias. Para identificar cuál debiera ser ese porcentaje hicimos lo siguiente:
 
 Por cada palabra, calculamos el porcentaje de ocurrencias sobre los conjuntos de $n$ provincias, variando $n$ de $1$ a $23$, a partir de las provincias ordenadas $ps$. Es decir, por cada región formada por una determinada cantidad de provincias calculamos el mayor porcentaje posible de ocurrencias de una palabra dada.
-En la figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de nuestra métrica.
+En la Figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de nuestra métrica.
 
-En el gráfico \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
+En el gráfico de la Figura \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias es menor a medida que se aumenta la cantidad de provincias. 
 
 
 \begin{figure}\centering
