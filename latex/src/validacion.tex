@@ -1,7 +1,7 @@
 \section{Palabras candidatas} % (fold)
 \label{palabras_candidatas}
 Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
-cinco mil (5000) palabras con mayor valor de nuestra métrica. El número 5000 surgió de ver la distribución de los valores de la información graficado en la figura \ref{fig:ivalue}, donde hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se observa que empieza a estabilizarse con valores muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para evaluar manualmente las palabras del listado y, entre estas, seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
+cinco mil (5000) palabras con mayor valor de nuestra métrica. El número 5000 surgió de ver la distribución de los valores de la información graficado en la Figura \ref{fig:ivalue}, donde hay una caída pronunciada de la métrica y a partir de la palabra cuya posición es 4000 se observa que empieza a estabilizarse con valores muy cercanos a 0. Es por esto que nos pareció razonable dar un margen de 5000 palabras para evaluar manualmente las palabras del listado y, entre estas, seleccionar las palabras con contrastes significativos que tienen interés a nivel lingüístico.
 
 Como era de esperar los topónimos, como los nombres de ciudades y provincias, son palabras que ocurren mayormente en sus respectivas regiones. Esto causa que haya una gran variación en 
 la cantidad de ocurrencias sobre las distintas provincias, lo que genera un valor alto en la métrica de valor de la información. Para facilitar la detección de palabras contrastivas con 
@@ -13,7 +13,7 @@ mayor interés lingüístico buscamos un conjunto de datos con los nombres de la
 \section{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor a 7 y los ordenamos según su frecuencia. En la tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de las primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información. Más precisamente se muestran las 30 regiones con mayor cantidad de palabras y cuya cantidad de provincias sea mayor a uno. Analizando esta tabla pudimos notar que la mayoría de las regiones están compuestas por provincias contiguas, es decir que para cada provincia dentro de una región hay otra provincia limítrofe. Mostramos algunos de los conjuntos de palabras de cada región en la tabla \ref{tab:palabrasRegiones} (ver apéndice). 
+Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor a 7 y los ordenamos según su frecuencia. En la Tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de las primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información. Más precisamente se muestran las 30 regiones con mayor cantidad de palabras y cuya cantidad de provincias sea mayor a uno. Analizando esta tabla pudimos notar que la mayoría de las regiones están compuestas por provincias contiguas, es decir que para cada provincia dentro de una región hay otra provincia limítrofe. Mostramos algunos de los conjuntos de palabras de cada región en la Tabla \ref{tab:palabrasRegiones} (ver apéndice). 
 
 \begin{table}
 \centering
@@ -209,7 +209,7 @@ Ejemplos: culiado (adj. despect. o fórmula de tratamiento de confianza) y terer
 \label{sub:guaranismos}
 Cabe destacar la detección de términos en guaraní en la región  guaranítica\footnote{Teniendo a las regiones dialectales marcadas por Vidal de Battini\cite{vidal1964espanol}}.
 Un ejemplo de esto fueron las palabras \textit{angá}, \textit{angaú} y \textit{mitaí}.  Si bien estas palabras provienen del guaraní, son utilizadas en oraciones en español.
-Como se puede ver en la tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
+Como se puede ver en la Tabla \ref{tab:guaranismos} el contraste entre las frecuencia normalizadas \footnote{La frecuencia normalizada es una medida de estandarización que indica la cantidad de veces que aparece una determinada forma por cada millón de palabras.} de la región guaranítica y la del litoral da una noción de la importancia que tienen estos términos en norte argentino. 
 
 \end{itemize}
 
@@ -244,7 +244,7 @@ Decidimos usar el test hipergeométrico ya que queremos ver que la palabra sobre
 
 Luego, por cada palabra seleccionada como contrastiva le aplicamos el test estadístico con la siguiente hipótesis nula: la palabra tienen un uso homogéneo en las distintas regiones de la Argentina, es decir que la frecuencia de ocurrencias de cada palabra debería ser similar independientemente de la región.
 Por lo tanto, en caso de que la palabra sea contrastiva deberíamos obtener una baja probabilidad de haber obtenido diferencias entre las frecuencias de la palabra en una región con el resto del país. 
-Para aplicar el test hipergeométrico representamos los datos sobre la palabra en una tabla de 2x2 como la de la tabla \ref{tab:contingencia}.
+Para aplicar el test hipergeométrico representamos los datos sobre la palabra en una tabla de 2x2 como la de la Tabla \ref{tab:contingencia}.
 % que la cantidad de ocurrencias de la palabra en la región elegida es mayor a lo observado. 
 
 
@@ -274,7 +274,7 @@ Total & n & N -n & N \\ \hline
 
 % agregar gráficos de palabras comunes, con los parametros de la distribucion
 % hacer un grafico de la distribución estimada (y la observada) de la cantidad de ocurrencias de la palabra 
-En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre las 5000 palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Bonferroni con $\alpha = 0.5$.
+En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre las 5000 palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Una vez realizado este test obtuvimos los p-valores de la Figura \ref{fig:p-valores}. Debido a que realizamos múltiples test tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos utilizar la corrección de Bonferroni con $\alpha = 0.5$.
  %TODO: Hablar sobre test multiples y correcciones posibles, citar bonferroni
 
 
@@ -307,7 +307,7 @@ Basándonos en las propuestas de Lijffijt, decidimos utilizar el test de Welch. 
  t = \frac{x_1-x_2}{\sqrt{\frac{s_1^2}{\lvert S \rvert}+\frac{s_2^2}{\lvert T \rvert}}}  
 \end{equation}
 
-Las suposiciones del test consisten en que todos los textos son estadísticamente independientes y que la media de las frecuencias proviene de una distribución normal. En nuestro caso, agrupamos todos los tuits de cada usuario representando un texto. De esta manera, cada provincia tiene alrededor de 900 textos formados por distintos usuarios \footnote{La cantidad de usuarios recolectados por cada provincia se encuentra detallada en la tabla \ref{tab:cantidades}}. Luego, el test es aplicado a cada palabra con las frecuencias entre dos corpus: uno está formado por todos los textos de los usuarios que provienen de las provincias en donde se cubre el 80\% de las ocurrencias, el otro consiste en los textos creados por usuarios del resto de las provincias. Notar que asumir la independencia entre todos los textos de un usuario de una provincia, es una suposición más débil que la de asumir independencia en todos los textos generados en una provincia como se hacía en el modelo de bolsa de palabras. 
+Las suposiciones del test consisten en que todos los textos son estadísticamente independientes y que la media de las frecuencias proviene de una distribución normal. En nuestro caso, agrupamos todos los tuits de cada usuario representando un texto. De esta manera, cada provincia tiene alrededor de 900 textos formados por distintos usuarios \footnote{La cantidad de usuarios recolectados por cada provincia se encuentra detallada en la Tabla \ref{tab:cantidades}}. Luego, el test es aplicado a cada palabra con las frecuencias entre dos corpus: uno está formado por todos los textos de los usuarios que provienen de las provincias en donde se cubre el 80\% de las ocurrencias, el otro consiste en los textos creados por usuarios del resto de las provincias. Notar que asumir la independencia entre todos los textos de un usuario de una provincia, es una suposición más débil que la de asumir independencia en todos los textos generados en una provincia como se hacía en el modelo de bolsa de palabras. 
 
 
 % Realizando el test de Welch no queda claro si la distribución de los p-valores es la esperada. Ante esta posibilidad conjeturamos con que quizás la comparación entre en la hipótesis que formulamos en el análisis estadístico y la contrastividad dada por la métrica no es la más adecuada. Igualmente, no se replicó de manera idéntica el trabajo de Lifjjift et.al ya que nosotros cambiamos de corpus por cada palabra. La causa de esto es la que definimos una región compuesta de provincias en función de las frecuencias de la palabra en las distintas provincias argentinas. El análisis de significancia a partir de test estadísticos sobre fenómenos lingüísticos de corpus no es algo que este resuelto en la actualidad. Dejamos como trabajo futuro el cálculo de un  análisis estadístico comparable a nuestra métrica ya que está por fuera del alcance de esta tesis.
@@ -315,18 +315,18 @@ Las suposiciones del test consisten en que todos los textos son estadísticament
 Puede observarse la distribución de los p-valores para distintos grupos de palabras en el gráfico \ref{fig:pvalores_sinBonferroni}. En éste, se pone de manifiesto que la distribución de estos no es uniforme, sino que tienden a ser p-valores bajos, y no queda del todo claro cómo se comparan estos resultados con los obtenidos por Lijffijt et al. Cabe destacar que el análisis de uniformidad realizado en dicho trabajo es distinto en varios aspectos: por empezar, nosotros definimos un ``corpus'' para cada una de las palabras debido a las regiones de uso. Por otro lado, las particularidades de los textos de Twitter podría estar generando un artefacto en el calculo de los p-valores.
 
 Sin embargo, a partir de esta validación estadística obtuvimos algunos resultados que dan un indicio de las virtudes de la métrica desarrollada, los cuales exponemos a continuación. Uno de ellos es la comparación de las tasas de rechazo de la hipótesis nula sobre las tres métricas desarrolladas, $I_u$, $I_w$ y $I$ mencionadas en \ref{eq:iu}, \ref{eq:iw} y \ref{eq:ivalor} respectivamente.
-Calculamos la taza de rechazo para las palabras en distintos intervalos del listado ordenado según las tres métricas elegidas: la métrica que tiene en cuenta la entropía de palabras, la valora la entropía de personas, y la que contiene a los dos factores. En la figura \ref{fig:rechazo_metricas} se muestran los resultados, donde la tasa de rechazo se calcula después de haber aplicado la corrección de Bonferroni para reducir la probabilidad de falsos positivos. La métrica elegida, la cual tiene a ambos factores en consideración tiene una mejor taza de rechazo de la hipótesis nula en las palabras consideradas contrastivas y una menor taza de rechazo para el resto. 
+Calculamos la taza de rechazo para las palabras en distintos intervalos del listado ordenado según las tres métricas elegidas: la métrica que tiene en cuenta la entropía de palabras, la valora la entropía de personas, y la que contiene a los dos factores. En la Figura \ref{fig:rechazo_metricas} se muestran los resultados, donde la tasa de rechazo se calcula después de haber aplicado la corrección de Bonferroni para reducir la probabilidad de falsos positivos. La métrica elegida, la cual tiene a ambos factores en consideración tiene una mejor taza de rechazo de la hipótesis nula en las palabras consideradas contrastivas y una menor taza de rechazo para el resto. 
 Es importante notar que el test de Welch que realizamos tiene como muestras las distintas frecuencias de todos los usuarios en cada región. Por lo tanto es razonable obtener un resultado como este, en el cual las métricas que consideran la dispersión de las frecuencias sobre todos los usuarios para distinguir el nivel de contrastividad de la palabra.
 
 \begin{figure}[!ht]\centering
   
     \includegraphics[width=0.95\linewidth]{./images/rechazo_metricas.pdf}
-    \caption{Resume la tasa de rechazo de la hipótesis nula en los distintos conjuntos de palabras, los cuales varían según el índice de estas en el listado ordenado según la métrica elegida.} 
+    \caption{La tasa de rechazo de la hipótesis nula en los distintos conjuntos de palabras, los cuales varían según el índice de estas en el listado ordenado según la métrica elegida.} 
     \label{fig:rechazo_metricas} 
 
 \end{figure}
 
-También es importante destacar que a medida que uno se aleja de las palabras más contrastivas de acuerdo a nuestra métrica, la tasa de rechaza es menor. Esto refleja el buen comportamiento de la métrica. Este resultado se puede observar también en la figura \ref{fig:pvalores_sinBonferroni} donde se detalla la distribución de los p-valores en el conjunto de las primeras 5000 palabras y el resto de los términos del listado.
+También es importante destacar que a medida que uno se aleja de las palabras más contrastivas de acuerdo a nuestra métrica, la tasa de rechaza es menor. Esto refleja el buen comportamiento de la métrica. Este resultado se puede observar también en la Figura \ref{fig:pvalores_sinBonferroni} donde se detalla la distribución de los p-valores en el conjunto de las primeras 5000 palabras y el resto de los términos del listado.
 
 \begin{figure}[!ht]\centering
   

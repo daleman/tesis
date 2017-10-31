@@ -9,7 +9,7 @@ Este listado fue ordenado por una métrica que capte en un único valor el nivel
 se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por los investigadores de la Academia Argentina de Letras(AAL).
 
 El primer acercamiento para ver el contraste de las palabras lo realizamos comparando las frecuencias de las palabras 
-en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra $w$, la frecuencia de ocurrencias sobre cada una de las dos provincias $p_1$ y $p_2$. A la mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la \textit{frecuencia máxima} y la \textit{frecuencia mínima} tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
+en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra $\omega$, la frecuencia de ocurrencias sobre cada una de las dos provincias $p_1$ y $p_2$. A la mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la \textit{frecuencia máxima} y la \textit{frecuencia mínima} tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se haya 
 recolectado tuits con esa palabra, se toma como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero. Esta métrica se resume en la ecuación \ref{eq:maxDif}.
 
 
@@ -42,10 +42,10 @@ En consecuencia las palabras se encontraban repetidas en los distintos listados 
 Debido a esto decidimos realizar un nuevo enfoque para encontrar las palabras con alta contrastividad en las distintas regiones, de manera que una métrica pueda reflejar el nivel de contrastividad de la palabra en un único valor. 
 
 En primer lugar intentamos modificar la métrica \textit{maxDif} de la siguiente manera. 
-Sea $f_{max}^\prime(w)$ la frecuencia máxima de $w$ entre las frecuencias de todas las provincias y sea $f_{min}^\prime(w)$ la frecuencia mínima distinta de $0$ sobre todas las provincias, luego la métrica generalizada \textit{$maxDif_g$(w)} se puede definir como en la ecuación \ref{eq:maxDifg}.
+Sea $f_{max}^\prime(\omega)$ la frecuencia máxima de $\omega$ entre las frecuencias de todas las provincias y sea $f_{min}^\prime(\omega)$ la frecuencia mínima distinta de $0$ sobre todas las provincias, luego la métrica generalizada \textit{$maxDif_g(\omega)$} se puede definir como en la ecuación \ref{eq:maxDifg}.
 
 \begin{equation}
- maxDif_g(w) = \frac{f_{max}^\prime(w)}{f_{min}^\prime(w)}
+ maxDif_g(\omega) = \frac{f_{max}^\prime(\omega)}{f_{min}^\prime(\omega)}
  \label{eq:maxDifg}  
 \end{equation} 
 
@@ -72,8 +72,8 @@ Ellos, a diferencia de Shannon, estudiaron una relación entre una medida de la 
 A continuación detallamos el procedimiento para calcular lo que los autores llamaron
 el \textit{valor de la información}:
 
-Dado un texto dividido en $P$ partes iguales llamadas \textit{ventanas}, se calcula la entropía  $H(w)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
-Sea $(X_1,\dots,X_{23})$ un vector aleatorio con $X_i$ la cantidad de ocurrencias de la palabra $w$ en la provincia $i$ en un corpus con una determinada distribución de frecuencias para cada palabra y sea $X^\prime = H(X_1,\dots,X_{23})$. Luego se define $\widehat{H(w)} = \mathbb{E}(X^\prime)$, es decir la esperanza de $X$. Por lo tanto, $\widehat{H(w)}$ es el resultado de calcular la media de $H(w)$ entre todas las posibles permutaciones del texto.
+Dado un texto dividido en $P$ partes iguales llamadas \textit{ventanas}, se calcula la entropía  $H(\omega)$ sobre el vector de cantidad de ocurrencias en cada una de las $P$ ventanas.
+Sea $(X_1,\dots,X_{23})$ un vector aleatorio con $X_i$ la cantidad de ocurrencias de la palabra $\omega$ en la provincia $i$ en un corpus con una determinada distribución de frecuencias para cada palabra y sea $X^\prime = H(X_1,\dots,X_{23})$. Luego se define $\widehat{H(\omega)} = \mathbb{E}(X^\prime)$, es decir la esperanza de $X$. Por lo tanto, $\widehat{H(\omega)}$ es el resultado de calcular la media de $H(\omega)$ entre todas las posibles permutaciones del texto.
 %variable aleatoria $X$ la entropía de un texto aleatorio con una distribución de frecuencias por cada provincia determinada.
 
 %$ Es decir, se distribuyen uniformemente las palabras en $P$ partes y se calcula la entropía como se hizo con el texto original.
@@ -86,15 +86,15 @@ en las distintas partes.
 Zanette y Montemurro definieron el valor de la información de un texto con la siguiente ecuación:
 
 \begin{equation}
-  \Delta I(s) = \sum_{w = 1}^{K} p(w) (\widehat{H(w)} - H(w))
+  \Delta I(s) = \sum_{w = 1}^{K} p(\omega) (\widehat{H(\omega)} - H(\omega))
 \end{equation}
 
-considerando un texto de $N$ palabras, con un vocabulario de $K$ palabras distintas, siendo $s = N/P$ y  $p(w)$ la frecuencia total de la palabra en el texto.
+considerando un texto de $N$ palabras, con un vocabulario de $K$ palabras distintas, siendo $s = N/P$ y  $p(\omega)$ la frecuencia total de la palabra en el texto.
 
 Este valor lo definieron con el objetivo de maximizar el tamaño óptimo de las $P$ ventanas y así cuantificar la información, sobre partes específicas del texto, es contenida en la distribución de las palabras con respecto al texto aleatorio.
 Finalmente, definen al valor de la información de una palabra como
  \begin{equation}
-  \Delta I_w(w) = p(w) \,  (\widehat{H(w)} - H(w))  =  p(w) \, \Delta{H(w)}
+  \Delta I_w(\omega) = p(\omega) \,  (\widehat{H(\omega)} - H(\omega))  =  p(w) \, \Delta{H(\omega)}
  \end{equation}
  
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
@@ -142,74 +142,117 @@ comodoro & 25902.79                         \\
 \label{tab:zanette}
 \end{table}
 
-Es por esto que, entre otras cosas, usamos al logaritmo sobre las cantidades de ocurrencias para generar una mejor dispersión de los datos. Así agrupamos a las palabras con un valor de $\Delta H(w)$ parecido y le restamos relevancia a las palabras sumamente frecuentes. Otra dificultad que surge de la métrica propuesta por Zanette y Montemurro es la imposibilidad de realizar la media de todas las posibles permutaciones del texto por la limitación computacional ya que 
-tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la entropía máxima de una palabra.
+Es por esto que, entre otras cosas, usamos al logaritmo sobre las cantidades de ocurrencias para generar una mejor dispersión de los datos. Así agrupamos a las palabras con un valor de $\Delta H(\omega)$ parecido y le restamos relevancia a las palabras sumamente frecuentes. Otra dificultad que surge de la métrica propuesta por Zanette y Montemurro es la imposibilidad de realizar la media de todas las posibles permutaciones del texto por la limitación computacional ya que 
+tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la entropía máxima de una palabra.\\
 % Podemos pensar para cada palabra del corpus, una variable aleatoria que mida el total de la cantidad de ocurrencias en  las palabras del texto como una variable aleatoria $W$, donde cada palabra $w$ tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 % Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
 % utilizan la palabra $p$ en cada provincia.
 
 % Podemos pensar para cada palabra $w$ que hay una variable aleatoria que mide la cantidad de apariciones de $w$ en toda la Argentina. Del mismo modo, podemos definir una variable aleatoria que cuenta la cantidad de personas que utilizan la palabra $w$ en todo el país.
 
-Luego, sea $cant_w(p)$ igual al logaritmo sobre la cantidad de ocurrencias de esa palabra en toda la Argentina, es decir $cant_w(p) = \log_2(cantidadOcurrencias(p))$ y sean las constantes $MIN_w$ y $MAX_w$ definidas de la siguiente manera:
+Sea $\# \omega$ la cantidad de ocurrencias de la palabra $\omega$ en toda la Argentina y $W$ todas las palabras posibles en todo el país, definimos\\
+% defino $m_w = \min \limits_{w \in W} \# w$ y del mismo modo defino $M_w = \max \limits_{w \in W} \# w$. Luego, aplico la normalización lineal de $\log(\# \omega)$,
 
+
+\noindent\begin{minipage}{.5\linewidth}
 \begin{equation}
-MIN_w = \min\limits_{p \in Palabras} cant_w(w)
+  m_w = \min \limits_{w \in W} \# w
+\end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+\begin{equation}
+  M_w = \max \limits_{w \in W} \# w
+\end{equation}
+\end{minipage}\\
+
+Luego, realizamos una normalización lineal de $\log(\# \omega)$ 
+\begin{equation}
+  norm_w(\omega) = \frac{\log(\# \omega) - m_w}{M_w - m_w}
 \end{equation}
 
+
+
+% Luego, sea $cant_w(w)$ igual al logaritmo sobre la cantidad de ocurrencias de la palabra $w$ en toda la Argentina, es decir $cant_w(w) = \log_2(cantidadOcurrencias(w))$ y sean las constantes $MIN_w$ y $MAX_w$ definidas de la siguiente manera:
+
+% \begin{equation}
+% MIN_w = \min\limits_{p \in Palabras} cant_w(w)
+% \end{equation}
+
+% \begin{equation}
+%   MAX_w = \max\limits_{p \in Palabras} cant_w(w)
+% \end{equation}
+
+% Realizamos una normalización lineal de la función $cant_w$, 
+
+% \begin{equation}
+% norm_{w}(p) = \frac{cant_w(p)- MIN_w }{MAX_w - MIN_w}
+% \label{eq:norm1}
+% \end{equation}
+
+Así $norm_w$ tiene su imagen en el rango $[0,1]$, tomando el valor $1$ sobre la palabra que tiene la cantidad de ocurrencias máxima y el valor $0$ cuando se aplica a la palabra con menor cantidad de ocurrencias. Vale la pena aclarar que tomamos $40$ como umbral mínimo de la cantidad de ocurrencias de las palabras para ser estudiadas, por lo tanto $m_w = 40 $.
+A partir de la función $norm_w$ definimos el \textit{valor de la información de las palabras} $I_w$ como:
+
 \begin{equation}
-  MAX_w = \max\limits_{p \in Palabras} cant_w(w)
-\end{equation}
-
-Realizamos una normalización lineal de la función $cant_w$, 
-
-\begin{equation}
-norm_{w}(p) = \frac{cant_w(p)- MIN_w }{MAX_w - MIN_w}
-\label{eq:norm1}
-\end{equation}
-
-Así $norm_w$ tiene su imagen en el rango $[0,1]$, tomando el valor $1$ sobre la palabra que tiene la cantidad de ocurrencias máxima y el valor $0$ cuando se aplica a la palabra con menor cantidad de ocurrencias. Vale la pena aclarar que tomamos $40$ como umbral mínimo de cantidad de ocurrencias de las palabras para ser estudiadas.
-A partir de la función $norm_w$ definimos el valor de la información de las palabras $I_w$ como:
-
-\begin{equation}
-I_w(w) = norm_{w}(w) \cdot (\widehat{H}_{w}(w) - H_{w}(w)) \\
+I_w(\omega) = norm_{w}(\omega) \cdot (\widehat{H}_{w}(\omega) - H_{w}(\omega)) \\
 \label{eq:iw}
 \end{equation}
 
-siendo $H_w(w)$ la función de entropía calculada sobre las cantidades de ocurrencias de la palabra $w$ sobre las 23 provincias argentinas. De forma similar $\widehat{H}$ es la función de entropía sobre las cantidades de ocurrencias simuladas en todas las provincias a partir de una distribución multinomial. Elegimos esta distribución ya que con esta se distribuye la suma de los valores de la variable aleatoria, en nuestro caso la cantidad de ocurrencias de la palabra $w$, de forma uniforme.%TODO: explicar más en detalle
+siendo $H_w(\omega)$ la función de entropía calculada sobre las cantidades de ocurrencias de la palabra $\omega$ sobre las 23 provincias argentinas. De forma similar $\widehat{H}(w)$ es la función de entropía sobre las cantidades de ocurrencias simuladas en todas las provincias a partir de una distribución multinomial. Elegimos esta distribución ya que con esta se distribuye la suma de los valores de la variable aleatoria, en nuestro caso la cantidad de ocurrencias de la palabra $\omega$, de forma uniforme.%TODO: explicar más en detalle
 
 \subsection{Robusteciendo la métrica desarrollada}
 
 Ahora bien, una determinada provincia o región puede tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
-Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que utilizan la palabra $w$. Agregándole el término $norm_u(w)$, que es la constante normalizadora de la cantidad de usuarios descripta en la ecuación \ref{eq:norm2} obtenemos el valor de la información de las personas $I_u$,
+Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que mencionaron la palabra $\omega$, que definimos como $\#^p \omega$. Así como multiplicamos la diferencia de entropías sobre la cantidad de ocurrencias, también desarrollamos la constante normalizadora de sobre la cantidad de usuarios que mencionan la palabra $\omega$. 
+Para eso, sea %$u_w = \min \limits_{w \in W} \#^u w$  y $U_w = \max \limits_{w \in W} \#^u w$
+
+\noindent\begin{minipage}{.5\linewidth}
+\begin{equation}
+  u_w = \min \limits_{w \in W} \#^u w
+\end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+\begin{equation}
+  U_w = \max \limits_{w \in W} \#^u w
+\end{equation}
+\end{minipage}\\
+
+Luego, definimos
+\begin{equation}
+norm_u(\omega) = \frac{\log(\#^u w) - u_w}{U_w - u_w}  
+\label{eq:norm2}
+\end{equation}
+
+Con esta constante normalizadora definimos el \textit{valor de la información de las personas} $I_u$,
 
 \begin{equation}
-I_u(w) = norm_{u}(w) \cdot (\widehat{H}_{u}(w) - H_{u}(w))
+I_u(\omega) = norm_{u}(\omega) \cdot (\widehat{H}_{u}(\omega) - H_{u}(\omega))
 \label{eq:iu}
 \end{equation}
 
-Donde,
-\begin{equation}
-norm_{u}(w) = \frac{cant_u(w)- MIN_u }{MAX_u - MIN_u}
-\label{eq:norm2}
-\end{equation}
-\begin{equation}
- MIN_u = \min\limits_{p \in Palabras} cant_u(w)
-\end{equation}
-\begin{equation}
-  MAX_u = \max\limits_{p \in Palabras} cant_u(w)
-\end{equation}
+% Donde,
+% \begin{equation}
+% norm_{u}(w) = \frac{cant_u(w)- MIN_u }{MAX_u - MIN_u}
+% \label{eq:norm2}
+% \end{equation}
+% \begin{equation}
+%  MIN_u = \min\limits_{p \in Palabras} cant_u(w)
+% \end{equation}
+% \begin{equation}
+%   MAX_u = \max\limits_{p \in Palabras} cant_u(w)
+% \end{equation}
 
-y $cant_u(w)$ es el logaritmo sobre la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_u(w)= \log_2(cantidadUsuarios(w)))$.
+% y $cant_u(w)$ es el logaritmo sobre la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_u(w)= \log_2(cantidadUsuarios(w)))$.
 
 Debido a que queremos tener en cuenta tanto a la variación de la cantidad de ocurrencias de la palabra como a la variación de la cantidad de usuarios, elegimos como métrica la multiplicación de ambas métricas definidas, es decir  
 
 \begin{equation}
 %I(w) =  norm_{p}(w) * norm_{u}(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
-I(w) =  I_w(w) \cdot I_u(w)\\
+I(\omega) =  I_w(\omega) \cdot I_u(\omega)\\
 \label{eq:ivalor}
 \end{equation}
 
 Es importante aclarar que tanto $norm_{w}$ como $norm_{u}$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver comparando los histogramas de la Figura \ref{fig:cantNormFig} con los de la Figura \ref{fig:cantPalabrasSinNorm}.
+
 
 
 %TODO: ejemplificar la variacion de la entropia.  La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
