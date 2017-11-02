@@ -24,13 +24,13 @@ f_{max}(\omega) = \max (frec(\omega,p_1),frec(\omega,p_2))
 
 \begin{equation}
  f_{min}(\omega) = \left\{ \begin{array}{lll}
-             \min(frec(\omega,p_1),frec(\omega,p_2)), & \text{si } frec(\omega,p_1) * frec(\omega,p_2) > 0  & \\
+             \min \left(frec\left(\omega,p_1\right),frec\left(\omega,p_2\right)\right), & \text{si } frec(\omega,p_1) * frec(\omega,p_2) > 0  & \\
              \\
-             \min\limits_{\omega \in palabras(P_{min})} (frec(\omega,P_{min}) , &  \text{si no.} &  \\
+             \min\limits_{\omega \in WP_{min}} frec\left(\omega,P_{min}\right) , &  \text{si no.} &  \\
              \end{array}
    \right.
 \end{equation}
-   donde $P_{min}$ es la provincia que tiene la menor frecuencia de ambas.
+   donde $P_{min}$ es la provincia que tiene la menor frecuencia de ambas y $WP_{min}$ son las palabras mencionadas en esa provincia.
 
 
 
@@ -87,7 +87,7 @@ Zanette y Montemurro definieron al \textit{valor de la información de una palab
  \begin{equation}
   \Delta I_w(\omega) = p(\omega) \,  (\widehat{H}(\omega) - H(\omega))  =  p(w) \, \Delta{H(\omega)}
  \end{equation}
- 
+siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 
 Zanette y Montemurro analizaron el valor de la información de las palabras sobre tres textos, \textit{Análisis de la mente} de Bertrand Russell, 
@@ -107,11 +107,11 @@ Zanette y Montemurro utilizaron el \textit{valor de la información de una palab
   \label{eq:delta_s}
 \end{equation}
 
-Zanette y Montemurro definieron esta medida para \textcquote[p .5]{montemurro2010towards}{cuantificar la relación entre las heterogeneidades de la distribución de palabras debido a su función lingüística y la partición de texto}.
+Zanette y Montemurro definieron esta medida para \textcquote[p .5]{montemurro2010towards}{cuantificar la relación entre las heterogeneidades de la distribución de palabras debido a su función lingüística y la partición de texto}. De esta manera, para cada texto buscaban cual era el valor de $s$ tal que la información $\Delta I(s)$ sea máxima.
 % Este valor lo definieron con el objetivo de maximizar el tamaño óptimo de las $P$ ventanas y así cuantificar la información, sobre partes específicas del texto, es contenida en la distribución de las palabras con respecto al texto aleatorio.
 
 
-Si bien el valor de la información de las palabras definidas por Zanette y Montemurro es muy bueno a la hora de calcular el tamaño óptimo de ventana que maximice el valor de la información de un texto, también refleja un valor que no es conveniente al hacer la comparación entre dos palabras cuando una de ellas es demasiado frecuente (como la palabra \textit{que}). Esto sucede ya que las palabras, al tener valores de frecuencias muy distintos (ver más detalle de esto en la sección \ref{sub: frecuenciaPalabras}), generan un valor de $\Delta I_w$ muy alto en las palabras más frecuentes en comparación con el resto. Este fenómeno se pone en evidencia en la Tabla \ref{tab:zanette} donde se observa que palabras como \textit{que} y \textit{me} tienen los valores máximos de la métrica $\Delta I_w$.
+Si bien el \textit{valor de la información de una palabra} definida por Zanette y Montemurro es muy bueno a la hora de calcular el tamaño óptimo de ventana que maximice el valor de la información de un texto $\Delta I(s)$, también refleja un valor que no es conveniente al hacer la comparación entre dos palabras cuando una de ellas es demasiado frecuente (como la palabra \textit{que}). Esto sucede ya que las palabras, al tener valores de frecuencias muy distintos (ver más detalle de esto en la sección \ref{sub: frecuenciaPalabras}), generan un valor de $\Delta I_w$ muy alto en las palabras más frecuentes en comparación con el resto. Este fenómeno se pone en evidencia en la Tabla \ref{tab:zanette} donde se observa que palabras como \textit{que} y \textit{me} tienen los valores máximos de la métrica $\Delta I_w$.
 
 
 
@@ -144,14 +144,14 @@ comodoro & 25902.79                         \\
 \end{table}
 
 Es por esto que, entre otras cosas, usamos al logaritmo sobre las cantidades de ocurrencias para generar una mejor dispersión de los datos. Así agrupamos a las palabras con un valor de $\Delta H(\omega)$ parecido y le restamos relevancia a las palabras sumamente frecuentes. Otra dificultad que surge de la métrica propuesta por Zanette y Montemurro es la imposibilidad de realizar la media de todas las posibles permutaciones del texto por la limitación computacional ya que 
-tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la entropía máxima de una palabra.\\
+tenemos una cantidad muy grande de datos. Es por eso que diseñamos una métrica similar basada en una aproximación de la esperanza de la entropía de una palabra.
 % Podemos pensar para cada palabra del corpus, una variable aleatoria que mida el total de la cantidad de ocurrencias en  las palabras del texto como una variable aleatoria $W$, donde cada palabra $w$ tiene una probabilidad de aparición en una provincia dada de la Argentina. Esta probabilidad la aproximamos con la frecuencia en la que aparece, es decir la cantidad de ocurrencias de la palabra dividida por la cantidad de palabras totales.
 % Por otro lado sea $P$ una variable aleatoria que cuenta la cantidad de personas que 
 % utilizan la palabra $p$ en cada provincia.
 
 % Podemos pensar para cada palabra $w$ que hay una variable aleatoria que mide la cantidad de apariciones de $w$ en toda la Argentina. Del mismo modo, podemos definir una variable aleatoria que cuenta la cantidad de personas que utilizan la palabra $w$ en todo el país.
 
-Sea $\# \omega$ la cantidad de ocurrencias de la palabra $\omega$ en toda la Argentina y $W$ todas las palabras posibles en todo el país, definimos\\
+Sea $\# \omega$ la cantidad de ocurrencias de la palabra $\omega$ en toda la Argentina y $W$ todas las palabras posibles en todo el país, definimos
 % defino $m_w = \min \limits_{w \in W} \# w$ y del mismo modo defino $M_w = \max \limits_{w \in W} \# w$. Luego, aplico la normalización lineal de $\log(\# \omega)$,
 
 
@@ -168,7 +168,7 @@ Sea $\# \omega$ la cantidad de ocurrencias de la palabra $\omega$ en toda la Arg
 
 Luego, realizamos una normalización lineal de $\log(\# \omega)$ 
 \begin{equation}
-  norm_w(\omega) = \frac{\log(\# \omega) - m_w}{M_w - m_w}
+  norm_w(\omega) = \frac{\log \left(\# \omega\right) - \log \left(m_w\right)}{\log \left(M_w\right) -\log \left(m_w\right)}
 \end{equation}
 
 
@@ -203,7 +203,7 @@ siendo $H_w(\omega)$ la función de entropía calculada sobre las cantidades de 
 \subsection{Robusteciendo la métrica desarrollada}
 
 Ahora bien, una determinada provincia o región puede tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
-Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que mencionaron la palabra $\omega$, que definimos como $\#^p \omega$. Así como multiplicamos la diferencia de entropías sobre la cantidad de ocurrencias, también desarrollamos la constante normalizadora de sobre la cantidad de usuarios que mencionan la palabra $\omega$. 
+Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que mencionaron la palabra $\omega$, que definimos como $\#^p \omega$. Así como multiplicamos la diferencia de entropías por la cantidad de ocurrencias, también desarrollamos la constante normalizadora $norm_p$de la cantidad de usuarios que mencionan la palabra $\omega$. 
 Para eso, sea %$u_w = \min \limits_{w \in W} \#^u w$  y $U_w = \max \limits_{w \in W} \#^u w$
 
 \noindent\begin{minipage}{.5\linewidth}
@@ -219,7 +219,7 @@ Para eso, sea %$u_w = \min \limits_{w \in W} \#^u w$  y $U_w = \max \limits_{w \
 
 Luego, definimos
 \begin{equation}
-norm_p(\omega) = \frac{\log(\#^u w) - u_w}{U_w - u_w}  
+norm_p(\omega) = \frac{\log\left(\#^u w\right) - \log \left(u_w\right)}{\log\left(U_w\right) - \log\left(u_w\right)}  
 \label{eq:norm2}
 \end{equation}
 
@@ -248,7 +248,7 @@ Debido a que queremos tener en cuenta tanto a la variación de la cantidad de oc
 
 \begin{equation}
 %I(w) =  norm_{p}(w) * norm_p(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
-I(\omega) =  I_w(\omega) \cdot I_p(\omega)\\
+I(\omega) =  I_w (\omega) \cdot I_p(\omega)\\
 \label{eq:ivalor}
 \end{equation}
 A esta métrica la denominaremos el \textit{valor de contrastividad}.
@@ -417,22 +417,22 @@ Tener en cuenta únicamente a la entropía de las palabras nos puede generar la 
 
 \section{Distribución del valor de contrastividad}
 \label{sec:ValorDeLaInformacion}
-En la Figura \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de contrastividad definido en la ecuación \ref{eq:ivalor} , indicado por el color: cuanto más oscuro más alto el valor. A su vez, se nota que el valor de la información suele ser mayor a medida que el valor de la entropía es menor. Esto no sucede siempre debido a que hay palabras que tiene una entropía de palabras baja, pero sin embargo la entropía de personas es alta logrando que el valor de la información sea bajo.
+En la Figura \ref{fig:infoValue} se muestra una clara relación entre la cantidad de ocurrencias que tiene una palabra y su valor de contrastividad definido en la ecuación \ref{eq:ivalor} , indicado por el color: cuanto más oscuro más alto el valor. A su vez, se nota que el \textit{valor de contrastividad} suele ser mayor a medida que el valor de la entropía es menor. Esto no sucede siempre debido a que hay palabras que tienen una entropía de palabras $H_w$ baja, pero sin embargo la entropía de personas $H_p$ es alta logrando que el valor de contrastividad sea bajo.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{./images/entropiaPersonasxNormCantPersonas.pdf}
-\caption{Gráfico de dispersión que muestra la posición en el listado ordenado según el valor de la información a partir de la escala cromática. Las posiciones más bajas aparecen más blancas. A su vez se muestra para cada palabra el valor de la entropía de las personas ($H_p$) y la cantidad normalizada de personas que utiliza dicho término($norm_p$). } 
+\caption{Gráfico de dispersión que muestra la posición en el listado ordenado según el valor de contrastividad a partir de la escala cromática. Las posiciones más bajas aparecen más blancas. A su vez se muestra para cada palabra el valor de la entropía de las personas ($H_p$) y la cantidad normalizada de personas que utiliza dicho término($norm_p$). } 
 \label{fig:infoValue} 
 \end{figure}
 
-En la Figura \ref{fig:ivalue} se puede ver el valor de la información según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
+En la Figura \ref{fig:ivalue} se puede ver el valor de contrastividad según la posición en la que se encuentra en el listado ordenado por la métrica. Notamos que el valor se estabiliza aproximadamente a partir de la palabra cuya posición es 4000 acercándose a 0.
 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{./images/train/conFiltro/valorInformacionCorte.pdf}
-\caption{Distribución del valor de la información según la posición de la palabra en el listado de palabras. El gráfico se realizó sobre el conjunto de palabras cuya cantidad de ocurrencias era mayor a 40 y la cantidad de usuarios que utilizaron cada término era mayor a 5. } 
+\caption{Distribución del valor de contrastividad según la posición de la palabra en el listado de palabras. El gráfico se realizó sobre el conjunto de palabras cuya cantidad de ocurrencias era mayor a 40 y la cantidad de usuarios que utilizaron cada término era mayor a 5. } 
 \label{fig:ivalue}
 \end{figure}
 
@@ -456,7 +456,7 @@ En el gráfico de la Figura \ref{fig:propAcum5000} se observa que la variación 
 
 \begin{figure}[ht]\centering
     \includegraphics[width=0.95\textwidth]{images/PropAcum5000SinCandidatas.pdf}
-    \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de la información.} 
+    \caption{Variación de la proporción de ocurrencias acumulada a partir de la muestra con las primeras 5000 palabras con mayor valor de contrastividad.} 
     \label{fig:propAcum5000} 
 \end{figure}
 
