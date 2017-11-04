@@ -3,13 +3,13 @@
 
 \section{Extracción de Datos}
 
-Para la recolección de tuits, primero se extrajo una cantidad de usuarios con información geográfica disponible.
+Para la recolección de tuits, primero se extrajeron una cantidad de usuarios con información geográfica disponible.
 Los usuarios se buscaron por provincia de modo tal que haya una cantidad aproximadamente equitativa de cada una.
 La búsqueda de los usuarios se hizo de la siguiente manera:
 
 Por cada provincia de la Argentina, se extrajo las coordenadas de cada uno de sus departamentos, de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la República Argentina. La lista de departamentos, partidos y comunas fue extraída de los datos publicados del Censo Argentino del año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
 
-De esta manera se recolectó aproximadamente 2000 usuarios por provincia, lo que resulta en 46.000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits, dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
+De esta manera se recolectaron aproximadamente 2000 usuarios por provincia, lo que resulta en 46.000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits, dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
 
 
 \subsection{Búsquedas geolocalizadas}
@@ -78,7 +78,7 @@ Como ya dijimos, se descartó la idea de filtrar las palabras que no estuvieran 
 
 \section{Caracterización de la muestra}
 
-Para tener una noción más completa de la muestra, se presenta la Tabla \ref{tab:cantidades}, que indica las cantidades de palabras y tuits por provincia. Puede notarse que la muestra está balanceada con respecto a la cantidad de usuarios, tuits por provincia y palabras. Los tuits realizados en la Ciudad Autónoma de Buenos Aires están incluídos en los de la provincia de Buenos Aires. Tomamos esta decisión ya que debido al constante movimiento entre las personas de la ciudad y la provincia, es difícil distinguir de forma fehaciente a los usuarios de ambos territorios.
+Para tener una noción más completa de la muestra, se presenta la Tabla \ref{tab:cantidades}, que indica las cantidades de palabras y tuits por provincia. Puede notarse que la muestra está balanceada con respecto a la cantidad de usuarios, tuits por provincia y palabras. Los tuits de la Ciudad Autónoma de Buenos Aires están incluidos en los de la provincia de Buenos Aires. Tomamos esta decisión ya que debido al constante movimiento entre las personas de la ciudad y la provincia, es difícil distinguir de forma fehaciente a los usuarios de ambos territorios.
 
 
 \begin{table}[ht]
@@ -120,7 +120,7 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 
 
 También analizamos la cantidad de palabras por tuit promediadas sobre cada usuario.
-Debido a que los tuits están limitados a 140 caracteres, era de esperar que no hubieran demasiadas palabras promedio por cada tuit. En la Figura \ref{fig:cantPalabrasUsuario} podemos observar que la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
+Debido a que los tuits están limitados a 140 caracteres, era de esperar que no hubiera demasiadas palabras promedio por cada tuit. En la Figura \ref{fig:cantPalabrasUsuario} podemos observar que la media para la cantidad de palabras promedio en un tuit está entre 7 y 8.
 \begin{figure}[!ht]\centering
   \begin{subfigure}[t]{0.49\textwidth}
     \includegraphics[width=\linewidth]{images2/cantPalabrasUsuario_sinFiltro.pdf}
