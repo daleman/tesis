@@ -329,7 +329,7 @@ rada      & 0.965216 \\ \bottomrule
 \label{tab:palabras_ivalue}
 \end{table}
 
-Si comparamos la posición de la palabra en un listado ordenado podemos ver que  las cantidades de ocurrencias parecieran seguir una distribución zipfiana. La ley de Zipf es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente \cite{montemurro2001beyond,zipf2016human}. En particular, sea $n$ la posición de la palabra en el listado ordenado y sea $f(n)$ la cantidad de ocurrencias de la n-ésima palabra, se puede hacer la siguiente aproximación:
+Si comparamos la posición de la palabra en un listado ordenado podemos ver que  las cantidades de ocurrencias parecieran seguir una distribución zipfiana. La ley de Zipf es una ley empírica formulada por George Zipf en el año 1932 en la cual se establece una relación entre la frecuencia de una palabra con su posición dentro del listado de palabras ordenadas por frecuencia decreciente \cite{montemurro2001beyond, zipf2016human}. En particular, sea $n$ la posición de la palabra en el listado ordenado y sea $f(n)$ la cantidad de ocurrencias de la n-ésima palabra, se puede hacer la siguiente aproximación:
 
 $$f(n) \approx \frac{A}{n^{\alpha}}$$
 donde $\alpha$ toma un valor levemente mayor a 1 y $A$ es una constante normalizadora.
@@ -426,9 +426,7 @@ En la Figura \ref{fig:ivalue} se puede ver el valor de contrastividad según la 
 
 \section{Proporción acumulada de ocurrencias} % (fold)
 \label{proporcionDeOcurrencias}
-Además de la detección de las palabras contrastivas en su uso, nos interesa saber en qué regiones se utilizan más. Para esto ordenamos, por cada palabra, las provincias de acuerdo a la cantidad de menciones, formando una lista de provincias: $ps = p_1,p_2,...,p_{23}$. Luego elegimos al conjunto de provincias que superen un cierto porcentaje de todas las ocurrencias. Para identificar cuál debiera ser ese porcentaje hicimos lo siguiente:
-
-Por cada palabra, calculamos el porcentaje de ocurrencias sobre los conjuntos de $n$ provincias, variando $n$ de $1$ a $23$, a partir de la lista $ps$ de provincias ordenadas. Es decir, por cada región formada por una determinada cantidad de provincias calculamos el mayor porcentaje posible de ocurrencias de una palabra dada.
+Además de la detección de las palabras contrastivas en su uso, nos interesa saber en qué regiones se utilizan más. Para esto ordenamos, por cada palabra, las provincias de acuerdo a la cantidad de menciones, formando una lista de provincias: $ps = p_1,p_2,...,p_{23}$. Luego elegimos al conjunto de provincias que superen un cierto porcentaje de todas las ocurrencias. Para identificar cuál debiera ser ese porcentaje hicimos lo siguiente: por cada palabra, calculamos el porcentaje de ocurrencias sobre los conjuntos de $n$ provincias, variando $n$ de $1$ a $23$, a partir de la lista $ps$ de provincias ordenadas. Es decir, por cada región formada por una determinada cantidad de provincias calculamos el mayor porcentaje posible de ocurrencias de una palabra dada.
 En la Figura \ref{fig:propAcum} mostramos la proporción acumulada de las palabras, tomando diferentes muestras de palabras. Es notable la diferencia de proporciones acumuladas según la muestra de palabras. Solamente con una provincia para cada palabra ya se puede cubrir, en promedio, el 76\% del total de ocurrencias sobre las mil palabras con mayor valor de nuestra métrica.
 
 En el gráfico de la Figura \ref{fig:propAcum5000} se observa que la variación del cubrimiento de ocurrencias disminuye a medida que se aumenta la cantidad de provincias. 
