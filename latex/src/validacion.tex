@@ -90,7 +90,13 @@ Las formas cuyo uso se ejemplifica son las que están en negrita y solo en ellas
 
     \blockquote[Neuquén]{Que \textbf{carnasas} poniendole rosas rojas a toda la ropa, para mi queda horrible sorry}
 
-\item Indigenismos
+    \blockquote[Chaco]{Teres, \textbf{pororós} y pelis con Carlita y Flor}
+
+  \blockquote[San Juan]{Ver un negro \textbf{chuño} con musculosa y gorro.. se ve que el tipo no quería pasar ni frío ni calor.}
+
+  \blockquote[Formosa]{Tenía la re expectativa para este sábado y al final \textbf{trancó} todo }
+
+\item \textbf{Indigenismos}
 
     \blockquote[Formosa]{Te regalo ser \textbf{mitaí} y ir a jurar la bandera con el guardapolvo caliente ese y la corbata que te ahorca todo (Del guaraní mitaí “pequeño”)}
 
@@ -109,14 +115,6 @@ Las formas cuyo uso se ejemplifica son las que están en negrita y solo en ellas
   \blockquote[Misiones]{\textbf{Tareferos} que reclamaban asistencia interzafra en Posadas estarían preparando una protesta para hoy en la Fiesta del Inmigrante en Oberá.}
 
   \blockquote[Jujuy]{Me encantan los bohemios anti sistema que usan vans. Es como que seas ecologista y uses un cuaderno hecho con media \textbf{yunga}.}
-
-\item \textbf{Otros coloquialismos frecuentes}
-
-  \blockquote[Chaco]{Teres, \textbf{pororós} y pelis con Carlita y Flor}
-
-  \blockquote[San Juan]{Ver un negro \textbf{chuño} con musculosa y gorro.. se ve que el tipo no quería pasar ni frío ni calor.}
-
-  \blockquote[Formosa]{Tenía la re expectativa para este sábado y al final \textbf{trancó} todo }
 
 \item \textbf{Leísmo}
 
@@ -156,7 +154,7 @@ Ejemplo: terminación azo/aza con base adjetiva.
 
   \blockquote[Córdoba]{Esta \textbf{locaza} esa mina para hacer eso}
 
-\item \textbf{Formas en la que se codifica ortográficamente el énfasis o la expresividad más propia de la oralidad}
+\item \textbf{Variantes ortográficas}
   
   Ejemplos: culiado (adj. despect. o fórmula de tratamiento de confianza) y tereré.
 
@@ -291,7 +289,7 @@ Kilgariff también hace un análisis sobre trabajos previos y comenta el caso en
 
 Para entender este fenómeno es necesario notar el modelo que se usó al representar los datos para el test hipergeométrico. Este modelo es conocido como bolsa de palabras o \textit{bag-of-words} y consiste en calcular las frecuencias de las palabras sobre todos los textos, sin tener en cuenta la distribución de las frecuencias en cada uno. Por lo tanto, se representa al corpus como un gran texto en el que no importa el orden de las palabras. Tanto Kilgariff \cite{kilgarriff2001comparing} como Paquot y Bestgen \cite{paquot2009distinctive} afirman que es posible representar los datos de manera diferente y hacer uso de otros tests suponiendo la independencia entre los textos y no entre las palabras. De esta manera se puede observar la distribución de las palabras dentro de un corpus. En un estudio más reciente, Lijffijt et al. \cite{doi:10.1093/llc/fqu064} analizan algunas de estas alternativas para hacer un test de hipótesis en los cuales no se supone el modelo de \textit{bag-of-words}. En ese trabajo se analizaron el test t de Welch \cite{welch1947generalization}, el test de los rangos con signo de Wilcoxon (Wilcoxon rank sum), el de Bootrstrap y el de tiempo entre llegadas (inter-arrival time). Lijffijt et al. explican que la diferencia entre estos tests con los que suponen el modelo de \textit{bag-of-words} (como el hipergeométrico, el ${\chi}^2$ y el log-likelihood test) reside en la representación de los datos, ergo la unidad de observación.
 
-Para los tests que suponen los modelos de bolsa de palabras, los datos se representan en una tabla de contingencia de 2x2 y el número de muestras equivale al número de palabras en el corpus, mientras que en los otros cuatro tests, los datos son representados en una lista de frecuencias o una lista de \textit{tiempos de llegada}. En estos casos, el número de muestras es mucho menor que la cantidad de palabras en el corpus. Se destaca el número de muestras de los modelos ya que este número generalmente determina nuestro nivel de seguridad en relación a los valores estimados. Es por esto que los resultados experimentales muestran que los tests de modelos de \textit{bag-of-words} tienen una confianza excesivamente alta en los valores estimados de la frecuencia media de las palabras, en el contexto de comparación estadística entre dos corpus. \cite{doi:10.1093/llc/fqu064}.
+Para los tests que suponen los modelos de bolsa de palabras, los datos se representan en una tabla de contingencia de 2x2 y el número de muestras equivale al número de palabras en el corpus, mientras que en los otros cuatro tests, los datos son representados en una lista de frecuencias o una lista de \textit{tiempos de llegada}. En estos casos, el número de muestras es mucho menor que la cantidad de palabras en el corpus. Se destaca el número de muestras de los modelos ya que este número generalmente determina nuestro nivel de seguridad en relación a los valores estimados. Es por esto que los resultados experimentales muestran que los tests de modelos de \textit{bag-of-words} tienen una confianza excesivamente alta en los valores estimados de la frecuencia media de las palabras, en el contexto de comparación estadística entre dos corpus \cite{doi:10.1093/llc/fqu064}.
 
 \subsection{Test t de Welch}
 Basándonos en las propuestas de Lijffijt, decidimos utilizar el test de Welch. Este nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales. Sean $S$ y $T$ dos corpus y sea $q$ la palabra sobre la cual se va a hacer el test, sea $x_1$ la media de la frecuencia de la palabra $q$ sobre los textos de $S$, y sea $s_1$ la desviación estándar. Análogamente, sea $x_2$ la media de la frecuencia de $q$ en los textos $T$ y $s_2$ la desviación estándar. El estadístico $t$ se calcula con la siguiente ecuación: 
@@ -309,8 +307,8 @@ Las suposiciones del test consisten en que todos los textos son estadísticament
 Puede observarse la distribución de los p-valores para distintos grupos de palabras en la Figura \ref{fig:pvalores_sinBonferroni}. En éste, se pone de manifiesto que la distribución de estos no es uniforme, sino que tienden a ser p-valores bajos, y no queda del todo claro cómo se comparan estos resultados con los obtenidos por Lijffijt et al. Cabe destacar que el análisis de uniformidad realizado en dicho trabajo es distinto en varios aspectos: por empezar, nosotros definimos un ``corpus'' para cada una de las palabras debido a las regiones de uso. Por otro lado, las particularidades de los textos de Twitter podrían estar generando un artefacto en el cálculo de los p-valores.
 
 Sin embargo, a partir de esta validación estadística obtuvimos algunos resultados que dan un indicio de las virtudes de la métrica desarrollada, los cuales exponemos a continuación. Uno de ellos es la comparación de las tasas de rechazo de la hipótesis nula sobre las tres métricas desarrolladas, $I_p$, $I_w$ y $I$ mencionadas en \ref{eq:iu}, \ref{eq:iw} y \ref{eq:ivalor} (páginas \pageref{eq:iw} y \pageref{eq:ivalor}) respectivamente.
-Calculamos la tasa de rechazo para las palabras en distintos intervalos del listado ordenado según las tres métricas elegidas: la métrica que tiene en cuenta la entropía de palabras, la que valora la entropía de personas, y la que contiene a los dos factores. En la Figura \ref{fig:rechazo_metricas} se muestran los resultados, donde la tasa de rechazo se calcula después de haber aplicado la corrección de Bonferroni para reducir la probabilidad de falsos positivos. La métrica elegida, que tiene a ambos factores en consideración tiene una mejor tasa de rechazo de la hipótesis nula en las palabras consideradas contrastivas y una menor tasa de rechazo para el resto. 
-Es importante notar que el test de Welch que realizamos tiene como muestras las distintas frecuencias de todos los usuarios en cada región. Por lo tanto, es razonable obtener un resultado como este, en el cual las métricas que consideran la dispersión de las frecuencias sobre todos los usuarios para distinguir el nivel de contrastividad de la palabra.
+Calculamos la tasa de rechazo para las palabras en distintos intervalos del listado ordenado según las tres métricas elegidas: la métrica que tiene en cuenta la entropía de palabras, la que valora la entropía de personas, y la que contiene a los dos factores. En la Figura \ref{fig:rechazo_metricas} se muestran los resultados, donde la tasa de rechazo se calcula después de haber aplicado la corrección de Bonferroni con $\alpha = 0.5$ para reducir la probabilidad de falsos positivos. La métrica elegida, que tiene a ambos factores en consideración tiene una mejor tasa de rechazo de la hipótesis nula en las palabras consideradas contrastivas y una menor tasa de rechazo para el resto. Es importante notar que el test de Welch que realizamos tiene como muestras las distintas frecuencias de todos los usuarios en cada región. Por lo tanto, es razonable obtener un resultado como este, en el cual las métricas que consideran la dispersión sobre los usuarios y las palabras tienen un mejor comportamiento sobre la que tiene en cuenta solamente a la dispersión de las palabras.
+%para distinguir el nivel de contrastividad de la palabra.
 
 También es importante destacar que a medida que uno se aleja de las palabras más contrastivas de acuerdo a nuestra métrica, la tasa de rechazo es menor. Esto refleja el buen comportamiento de la métrica. Este resultado se puede observar también en la Figura \ref{fig:pvalores_sinBonferroni} donde se detalla la distribución de los p-valores en el conjunto de las primeras 5000 palabras y el resto de los términos del listado.
 

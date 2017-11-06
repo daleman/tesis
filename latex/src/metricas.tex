@@ -6,7 +6,7 @@ distintas regiones. En este trabajo nos propusimos crear un listado con palabras
 importancia a nivel lingüístico. En este sentido, los nombres de personas, lugares u organizaciones no 
 fueron considerados de interés a pesar de tener contrastes en su uso.
 Este listado fue ordenado por una métrica que capte en un único valor el nivel contrastivo. De esta manera, 
-se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente en otros textos por los investigadores de la Academia Argentina de Letras (AAL).
+se seleccionó un subconjunto de palabras, de acuerdo a la métrica, el cual fue analizado manualmente por los investigadores de la Academia Argentina de Letras (AAL).
 
 El primer acercamiento para ver el contraste de las palabras surgió de comparar las frecuencias de las palabras 
 en cada par de provincias de la Argentina. Para esto calculamos, por cada palabra $\omega$, la frecuencia de ocurrencias sobre cada una de las dos provincias $p_1$ y $p_2$. A la mayor frecuencia de ambas, la llamamos frecuencia máxima y a la menor, la frecuencia mínima. Luego el cociente entre la \textit{frecuencia máxima} y la \textit{frecuencia mínima} tiene como resultado lo que llamamos \textit{maxDif}. En caso de que en una de las dos provincias no se hayan recolectado tuits con esa palabra, se toma como frecuencia mínima a la frecuencia mínima distinta de 0 de todas las palabras generadas en esa provincia. Así se evitó la división por cero. Esta métrica se resume en la ecuación \ref{eq:maxDif}, siendo $frec(\omega,p)$ igual a la frecuencia de la palabra $\omega$ en la provincia $p$.
@@ -89,7 +89,7 @@ Zanette y Montemurro definieron al \textit{valor de la información de una palab
 siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
 De esta manera se les da más importancia a las palabras que son más frecuentes y a las palabras que tienen una baja entropía, ya que en estas el término de la diferencia es más grande.
 
-Zanette y Montemurro analizaron el valor de la información de las palabras sobre tres textos, \textit{Análisis de la mente} de Bertrand Russell, 
+Los autores analizaron el valor de la información de las palabras sobre tres textos, \textit{Análisis de la mente} de Bertrand Russell, 
 \textit{Moby Dick} de Herman Melville y \textit{El origen de las especies} de Charles Darwin. 
 En los tres libros las palabras con mayor valor de la información están 
 altamente relacionadas con los temas principales. 
@@ -106,7 +106,7 @@ Zanette y Montemurro utilizaron el \textit{valor de la información de una palab
   \label{eq:delta_s}
 \end{equation}
 
-Zanette y Montemurro definieron esta medida para \textcquote[p .5]{montemurro2010towards}{cuantificar la relación entre las heterogeneidades de la distribución de palabras debido a su función lingüística y la partición de texto}. De esta manera, para cada texto buscaban cual era el valor de $s$ tal que la información $\Delta I(s)$ sea máxima.
+Zanette y Montemurro definieron esta medida para \textcquote[p. 136]{montemurro2010towards}{cuantificar la relación entre las heterogeneidades de la distribución de palabras debido a su función lingüística y la partición de texto}. De esta manera, para cada texto buscaban cual era el valor de $s$ tal que la información $\Delta I(s)$ sea máxima.
 % Este valor lo definieron con el objetivo de maximizar el tamaño óptimo de las $P$ ventanas y así cuantificar la información, sobre partes específicas del texto, es contenida en la distribución de las palabras con respecto al texto aleatorio.
 
 
@@ -323,7 +323,6 @@ rioja     & 1.002387 \\
 choele    & 0.999114 \\
 tolhuin   & 0.985641 \\
 rada      & 0.965216 \\ \bottomrule
-
 \end{tabular}
 \caption{Las 20 palabras más contrastivas de acuerdo a nuestra métrica $I(w)$.}
 \label{tab:palabras_ivalue}

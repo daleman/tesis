@@ -2,21 +2,30 @@
 \label{sub:entropiaShannon}
 
 Para ver la cantidad de información que nos aporta cada palabra se hará una introducción a la teoría de la información, específicamente
-los conceptos que introdujo Claude Shannon\cite{shannon2001mathematical}.
+los conceptos que introdujo Claude Shannon \cite{shannon2001mathematical,abramson1963information}.
 Para entender estos conceptos es útil tener una descripción matemática del mecanismo que genera la información. Para eso se define a 
-la \textit{fuente} que emite señales de un alfabeto $ S = \{s_1, s_2, \dots\, s_q\}$ de acuerdo a una función de probabilidad fija.
-Si la fuente emite señales estadísticamente independientes decimos que es una \textit{fuente de memoria nula} y un símbolo $s$ está completamente determinado por el alfabeto $S$ y las probabilidades:
-$P(s_1)\,P(s_2)\, \dots\, P(s_q)$
+la \textit{fuente} que emite señales de un alfabeto $ S = \{s_1, s_2, \dotsc s_n\}$ de acuerdo a una función de probabilidad fija.
+Si la fuente emite señales estadísticamente independientes decimos que es una \textit{fuente de memoria nula} y un símbolo $s$ está completamente determinado por el alfabeto $S$ y las probabilidades $p_{s_1}, p_{s_2}, \dotsc p_{s_n}$.
 
-Sea $X$ una variable aleatoria discreta con posibles valores $\{x_1, x_2, \dots\, x_q\}$ y una función de probabilidad $P(X)$, luego:
-${\displaystyle \mathrm {H} (X)=\mathrm {E} [\mathrm {I} (X)]=\mathrm {E} [-\log(\mathrm {P} (X))].}$
-donde $X$ es una variable aleatoria con posibles valores $\{x_1, ... , x_n\}$ y $P$ es una función de probabilidad.
+
+% Sea $X$ una variable aleatoria discreta con posibles valores $\{x_1, x_2, \dots\, x_n\}$ y una función de probabilidad $P(X)$, luego:
+% ${\displaystyle \mathrm {H} (X)=\mathbb{E} [\mathrm {I} (X)]=\mathbb{E} [-\log(\mathrm {P} (X))]} = -\sum\limits_{i=1}^{n} p_i \log(p_{x_i})$
+% donde $X$ es una variable aleatoria con posibles valores $\{x_1, ... , x_n\}$ y $P$ es una función de probabilidad.
+
+Se puede calcular la información promedio provista por una fuente de memoria nula de la siguiente manera: si el símbolo $s_i$ ocurre, obtenemos una cantidad de información igual a $I(s_i) = -\log(p_{s_i})$.
+Luego, se define a la entropía como 
+
+\begin{equation}
+    {\displaystyle \mathrm {H} (S)=\mathbb{E} [\mathrm {I} (S)]=\mathbb{E} [-\log(\mathrm {P} (S))]} = -\sum\limits_{i=1}^{n} p_{s_i} \log(p_{s_i})
+\end{equation}
+
+
 
 Los símbolos con menor probabilidad son los que aportan más información. Esto va de la mano con nuestra intuición ya que si entendemos a los símbolos como palabras de un texto, las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
 Observaciones:
 \begin{itemize}
     \item La entropía es máxima cuando los eventos de $X$ son equiprobables. En este caso, si hay $n$ eventos con una probabilidad de $\frac{1}{n}$ cada uno, el valor de la entropía es de $\log n$.
-    \item La entropía es 0 si y solo sí todas las probabilidades son 0 a excepción de una con probabilidad igual a la unidad. 
+    \item La entropía es 0 si y solo si todas las probabilidades son 0 a excepción de una con probabilidad igual a la unidad. 
 \end{itemize}
 
 Dado que la entropía es máxima cuando los eventos de $X$ son equiprobables, se suele decir que es una medida del desorden.
@@ -28,7 +37,7 @@ Dado que la entropía es máxima cuando los eventos de $X$ son equiprobables, se
 
 \begin{table}[ht]
 \centering
-\label{tab:palabrasMasOcurrentes}
+
 \begin{tabular}{ c c }
 \toprule
 Palabra & Cantidad de Ocurrencias \\ 
@@ -56,7 +65,7 @@ las     & 1212452                 \\
 \bottomrule
 \end{tabular}
 \caption{Cantidad de apariciones de las 20 palabras más frecuentes.}
-
+\label{tab:palabrasMasOcurrentes}
 \end{table}
 
 
