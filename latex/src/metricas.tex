@@ -202,7 +202,7 @@ I_w(\omega) = norm_{w}(\omega) \cdot (\widehat{H}_{w}(\omega) - H_{w}(\omega)) \
 \subsection{Robusteciendo la métrica desarrollada}
 
 Ahora bien, una determinada provincia o región puede tener muchas ocurrencias de una palabra formuladas por algunos pocos usuarios que utilizan constantemente el término. Un ejemplo de esto podrían ser bots que escriben automáticamente textos iguales (o similares) en grandes cantidades. Otra posible causa de este fenómeno podría ser la de usuarios que hablan de personas, lugares o marcas de forma constante.
-Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que mencionaron la palabra $\omega$, que definimos como $\#^u \omega$. Así como normalizamos la diferencia de entropías por la cantidad de ocurrencias, también desarrollamos la vaiable normalizadora $norm_p$ de la cantidad de usuarios que mencionan la palabra $\omega$. 
+Es por esto que realizamos una métrica similar que tenga en cuenta la diferencia de la entropía sobre la cantidad de personas que mencionaron la palabra $\omega$, que definimos como $\#^u \omega$. Así como normalizamos la diferencia de entropías por la cantidad de ocurrencias, también desarrollamos la variable normalizadora $norm_p$ de la cantidad de usuarios que mencionan la palabra $\omega$. 
 Para eso, sea %$u_w = \min \limits_{w \in W} \#^u w$  y $U_w = \max \limits_{w \in W} \#^u w$
 
 \noindent\begin{minipage}{.5\linewidth}
@@ -229,34 +229,14 @@ I_p(\omega) = norm_p(\omega) \cdot (\widehat{H}_p(\omega) - H_p(\omega))
 \label{eq:iu}
 \end{equation}
 
-% Donde,
-% \begin{equation}
-% norm_p(w) = \frac{cant_p(w)- MIN_p }{MAX_p - MIN_p}
-% \label{eq:norm2}
-% \end{equation}
-% \begin{equation}
-%  MIN_p = \min\limits_{p \in Palabras} cant_p(w)
-% \end{equation}
-% \begin{equation}
-%   MAX_p = \max\limits_{p \in Palabras} cant_p(w)
-% \end{equation}
-
-% y $cant_p(w)$ es el logaritmo sobre la cantidad de usuarios que utilizan dicha palabra en la Argentina, es decir $cant_p(w)= \log_2(cantidadUsuarios(w)))$.
-
 Debido a que queremos tener en cuenta tanto a la variación de la cantidad de ocurrencias de la palabra como a la variación de la cantidad de usuarios, elegimos como métrica la multiplicación de ambas métricas definidas, es decir  
 
 \begin{equation}
-%I(w) =  norm_{p}(w) * norm_p(w) * (\widehat{H}_{w}(w) - H_{w}(w)) * (\widehat{H}_{p}(w) - H_{p}(w)) \\
 I(\omega) =  I_w (\omega) \cdot I_p(\omega)\\
 \label{eq:ivalor}
 \end{equation}
 A esta métrica la denominaremos el \textit{valor de contrastividad}.
 Es importante aclarar que tanto $norm_{w}$ como $norm_p$ realizan una normalización del logaritmo de esas variables. Esto se debe a que el logaritmo genera una dispersión tal que agrupa los valores altos que se encontraban muy dispersos mientras que separa los valores pequeños que estaban concentrados. Esto se puede ver comparando los histogramas de la Figura \ref{fig:cantNormFig} con los de la Figura \ref{fig:cantPalabrasSinNorm}.
-
-
-
-%TODO: ejemplificar la variacion de la entropia.  La variacion de la entropia se puede ver como una cantidad que mide cuanta información se necesita para poder obtener esa distribución
-% Si las cantidades de ocurrencias (o de personas que utilizan) de un término están distribuidas uniformemente a través de todas las provincias, quiere decir que no aporta demasiada información 
 
 \begin{figure}[!ht]\centering
   \begin{subfigure}[t]{0.49\textwidth}
