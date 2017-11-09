@@ -1,26 +1,14 @@
 
 \documentclass{beamer}
 \usepackage[spanish]{babel}
-\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{xspace}
-\usepackage{adjustbox}
-\usepackage{caption}
-
-
-\captionsetup[table]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\usepackage[style=american]{csquotes}
 
 \uselanguage{spanish}
 \languagepath{spanish}
 
 
-\def\tituloTesis{Tesis}
+\def\tituloTesis{Hacia un método computacional para detectar léxico contrastivo}
 
 \title{\tituloTesis}
 \author{Damián Eliel Aleman}
@@ -54,14 +42,18 @@ currentsection,
 \section{Trabajo Previo}
 \input{trabajoPrevio.tex}
 
+\section{Datos: Extracción y procesamiento}
+\input{datos.tex}
 
-\section{Materiales y Métodos}
-\input{metodo.tex}
+\section{Métricas para detectar léxico contrastivo}
+\input{metricas.tex}
 
-\section{Resultados}
+\section{Análisis de las palabras contrastivas encontradas}
 \input{resultados.tex}
 
-\section{Conclusiones}
+\section{Conclusiones y trabajo futuro}
 \input{conclusiones.tex}
 
+\bibliographystyle{alpha}
+\bibliography{presentacion}
 \end{document}

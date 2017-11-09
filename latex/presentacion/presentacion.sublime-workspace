@@ -1,0 +1,762 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"fontsize"
+			],
+			[
+				"cl",
+				"close"
+			],
+			[
+				"rec",
+				"rechazoDistintasMetricas"
+			],
+			[
+				"todas",
+				"todas_df"
+			],
+			[
+				"hist",
+				"histTweets1"
+			],
+			[
+				"p",
+				"print"
+			],
+			[
+				"cant",
+				"cantPalabras"
+			],
+			[
+				"end",
+				"endl"
+			],
+			[
+				"lis",
+				"listaRegs"
+			],
+			[
+				"si",
+				"size"
+			],
+			[
+				"it",
+				"it2_temp"
+			],
+			[
+				"it2",
+				"it2_vec_temp"
+			],
+			[
+				"str",
+				"string"
+			],
+			[
+				"con",
+				"const_iterador_registros"
+			],
+			[
+				"val",
+				"valorNat"
+			],
+			[
+				"valo",
+				"valorStr"
+			],
+			[
+				"va",
+				"valorNat"
+			],
+			[
+				"es",
+				"esNat"
+			],
+			[
+				"it1",
+				"it1_temp"
+			],
+			[
+				"indice",
+				"IndiceNat"
+			],
+			[
+				"tab",
+				"tabla2Igual"
+			],
+			[
+				"cam",
+				"campoIgual"
+			],
+			[
+				"it_reg",
+				"it_registro_t2"
+			],
+			[
+				"dicc",
+				"dicc_usuarios"
+			],
+			[
+				"region",
+				"region"
+			],
+			[
+				"valu",
+				"value1"
+			],
+			[
+				"tex",
+				"textos"
+			],
+			[
+				"set",
+				"set_yscale"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "presentacion.tex",
+			"settings":
+			{
+				"buffer_size": 1326,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "metricas.tex",
+			"settings":
+			{
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "datos.tex",
+			"settings":
+			{
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "introduccion.tex",
+			"settings":
+			{
+				"buffer_size": 54,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "trabajoPrevio.tex",
+			"settings":
+			{
+				"buffer_size": 800,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Variable   Value\n--------   -----\nPATH       /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/texbin\nTEXINPUTS  .:/etc/texmf/tex/generic:/etc/texmf/tex/generic/config:/var/lib/texmf/tex/generic:/var/lib/texmf/tex/generic/config:/usr/share/texlive/texmf-dist/tex/generic:/usr/share/texlive/texmf-dist/tex/generic/schemata:/usr/share/texlive/texmf-dist/tex/generic/shapepar:/usr/share/texlive/texmf-dist/tex/generic/pst-osci:/usr/share/texlive/texmf-dist/tex/generic/splitindex:/usr/share/texlive/texmf-dist/tex/generic/pst-gr3d:/usr/share/texlive/texmf-dist/tex/generic/pst-ode:/usr/share/texlive/texmf-dist/tex/generic/borceux:/usr/share/texlive/texmf-dist/tex/generic/epigram:/usr/share/texlive/texmf-dist/tex/generic/poster-mac:/usr/share/texlive/texmf-dist/tex/generic/kastrup:/usr/share/texlive/texmf-dist/tex/generic/minifp:/usr/share/texlive/texmf-dist/tex/generic/pictex:/usr/share/texlive/texmf-dist/tex/generic/gates:/usr/share/texlive/texmf-dist/tex/generic/pst-ovl:/usr/share/texlive/texmf-dist/tex/generic/pst-graphicx:/usr/share/texlive/texmf-dist/tex/generic/pst-ghsb:/usr/share/texlive/texmf-dist/tex/generic/insbox:/usr/share/texlive/texmf-dist/tex/generic/multiexpand:/usr/share/texlive/texmf-dist/tex/generic/pdftex:/usr/share/texlive/texmf-dist/tex/generic/pst-fun:/usr/share/texlive/texmf-dist/tex/generic/ulem:/usr/share/texlive/texmf-dist/tex/generic/pgfornament:/usr/share/texlive/texmf-dist/tex/generic/pgfornament/vectorian:/usr/share/texlive/texmf-dist/tex/generic/pgfornament/am:/usr/share/texlive/texmf-dist/tex/generic/eijkhout:/usr/share/texlive/texmf-dist/tex/generic/pst-intersect:/usr/share/texlive/texmf-dist/tex/generic/pst-sigsys:/usr/share/texlive/texmf-dist/tex/generic/pst-geo:/usr/share/texlive/texmf-dist/tex/generic/pst-geo/dataII:/usr/share/texlive/texmf-dist/tex/generic/pst-geo/data:/usr/share/texlive/texmf-dist/tex/generic/pst-perspective:/usr/share/texlive/texmf-dist/tex/generic/ydoc:/usr/share/texlive/texmf-dist/tex/generic/librarian:/usr/share/texlive/texmf-dist/tex/generic/mathdots:/usr/share/texlive/texmf-dist/tex/generic/pst-labo:/usr/share/texlive/texmf-dist/tex/generic/texdraw:/usr/share/texlive/texmf-dist/tex/generic/pst-poly:/usr/share/texlive/texmf-dist/tex/generic/pst-fr3d:/usr/share/texlive/texmf-dist/tex/generic/chronosys:/usr/share/texlive/texmf-dist/tex/generic/config:/usr/share/texlive/texmf-dist/tex/generic/pst-spirograph:/usr/share/texlive/texmf-dist/tex/generic/xstring:/usr/share/texlive/texmf-dist/tex/generic/xkeyval:/usr/share/texlive/texmf-dist/tex/generic/pst-qtree:/usr/share/texlive/texmf-dist/tex/generic/docbytex:/usr/share/texlive/texmf-dist/tex/generic/iftex:/usr/share/texlive/texmf-dist/tex/generic/epsf:/usr/share/texlive/texmf-dist/tex/generic/pst-fill:/usr/share/texlive/texmf-dist/tex/generic/babel-spanish:/usr/share/texlive/texmf-dist/tex/generic/pst-3d:/usr/share/texlive/texmf-dist/tex/generic/pst-bezier:/usr/share/texlive/texmf-dist/tex/generic/tracklang:/usr/share/texlive/texmf-dist/tex/generic/termmenu:/usr/share/texlive/texmf-dist/tex/generic/pst-coil:/usr/share/texlive/texmf-dist/tex/generic/pst-ob3d:/usr/share/texlive/texmf-dist/tex/generic/pst-rubans:/usr/share/texlive/texmf-dist/tex/generic/ofs:/usr/share/texlive/texmf-dist/tex/generic/unicode-data:/usr/share/texlive/texmf-dist/tex/generic/dvips:/usr/share/texlive/texmf-dist/tex/generic/rlepsf:/usr/share/texlive/texmf-dist/tex/generic/bitelist:/usr/share/texlive/texmf-dist/tex/generic/bibtex:/usr/share/texlive/texmf-dist/tex/generic/pst-node:/usr/share/texlive/texmf-dist/tex/generic/babel-catalan:/usr/share/texlive/texmf-dist/tex/generic/pst-bspline:/usr/share/texlive/texmf-dist/tex/generic/xcomment:/usr/share/texlive/texmf-dist/tex/generic/petri-nets:/usr/share/texlive/texmf-dist/tex/generic/pst-tools:/usr/share/texlive/texmf-dist/tex/generic/gobble:/usr/share/texlive/texmf-dist/tex/generic/fntproof:/usr/share/texlive/texmf-dist/tex/generic/pst-thick:/usr/share/texlive/texmf-dist/tex/generic/pst-lens:/usr/share/texlive/texmf-dist/tex/generic/pst-solarsystem:/usr/share/texlive/texmf-dist/tex/generic/pst-3dplot:/usr/share/texlive/texmf-dist/tex/generic/vaucanson-g:/usr/share/texlive/texmf-dist/tex/generic/tikz-cd:/usr/share/texlive/texmf-dist/tex/generic/filemod:/usr/share/texlive/texmf-dist/tex/generic/pdf-trans:/usr/share/texlive/texmf-dist/tex/generic/tabto-generic:/usr/share/texlive/texmf-dist/tex/generic/pst-solides3d:/usr/share/texlive/texmf-dist/tex/generic/hyphen:/usr/share/texlive/texmf-dist/tex/generic/genmisc:/usr/share/texlive/texmf-dist/tex/generic/pst-tree:/usr/share/texlive/texmf-dist/tex/generic/pst-gantt:/usr/share/texlive/texmf-dist/tex/generic/lecturer:/usr/share/texlive/texmf-dist/tex/generic/pst-mirror:/usr/share/texlive/texmf-dist/tex/generic/midnight:/usr/share/texlive/texmf-dist/tex/generic/xlop:/usr/share/texlive/texmf-dist/tex/generic/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/modules:/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities:/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua/pgf/manual:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath/pgf/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/circuits:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/datavisualization:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/tex:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/bindings:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/initialpositioning:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/misclayout:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/planarity:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/tools:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/ogdf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/pedigrees:/usr/share/texlive/texmf-dist/tex/generic/pgf/math:/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer:/usr/share/texlive/texmf-dist/tex/generic/pst-diffraction:/usr/share/texlive/texmf-dist/tex/generic/commado:/usr/share/texlive/texmf-dist/tex/generic/gtl:/usr/share/texlive/texmf-dist/tex/generic/multido:/usr/share/texlive/texmf-dist/tex/generic/pst-slpe:/usr/share/texlive/texmf-dist/tex/generic/pst-plot:/usr/share/texlive/texmf-dist/tex/generic/catcodes:/usr/share/texlive/texmf-dist/tex/generic/babel:/usr/share/texlive/texmf-dist/tex/generic/pst-pad:/usr/share/texlive/texmf-dist/tex/generic/pst-electricfield:/usr/share/texlive/texmf-dist/tex/generic/pst-fit:/usr/share/texlive/texmf-dist/tex/generic/chemfig:/usr/share/texlive/texmf-dist/tex/generic/pst-spectra:/usr/share/texlive/texmf-dist/tex/generic/xypic:/usr/share/texlive/texmf-dist/tex/generic/navigator:/usr/share/texlive/texmf-dist/tex/generic/systeme:/usr/share/texlive/texmf-dist/tex/generic/dratex:/usr/share/texlive/texmf-dist/tex/generic/colortab:/usr/share/texlive/texmf-dist/tex/generic/pst-cox:/usr/share/texlive/texmf-dist/tex/generic/hyphenex:/usr/share/texlive/texmf-dist/tex/generic/pst-light3d:/usr/share/texlive/texmf-dist/tex/generic/pst-asr:/usr/share/texlive/texmf-dist/tex/generic/abbr:/usr/share/texlive/texmf-dist/tex/generic/plainpkg:/usr/share/texlive/texmf-dist/tex/generic/babel-galician:/usr/share/texlive/texmf-dist/tex/generic/pst-math:/usr/share/texlive/texmf-dist/tex/generic/pst-stru:/usr/share/texlive/texmf-dist/tex/generic/path:/usr/share/texlive/texmf-dist/tex/generic/pst-func:/usr/share/texlive/texmf-dist/tex/generic/pgfplots:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/test:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplots:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplotsoldpgfsupp:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplotsoldpgfsupp/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfcontrib:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfplotscompatib:/usr/share/texlive/texmf-dist/tex/generic/texapi:/usr/share/texlive/texmf-dist/tex/generic/enctex:/usr/share/texlive/texmf-dist/tex/generic/pst-text:/usr/share/texlive/texmf-dist/tex/generic/pstricks:/usr/share/texlive/texmf-dist/tex/generic/pstricks/config:/usr/share/texlive/texmf-dist/tex/generic/textmerg:/usr/share/texlive/texmf-dist/tex/generic/fenixpar:/usr/share/texlive/texmf-dist/tex/generic/langcode:/usr/share/texlive/texmf-dist/tex/generic/yax:/usr/share/texlive/texmf-dist/tex/generic/barr:/usr/share/texlive/texmf-dist/tex/generic/pst-blur:/usr/share/texlive/texmf-dist/tex/generic/pst-pdgr:/usr/share/texlive/texmf-dist/tex/generic/apnum:/usr/share/texlive/texmf-dist/tex/generic/abstyles:/usr/share/texlive/texmf-dist/tex/generic/pstricks-add:/usr/share/texlive/texmf-dist/tex/generic/pst-eps:/usr/share/texlive/texmf-dist/tex/generic/pst-tvz:/usr/share/texlive/texmf-dist/tex/generic/knuth-lib:/usr/share/texlive/texmf-dist/tex/generic/pst-magneticfield:/usr/share/texlive/texmf-dist/tex/generic/pst-circ:/usr/share/texlive/texmf-dist/tex/generic/pst-infixplot:/usr/share/texlive/texmf-dist/tex/generic/xint:/usr/share/texlive/texmf-dist/tex/generic/oberdiek:/usr/share/texlive/texmf-dist/tex/generic/2up:/usr/share/texlive/texmf-dist/tex/generic/thumbpdf:/usr/share/texlive/texmf-dist/tex/generic/pst-optic:/usr/share/texlive/texmf-dist/tex/generic/circuitikz:/usr/share/texlive/texmf-dist/tex/generic/context:/usr/share/texlive/texmf-dist/tex/generic/context/mptopdf:/usr/share/texlive/texmf-dist/tex/generic/ifxetex:/usr/share/texlive/texmf-dist/tex/generic/pst-grad:/usr/share/texlive/texmf-dist/tex/generic/tex-ps:/usr/share/texlive/texmf-dist/tex/generic/pst-knot:/usr/share/texlive/texmf-dist/tex/generic/babel-english:/usr/share/texlive/texmf-dist/tex/generic/fltpoint:/usr/share/texlive/texmf-dist/tex/generic/pst-jtree:/usr/share/texlive/texmf-dist/tex/generic/c-pascal:/usr/share/texlive/texmf-dist/tex/generic/upca:/usr/share/texlive/texmf-dist/tex/generic/pst-barcode:/usr/share/texlive/texmf-dist/tex/generic/pst-vue3d:/usr/share/texlive/texmf-dist/tex/generic/pst-pulley:/usr/share/texlive/texmf-dist/tex/generic/dirtree:/usr/share/texlive/texmf-dist/tex/generic/frame:/usr/share/texlive/texmf-dist/tex/generic/pst-abspos:/usr/share/texlive/texmf-dist/tex/generic/formlett:/usr/share/texlive/texmf-dist/tex/generic/pst-bar:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/tex:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/txt:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/quote:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/ptex:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/conversions:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/loadhyph:/usr/share/texlive/texmf-dist/tex/generic/babel-spanglish:/usr/share/texlive/texmf-dist/tex/generic/dcpic:/usr/share/texlive/texmf-dist/tex/generic/arrayjobx:/usr/share/texlive/texmf-dist/tex/generic/pst-fractal:/usr/share/texlive/texmf-dist/tex/generic/shade:/usr/share/texlive/texmf-dist/tex/generic/dowith:/usr/share/texlive/texmf-dist/tex/generic/pst-eucl:/home/dami/texmf/tex:/home/dami/texmf/tex/latex:/home/dami/texmf/tex/latex/aed2-symb:/home/dami/texmf/tex/latex/aed2-tp:/home/dami/texmf/tex/latex/aed2-itef:/home/dami/texmf/tex/latex/aed2-tad:/home/dami/texmf/tex/latex/aed2-parcial:/home/dami/texmf/tex/latex/aed2-practica:/home/dami/texmf/tex/latex/aed2-tokenizer:/home/dami/texmf/tex/latex/caratula:/etc/texmf/tex:/etc/texmf/tex/generic:/etc/texmf/tex/generic/config:/var/lib/texmf/tex:/var/lib/texmf/tex/generic:/var/lib/texmf/tex/generic/config:/usr/share/texmf/tex:/usr/share/texmf/tex/latex:/usr/share/texmf/tex/latex/prosper:/usr/share/texmf/tex/latex/preview:/usr/share/texmf/tex/latex/lm:/usr/share/texlive/texmf-dist/tex:/usr/share/texlive/texmf-dist/tex/support:/usr/share/texlive/texmf-dist/tex/support/adhocfilelist:/usr/share/texlive/texmf-dist/tex/latex:/usr/share/texlive/texmf-dist/tex/latex/datetime2-ukrainian:/usr/share/texlive/texmf-dist/tex/latex/accfonts:/usr/share/texlive/texmf-dist/tex/latex/tex4ebook:/usr/share/texlive/texmf-dist/tex/latex/linegoal:/usr/share/texlive/texmf-dist/tex/latex/rcs-multi:/usr/share/texlive/texmf-dist/tex/latex/nopageno:/usr/share/texlive/texmf-dist/tex/latex/inputtrc:/usr/share/texlive/texmf-dist/tex/latex/dynamicnumber:/usr/share/texlive/texmf-dist/tex/latex/fnbreak:/usr/share/texlive/texmf-dist/tex/latex/formular:/usr/share/texlive/texmf-dist/tex/latex/colorinfo:/usr/share/texlive/texmf-dist/tex/latex/warning:/usr/share/texlive/texmf-dist/tex/latex/ocg-p:/usr/share/texlive/texmf-dist/tex/latex/notes:/usr/share/texlive/texmf-dist/tex/latex/fancylabel:/usr/share/texlive/texmf-dist/tex/latex/askmaps:/usr/share/texlive/texmf-dist/tex/latex/nomencl:/usr/share/texlive/texmf-dist/tex/latex/enumitem-zref:/usr/share/texlive/texmf-dist/tex/latex/verbasef:/usr/share/texlive/texmf-dist/tex/latex/tkz-base:/usr/share/texlive/texmf-dist/tex/latex/printlen:/usr/share/texlive/texmf-dist/tex/latex/scanpages:/usr/share/texlive/texmf-dist/tex/latex/ltxkeys:/usr/share/texlive/texmf-dist/tex/latex/media9:/usr/share/texlive/texmf-dist/tex/latex/media9/players:/usr/share/texlive/texmf-dist/tex/latex/media9/javascript:/usr/share/texlive/texmf-dist/tex/latex/pst-osci:/usr/share/texlive/texmf-dist/tex/latex/subfigmat:/usr/share/texlive/texmf-dist/tex/latex/minipage-marginpar:/usr/share/texlive/texmf-dist/tex/latex/tkz-linknodes:/usr/share/texlive/texmf-dist/tex/latex/memexsupp:/usr/share/texlive/texmf-dist/tex/latex/tcolorbox:/usr/share/texlive/texmf-dist/tex/latex/tokenizer:/usr/share/texlive/texmf-dist/tex/latex/makecmds:/usr/share/texlive/texmf-dist/tex/latex/pdfscreen:/usr/share/texlive/texmf-dist/tex/latex/multienv:/usr/share/texlive/texmf-dist/tex/latex/cntformats:/usr/share/texlive/texmf-dist/tex/latex/splitindex:/usr/share/texlive/texmf-dist/tex/latex/repltext:/usr/share/texlive/texmf-dist/tex/latex/qrcode:/usr/share/texlive/texmf-dist/tex/latex/l3kernel:/usr/share/texlive/texmf-dist/tex/latex/gauss:/usr/share/texlive/texmf-dist/tex/latex/pst-gr3d:/usr/share/texlive/texmf-dist/tex/latex/outlines:/usr/share/texlive/texmf-dist/tex/latex/envbig:/usr/share/texlive/texmf-dist/tex/latex/acronym:/usr/share/texlive/texmf-dist/tex/latex/rviewport:/usr/share/texlive/texmf-dist/tex/latex/datetime2-slovak:/usr/share/texlive/texmf-dist/tex/latex/savesym:/usr/share/texlive/texmf-dist/tex/latex/ncclatex:/usr/share/texlive/texmf-dist/tex/latex/flowfram:/usr/share/texlive/texmf-dist/tex/latex/tikzsymbols:/usr/share/texlive/texmf-dist/tex/latex/todonotes:/usr/share/texlive/texmf-dist/tex/latex/collcell:/usr/share/texlive/texmf-dist/tex/latex/beamertheme-detlevcm:/usr/share/texlive/texmf-dist/tex/latex/ifnextok:/usr/share/texlive/texmf-dist/tex/latex/jvlisting:/usr/share/texlive/texmf-dist/tex/latex/coseoul:/usr/share/texlive/texmf-dist/tex/latex/fancyhdr:/usr/share/texlive/texmf-dist/tex/latex/xmpincl:/usr/share/texlive/texmf-dist/tex/latex/bussproofs:/usr/share/texlive/texmf-dist/tex/latex/acro:/usr/share/texlive/texmf-dist/tex/latex/underoverlap:/usr/share/texlive/texmf-dist/tex/latex/lazylist:/usr/share/texlive/texmf-dist/tex/latex/doctools:/usr/share/texlive/texmf-dist/tex/latex/pst-exa:/usr/share/texlive/texmf-dist/tex/latex/xpicture:/usr/share/texlive/texmf-dist/tex/latex/texpower:/usr/share/texlive/texmf-dist/tex/latex/loops:/usr/share/texlive/texmf-dist/tex/latex/fithesis:/usr/share/texlive/texmf-dist/tex/latex/fithesis/logo:/usr/share/texlive/texmf-dist/tex/latex/fithesis/logo/mu:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/phil:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/fsps:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/fi:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/econ:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/sci:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/med:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/fss:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/ped:/usr/share/texlive/texmf-dist/tex/latex/fithesis/locale/mu/law:/usr/share/texlive/texmf-dist/tex/latex/fithesis/style:/usr/share/texlive/texmf-dist/tex/latex/fithesis/style/mu:/usr/share/texlive/texmf-dist/tex/latex/permute:/usr/share/texlive/texmf-dist/tex/latex/pst-ode:/usr/share/texlive/texmf-dist/tex/latex/logpap:/usr/share/texlive/texmf-dist/tex/latex/minutes:/usr/share/texlive/texmf-dist/tex/latex/datetime2-usorbian:/usr/share/texlive/texmf-dist/tex/latex/lstaddons:/usr/share/texlive/texmf-dist/tex/latex/datetime2-czech:/usr/share/texlive/texmf-dist/tex/latex/ifplatform:/usr/share/texlive/texmf-dist/tex/latex/simplecv:/usr/share/texlive/texmf-dist/tex/latex/cprotect:/usr/share/texlive/texmf-dist/tex/latex/piff:/usr/share/texlive/texmf-dist/tex/latex/mylatexformat:/usr/share/texlive/texmf-dist/tex/latex/getitems:/usr/share/texlive/texmf-dist/tex/latex/plates:/usr/share/texlive/texmf-dist/tex/latex/spath3:/usr/share/texlive/texmf-dist/tex/latex/kantlipsum:/usr/share/texlive/texmf-dist/tex/latex/counttexruns:/usr/share/texlive/texmf-dist/tex/latex/chngcntr:/usr/share/texlive/texmf-dist/tex/latex/datetime2-scottish:/usr/share/texlive/texmf-dist/tex/latex/productbox:/usr/share/texlive/texmf-dist/tex/latex/advdate:/usr/share/texlive/texmf-dist/tex/latex/makecell:/usr/share/texlive/texmf-dist/tex/latex/yafoot:/usr/share/texlive/texmf-dist/tex/latex/floatflt:/usr/share/texlive/texmf-dist/tex/latex/endnotes:/usr/share/texlive/texmf-dist/tex/latex/fink:/usr/share/texlive/texmf-dist/tex/latex/flippdf:/usr/share/texlive/texmf-dist/tex/latex/datetime2-german:/usr/share/texlive/texmf-dist/tex/latex/parselines:/usr/share/texlive/texmf-dist/tex/latex/underscore:/usr/share/texlive/texmf-dist/tex/latex/ushort:/usr/share/texlive/texmf-dist/tex/latex/nox:/usr/share/texlive/texmf-dist/tex/latex/graphics:/usr/share/texlive/texmf-dist/tex/latex/import:/usr/share/texlive/texmf-dist/tex/latex/beamertheme-phnompenh:/usr/share/texlive/texmf-dist/tex/latex/histogr:/usr/share/texlive/texmf-dist/tex/latex/egplot:/usr/share/texlive/texmf-dist/tex/latex/datetime2-russian:/usr/share/texlive/texmf-dist/tex/latex/refstyle:/usr/share/texlive/texmf-dist/tex/latex/gmutils:/usr/share/texlive/texmf-dist/tex/latex/zwpagelayout:/usr/share/texlive/texmf-dist/tex/latex/drac:/usr/share/texlive/texmf-dist/tex/latex/pagerange:/usr/share/texlive/texmf-dist/tex/latex/amscls:/usr/share/texlive/texmf-dist/tex/latex/chletter:/usr/share/texlive/texmf-dist/tex/latex/float:/usr/share/texlive/texmf-dist/tex/latex/srbook-mem:/usr/share/texlive/texmf-dist/tex/latex/dottex:/usr/share/texlive/texmf-dist/tex/latex/arydshln:/usr/share/texlive/texmf-dist/tex/latex/cmsd:/usr/share/texlive/texmf-dist/tex/latex/catoptions:/usr/share/texlive/texmf-dist/tex/latex/mwe:/usr/share/texlive/texmf-dist/tex/latex/fitbox:/usr/share/texlive/texmf-dist/tex/latex/properties:/usr/share/texlive/texmf-dist/tex/latex/jknapltx:/usr/share/texlive/texmf-dist/tex/latex/moreenum:/usr/share/texlive/texmf-dist/tex/latex/genmpage:/usr/share/texlive/texmf-dist/tex/latex/he-she:/usr/share/texlive/texmf-dist/tex/latex/gcard:/usr/share/texlive/texmf-dist/tex/latex/yagusylo:/usr/share/texlive/texmf-dist/tex/latex/courseoutline:/usr/share/texlive/texmf-dist/tex/latex/docmute:/usr/share/texlive/texmf-dist/tex/latex/exsol:/usr/share/texlive/texmf-dist/tex/latex/slantsc:/usr/share/texlive/texmf-dist/tex/latex/titlefoot:/usr/share/texlive/texmf-dist/tex/latex/easy-todo:/usr/share/texlive/texmf-dist/tex/latex/moreverb:/usr/share/texlive/texmf-dist/tex/latex/syntrace:/usr/share/texlive/texmf-dist/tex/latex/pbox:/usr/share/texlive/texmf-dist/tex/latex/ucs:/usr/share/texlive/texmf-dist/tex/latex/ucs/utils:/usr/share/texlive/texmf-dist/tex/latex/ucs/data:/usr/share/texlive/texmf-dist/tex/latex/sepnum:/usr/share/texlive/texmf-dist/tex/latex/labelcas:/usr/share/texlive/texmf-dist/tex/latex/datenumber:/usr/share/texlive/texmf-dist/tex/latex/esk:/usr/share/texlive/texmf-dist/tex/latex/esint:/usr/share/texlive/texmf-dist/tex/latex/hrefhide:/usr/share/texlive/texmf-dist/tex/latex/petiteannonce:/usr/share/texlive/texmf-dist/tex/latex/getmap:/usr/share/texlive/texmf-dist/tex/latex/postcards:/usr/share/texlive/texmf-dist/tex/latex/pbsheet:/usr/share/texlive/texmf-dist/tex/latex/shipunov:/usr/share/texlive/texmf-dist/tex/latex/lpic:/usr/share/texlive/texmf-dist/tex/latex/randbild:/usr/share/texlive/texmf-dist/tex/latex/fifo-stack:/usr/share/texlive/texmf-dist/tex/latex/cals:/usr/share/texlive/texmf-dist/tex/latex/newfile:/usr/share/texlive/texmf-dist/tex/latex/keyvaltable:/usr/share/texlive/texmf-dist/tex/latex/silence:/usr/share/texlive/texmf-dist/tex/latex/extsizes:/usr/share/texlive/texmf-dist/tex/latex/documentation:/usr/share/texlive/texmf-dist/tex/latex/gmdoc-enhance:/usr/share/texlive/texmf-dist/tex/latex/lapdf:/usr/share/texlive/texmf-dist/tex/latex/flacards:/usr/share/texlive/texmf-dist/tex/latex/typogrid:/usr/share/texlive/texmf-dist/tex/latex/bhcexam:/usr/share/texlive/texmf-dist/tex/latex/gcite:/usr/share/texlive/texmf-dist/tex/latex/tablefootnote:/usr/share/texlive/texmf-dist/tex/latex/stdpage:/usr/share/texlive/texmf-dist/tex/latex/anysize:/usr/share/texlive/texmf-dist/tex/latex/csquotes:/usr/share/texlive/texmf-dist/tex/latex/powerdot:/usr/share/texlive/texmf-dist/tex/latex/eqname:/usr/share/texlive/texmf-dist/tex/latex/pagenote:/usr/share/texlive/texmf-dist/tex/latex/coolstr:/usr/share/texlive/texmf-dist/tex/latex/drs:/usr/share/texlive/texmf-dist/tex/latex/pst-ovl:/usr/share/texlive/texmf-dist/tex/latex/akletter:/usr/share/texlive/texmf-dist/tex/latex/talk:/usr/share/texlive/texmf-dist/tex/latex/boxedminipage2e:/usr/share/texlive/texmf-dist/tex/latex/pst-ghsb:/usr/share/texlive/texmf-dist/tex/latex/vruler:/usr/share/texlive/texmf-dist/tex/latex/esdiff:/usr/share/texlive/texmf-dist/tex/latex/bullcntr:/usr/share/texlive/texmf-dist/tex/latex/datetime2-norsk:/usr/share/texlive/texmf-dist/tex/latex/listings:/usr/share/texlive/texmf-dist/tex/latex/labbook:/usr/share/texlive/texmf-dist/tex/latex/pst-vowel:/usr/share/texlive/texmf-dist/tex/latex/minitoc:/usr/share/texlive/texmf-dist/tex/latex/timing-diagrams:/usr/share/texlive/texmf-dist/tex/latex/totpages:/usr/share/texlive/texmf-dist/tex/latex/diagbox:/usr/share/texlive/texmf-dist/tex/latex/copyedit:/usr/share/texlive/texmf-dist/tex/latex/akktex:/usr/share/texlive/texmf-dist/tex/latex/pdfwin:/usr/share/texlive/texmf-dist/tex/latex/mnotes:/usr/share/texlive/texmf-dist/tex/latex/nicefilelist:/usr/share/texlive/texmf-dist/tex/latex/fixmetodonotes:/usr/share/texlive/texmf-dist/tex/latex/templatetools:/usr/share/texlive/texmf-dist/tex/latex/datetime2-portuges:/usr/share/texlive/texmf-dist/tex/latex/a5comb:/usr/share/texlive/texmf-dist/tex/latex/pst-fun:/usr/share/texlive/texmf-dist/tex/latex/colorwav:/usr/share/texlive/texmf-dist/tex/latex/fmtcount:/usr/share/texlive/texmf-dist/tex/latex/readarray:/usr/share/texlive/texmf-dist/tex/latex/unravel:/usr/share/texlive/texmf-dist/tex/latex/spverbatim:/usr/share/texlive/texmf-dist/tex/latex/hanging:/usr/share/texlive/texmf-dist/tex/latex/relenc:/usr/share/texlive/texmf-dist/tex/latex/docmfp:/usr/share/texlive/texmf-dist/tex/latex/pgfornament:/usr/share/texlive/texmf-dist/tex/latex/casyl:/usr/share/texlive/texmf-dist/tex/latex/denisbdoc:/usr/share/texlive/texmf-dist/tex/latex/mathspic:/usr/share/texlive/texmf-dist/tex/latex/ocgx2:/usr/share/texlive/texmf-dist/tex/latex/swimgraf:/usr/share/texlive/texmf-dist/tex/latex/pas-tableur:/usr/share/texlive/texmf-dist/tex/latex/forarray:/usr/share/texlive/texmf-dist/tex/latex/subeqnarray:/usr/share/texlive/texmf-dist/tex/latex/yplan:/usr/share/texlive/texmf-dist/tex/latex/lastpackage:/usr/share/texlive/texmf-dist/tex/latex/pst-am:/usr/share/texlive/texmf-dist/tex/latex/decimal:/usr/share/texlive/texmf-dist/tex/latex/pst-intersect:/usr/share/texlive/texmf-dist/tex/latex/a0poster:/usr/share/texlive/texmf-dist/tex/latex/ziffer:/usr/share/texlive/texmf-dist/tex/latex/turnthepage:/usr/share/texlive/texmf-dist/tex/latex/pst-sigsys:/usr/share/texlive/texmf-dist/tex/latex/progressbar:/usr/share/texlive/texmf-dist/tex/latex/showdim:/usr/share/texlive/texmf-dist/tex/latex/supertabular:/usr/share/texlive/texmf-dist/tex/latex/bigints:/usr/share/texlive/texmf-dist/tex/latex/babelbib:/usr/share/texlive/texmf-dist/tex/latex/bookcover:/usr/share/texlive/texmf-dist/tex/latex/autoarea:/usr/share/texlive/texmf-dist/tex/latex/wordlike:/usr/share/texlive/texmf-dist/tex/latex/cases:/usr/share/texlive/texmf-dist/tex/latex/parnotes:/usr/share/texlive/texmf-dist/tex/latex/fullwidth:/usr/share/texlive/texmf-dist/tex/latex/moodle:/usr/share/texlive/texmf-dist/tex/latex/cite:/usr/share/texlive/texmf-dist/tex/latex/truncate:/usr/share/texlive/texmf-dist/tex/latex/storebox:/usr/share/texlive/texmf-dist/tex/latex/ticollege:/usr/share/texlive/texmf-dist/tex/latex/sdrt:/usr/share/texlive/texmf-dist/tex/latex/uri:/usr/share/texlive/texmf-dist/tex/latex/twoinone:/usr/share/texlive/texmf-dist/tex/latex/rmpage:/usr/share/texlive/texmf-dist/tex/latex/modroman:/usr/share/texlive/texmf-dist/tex/latex/koma-script-sfs:/usr/share/texlive/texmf-dist/tex/latex/ycbook:/usr/share/texlive/texmf-dist/tex/latex/pgf-umlsd:/usr/share/texlive/texmf-dist/tex/latex/embrac:/usr/share/texlive/texmf-dist/tex/latex/gender:/usr/share/texlive/texmf-dist/tex/latex/datetime2-turkish:/usr/share/texlive/texmf-dist/tex/latex/cclicenses:/usr/share/texlive/texmf-dist/tex/latex/newenviron:/usr/share/texlive/texmf-dist/tex/latex/sttools:/usr/share/texlive/texmf-dist/tex/latex/morehype:/usr/share/texlive/texmf-dist/tex/latex/tsemlines:/usr/share/texlive/texmf-dist/tex/latex/glossaries-extra:/usr/share/texlive/texmf-dist/tex/latex/floatrow:/usr/share/texlive/texmf-dist/tex/latex/regstats:/usr/share/texlive/texmf-dist/tex/latex/stex:/usr/share/texlive/texmf-dist/tex/latex/stex/modules:/usr/share/texlive/texmf-dist/tex/latex/stex/cmath:/usr/share/texlive/texmf-dist/tex/latex/stex/metakeys:/usr/share/texlive/texmf-dist/tex/latex/stex/sref:/usr/share/texlive/texmf-dist/tex/latex/stex/reqdoc:/usr/share/texlive/texmf-dist/tex/latex/stex/sproof:/usr/share/texlive/texmf-dist/tex/latex/stex/problem:/usr/share/texlive/texmf-dist/tex/latex/stex/omdoc:/usr/share/texlive/texmf-dist/tex/latex/stex/rdfmeta:/usr/share/texlive/texmf-dist/tex/latex/stex/statements:/usr/share/texlive/texmf-dist/tex/latex/stex/cnx:/usr/share/texlive/texmf-dist/tex/latex/stex/presentation:/usr/share/texlive/texmf-dist/tex/latex/stex/hwexam:/usr/share/texlive/texmf-dist/tex/latex/stex/omtext:/usr/share/texlive/texmf-dist/tex/latex/stex/mikoslides:/usr/share/texlive/texmf-dist/tex/latex/stex/workaddress:/usr/share/texlive/texmf-dist/tex/latex/stex/cmathml:/usr/share/texlive/texmf-dist/tex/latex/stex/dcm:/usr/share/texlive/texmf-dist/tex/latex/aobs-tikz:/usr/share/texlive/texmf-dist/tex/latex/ppr-prv:/usr/share/texlive/texmf-dist/tex/latex/cv4tw:/usr/share/texlive/texmf-dist/tex/latex/hpsdiss:/usr/share/texlive/texmf-dist/tex/latex/lineno:/usr/share/texlive/texmf-dist/tex/latex/pressrelease:/usr/share/texlive/texmf-dist/tex/latex/termcal:/usr/share/texlive/texmf-dist/tex/latex/dataref:/usr/share/texlive/texmf-dist/tex/latex/pst-geo:/usr/share/texlive/texmf-dist/tex/latex/xpeek:/usr/share/texlive/texmf-dist/tex/latex/easyreview:/usr/share/texlive/texmf-dist/tex/latex/continue:/usr/share/texlive/texmf-dist/tex/latex/datetime2:/usr/share/texlive/texmf-dist/tex/latex/realboxes:/usr/share/texlive/texmf-dist/tex/latex/addlines:/usr/share/texlive/texmf-dist/tex/latex/onlyamsmath:/usr/share/texlive/texmf-dist/tex/latex/rtkinenc:/usr/share/texlive/texmf-dist/tex/latex/showexpl:/usr/share/texlive/texmf-dist/tex/latex/block:/usr/share/texlive/texmf-dist/tex/latex/pst-perspective:/usr/share/texlive/texmf-dist/tex/latex/recipebook:/usr/share/texlive/texmf-dist/tex/latex/theoremref:/usr/share/texlive/texmf-dist/tex/latex/listofsymbols:/usr/share/texlive/texmf-dist/tex/latex/quotmark:/usr/share/texlive/texmf-dist/tex/latex/engrec:/usr/share/texlive/texmf-dist/tex/latex/rulercompass:/usr/share/texlive/texmf-dist/tex/latex/psfrag:/usr/share/texlive/texmf-dist/tex/latex/svninfo:/usr/share/texlive/texmf-dist/tex/latex/pawpict:/usr/share/texlive/texmf-dist/tex/latex/ydoc:/usr/share/texlive/texmf-dist/tex/latex/dotarrow:/usr/share/texlive/texmf-dist/tex/latex/tikz-timing:/usr/share/texlive/texmf-dist/tex/latex/trimspaces:/usr/share/texlive/texmf-dist/tex/latex/cd:/usr/share/texlive/texmf-dist/tex/latex/index:/usr/share/texlive/texmf-dist/tex/latex/spanish-mx:/usr/share/texlive/texmf-dist/tex/latex/tableaux:/usr/share/texlive/texmf-dist/tex/latex/amsmath:/usr/share/texlive/texmf-dist/tex/latex/underlin:/usr/share/texlive/texmf-dist/tex/latex/logical-markup-utils:/usr/share/texlive/texmf-dist/tex/latex/fp:/usr/share/texlive/texmf-dist/tex/latex/datetime2-breton:/usr/share/texlive/texmf-dist/tex/latex/newspaper:/usr/share/texlive/texmf-dist/tex/latex/lastpage:/usr/share/texlive/texmf-dist/tex/latex/msc:/usr/share/texlive/texmf-dist/tex/latex/memory:/usr/share/texlive/texmf-dist/tex/latex/warpcol:/usr/share/texlive/texmf-dist/tex/latex/harpoon:/usr/share/texlive/texmf-dist/tex/latex/recipe:/usr/share/texlive/texmf-dist/tex/latex/pdf14:/usr/share/texlive/texmf-dist/tex/latex/embedall:/usr/share/texlive/texmf-dist/tex/latex/glossaries-magyar:/usr/share/texlive/texmf-dist/tex/latex/blindtext:/usr/share/texlive/texmf-dist/tex/latex/directory:/usr/share/texlive/texmf-dist/tex/latex/rectopma:/usr/share/texlive/texmf-dist/tex/latex/boxedminipage:/usr/share/texlive/texmf-dist/tex/latex/ifoddpage:/usr/share/texlive/texmf-dist/tex/latex/beamerthemenirma:/usr/share/texlive/texmf-dist/tex/latex/pst-labo:/usr/share/texlive/texmf-dist/tex/latex/marginnote:/usr/share/texlive/texmf-dist/tex/latex/curve2e:/usr/share/texlive/texmf-dist/tex/latex/mfirstuc:/usr/share/texlive/texmf-dist/tex/latex/fix2col:/usr/share/texlive/texmf-dist/tex/latex/tikzmark:/usr/share/texlive/texmf-dist/tex/latex/dashbox:/usr/share/texlive/texmf-dist/tex/latex/versonotes:/usr/share/texlive/texmf-dist/tex/latex/titling:/usr/share/texlive/texmf-dist/tex/latex/stackengine:/usr/share/texlive/texmf-dist/tex/latex/regexpatch:/usr/share/texlive/texmf-dist/tex/latex/calctab:/usr/share/texlive/texmf-dist/tex/latex/ecclesiastic:/usr/share/texlive/texmf-dist/tex/latex/thinsp:/usr/share/texlive/texmf-dist/tex/latex/fnpct:/usr/share/texlive/texmf-dist/tex/latex/clefval:/usr/share/texlive/texmf-dist/tex/latex/newvbtm:/usr/share/texlive/texmf-dist/tex/latex/quotchap:/usr/share/texlive/texmf-dist/tex/latex/pst-poly:/usr/share/texlive/texmf-dist/tex/latex/pst-fr3d:/usr/share/texlive/texmf-dist/tex/latex/listlbls:/usr/share/texlive/texmf-dist/tex/latex/footnotebackref:/usr/share/texlive/texmf-dist/tex/latex/progress:/usr/share/texlive/texmf-dist/tex/latex/engpron:/usr/share/texlive/texmf-dist/tex/latex/capt-of:/usr/share/texlive/texmf-dist/tex/latex/varindex:/usr/share/texlive/texmf-dist/tex/latex/lettrine:/usr/share/texlive/texmf-dist/tex/latex/manfnt:/usr/share/texlive/texmf-dist/tex/latex/fixfoot:/usr/share/texlive/texmf-dist/tex/latex/titlepic:/usr/share/texlive/texmf-dist/tex/latex/picinpar:/usr/share/texlive/texmf-dist/tex/latex/canoniclayout:/usr/share/texlive/texmf-dist/tex/latex/svn:/usr/share/texlive/texmf-dist/tex/latex/ginpenc:/usr/share/texlive/texmf-dist/tex/latex/everyhook:/usr/share/texlive/texmf-dist/tex/latex/dvdcoll:/usr/share/texlive/texmf-dist/tex/latex/dvdcoll/dcl:/usr/share/texlive/texmf-dist/tex/latex/apptools:/usr/share/texlive/texmf-dist/tex/latex/sseq:/usr/share/texlive/texmf-dist/tex/latex/program:/usr/share/texlive/texmf-dist/tex/latex/knittingpattern:/usr/share/texlive/texmf-dist/tex/latex/manuscript:/usr/share/texlive/texmf-dist/tex/latex/harveyballs:/usr/share/texlive/texmf-dist/tex/latex/pas-cv:/usr/share/texlive/texmf-dist/tex/latex/pdftricks2:/usr/share/texlive/texmf-dist/tex/latex/threeparttablex:/usr/share/texlive/texmf-dist/tex/latex/elmath:/usr/share/texlive/texmf-dist/tex/latex/idxcmds:/usr/share/texlive/texmf-dist/tex/latex/rotfloat:/usr/share/texlive/texmf-dist/tex/latex/etoolbox:/usr/share/texlive/texmf-dist/tex/latex/pst-soroban:/usr/share/texlive/texmf-dist/tex/latex/sfmath:/usr/share/texlive/texmf-dist/tex/latex/pst-spirograph:/usr/share/texlive/texmf-dist/tex/latex/subfloat:/usr/share/texlive/texmf-dist/tex/latex/fixcmex:/usr/share/texlive/texmf-dist/tex/latex/notoccite:/usr/share/texlive/texmf-dist/tex/latex/papermas:/usr/share/texlive/texmf-dist/tex/latex/pageslts:/usr/share/texlive/texmf-dist/tex/latex/pgfgantt:/usr/share/texlive/texmf-dist/tex/latex/makeglos:/usr/share/texlive/texmf-dist/tex/latex/changepage:/usr/share/texlive/texmf-dist/tex/latex/texmate:/usr/share/texlive/texmf-dist/tex/latex/tabularcalc:/usr/share/texlive/texmf-dist/tex/latex/emarks:/usr/share/texlive/texmf-dist/tex/latex/adjustbox:/usr/share/texlive/texmf-dist/tex/latex/factura:/usr/share/texlive/texmf-dist/tex/latex/appendixnumberbeamer:/usr/share/texlive/texmf-dist/tex/latex/xkeyval:/usr/share/texlive/texmf-dist/tex/latex/pst-qtree:/usr/share/texlive/texmf-dist/tex/latex/datetime2-bulgarian:/usr/share/texlive/texmf-dist/tex/latex/isorot:/usr/share/texlive/texmf-dist/tex/latex/metalogo:/usr/share/texlive/texmf-dist/tex/latex/tabls:/usr/share/texlive/texmf-dist/tex/latex/fjodor:/usr/share/texlive/texmf-dist/tex/latex/makeshape:/usr/share/texlive/texmf-dist/tex/latex/crop:/usr/share/texlive/texmf-dist/tex/latex/tdclock:/usr/share/texlive/texmf-dist/tex/latex/svn-multi:/usr/share/texlive/texmf-dist/tex/latex/titlesec:/usr/share/texlive/texmf-dist/tex/latex/eepic:/usr/share/texlive/texmf-dist/tex/latex/epiolmec:/usr/share/texlive/texmf-dist/tex/latex/glossaries:/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles:/usr/share/texlive/texmf-dist/tex/latex/glossaries/test-entries:/usr/share/texlive/texmf-dist/tex/latex/glossaries/base:/usr/share/texlive/texmf-dist/tex/latex/glossaries/expl:/usr/share/texlive/texmf-dist/tex/latex/hyper:/usr/share/texlive/texmf-dist/tex/latex/ltxtools:/usr/share/texlive/texmf-dist/tex/latex/classics:/usr/share/texlive/texmf-dist/tex/latex/ltxmisc:/usr/share/texlive/texmf-dist/tex/latex/koma-script:/usr/share/texlive/texmf-dist/tex/latex/subfigure:/usr/share/texlive/texmf-dist/tex/latex/chappg:/usr/share/texlive/texmf-dist/tex/latex/xpatch:/usr/share/texlive/texmf-dist/tex/latex/calculator:/usr/share/texlive/texmf-dist/tex/latex/captdef:/usr/share/texlive/texmf-dist/tex/latex/keyreader:/usr/share/texlive/texmf-dist/tex/latex/noindentafter:/usr/share/texlive/texmf-dist/tex/latex/xytree:/usr/share/texlive/texmf-dist/tex/latex/leftidx:/usr/share/texlive/texmf-dist/tex/latex/opcit:/usr/share/texlive/texmf-dist/tex/latex/avremu:/usr/share/texlive/texmf-dist/tex/latex/twoup:/usr/share/texlive/texmf-dist/tex/latex/typehtml:/usr/share/texlive/texmf-dist/tex/latex/collectbox:/usr/share/texlive/texmf-dist/tex/latex/pdfmarginpar:/usr/share/texlive/texmf-dist/tex/latex/marginfix:/usr/share/texlive/texmf-dist/tex/latex/tagpair:/usr/share/texlive/texmf-dist/tex/latex/dvipdfmx-def:/usr/share/texlive/texmf-dist/tex/latex/pdfx:/usr/share/texlive/texmf-dist/tex/latex/elements:/usr/share/texlive/texmf-dist/tex/latex/bloques:/usr/share/texlive/texmf-dist/tex/latex/duotenzor:/usr/share/texlive/texmf-dist/tex/latex/topfloat:/usr/share/texlive/texmf-dist/tex/latex/wallpaper:/usr/share/texlive/texmf-dist/tex/latex/scalerel:/usr/share/texlive/texmf-dist/tex/latex/skb:/usr/share/texlive/texmf-dist/tex/latex/geometry:/usr/share/texlive/texmf-dist/tex/latex/mandi:/usr/share/texlive/texmf-dist/tex/latex/plweb:/usr/share/texlive/texmf-dist/tex/latex/pst-layout:/usr/share/texlive/texmf-dist/tex/latex/pst-fill:/usr/share/texlive/texmf-dist/tex/latex/tamefloats:/usr/share/texlive/texmf-dist/tex/latex/pst-3d:/usr/share/texlive/texmf-dist/tex/latex/dynblocks:/usr/share/texlive/texmf-dist/tex/latex/regcount:/usr/share/texlive/texmf-dist/tex/latex/pst-bezier:/usr/share/texlive/texmf-dist/tex/latex/tikzinclude:/usr/share/texlive/texmf-dist/tex/latex/dirtytalk:/usr/share/texlive/texmf-dist/tex/latex/pmgraph:/usr/share/texlive/texmf-dist/tex/latex/polynom:/usr/share/texlive/texmf-dist/tex/latex/carbohydrates:/usr/share/texlive/texmf-dist/tex/latex/tracklang:/usr/share/texlive/texmf-dist/tex/latex/pythontex:/usr/share/texlive/texmf-dist/tex/latex/texshade:/usr/share/texlive/texmf-dist/tex/latex/breakurl:/usr/share/texlive/texmf-dist/tex/latex/achemso:/usr/share/texlive/texmf-dist/tex/latex/ntgclass:/usr/share/texlive/texmf-dist/tex/latex/sectionbox:/usr/share/texlive/texmf-dist/tex/latex/constants:/usr/share/texlive/texmf-dist/tex/latex/cachepic:/usr/share/texlive/texmf-dist/tex/latex/nlctdoc:/usr/share/texlive/texmf-dist/tex/latex/makebox:/usr/share/texlive/texmf-dist/tex/latex/tkz-fct:/usr/share/texlive/texmf-dist/tex/latex/ctable:/usr/share/texlive/texmf-dist/tex/latex/mdwtools:/usr/share/texlive/texmf-dist/tex/latex/pgf-blur:/usr/share/texlive/texmf-dist/tex/latex/bardiag:/usr/share/texlive/texmf-dist/tex/latex/ifthenx:/usr/share/texlive/texmf-dist/tex/latex/adjmulticol:/usr/share/texlive/texmf-dist/tex/latex/bezos:/usr/share/texlive/texmf-dist/tex/latex/caption:/usr/share/texlive/texmf-dist/tex/latex/smalltableof:/usr/share/texlive/texmf-dist/tex/latex/codesection:/usr/share/texlive/texmf-dist/tex/latex/crbox:/usr/share/texlive/texmf-dist/tex/latex/lettre:/usr/share/texlive/texmf-dist/tex/latex/skeycommand:/usr/share/texlive/texmf-dist/tex/latex/outline:/usr/share/texlive/texmf-dist/tex/latex/trfsigns:/usr/share/texlive/texmf-dist/tex/latex/newverbs:/usr/share/texlive/texmf-dist/tex/latex/robustindex:/usr/share/texlive/texmf-dist/tex/latex/libgreek:/usr/share/texlive/texmf-dist/tex/latex/pst-coil:/usr/share/texlive/texmf-dist/tex/latex/titlecaps:/usr/share/texlive/texmf-dist/tex/latex/pst-ob3d:/usr/share/texlive/texmf-dist/tex/latex/pst-rubans:/usr/share/texlive/texmf-dist/tex/latex/hf-tikz:/usr/share/texlive/texmf-dist/tex/latex/nfssext-cfr:/usr/share/texlive/texmf-dist/tex/latex/tikzorbital:/usr/share/texlive/texmf-dist/tex/latex/combine:/usr/share/texlive/texmf-dist/tex/latex/bewerbung:/usr/share/texlive/texmf-dist/tex/latex/pxpgfmark:/usr/share/texlive/texmf-dist/tex/latex/mciteplus:/usr/share/texlive/texmf-dist/tex/latex/graphbox:/usr/share/texlive/texmf-dist/tex/latex/uebungsblatt:/usr/share/texlive/texmf-dist/tex/latex/scrlttr2copy:/usr/share/texlive/texmf-dist/tex/latex/base:/usr/share/texlive/texmf-dist/tex/latex/paralist:/usr/share/texlive/texmf-dist/tex/latex/psfragx:/usr/share/texlive/texmf-dist/tex/latex/ltxnew:/usr/share/texlive/texmf-dist/tex/latex/recipecard:/usr/share/texlive/texmf-dist/tex/latex/draftcopy:/usr/share/texlive/texmf-dist/tex/latex/crossreference:/usr/share/texlive/texmf-dist/tex/latex/ltablex:/usr/share/texlive/texmf-dist/tex/latex/txgreeks:/usr/share/texlive/texmf-dist/tex/latex/ticket:/usr/share/texlive/texmf-dist/tex/latex/pst-uml:/usr/share/texlive/texmf-dist/tex/latex/figsize:/usr/share/texlive/texmf-dist/tex/latex/comma:/usr/share/texlive/texmf-dist/tex/latex/gloss:/usr/share/texlive/texmf-dist/tex/latex/locality:/usr/share/texlive/texmf-dist/tex/latex/glossaries-italian:/usr/share/texlive/texmf-dist/tex/latex/metre:/usr/share/texlive/texmf-dist/tex/latex/issuulinks:/usr/share/texlive/texmf-dist/tex/latex/rcs:/usr/share/texlive/texmf-dist/tex/latex/newunicodechar:/usr/share/texlive/texmf-dist/tex/latex/colorspace:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Ciment:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Tycja:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Lakar:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/HA:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/TCS:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Capsules:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Simple:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Fyma:/usr/share/texlive/texmf-dist/tex/latex/HA-prosper/Styles/Aggie:/usr/share/texlive/texmf-dist/tex/latex/grfpaste:/usr/share/texlive/texmf-dist/tex/latex/blkarray:/usr/share/texlive/texmf-dist/tex/latex/version:/usr/share/texlive/texmf-dist/tex/latex/cbcoptic:/usr/share/texlive/texmf-dist/tex/latex/keycommand:/usr/share/texlive/texmf-dist/tex/latex/examdesign:/usr/share/texlive/texmf-dist/tex/latex/fcolumn:/usr/share/texlive/texmf-dist/tex/latex/seqsplit:/usr/share/texlive/texmf-dist/tex/latex/alterqcm:/usr/share/texlive/texmf-dist/tex/latex/boxhandler:/usr/share/texlive/texmf-dist/tex/latex/datetime2-romanian:/usr/share/texlive/texmf-dist/tex/latex/fontaxes:/usr/share/texlive/texmf-dist/tex/latex/xassoccnt:/usr/share/texlive/texmf-dist/tex/latex/blochsphere:/usr/share/texlive/texmf-dist/tex/latex/leading:/usr/share/texlive/texmf-dist/tex/latex/glossaries-danish:/usr/share/texlive/texmf-dist/tex/latex/toolbox:/usr/share/texlive/texmf-dist/tex/latex/bashful:/usr/share/texlive/texmf-dist/tex/latex/datetime2-finnish:/usr/share/texlive/texmf-dist/tex/latex/endfloat:/usr/share/texlive/texmf-dist/tex/latex/cool:/usr/share/texlive/texmf-dist/tex/latex/emptypage:/usr/share/texlive/texmf-dist/tex/latex/thumby:/usr/share/texlive/texmf-dist/tex/latex/robustcommand:/usr/share/texlive/texmf-dist/tex/latex/gmiflink:/usr/share/texlive/texmf-dist/tex/latex/morefloats:/usr/share/texlive/texmf-dist/tex/latex/bclogo:/usr/share/texlive/texmf-dist/tex/latex/hardwrap:/usr/share/texlive/texmf-dist/tex/latex/thumb:/usr/share/texlive/texmf-dist/tex/latex/pst-node:/usr/share/texlive/texmf-dist/tex/latex/nowidow:/usr/share/texlive/texmf-dist/tex/latex/numprint:/usr/share/texlive/texmf-dist/tex/latex/rterface:/usr/share/texlive/texmf-dist/tex/latex/minorrevision:/usr/share/texlive/texmf-dist/tex/latex/cd-cover:/usr/share/texlive/texmf-dist/tex/latex/selectp:/usr/share/texlive/texmf-dist/tex/latex/dot2texi:/usr/share/texlive/texmf-dist/tex/latex/tikz-bayesnet:/usr/share/texlive/texmf-dist/tex/latex/vocaltract:/usr/share/texlive/texmf-dist/tex/latex/datetime2-esperanto:/usr/share/texlive/texmf-dist/tex/latex/tabu:/usr/share/texlive/texmf-dist/tex/latex/enumitem:/usr/share/texlive/texmf-dist/tex/latex/chextras:/usr/share/texlive/texmf-dist/tex/latex/asypictureb:/usr/share/texlive/texmf-dist/tex/latex/dlfltxb:/usr/share/texlive/texmf-dist/tex/latex/ifetex:/usr/share/texlive/texmf-dist/tex/latex/catechis:/usr/share/texlive/texmf-dist/tex/latex/tikzpagenodes:/usr/share/texlive/texmf-dist/tex/latex/adrconv:/usr/share/texlive/texmf-dist/tex/latex/signchart:/usr/share/texlive/texmf-dist/tex/latex/authoraftertitle:/usr/share/texlive/texmf-dist/tex/latex/cleveref:/usr/share/texlive/texmf-dist/tex/latex/protex:/usr/share/texlive/texmf-dist/tex/latex/memoir:/usr/share/texlive/texmf-dist/tex/latex/photo:/usr/share/texlive/texmf-dist/tex/latex/easy:/usr/share/texlive/texmf-dist/tex/latex/exsheets:/usr/share/texlive/texmf-dist/tex/latex/genealogytree:/usr/share/texlive/texmf-dist/tex/latex/scale:/usr/share/texlive/texmf-dist/tex/latex/foilhtml:/usr/share/texlive/texmf-dist/tex/latex/technics:/usr/share/texlive/texmf-dist/tex/latex/upmethodology:/usr/share/texlive/texmf-dist/tex/latex/pst-bspline:/usr/share/texlive/texmf-dist/tex/latex/tocloft:/usr/share/texlive/texmf-dist/tex/latex/romannum:/usr/share/texlive/texmf-dist/tex/latex/ellipse:/usr/share/texlive/texmf-dist/tex/latex/simplecd:/usr/share/texlive/texmf-dist/tex/latex/bxpdfver:/usr/share/texlive/texmf-dist/tex/latex/ted:/usr/share/texlive/texmf-dist/tex/latex/verbatimbox:/usr/share/texlive/texmf-dist/tex/latex/xnewcommand:/usr/share/texlive/texmf-dist/tex/latex/iso10303:/usr/share/texlive/texmf-dist/tex/latex/fast-diagram:/usr/share/texlive/texmf-dist/tex/latex/interfaces:/usr/share/texlive/texmf-dist/tex/latex/dblfloatfix:/usr/share/texlive/texmf-dist/tex/latex/excludeonly:/usr/share/texlive/texmf-dist/tex/latex/romanbar:/usr/share/texlive/texmf-dist/tex/latex/spotcolor:/usr/share/texlive/texmf-dist/tex/latex/multicap:/usr/share/texlive/texmf-dist/tex/latex/pgf-umlcd:/usr/share/texlive/texmf-dist/tex/latex/pst-tools:/usr/share/texlive/texmf-dist/tex/latex/beamer2thesis:/usr/share/texlive/texmf-dist/tex/latex/tasks:/usr/share/texlive/texmf-dist/tex/latex/texvc:/usr/share/texlive/texmf-dist/tex/latex/showcharinbox:/usr/share/texlive/texmf-dist/tex/latex/cnltx:/usr/share/texlive/texmf-dist/tex/latex/pspicture:/usr/share/texlive/texmf-dist/tex/latex/localloc:/usr/share/texlive/texmf-dist/tex/latex/curves:/usr/share/texlive/texmf-dist/tex/latex/stubs:/usr/share/texlive/texmf-dist/tex/latex/fundus-sueterlin:/usr/share/texlive/texmf-dist/tex/latex/hyperref:/usr/share/texlive/texmf-dist/tex/latex/fwlw:/usr/share/texlive/texmf-dist/tex/latex/asciilist:/usr/share/texlive/texmf-dist/tex/latex/download:/usr/share/texlive/texmf-dist/tex/latex/l3build:/usr/share/texlive/texmf-dist/tex/latex/tcldoc:/usr/share/texlive/texmf-dist/tex/latex/xprintlen:/usr/share/texlive/texmf-dist/tex/latex/noitcrul:/usr/share/texlive/texmf-dist/tex/latex/pst-calendar:/usr/share/texlive/texmf-dist/tex/latex/datetime2-croatian:/usr/share/texlive/texmf-dist/tex/latex/abraces:/usr/share/texlive/texmf-dist/tex/latex/pst-thick:/usr/share/texlive/texmf-dist/tex/latex/pst-lens:/usr/share/texlive/texmf-dist/tex/latex/meetingmins:/usr/share/texlive/texmf-dist/tex/latex/paper:/usr/share/texlive/texmf-dist/tex/latex/fundus-calligra:/usr/share/texlive/texmf-dist/tex/latex/papercdcase:/usr/share/texlive/texmf-dist/tex/latex/dnaseq:/usr/share/texlive/texmf-dist/tex/latex/datetime2-samin:/usr/share/texlive/texmf-dist/tex/latex/threeparttable:/usr/share/texlive/texmf-dist/tex/latex/elocalloc:/usr/share/texlive/texmf-dist/tex/latex/idxlayout:/usr/share/texlive/texmf-dist/tex/latex/tagging:/usr/share/texlive/texmf-dist/tex/latex/exp-testopt:/usr/share/texlive/texmf-dist/tex/latex/bophook:/usr/share/texlive/texmf-dist/tex/latex/flagderiv:/usr/share/texlive/texmf-dist/tex/latex/pst-solarsystem:/usr/share/texlive/texmf-dist/tex/latex/delimtxt:/usr/share/texlive/texmf-dist/tex/latex/attachfile:/usr/share/texlive/texmf-dist/tex/latex/glossaries-english:/usr/share/texlive/texmf-dist/tex/latex/fundus-cyr:/usr/share/texlive/texmf-dist/tex/latex/pst-3dplot:/usr/share/texlive/texmf-dist/tex/latex/soul:/usr/share/texlive/texmf-dist/tex/latex/iso:/usr/share/texlive/texmf-dist/tex/latex/type1cm:/usr/share/texlive/texmf-dist/tex/latex/longfbox:/usr/share/texlive/texmf-dist/tex/latex/grid:/usr/share/texlive/texmf-dist/tex/latex/uassign:/usr/share/texlive/texmf-dist/tex/latex/trivfloat:/usr/share/texlive/texmf-dist/tex/latex/tikz-cd:/usr/share/texlive/texmf-dist/tex/latex/braids:/usr/share/texlive/texmf-dist/tex/latex/filemod:/usr/share/texlive/texmf-dist/tex/latex/testhyphens:/usr/share/texlive/texmf-dist/tex/latex/noconflict:/usr/share/texlive/texmf-dist/tex/latex/venndiagram:/usr/share/texlive/texmf-dist/tex/latex/mycv:/usr/share/texlive/texmf-dist/tex/latex/dinbrief:/usr/share/texlive/texmf-dist/tex/latex/footnpag:/usr/share/texlive/texmf-dist/tex/latex/microtype:/usr/share/texlive/texmf-dist/tex/latex/lisp-on-tex:/usr/share/texlive/texmf-dist/tex/latex/curve:/usr/share/texlive/texmf-dist/tex/latex/isodoc:/usr/share/texlive/texmf-dist/tex/latex/qsymbols:/usr/share/texlive/texmf-dist/tex/latex/uwmslide:/usr/share/texlive/texmf-dist/tex/latex/mtgreek:/usr/share/texlive/texmf-dist/tex/latex/makeplot:/usr/share/texlive/texmf-dist/tex/latex/xcolor:/usr/share/texlive/texmf-dist/tex/latex/roundbox:/usr/share/texlive/texmf-dist/tex/latex/octavo:/usr/share/texlive/texmf-dist/tex/latex/exercise:/usr/share/texlive/texmf-dist/tex/latex/jslectureplanner:/usr/share/texlive/texmf-dist/tex/latex/filedate:/usr/share/texlive/texmf-dist/tex/latex/subfig:/usr/share/texlive/texmf-dist/tex/latex/makebarcode:/usr/share/texlive/texmf-dist/tex/latex/exam:/usr/share/texlive/texmf-dist/tex/latex/vwcol:/usr/share/texlive/texmf-dist/tex/latex/nonfloat:/usr/share/texlive/texmf-dist/tex/latex/g-brief:/usr/share/texlive/texmf-dist/tex/latex/pagecolor:/usr/share/texlive/texmf-dist/tex/latex/vertbars:/usr/share/texlive/texmf-dist/tex/latex/combelow:/usr/share/texlive/texmf-dist/tex/latex/braket:/usr/share/texlive/texmf-dist/tex/latex/romanneg:/usr/share/texlive/texmf-dist/tex/latex/colorweb:/usr/share/texlive/texmf-dist/tex/latex/versions:/usr/share/texlive/texmf-dist/tex/latex/tabularew:/usr/share/texlive/texmf-dist/tex/latex/ae:/usr/share/texlive/texmf-dist/tex/latex/overpic:/usr/share/texlive/texmf-dist/tex/latex/nonumonpart:/usr/share/texlive/texmf-dist/tex/latex/zwgetfdate:/usr/share/texlive/texmf-dist/tex/latex/fn2end:/usr/share/texlive/texmf-dist/tex/latex/tikz-inet:/usr/share/texlive/texmf-dist/tex/latex/grid-system:/usr/share/texlive/texmf-dist/tex/latex/europecv:/usr/share/texlive/texmf-dist/tex/latex/xdoc:/usr/share/texlive/texmf-dist/tex/latex/datetime2-spanish:/usr/share/texlive/texmf-dist/tex/latex/minibox:/usr/share/texlive/texmf-dist/tex/latex/graphicxbox:/usr/share/texlive/texmf-dist/tex/latex/decorule:/usr/share/texlive/texmf-dist/tex/latex/ffslides:/usr/share/texlive/texmf-dist/tex/latex/tocvsec2:/usr/share/texlive/texmf-dist/tex/latex/ifmtarg:/usr/share/texlive/texmf-dist/tex/latex/termlist:/usr/share/texlive/texmf-dist/tex/latex/minted:/usr/share/texlive/texmf-dist/tex/latex/elpres:/usr/share/texlive/texmf-dist/tex/latex/ifmslide:/usr/share/texlive/texmf-dist/tex/latex/pst-solides3d:/usr/share/texlive/texmf-dist/tex/latex/romanbarpagenumber:/usr/share/texlive/texmf-dist/tex/latex/fontinst:/usr/share/texlive/texmf-dist/tex/latex/currvita:/usr/share/texlive/texmf-dist/tex/latex/semantic:/usr/share/texlive/texmf-dist/tex/latex/subfiles:/usr/share/texlive/texmf-dist/tex/latex/lewis:/usr/share/texlive/texmf-dist/tex/latex/ocgx:/usr/share/texlive/texmf-dist/tex/latex/pst-optexp:/usr/share/texlive/texmf-dist/tex/latex/standalone:/usr/share/texlive/texmf-dist/tex/latex/srcltx:/usr/share/texlive/texmf-dist/tex/latex/plantslabels:/usr/share/texlive/texmf-dist/tex/latex/datetime2-dutch:/usr/share/texlive/texmf-dist/tex/latex/morewrites:/usr/share/texlive/texmf-dist/tex/latex/elzcards:/usr/share/texlive/texmf-dist/tex/latex/datetime2-french:/usr/share/texlive/texmf-dist/tex/latex/lcd:/usr/share/texlive/texmf-dist/tex/latex/multirow:/usr/share/texlive/texmf-dist/tex/latex/logbox:/usr/share/texlive/texmf-dist/tex/latex/fileinfo:/usr/share/texlive/texmf-dist/tex/latex/neuralnetwork:/usr/share/texlive/texmf-dist/tex/latex/pst-tree:/usr/share/texlive/texmf-dist/tex/latex/cmdtrack:/usr/share/texlive/texmf-dist/tex/latex/actuarialangle:/usr/share/texlive/texmf-dist/tex/latex/scalebar:/usr/share/texlive/texmf-dist/tex/latex/fancynum:/usr/share/texlive/texmf-dist/tex/latex/doi:/usr/share/texlive/texmf-dist/tex/latex/optional:/usr/share/texlive/texmf-dist/tex/latex/pst-gantt:/usr/share/texlive/texmf-dist/tex/latex/limap:/usr/share/texlive/texmf-dist/tex/latex/anonchap:/usr/share/texlive/texmf-dist/tex/latex/tabfigures:/usr/share/texlive/texmf-dist/tex/latex/refman:/usr/share/texlive/texmf-dist/tex/latex/shorttoc:/usr/share/texlive/texmf-dist/tex/latex/xtab:/usr/share/texlive/texmf-dist/tex/latex/ktv-texdata:/usr/share/texlive/texmf-dist/tex/latex/fonttable:/usr/share/texlive/texmf-dist/tex/latex/ebezier:/usr/share/texlive/texmf-dist/tex/latex/nextpage:/usr/share/texlive/texmf-dist/tex/latex/vdmlisting:/usr/share/texlive/texmf-dist/tex/latex/pxgreeks:/usr/share/texlive/texmf-dist/tex/latex/encxvlna:/usr/share/texlive/texmf-dist/tex/latex/etaremune:/usr/share/texlive/texmf-dist/tex/latex/shadow:/usr/share/texlive/texmf-dist/tex/latex/errata:/usr/share/texlive/texmf-dist/tex/latex/pst-mirror:/usr/share/texlive/texmf-dist/tex/latex/fnpara:/usr/share/texlive/texmf-dist/tex/latex/inversepath:/usr/share/texlive/texmf-dist/tex/latex/pagecont:/usr/share/texlive/texmf-dist/tex/latex/csvsimple:/usr/share/texlive/texmf-dist/tex/latex/fancypar:/usr/share/texlive/texmf-dist/tex/latex/varwidth:/usr/share/texlive/texmf-dist/tex/latex/eukdate:/usr/share/texlive/texmf-dist/tex/latex/psnfss:/usr/share/texlive/texmf-dist/tex/latex/glossaries-dutch:/usr/share/texlive/texmf-dist/tex/latex/datetime2-welsh:/usr/share/texlive/texmf-dist/tex/latex/pgf:/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities:/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer:/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer:/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/libraries:/usr/share/texlive/texmf-dist/tex/latex/pgf/doc:/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility:/usr/share/texlive/texmf-dist/tex/latex/pgf/math:/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer:/usr/share/texlive/texmf-dist/tex/latex/trsym:/usr/share/texlive/texmf-dist/tex/latex/ltxindex:/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree:/usr/share/texlive/texmf-dist/tex/latex/etex-pkg:/usr/share/texlive/texmf-dist/tex/latex/pst-diffraction:/usr/share/texlive/texmf-dist/tex/latex/mcite:/usr/share/texlive/texmf-dist/tex/latex/framed:/usr/share/texlive/texmf-dist/tex/latex/finstrut:/usr/share/texlive/texmf-dist/tex/latex/comment:/usr/share/texlive/texmf-dist/tex/latex/coollist:/usr/share/texlive/texmf-dist/tex/latex/syntax:/usr/share/texlive/texmf-dist/tex/latex/bondgraphs:/usr/share/texlive/texmf-dist/tex/latex/filecontents:/usr/share/texlive/texmf-dist/tex/latex/ellipsis:/usr/share/texlive/texmf-dist/tex/latex/mceinleger:/usr/share/texlive/texmf-dist/tex/latex/numberedblock:/usr/share/texlive/texmf-dist/tex/latex/diagnose:/usr/share/texlive/texmf-dist/tex/latex/prettyref:/usr/share/texlive/texmf-dist/tex/latex/lkproof:/usr/share/texlive/texmf-dist/tex/latex/everypage:/usr/share/texlive/texmf-dist/tex/latex/multido:/usr/share/texlive/texmf-dist/tex/latex/stringstrings:/usr/share/texlive/texmf-dist/tex/latex/anyfontsize:/usr/share/texlive/texmf-dist/tex/latex/sparklines:/usr/share/texlive/texmf-dist/tex/latex/mslapa:/usr/share/texlive/texmf-dist/tex/latex/invoice:/usr/share/texlive/texmf-dist/tex/latex/textfit:/usr/share/texlive/texmf-dist/tex/latex/mailing:/usr/share/texlive/texmf-dist/tex/latex/blox:/usr/share/texlive/texmf-dist/tex/latex/keyval2e:/usr/share/texlive/texmf-dist/tex/latex/subdepth:/usr/share/texlive/texmf-dist/tex/latex/rcsinfo:/usr/share/texlive/texmf-dist/tex/latex/niceframe:/usr/share/texlive/texmf-dist/tex/latex/shadowtext:/usr/share/texlive/texmf-dist/tex/latex/qstest:/usr/share/texlive/texmf-dist/tex/latex/ed:/usr/share/texlive/texmf-dist/tex/latex/pst-vectorian:/usr/share/texlive/texmf-dist/tex/latex/forest:/usr/share/texlive/texmf-dist/tex/latex/pst-slpe:/usr/share/texlive/texmf-dist/tex/latex/paresse:/usr/share/texlive/texmf-dist/tex/latex/listliketab:/usr/share/texlive/texmf-dist/tex/latex/beamerposter:/usr/share/texlive/texmf-dist/tex/latex/pst-plot:/usr/share/texlive/texmf-dist/tex/latex/sauerj:/usr/share/texlive/texmf-dist/tex/latex/gincltex:/usr/share/texlive/texmf-dist/tex/latex/latex2man:/usr/share/texlive/texmf-dist/tex/latex/listings-ext:/usr/share/texlive/texmf-dist/tex/latex/examplep:/usr/share/texlive/texmf-dist/tex/latex/flashcards:/usr/share/texlive/texmf-dist/tex/latex/beton:/usr/share/texlive/texmf-dist/tex/latex/etextools:/usr/share/texlive/texmf-dist/tex/latex/datetime2-danish:/usr/share/texlive/texmf-dist/tex/latex/psbao:/usr/share/texlive/texmf-dist/tex/latex/hobby:/usr/share/texlive/texmf-dist/tex/latex/tikzpfeile:/usr/share/texlive/texmf-dist/tex/latex/indextools:/usr/share/texlive/texmf-dist/tex/latex/coursepaper:/usr/share/texlive/texmf-dist/tex/latex/calcage:/usr/share/texlive/texmf-dist/tex/latex/pst-pad:/usr/share/texlive/texmf-dist/tex/latex/datetime2-italian:/usr/share/texlive/texmf-dist/tex/latex/pst-electricfield:/usr/share/texlive/texmf-dist/tex/latex/autonum:/usr/share/texlive/texmf-dist/tex/latex/frankenstein:/usr/share/texlive/texmf-dist/tex/latex/nicetext:/usr/share/texlive/texmf-dist/tex/latex/nicetext/run:/usr/share/texlive/texmf-dist/tex/latex/sslides:/usr/share/texlive/texmf-dist/tex/latex/sansmath:/usr/share/texlive/texmf-dist/tex/latex/datatool:/usr/share/texlive/texmf-dist/tex/latex/upquote:/usr/share/texlive/texmf-dist/tex/latex/xwatermark:/usr/share/texlive/texmf-dist/tex/latex/dprogress:/usr/share/texlive/texmf-dist/tex/latex/pst-fit:/usr/share/texlive/texmf-dist/tex/latex/menukeys:/usr/share/texlive/texmf-dist/tex/latex/datetime2-lsorbian:/usr/share/texlive/texmf-dist/tex/latex/bchart:/usr/share/texlive/texmf-dist/tex/latex/philex:/usr/share/texlive/texmf-dist/tex/latex/chet:/usr/share/texlive/texmf-dist/tex/latex/mlist:/usr/share/texlive/texmf-dist/tex/latex/dialogl:/usr/share/texlive/texmf-dist/tex/latex/section:/usr/share/texlive/texmf-dist/tex/latex/svn-prov:/usr/share/texlive/texmf-dist/tex/latex/sidecap:/usr/share/texlive/texmf-dist/tex/latex/mcaption:/usr/share/texlive/texmf-dist/tex/latex/cyber:/usr/share/texlive/texmf-dist/tex/latex/uml:/usr/share/texlive/texmf-dist/tex/latex/xsavebox:/usr/share/texlive/texmf-dist/tex/latex/bibletext:/usr/share/texlive/texmf-dist/tex/latex/interactiveworkbook:/usr/share/texlive/texmf-dist/tex/latex/pst-spectra:/usr/share/texlive/texmf-dist/tex/latex/xifthen:/usr/share/texlive/texmf-dist/tex/latex/dtk:/usr/share/texlive/texmf-dist/tex/latex/lroundrect:/usr/share/texlive/texmf-dist/tex/latex/textcase:/usr/share/texlive/texmf-dist/tex/latex/titleref:/usr/share/texlive/texmf-dist/tex/latex/tkz-euclide:/usr/share/texlive/texmf-dist/tex/latex/xhfill:/usr/share/texlive/texmf-dist/tex/latex/lhelp:/usr/share/texlive/texmf-dist/tex/latex/bundledoc:/usr/share/texlive/texmf-dist/tex/latex/datetime2-irish:/usr/share/texlive/texmf-dist/tex/latex/listing:/usr/share/texlive/texmf-dist/tex/latex/mailmerge:/usr/share/texlive/texmf-dist/tex/latex/fncylab:/usr/share/texlive/texmf-dist/tex/latex/environ:/usr/share/texlive/texmf-dist/tex/latex/vmargin:/usr/share/texlive/texmf-dist/tex/latex/tableof:/usr/share/texlive/texmf-dist/tex/latex/sectsty:/usr/share/texlive/texmf-dist/tex/latex/hitec:/usr/share/texlive/texmf-dist/tex/latex/datetime2-icelandic:/usr/share/texlive/texmf-dist/tex/latex/iffont:/usr/share/texlive/texmf-dist/tex/latex/mfnfss:/usr/share/texlive/texmf-dist/tex/latex/colortbl:/usr/share/texlive/texmf-dist/tex/latex/refcheck:/usr/share/texlive/texmf-dist/tex/latex/frege:/usr/share/texlive/texmf-dist/tex/latex/modiagram:/usr/share/texlive/texmf-dist/tex/latex/diagmac2:/usr/share/texlive/texmf-dist/tex/latex/dashundergaps:/usr/share/texlive/texmf-dist/tex/latex/imakeidx:/usr/share/texlive/texmf-dist/tex/latex/draftwatermark:/usr/share/texlive/texmf-dist/tex/latex/xfor:/usr/share/texlive/texmf-dist/tex/latex/bondgraph:/usr/share/texlive/texmf-dist/tex/latex/clock:/usr/share/texlive/texmf-dist/tex/latex/beamertheme-upenn-bc:/usr/share/texlive/texmf-dist/tex/latex/pict2e:/usr/share/texlive/texmf-dist/tex/latex/seealso:/usr/share/texlive/texmf-dist/tex/latex/tex-label:/usr/share/texlive/texmf-dist/tex/latex/europasscv:/usr/share/texlive/texmf-dist/tex/latex/vhistory:/usr/share/texlive/texmf-dist/tex/latex/amsfonts:/usr/share/texlive/texmf-dist/tex/latex/parades:/usr/share/texlive/texmf-dist/tex/latex/carlisle:/usr/share/texlive/texmf-dist/tex/latex/macroswap:/usr/share/texlive/texmf-dist/tex/latex/mflogo:/usr/share/texlive/texmf-dist/tex/latex/xellipsis:/usr/share/texlive/texmf-dist/tex/latex/skeyval:/usr/share/texlive/texmf-dist/tex/latex/fullblck:/usr/share/texlive/texmf-dist/tex/latex/gradientframe:/usr/share/texlive/texmf-dist/tex/latex/refenums:/usr/share/texlive/texmf-dist/tex/latex/ecv:/usr/share/texlive/texmf-dist/tex/latex/fullminipage:/usr/share/texlive/texmf-dist/tex/latex/lcg:/usr/share/texlive/texmf-dist/tex/latex/pecha:/usr/share/texlive/texmf-dist/tex/latex/currfile:/usr/share/texlive/texmf-dist/tex/latex/shdoc:/usr/share/texlive/texmf-dist/tex/latex/datetime2-magyar:/usr/share/texlive/texmf-dist/tex/latex/monofill:/usr/share/texlive/texmf-dist/tex/latex/pst-cox:/usr/share/texlive/texmf-dist/tex/latex/numericplots:/usr/share/texlive/texmf-dist/tex/latex/typeface:/usr/share/texlive/texmf-dist/tex/latex/makedtx:/usr/share/texlive/texmf-dist/tex/latex/gitlog:/usr/share/texlive/texmf-dist/tex/latex/getfiledate:/usr/share/texlive/texmf-dist/tex/latex/coverpage:/usr/share/texlive/texmf-dist/tex/latex/tkz-kiviat:/usr/share/texlive/texmf-dist/tex/latex/harnon-cv:/usr/share/texlive/texmf-dist/tex/latex/flowchart:/usr/share/texlive/texmf-dist/tex/latex/tufte-latex:/usr/share/texlive/texmf-dist/tex/latex/ran_toks:/usr/share/texlive/texmf-dist/tex/latex/pst-light3d:/usr/share/texlive/texmf-dist/tex/latex/pst-asr:/usr/share/texlive/texmf-dist/tex/latex/pauldoc:/usr/share/texlive/texmf-dist/tex/latex/beamertheme-metropolis:/usr/share/texlive/texmf-dist/tex/latex/magaz:/usr/share/texlive/texmf-dist/tex/latex/zed-csp:/usr/share/texlive/texmf-dist/tex/latex/protocol:/usr/share/texlive/texmf-dist/tex/latex/pdfsync:/usr/share/texlive/texmf-dist/tex/latex/graphicx-psmin:/usr/share/texlive/texmf-dist/tex/latex/dsptricks:/usr/share/texlive/texmf-dist/tex/latex/fancytabs:/usr/share/texlive/texmf-dist/tex/latex/relsize:/usr/share/texlive/texmf-dist/tex/latex/handout:/usr/share/texlive/texmf-dist/tex/latex/mathexam:/usr/share/texlive/texmf-dist/tex/latex/fnumprint:/usr/share/texlive/texmf-dist/tex/latex/footnoterange:/usr/share/texlive/texmf-dist/tex/latex/pst-math:/usr/share/texlive/texmf-dist/tex/latex/changes:/usr/share/texlive/texmf-dist/tex/latex/kix:/usr/share/texlive/texmf-dist/tex/latex/clipboard:/usr/share/texlive/texmf-dist/tex/latex/fancyslides:/usr/share/texlive/texmf-dist/tex/latex/dox:/usr/share/texlive/texmf-dist/tex/latex/seminar:/usr/share/texlive/texmf-dist/tex/latex/enotez:/usr/share/texlive/texmf-dist/tex/latex/concepts:/usr/share/texlive/texmf-dist/tex/latex/glossaries-polish:/usr/share/texlive/texmf-dist/tex/latex/euler:/usr/share/texlive/texmf-dist/tex/latex/mathtools:/usr/share/texlive/texmf-dist/tex/latex/longnamefilelist:/usr/share/texlive/texmf-dist/tex/latex/pst-stru:/usr/share/texlive/texmf-dist/tex/latex/statistik:/usr/share/texlive/texmf-dist/tex/latex/cybercic:/usr/share/texlive/texmf-dist/tex/latex/labels:/usr/share/texlive/texmf-dist/tex/latex/datetime2-polish:/usr/share/texlive/texmf-dist/tex/latex/hc:/usr/share/texlive/texmf-dist/tex/latex/jlabels:/usr/share/texlive/texmf-dist/tex/latex/GS1:/usr/share/texlive/texmf-dist/tex/latex/pdfslide:/usr/share/texlive/texmf-dist/tex/latex/verbdef:/usr/share/texlive/texmf-dist/tex/latex/latexdemo:/usr/share/texlive/texmf-dist/tex/latex/wrapfig:/usr/share/texlive/texmf-dist/tex/latex/glossaries-german:/usr/share/texlive/texmf-dist/tex/latex/bigfoot:/usr/share/texlive/texmf-dist/tex/latex/pst-func:/usr/share/texlive/texmf-dist/tex/latex/komacv:/usr/share/texlive/texmf-dist/tex/latex/extract:/usr/share/texlive/texmf-dist/tex/latex/cuisine:/usr/share/texlive/texmf-dist/tex/latex/datetime2-hebrew:/usr/share/texlive/texmf-dist/tex/latex/coordsys:/usr/share/texlive/texmf-dist/tex/latex/pgfplots:/usr/share/texlive/texmf-dist/tex/latex/pgfplots/libs:/usr/share/texlive/texmf-dist/tex/latex/keystroke:/usr/share/texlive/texmf-dist/tex/latex/savefnmark:/usr/share/texlive/texmf-dist/tex/latex/beamersubframe:/usr/share/texlive/texmf-dist/tex/latex/tkz-doc:/usr/share/texlive/texmf-dist/tex/latex/changelayout:/usr/share/texlive/texmf-dist/tex/latex/stack:/usr/share/texlive/texmf-dist/tex/latex/url:/usr/share/texlive/texmf-dist/tex/latex/spreadtab:/usr/share/texlive/texmf-dist/tex/latex/flashmovie:/usr/share/texlive/texmf-dist/tex/latex/epyt:/usr/share/texlive/texmf-dist/tex/latex/pdftricks:/usr/share/texlive/texmf-dist/tex/latex/translations:/usr/share/texlive/texmf-dist/tex/latex/sa-tikz:/usr/share/texlive/texmf-dist/tex/latex/oldstyle:/usr/share/texlive/texmf-dist/tex/latex/snapshot:/usr/share/texlive/texmf-dist/tex/latex/hletter:/usr/share/texlive/texmf-dist/tex/latex/fixme:/usr/share/texlive/texmf-dist/tex/latex/fixme/themes:/usr/share/texlive/texmf-dist/tex/latex/fixme/layouts:/usr/share/texlive/texmf-dist/tex/latex/fixme/layouts/env:/usr/share/texlive/texmf-dist/tex/latex/fixme/layouts/target:/usr/share/texlive/texmf-dist/tex/latex/boolexpr:/usr/share/texlive/texmf-dist/tex/latex/bez123:/usr/share/texlive/texmf-dist/tex/latex/semproc:/usr/share/texlive/texmf-dist/tex/latex/isonums:/usr/share/texlive/texmf-dist/tex/latex/snotez:/usr/share/texlive/texmf-dist/tex/latex/hvindex:/usr/share/texlive/texmf-dist/tex/latex/efbox:/usr/share/texlive/texmf-dist/tex/latex/needspace:/usr/share/texlive/texmf-dist/tex/latex/papertex:/usr/share/texlive/texmf-dist/tex/latex/tabto-ltx:/usr/share/texlive/texmf-dist/tex/latex/grafcet:/usr/share/texlive/texmf-dist/tex/latex/fancybox:/usr/share/texlive/texmf-dist/tex/latex/multiaudience:/usr/share/texlive/texmf-dist/tex/latex/knitting:/usr/share/texlive/texmf-dist/tex/latex/multibbl:/usr/share/texlive/texmf-dist/tex/latex/filehook:/usr/share/texlive/texmf-dist/tex/latex/pb-diagram:/usr/share/texlive/texmf-dist/tex/latex/rotating:/usr/share/texlive/texmf-dist/tex/latex/vpe:/usr/share/texlive/texmf-dist/tex/latex/setspace:/usr/share/texlive/texmf-dist/tex/latex/sf298:/usr/share/texlive/texmf-dist/tex/latex/python:/usr/share/texlive/texmf-dist/tex/latex/incgraph:/usr/share/texlive/texmf-dist/tex/latex/pst-text:/usr/share/texlive/texmf-dist/tex/latex/sepfootnotes:/usr/share/texlive/texmf-dist/tex/latex/namespc:/usr/share/texlive/texmf-dist/tex/latex/pst-platon:/usr/share/texlive/texmf-dist/tex/latex/fancytooltips:/usr/share/texlive/texmf-dist/tex/latex/multidef:/usr/share/texlive/texmf-dist/tex/latex/exercises:/usr/share/texlive/texmf-dist/tex/latex/svgcolor:/usr/share/texlive/texmf-dist/tex/latex/datetime2-basque:/usr/share/texlive/texmf-dist/tex/latex/proofread:/usr/share/texlive/texmf-dist/tex/latex/datetime2-english:/usr/share/texlive/texmf-dist/tex/latex/todo:/usr/share/texlive/texmf-dist/tex/latex/substr:/usr/share/texlive/texmf-dist/tex/latex/tocbibind:/usr/share/texlive/texmf-dist/tex/latex/cv:/usr/share/texlive/texmf-dist/tex/latex/pstricks:/usr/share/texlive/texmf-dist/tex/latex/emulateapj:/usr/share/texlive/texmf-dist/tex/latex/boites:/usr/share/texlive/texmf-dist/tex/latex/altfont:/usr/share/texlive/texmf-dist/tex/latex/pslatex:/usr/share/texlive/texmf-dist/tex/latex/dotseqn:/usr/share/texlive/texmf-dist/tex/latex/stdclsdv:/usr/share/texlive/texmf-dist/tex/latex/alnumsec:/usr/share/texlive/texmf-dist/tex/latex/register:/usr/share/texlive/texmf-dist/tex/latex/gnuplottex:/usr/share/texlive/texmf-dist/tex/latex/bracketkey:/usr/share/texlive/texmf-dist/tex/latex/nolbreaks:/usr/share/texlive/texmf-dist/tex/latex/glossaries-portuges:/usr/share/texlive/texmf-dist/tex/latex/glossaries-serbian:/usr/share/texlive/texmf-dist/tex/latex/synttree:/usr/share/texlive/texmf-dist/tex/latex/pinlabel:/usr/share/texlive/texmf-dist/tex/latex/changebar:/usr/share/texlive/texmf-dist/tex/latex/hypernat:/usr/share/texlive/texmf-dist/tex/latex/tkz-tab:/usr/share/texlive/texmf-dist/tex/latex/units:/usr/share/texlive/texmf-dist/tex/latex/pdftex-def:/usr/share/texlive/texmf-dist/tex/latex/totcount:/usr/share/texlive/texmf-dist/tex/latex/circ:/usr/share/texlive/texmf-dist/tex/latex/isodate:/usr/share/texlive/texmf-dist/tex/latex/iitem:/usr/share/texlive/texmf-dist/tex/latex/alertmessage:/usr/share/texlive/texmf-dist/tex/latex/alertmessage/img:/usr/share/texlive/texmf-dist/tex/latex/euenc:/usr/share/texlive/texmf-dist/tex/latex/captcont:/usr/share/texlive/texmf-dist/tex/latex/eso-pic:/usr/share/texlive/texmf-dist/tex/latex/moderncv:/usr/share/texlive/texmf-dist/tex/latex/export:/usr/share/texlive/texmf-dist/tex/latex/schemabloc:/usr/share/texlive/texmf-dist/tex/latex/lmake:/usr/share/texlive/texmf-dist/tex/latex/inlinedef:/usr/share/texlive/texmf-dist/tex/latex/fontspec:/usr/share/texlive/texmf-dist/tex/latex/arraysort:/usr/share/texlive/texmf-dist/tex/latex/eqell:/usr/share/texlive/texmf-dist/tex/latex/threadcol:/usr/share/texlive/texmf-dist/tex/latex/xoptarg:/usr/share/texlive/texmf-dist/tex/latex/showlabels:/usr/share/texlive/texmf-dist/tex/latex/cntperchap:/usr/share/texlive/texmf-dist/tex/latex/preprint:/usr/share/texlive/texmf-dist/tex/latex/easylist:/usr/share/texlive/texmf-dist/tex/latex/modref:/usr/share/texlive/texmf-dist/tex/latex/datetime2-slovene:/usr/share/texlive/texmf-dist/tex/latex/polynomial:/usr/share/texlive/texmf-dist/tex/latex/cooking:/usr/share/texlive/texmf-dist/tex/latex/varsfromjobname:/usr/share/texlive/texmf-dist/tex/latex/qcm:/usr/share/texlive/texmf-dist/tex/latex/ocr-latex:/usr/share/texlive/texmf-dist/tex/latex/rotpages:/usr/share/texlive/texmf-dist/tex/latex/pgf-soroban:/usr/share/texlive/texmf-dist/tex/latex/xargs:/usr/share/texlive/texmf-dist/tex/latex/pst-blur:/usr/share/texlive/texmf-dist/tex/latex/probsoln:/usr/share/texlive/texmf-dist/tex/latex/pdfcomment:/usr/share/texlive/texmf-dist/tex/latex/texlogos:/usr/share/texlive/texmf-dist/tex/latex/williams:/usr/share/texlive/texmf-dist/tex/latex/pst-pdgr:/usr/share/texlive/texmf-dist/tex/latex/mweights:/usr/share/texlive/texmf-dist/tex/latex/datetime2-swedish:/usr/share/texlive/texmf-dist/tex/latex/expdlist:/usr/share/texlive/texmf-dist/tex/latex/pst-pdf:/usr/share/texlive/texmf-dist/tex/latex/animate:/usr/share/texlive/texmf-dist/tex/latex/bxeepic:/usr/share/texlive/texmf-dist/tex/latex/basicarith:/usr/share/texlive/texmf-dist/tex/latex/beameraudience:/usr/share/texlive/texmf-dist/tex/latex/coolthms:/usr/share/texlive/texmf-dist/tex/latex/eqlist:/usr/share/texlive/texmf-dist/tex/latex/concprog:/usr/share/texlive/texmf-dist/tex/latex/fmp:/usr/share/texlive/texmf-dist/tex/latex/koma-moderncvclassic:/usr/share/texlive/texmf-dist/tex/latex/eemeir:/usr/share/texlive/texmf-dist/tex/latex/assoccnt:/usr/share/texlive/texmf-dist/tex/latex/breqn:/usr/share/texlive/texmf-dist/tex/latex/nomentbl:/usr/share/texlive/texmf-dist/tex/latex/tkz-orm:/usr/share/texlive/texmf-dist/tex/latex/graphviz:/usr/share/texlive/texmf-dist/tex/latex/answers:/usr/share/texlive/texmf-dist/tex/latex/footmisc:/usr/share/texlive/texmf-dist/tex/latex/contour:/usr/share/texlive/texmf-dist/tex/latex/bold-extra:/usr/share/texlive/texmf-dist/tex/latex/abstract:/usr/share/texlive/texmf-dist/tex/latex/colourchange:/usr/share/texlive/texmf-dist/tex/latex/ncctools:/usr/share/texlive/texmf-dist/tex/latex/lipsum:/usr/share/texlive/texmf-dist/tex/latex/dashrule:/usr/share/texlive/texmf-dist/tex/latex/fncychap:/usr/share/texlive/texmf-dist/tex/latex/exceltex:/usr/share/texlive/texmf-dist/tex/latex/ftcap:/usr/share/texlive/texmf-dist/tex/latex/flabels:/usr/share/texlive/texmf-dist/tex/latex/beamer:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/color:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/inner:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/font:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/theme:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/theme/compatibility:/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/outer:/usr/share/texlive/texmf-dist/tex/latex/beamer/multimedia:/usr/share/texlive/texmf-dist/tex/latex/beamer/art:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-numbers-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-environment-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-theorem-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-months-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-bibliography-dictionary:/usr/share/texlive/texmf-dist/tex/latex/beamer/emulation:/usr/share/texlive/texmf-dist/tex/latex/beamer/emulation/examples:/usr/share/texlive/texmf-dist/tex/latex/qcircuit:/usr/share/texlive/texmf-dist/tex/latex/cooltooltips:/usr/share/texlive/texmf-dist/tex/latex/movie15:/usr/share/texlive/texmf-dist/tex/latex/l3packages:/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse:/usr/share/texlive/texmf-dist/tex/latex/l3packages/xfrac:/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e:/usr/share/texlive/texmf-dist/tex/latex/l3packages/xtemplate:/usr/share/texlive/texmf-dist/tex/latex/mathastext:/usr/share/texlive/texmf-dist/tex/latex/epspdfconversion:/usr/share/texlive/texmf-dist/tex/latex/verbments:/usr/share/texlive/texmf-dist/tex/latex/shadethm:/usr/share/texlive/texmf-dist/tex/latex/tikz-3dplot:/usr/share/texlive/texmf-dist/tex/latex/datetime:/usr/share/texlive/texmf-dist/tex/latex/lengthconvert:/usr/share/texlive/texmf-dist/tex/latex/bankstatement:/usr/share/texlive/texmf-dist/tex/latex/pstricks-add:/usr/share/texlive/texmf-dist/tex/latex/pst-eps:/usr/share/texlive/texmf-dist/tex/latex/esami:/usr/share/texlive/texmf-dist/tex/latex/ccaption:/usr/share/texlive/texmf-dist/tex/latex/tools:/usr/share/texlive/texmf-dist/tex/latex/smartunits:/usr/share/texlive/texmf-dist/tex/latex/gridset:/usr/share/texlive/texmf-dist/tex/latex/colordoc:/usr/share/texlive/texmf-dist/tex/latex/pst-tvz:/usr/share/texlive/texmf-dist/tex/latex/flipbook:/usr/share/texlive/texmf-dist/tex/latex/fragments:/usr/share/texlive/texmf-dist/tex/latex/hypdvips:/usr/share/texlive/texmf-dist/tex/latex/pst-magneticfield:/usr/share/texlive/texmf-dist/tex/latex/pst-circ:/usr/share/texlive/texmf-dist/tex/latex/tabstackengine:/usr/share/texlive/texmf-dist/tex/latex/ltabptch:/usr/share/texlive/texmf-dist/tex/latex/sffms:/usr/share/texlive/texmf-dist/tex/latex/checklistings:/usr/share/texlive/texmf-dist/tex/latex/smartdiagram:/usr/share/texlive/texmf-dist/tex/latex/leaflet:/usr/share/texlive/texmf-dist/tex/latex/pkgloader:/usr/share/texlive/texmf-dist/tex/latex/forloop:/usr/share/texlive/texmf-dist/tex/latex/tikz-dependency:/usr/share/texlive/texmf-dist/tex/latex/eqparbox:/usr/share/texlive/texmf-dist/tex/latex/datetime2-galician:/usr/share/texlive/texmf-dist/tex/latex/calrsfs:/usr/share/texlive/texmf-dist/tex/latex/paracol:/usr/share/texlive/texmf-dist/tex/latex/latexconfig:/usr/share/texlive/texmf-dist/tex/latex/exam-n:/usr/share/texlive/texmf-dist/tex/latex/gitinfo:/usr/share/texlive/texmf-dist/tex/latex/texments:/usr/share/texlive/texmf-dist/tex/latex/gmdoc:/usr/share/texlive/texmf-dist/tex/latex/moresize:/usr/share/texlive/texmf-dist/tex/latex/pst-infixplot:/usr/share/texlive/texmf-dist/tex/latex/hhtensor:/usr/share/texlive/texmf-dist/tex/latex/medstarbeamer:/usr/share/texlive/texmf-dist/tex/latex/newlfm:/usr/share/texlive/texmf-dist/tex/latex/ean13isbn:/usr/share/texlive/texmf-dist/tex/latex/parskip:/usr/share/texlive/texmf-dist/tex/latex/combinedgraphics:/usr/share/texlive/texmf-dist/tex/latex/booktabs:/usr/share/texlive/texmf-dist/tex/latex/glossaries-irish:/usr/share/texlive/texmf-dist/tex/latex/kerntest:/usr/share/texlive/texmf-dist/tex/latex/cmdstring:/usr/share/texlive/texmf-dist/tex/latex/foreign:/usr/share/texlive/texmf-dist/tex/latex/fancyvrb:/usr/share/texlive/texmf-dist/tex/latex/pst-dbicons:/usr/share/texlive/texmf-dist/tex/latex/oberdiek:/usr/share/texlive/texmf-dist/tex/latex/epigraph:/usr/share/texlive/texmf-dist/tex/latex/thumbs:/usr/share/texlive/texmf-dist/tex/latex/hyperxmp:/usr/share/texlive/texmf-dist/tex/latex/cweb-latex:/usr/share/texlive/texmf-dist/tex/latex/multenum:/usr/share/texlive/texmf-dist/tex/latex/catchfilebetweentags:/usr/share/texlive/texmf-dist/tex/latex/tucv:/usr/share/texlive/texmf-dist/tex/latex/natbib:/usr/share/texlive/texmf-dist/tex/latex/rjlparshap:/usr/share/texlive/texmf-dist/tex/latex/etoc:/usr/share/texlive/texmf-dist/tex/latex/mathalfa:/usr/share/texlive/texmf-dist/tex/latex/image-gallery:/usr/share/texlive/texmf-dist/tex/latex/lt3graph:/usr/share/texlive/texmf-dist/tex/latex/pst-optic:/usr/share/texlive/texmf-dist/tex/latex/fancyref:/usr/share/texlive/texmf-dist/tex/latex/ltxdockit:/usr/share/texlive/texmf-dist/tex/latex/tablists:/usr/share/texlive/texmf-dist/tex/latex/auto-pst-pdf:/usr/share/texlive/texmf-dist/tex/latex/spot:/usr/share/texlive/texmf-dist/tex/latex/datetime2-catalan:/usr/share/texlive/texmf-dist/tex/latex/hang:/usr/share/texlive/texmf-dist/tex/latex/gmverb:/usr/share/texlive/texmf-dist/tex/latex/appendix:/usr/share/texlive/texmf-dist/tex/latex/Tabbing:/usr/share/texlive/texmf-dist/tex/latex/circuitikz:/usr/share/texlive/texmf-dist/tex/latex/celtic:/usr/share/texlive/texmf-dist/tex/latex/tabularborder:/usr/share/texlive/texmf-dist/tex/latex/lsc:/usr/share/texlive/texmf-dist/tex/latex/datetime2-serbian:/usr/share/texlive/texmf-dist/tex/latex/authorindex:/usr/share/texlive/texmf-dist/tex/latex/pdfpages:/usr/share/texlive/texmf-dist/tex/latex/chkfloat:/usr/share/texlive/texmf-dist/tex/latex/mdframed:/usr/share/texlive/texmf-dist/tex/latex/repeatindex:/usr/share/texlive/texmf-dist/tex/latex/acroterm:/usr/share/texlive/texmf-dist/tex/latex/skrapport:/usr/share/texlive/texmf-dist/tex/latex/cellspace:/usr/share/texlive/texmf-dist/tex/latex/sitem:/usr/share/texlive/texmf-dist/tex/latex/verbatimcopy:/usr/share/texlive/texmf-dist/tex/latex/calxxxx-yyyy:/usr/share/texlive/texmf-dist/tex/latex/datetime2-en-fulltext:/usr/share/texlive/texmf-dist/tex/latex/glossaries-spanish:/usr/share/texlive/texmf-dist/tex/latex/datetime2-latin:/usr/share/texlive/texmf-dist/tex/latex/undolabl:/usr/share/texlive/texmf-dist/tex/latex/beamercolorthemeowl:/usr/share/texlive/texmf-dist/tex/latex/envlab:/usr/share/texlive/texmf-dist/tex/latex/rvwrite:/usr/share/texlive/texmf-dist/tex/latex/pst-grad:/usr/share/texlive/texmf-dist/tex/latex/censor:/usr/share/texlive/texmf-dist/tex/latex/pst-2dplot:/usr/share/texlive/texmf-dist/tex/latex/subeqn:/usr/share/texlive/texmf-dist/tex/latex/show2e:/usr/share/texlive/texmf-dist/tex/latex/background:/usr/share/texlive/texmf-dist/tex/latex/storecmd:/usr/share/texlive/texmf-dist/tex/latex/tkz-graph:/usr/share/texlive/texmf-dist/tex/latex/reotex:/usr/share/texlive/texmf-dist/tex/latex/mbenotes:/usr/share/texlive/texmf-dist/tex/latex/midpage:/usr/share/texlive/texmf-dist/tex/latex/pst-knot:/usr/share/texlive/texmf-dist/tex/latex/ftnxtra:/usr/share/texlive/texmf-dist/tex/latex/arcs:/usr/share/texlive/texmf-dist/tex/latex/mla-paper:/usr/share/texlive/texmf-dist/tex/latex/withargs:/usr/share/texlive/texmf-dist/tex/latex/doclicense:/usr/share/texlive/texmf-dist/tex/latex/doclicense/images:/usr/share/texlive/texmf-dist/tex/latex/doclicense/license-texts:/usr/share/texlive/texmf-dist/tex/latex/codedoc:/usr/share/texlive/texmf-dist/tex/latex/method:/usr/share/texlive/texmf-dist/tex/latex/secdot:/usr/share/texlive/texmf-dist/tex/latex/beamerdarkthemes:/usr/share/texlive/texmf-dist/tex/latex/asyfig:/usr/share/texlive/texmf-dist/tex/latex/moderntimeline:/usr/share/texlive/texmf-dist/tex/latex/contracard:/usr/share/texlive/texmf-dist/tex/latex/pax:/usr/share/texlive/texmf-dist/tex/latex/thmtools:/usr/share/texlive/texmf-dist/tex/latex/miniplot:/usr/share/texlive/texmf-dist/tex/latex/mparhack:/usr/share/texlive/texmf-dist/tex/latex/maybemath:/usr/share/texlive/texmf-dist/tex/latex/nameauth:/usr/share/texlive/texmf-dist/tex/latex/pas-cours:/usr/share/texlive/texmf-dist/tex/latex/cmap:/usr/share/texlive/texmf-dist/tex/latex/outliner:/usr/share/texlive/texmf-dist/tex/latex/edmargin:/usr/share/texlive/texmf-dist/tex/latex/sidenotes:/usr/share/texlive/texmf-dist/tex/latex/pfarrei:/usr/share/texlive/texmf-dist/tex/latex/isotope:/usr/share/texlive/texmf-dist/tex/latex/tipfr:/usr/share/texlive/texmf-dist/tex/latex/pst-jtree:/usr/share/texlive/texmf-dist/tex/latex/volumes:/usr/share/texlive/texmf-dist/tex/latex/hyphenat:/usr/share/texlive/texmf-dist/tex/latex/tablestyles:/usr/share/texlive/texmf-dist/tex/latex/setdeck:/usr/share/texlive/texmf-dist/tex/latex/chronology:/usr/share/texlive/texmf-dist/tex/latex/umoline:/usr/share/texlive/texmf-dist/tex/latex/pst-barcode:/usr/share/texlive/texmf-dist/tex/latex/pdfcprot:/usr/share/texlive/texmf-dist/tex/latex/tabulary:/usr/share/texlive/texmf-dist/tex/latex/codepage:/usr/share/texlive/texmf-dist/tex/latex/quoting:/usr/share/texlive/texmf-dist/tex/latex/savetrees:/usr/share/texlive/texmf-dist/tex/latex/randomwalk:/usr/share/texlive/texmf-dist/tex/latex/pst-vue3d:/usr/share/texlive/texmf-dist/tex/latex/widetable:/usr/share/texlive/texmf-dist/tex/latex/xpunctuate:/usr/share/texlive/texmf-dist/tex/latex/layouts:/usr/share/texlive/texmf-dist/tex/latex/options:/usr/share/texlive/texmf-dist/tex/latex/msg:/usr/share/texlive/texmf-dist/tex/latex/bodegraph:/usr/share/texlive/texmf-dist/tex/latex/ESIEEcv:/usr/share/texlive/texmf-dist/tex/latex/ntheorem:/usr/share/texlive/texmf-dist/tex/latex/cancel:/usr/share/texlive/texmf-dist/tex/latex/pst-pulley:/usr/share/texlive/texmf-dist/tex/latex/datetime2-greek:/usr/share/texlive/texmf-dist/tex/latex/assignment:/usr/share/texlive/texmf-dist/tex/latex/iwhdp:/usr/share/texlive/texmf-dist/tex/latex/guitlogo:/usr/share/texlive/texmf-dist/tex/latex/easyfig:/usr/share/texlive/texmf-dist/tex/latex/semioneside:/usr/share/texlive/texmf-dist/tex/latex/bizcard:/usr/share/texlive/texmf-dist/tex/latex/vgrid:/usr/share/texlive/texmf-dist/tex/latex/jumplines:/usr/share/texlive/texmf-dist/tex/latex/chapterfolder:/usr/share/texlive/texmf-dist/tex/latex/textpos:/usr/share/texlive/texmf-dist/tex/latex/menu:/usr/share/texlive/texmf-dist/tex/latex/tikz-dimline:/usr/share/texlive/texmf-dist/tex/latex/pst-abspos:/usr/share/texlive/texmf-dist/tex/latex/sphack:/usr/share/texlive/texmf-dist/tex/latex/amsaddr:/usr/share/texlive/texmf-dist/tex/latex/tikz-feynman:/usr/share/texlive/texmf-dist/tex/latex/pstool:/usr/share/texlive/texmf-dist/tex/latex/pgfkeyx:/usr/share/texlive/texmf-dist/tex/latex/dichokey:/usr/share/texlive/texmf-dist/tex/latex/nag:/usr/share/texlive/texmf-dist/tex/latex/bookest:/usr/share/texlive/texmf-dist/tex/latex/tikz-opm:/usr/share/texlive/texmf-dist/tex/latex/here:/usr/share/texlive/texmf-dist/tex/latex/datetime2-bahasai:/usr/share/texlive/texmf-dist/tex/latex/svg:/usr/share/texlive/texmf-dist/tex/latex/placeins:/usr/share/texlive/texmf-dist/tex/latex/substitutefont:/usr/share/texlive/texmf-dist/tex/latex/pgfopts:/usr/share/texlive/texmf-dist/tex/latex/facsimile:/usr/share/texlive/texmf-dist/tex/latex/bnumexpr:/usr/share/texlive/texmf-dist/tex/latex/tikzposter:/usr/share/texlive/texmf-dist/tex/latex/glossaries-french:/usr/share/texlive/texmf-dist/tex/latex/fibeamer:/usr/share/texlive/texmf-dist/tex/latex/fibeamer/logo:/usr/share/texlive/texmf-dist/tex/latex/fibeamer/logo/mu:/usr/share/texlive/texmf-dist/tex/latex/fibeamer/theme:/usr/share/texlive/texmf-dist/tex/latex/fibeamer/theme/mu:/usr/share/texlive/texmf-dist/tex/latex/tqft:/usr/share/texlive/texmf-dist/tex/latex/randtext:/usr/share/texlive/texmf-dist/tex/latex/example:/usr/share/texlive/texmf-dist/tex/latex/latex-make:/usr/share/texlive/texmf-dist/tex/latex/numname:/usr/share/texlive/texmf-dist/tex/latex/reflectgraphics:/usr/share/texlive/texmf-dist/tex/latex/beamerthemejltree:/usr/share/texlive/texmf-dist/tex/latex/hvfloat:/usr/share/texlive/texmf-dist/tex/latex/tikzscale:/usr/share/texlive/texmf-dist/tex/latex/was:/usr/share/texlive/texmf-dist/tex/latex/mversion:/usr/share/texlive/texmf-dist/tex/latex/polytable:/usr/share/texlive/texmf-dist/tex/latex/pdfpagediff:/usr/share/texlive/texmf-dist/tex/latex/cdpbundl:/usr/share/texlive/texmf-dist/tex/latex/textgreek:/usr/share/texlive/texmf-dist/tex/latex/gitinfo2:/usr/share/texlive/texmf-dist/tex/latex/mftinc:/usr/share/texlive/texmf-dist/tex/latex/pst-bar:/usr/share/texlive/texmf-dist/tex/latex/bxdpx-beamer:/usr/share/texlive/texmf-dist/tex/latex/autopdf:/usr/share/texlive/texmf-dist/tex/latex/booklet:/usr/share/texlive/texmf-dist/tex/latex/patchcmd:/usr/share/texlive/texmf-dist/tex/latex/longfigure:/usr/share/texlive/texmf-dist/tex/latex/ms:/usr/share/texlive/texmf-dist/tex/latex/rccol:/usr/share/texlive/texmf-dist/tex/latex/dateiliste:/usr/share/texlive/texmf-dist/tex/latex/perltex:/usr/share/texlive/texmf-dist/tex/latex/a4wide:/usr/share/texlive/texmf-dist/tex/latex/smartref:/usr/share/texlive/texmf-dist/tex/latex/datetime2-it-fulltext:/usr/share/texlive/texmf-dist/tex/latex/tkz-berge:/usr/share/texlive/texmf-dist/tex/latex/skdoc:/usr/share/texlive/texmf-dist/tex/latex/pst-fractal:/usr/share/texlive/texmf-dist/tex/latex/mmap:/usr/share/texlive/texmf-dist/tex/latex/datetime2-estonian:/usr/share/texlive/texmf-dist/tex/latex/copyrightbox:/usr/share/texlive/texmf-dist/tex/latex/pictex2:/usr/share/texlive/texmf-dist/tex/latex/xcolor-solarized:/usr/share/texlive/texmf-dist/tex/latex/cutwin:/usr/share/texlive/texmf-dist/tex/latex/nestquot:/usr/share/texlive/texmf-dist/tex/latex/endheads:/usr/share/texlive/texmf-dist/tex/latex/dpfloat:/usr/share/texlive/texmf-dist/tex/latex/tikz-palattice:/usr/share/texlive/texmf-dist/tex/latex/l3experimental:/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3sort:/usr/share/texlive/texmf-dist/tex/latex/l3experimental/xgalley:/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str:/usr/share/texlive/texmf-dist/tex/latex/l3experimental/xcoffins:/usr/share/texlive/texmf-dist/tex/latex/pst-eucl:/usr/share/texlive/texmf-dist/tex/lualatex:/usr/share/texlive/texmf-dist/tex/lualatex/pgfmolbio:/usr/share/texlive/texmf-dist/tex/luatex:/usr/share/texlive/texmf-dist/tex/luatex/hyph-utf8:/usr/share/texlive/texmf-dist/tex/fontinst:/usr/share/texlive/texmf-dist/tex/fontinst/mathmtx:/usr/share/texlive/texmf-dist/tex/fontinst/base:/usr/share/texlive/texmf-dist/tex/fontinst/misc:/usr/share/texlive/texmf-dist/tex/fontinst/smblmtx:/usr/share/texlive/texmf-dist/tex/fontinst/mathetx:/usr/share/texlive/texmf-dist/tex/fontinst/latinmtx:/usr/share/texlive/texmf-dist/tex/fontinst/smbletx:/usr/share/texlive/texmf-dist/tex/fontinst/afm2pl:/usr/share/texlive/texmf-dist/tex/fontinst/latinetx:/usr/share/texlive/texmf-dist/tex/generic:/usr/share/texlive/texmf-dist/tex/generic/schemata:/usr/share/texlive/texmf-dist/tex/generic/shapepar:/usr/share/texlive/texmf-dist/tex/generic/pst-osci:/usr/share/texlive/texmf-dist/tex/generic/splitindex:/usr/share/texlive/texmf-dist/tex/generic/pst-gr3d:/usr/share/texlive/texmf-dist/tex/generic/pst-ode:/usr/share/texlive/texmf-dist/tex/generic/borceux:/usr/share/texlive/texmf-dist/tex/generic/epigram:/usr/share/texlive/texmf-dist/tex/generic/poster-mac:/usr/share/texlive/texmf-dist/tex/generic/kastrup:/usr/share/texlive/texmf-dist/tex/generic/minifp:/usr/share/texlive/texmf-dist/tex/generic/pictex:/usr/share/texlive/texmf-dist/tex/generic/gates:/usr/share/texlive/texmf-dist/tex/generic/pst-ovl:/usr/share/texlive/texmf-dist/tex/generic/pst-graphicx:/usr/share/texlive/texmf-dist/tex/generic/pst-ghsb:/usr/share/texlive/texmf-dist/tex/generic/insbox:/usr/share/texlive/texmf-dist/tex/generic/multiexpand:/usr/share/texlive/texmf-dist/tex/generic/pdftex:/usr/share/texlive/texmf-dist/tex/generic/pst-fun:/usr/share/texlive/texmf-dist/tex/generic/ulem:/usr/share/texlive/texmf-dist/tex/generic/pgfornament:/usr/share/texlive/texmf-dist/tex/generic/pgfornament/vectorian:/usr/share/texlive/texmf-dist/tex/generic/pgfornament/am:/usr/share/texlive/texmf-dist/tex/generic/eijkhout:/usr/share/texlive/texmf-dist/tex/generic/pst-intersect:/usr/share/texlive/texmf-dist/tex/generic/pst-sigsys:/usr/share/texlive/texmf-dist/tex/generic/pst-geo:/usr/share/texlive/texmf-dist/tex/generic/pst-geo/dataII:/usr/share/texlive/texmf-dist/tex/generic/pst-geo/data:/usr/share/texlive/texmf-dist/tex/generic/pst-perspective:/usr/share/texlive/texmf-dist/tex/generic/ydoc:/usr/share/texlive/texmf-dist/tex/generic/librarian:/usr/share/texlive/texmf-dist/tex/generic/mathdots:/usr/share/texlive/texmf-dist/tex/generic/pst-labo:/usr/share/texlive/texmf-dist/tex/generic/texdraw:/usr/share/texlive/texmf-dist/tex/generic/pst-poly:/usr/share/texlive/texmf-dist/tex/generic/pst-fr3d:/usr/share/texlive/texmf-dist/tex/generic/chronosys:/usr/share/texlive/texmf-dist/tex/generic/config:/usr/share/texlive/texmf-dist/tex/generic/pst-spirograph:/usr/share/texlive/texmf-dist/tex/generic/xstring:/usr/share/texlive/texmf-dist/tex/generic/xkeyval:/usr/share/texlive/texmf-dist/tex/generic/pst-qtree:/usr/share/texlive/texmf-dist/tex/generic/docbytex:/usr/share/texlive/texmf-dist/tex/generic/iftex:/usr/share/texlive/texmf-dist/tex/generic/epsf:/usr/share/texlive/texmf-dist/tex/generic/pst-fill:/usr/share/texlive/texmf-dist/tex/generic/babel-spanish:/usr/share/texlive/texmf-dist/tex/generic/pst-3d:/usr/share/texlive/texmf-dist/tex/generic/pst-bezier:/usr/share/texlive/texmf-dist/tex/generic/tracklang:/usr/share/texlive/texmf-dist/tex/generic/termmenu:/usr/share/texlive/texmf-dist/tex/generic/pst-coil:/usr/share/texlive/texmf-dist/tex/generic/pst-ob3d:/usr/share/texlive/texmf-dist/tex/generic/pst-rubans:/usr/share/texlive/texmf-dist/tex/generic/ofs:/usr/share/texlive/texmf-dist/tex/generic/unicode-data:/usr/share/texlive/texmf-dist/tex/generic/dvips:/usr/share/texlive/texmf-dist/tex/generic/rlepsf:/usr/share/texlive/texmf-dist/tex/generic/bitelist:/usr/share/texlive/texmf-dist/tex/generic/bibtex:/usr/share/texlive/texmf-dist/tex/generic/pst-node:/usr/share/texlive/texmf-dist/tex/generic/babel-catalan:/usr/share/texlive/texmf-dist/tex/generic/pst-bspline:/usr/share/texlive/texmf-dist/tex/generic/xcomment:/usr/share/texlive/texmf-dist/tex/generic/petri-nets:/usr/share/texlive/texmf-dist/tex/generic/pst-tools:/usr/share/texlive/texmf-dist/tex/generic/gobble:/usr/share/texlive/texmf-dist/tex/generic/fntproof:/usr/share/texlive/texmf-dist/tex/generic/pst-thick:/usr/share/texlive/texmf-dist/tex/generic/pst-lens:/usr/share/texlive/texmf-dist/tex/generic/pst-solarsystem:/usr/share/texlive/texmf-dist/tex/generic/pst-3dplot:/usr/share/texlive/texmf-dist/tex/generic/vaucanson-g:/usr/share/texlive/texmf-dist/tex/generic/tikz-cd:/usr/share/texlive/texmf-dist/tex/generic/filemod:/usr/share/texlive/texmf-dist/tex/generic/pdf-trans:/usr/share/texlive/texmf-dist/tex/generic/tabto-generic:/usr/share/texlive/texmf-dist/tex/generic/pst-solides3d:/usr/share/texlive/texmf-dist/tex/generic/hyphen:/usr/share/texlive/texmf-dist/tex/generic/genmisc:/usr/share/texlive/texmf-dist/tex/generic/pst-tree:/usr/share/texlive/texmf-dist/tex/generic/pst-gantt:/usr/share/texlive/texmf-dist/tex/generic/lecturer:/usr/share/texlive/texmf-dist/tex/generic/pst-mirror:/usr/share/texlive/texmf-dist/tex/generic/midnight:/usr/share/texlive/texmf-dist/tex/generic/xlop:/usr/share/texlive/texmf-dist/tex/generic/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/modules:/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities:/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/lua/pgf/manual:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization:/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/luamath/pgf/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/circuits:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations:/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/datavisualization:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/tex:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/bindings:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/initialpositioning:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/misclayout:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/planarity:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/tools:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/ogdf:/usr/share/texlive/texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/pedigrees:/usr/share/texlive/texmf-dist/tex/generic/pgf/math:/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer:/usr/share/texlive/texmf-dist/tex/generic/pst-diffraction:/usr/share/texlive/texmf-dist/tex/generic/commado:/usr/share/texlive/texmf-dist/tex/generic/gtl:/usr/share/texlive/texmf-dist/tex/generic/multido:/usr/share/texlive/texmf-dist/tex/generic/pst-slpe:/usr/share/texlive/texmf-dist/tex/generic/pst-plot:/usr/share/texlive/texmf-dist/tex/generic/catcodes:/usr/share/texlive/texmf-dist/tex/generic/babel:/usr/share/texlive/texmf-dist/tex/generic/pst-pad:/usr/share/texlive/texmf-dist/tex/generic/pst-electricfield:/usr/share/texlive/texmf-dist/tex/generic/pst-fit:/usr/share/texlive/texmf-dist/tex/generic/chemfig:/usr/share/texlive/texmf-dist/tex/generic/pst-spectra:/usr/share/texlive/texmf-dist/tex/generic/xypic:/usr/share/texlive/texmf-dist/tex/generic/navigator:/usr/share/texlive/texmf-dist/tex/generic/systeme:/usr/share/texlive/texmf-dist/tex/generic/dratex:/usr/share/texlive/texmf-dist/tex/generic/colortab:/usr/share/texlive/texmf-dist/tex/generic/pst-cox:/usr/share/texlive/texmf-dist/tex/generic/hyphenex:/usr/share/texlive/texmf-dist/tex/generic/pst-light3d:/usr/share/texlive/texmf-dist/tex/generic/pst-asr:/usr/share/texlive/texmf-dist/tex/generic/abbr:/usr/share/texlive/texmf-dist/tex/generic/plainpkg:/usr/share/texlive/texmf-dist/tex/generic/babel-galician:/usr/share/texlive/texmf-dist/tex/generic/pst-math:/usr/share/texlive/texmf-dist/tex/generic/pst-stru:/usr/share/texlive/texmf-dist/tex/generic/path:/usr/share/texlive/texmf-dist/tex/generic/pst-func:/usr/share/texlive/texmf-dist/tex/generic/pgfplots:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/test:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplots:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplotsoldpgfsupp:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/lua/pgfplotsoldpgfsupp/luamath:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfcontrib:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs:/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfplotscompatib:/usr/share/texlive/texmf-dist/tex/generic/texapi:/usr/share/texlive/texmf-dist/tex/generic/enctex:/usr/share/texlive/texmf-dist/tex/generic/pst-text:/usr/share/texlive/texmf-dist/tex/generic/pstricks:/usr/share/texlive/texmf-dist/tex/generic/pstricks/config:/usr/share/texlive/texmf-dist/tex/generic/textmerg:/usr/share/texlive/texmf-dist/tex/generic/fenixpar:/usr/share/texlive/texmf-dist/tex/generic/langcode:/usr/share/texlive/texmf-dist/tex/generic/yax:/usr/share/texlive/texmf-dist/tex/generic/barr:/usr/share/texlive/texmf-dist/tex/generic/pst-blur:/usr/share/texlive/texmf-dist/tex/generic/pst-pdgr:/usr/share/texlive/texmf-dist/tex/generic/apnum:/usr/share/texlive/texmf-dist/tex/generic/abstyles:/usr/share/texlive/texmf-dist/tex/generic/pstricks-add:/usr/share/texlive/texmf-dist/tex/generic/pst-eps:/usr/share/texlive/texmf-dist/tex/generic/pst-tvz:/usr/share/texlive/texmf-dist/tex/generic/knuth-lib:/usr/share/texlive/texmf-dist/tex/generic/pst-magneticfield:/usr/share/texlive/texmf-dist/tex/generic/pst-circ:/usr/share/texlive/texmf-dist/tex/generic/pst-infixplot:/usr/share/texlive/texmf-dist/tex/generic/xint:/usr/share/texlive/texmf-dist/tex/generic/oberdiek:/usr/share/texlive/texmf-dist/tex/generic/2up:/usr/share/texlive/texmf-dist/tex/generic/thumbpdf:/usr/share/texlive/texmf-dist/tex/generic/pst-optic:/usr/share/texlive/texmf-dist/tex/generic/circuitikz:/usr/share/texlive/texmf-dist/tex/generic/context:/usr/share/texlive/texmf-dist/tex/generic/context/mptopdf:/usr/share/texlive/texmf-dist/tex/generic/ifxetex:/usr/share/texlive/texmf-dist/tex/generic/pst-grad:/usr/share/texlive/texmf-dist/tex/generic/tex-ps:/usr/share/texlive/texmf-dist/tex/generic/pst-knot:/usr/share/texlive/texmf-dist/tex/generic/babel-english:/usr/share/texlive/texmf-dist/tex/generic/fltpoint:/usr/share/texlive/texmf-dist/tex/generic/pst-jtree:/usr/share/texlive/texmf-dist/tex/generic/c-pascal:/usr/share/texlive/texmf-dist/tex/generic/upca:/usr/share/texlive/texmf-dist/tex/generic/pst-barcode:/usr/share/texlive/texmf-dist/tex/generic/pst-vue3d:/usr/share/texlive/texmf-dist/tex/generic/pst-pulley:/usr/share/texlive/texmf-dist/tex/generic/dirtree:/usr/share/texlive/texmf-dist/tex/generic/frame:/usr/share/texlive/texmf-dist/tex/generic/pst-abspos:/usr/share/texlive/texmf-dist/tex/generic/formlett:/usr/share/texlive/texmf-dist/tex/generic/pst-bar:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/tex:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/txt:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/quote:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/patterns/ptex:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/conversions:/usr/share/texlive/texmf-dist/tex/generic/hyph-utf8/loadhyph:/usr/share/texlive/texmf-dist/tex/generic/babel-spanglish:/usr/share/texlive/texmf-dist/tex/generic/dcpic:/usr/share/texlive/texmf-dist/tex/generic/arrayjobx:/usr/share/texlive/texmf-dist/tex/generic/pst-fractal:/usr/share/texlive/texmf-dist/tex/generic/shade:/usr/share/texlive/texmf-dist/tex/generic/dowith:/usr/share/texlive/texmf-dist/tex/generic/pst-eucl:/usr/share/texlive/texmf-dist/tex/context:/usr/share/texlive/texmf-dist/tex/context/base:/usr/share/texlive/texmf-dist/tex/context/third:/usr/share/texlive/texmf-dist/tex/context/third/pgf:/usr/share/texlive/texmf-dist/tex/context/third/pgf/utilities:/usr/share/texlive/texmf-dist/tex/context/third/pgf/basiclayer:/usr/share/texlive/texmf-dist/tex/context/third/pgf/frontendlayer:/usr/share/texlive/texmf-dist/tex/context/third/pgf/math:/usr/share/texlive/texmf-dist/tex/context/third/pgf/systemlayer:/usr/share/texlive/texmf-dist/tex/context/third/pgfplots:/usr/share/texlive/texmf-dist/tex/context/third/circuitikz:/usr/share/texlive/texmf-dist/tex/plain:/usr/share/texlive/texmf-dist/tex/plain/knuth-local:/usr/share/texlive/texmf-dist/tex/plain/fp:/usr/share/texlive/texmf-dist/tex/plain/config:/usr/share/texlive/texmf-dist/tex/plain/base:/usr/share/texlive/texmf-dist/tex/plain/ifetex:/usr/share/texlive/texmf-dist/tex/plain/lambda-lists:/usr/share/texlive/texmf-dist/tex/plain/metatex:/usr/share/texlive/texmf-dist/tex/plain/makeindex:/usr/share/texlive/texmf-dist/tex/plain/standalone:/usr/share/texlive/texmf-dist/tex/plain/encxvlna:/usr/share/texlive/texmf-dist/tex/plain/pgf:/usr/share/texlive/texmf-dist/tex/plain/pgf/utilities:/usr/share/texlive/texmf-dist/tex/plain/pgf/basiclayer:/usr/share/texlive/texmf-dist/tex/plain/pgf/frontendlayer:/usr/share/texlive/texmf-dist/tex/plain/pgf/math:/usr/share/texlive/texmf-dist/tex/plain/pgf/systemlayer:/usr/share/texlive/texmf-dist/tex/plain/amsfonts:/usr/share/texlive/texmf-dist/tex/plain/esint-type1:/usr/share/texlive/texmf-dist/tex/plain/pgfplots:/usr/share/texlive/texmf-dist/tex/plain/knitting:/usr/share/texlive/texmf-dist/tex/plain/etex:/usr/share/texlive/texmf-dist/tex/plain/knuth-lib:/usr/share/texlive/texmf-dist/tex/plain/cweb\nBIBINPUTS  .:/usr/share/texlive/texmf-dist/bibtex/bib:/usr/share/texlive/texmf-dist/bibtex/bib/msc:/usr/share/texlive/texmf-dist/bibtex/bib/directory:/usr/share/texlive/texmf-dist/bibtex/bib/base:/usr/share/texlive/texmf-dist/bibtex/bib/gloss:/usr/share/texlive/texmf-dist/bibtex/bib/cnltx:/usr/share/texlive/texmf-dist/bibtex/bib/frankenstein:/usr/share/texlive/texmf-dist/bibtex/bib/abstyles:/usr/share/texlive/texmf-dist/bibtex/bib/oberdiek:/usr/share/texlive/texmf-dist/bibtex/bib/lsc\nBSTINPUTS  .:/usr/share/texlive/texmf-dist/bibtex/bst:/usr/share/texlive/texmf-dist/bibtex/bst/amscls:/usr/share/texlive/texmf-dist/bibtex/bst/shipunov:/usr/share/texlive/texmf-dist/bibtex/bst/babelbib:/usr/share/texlive/texmf-dist/bibtex/bst/index:/usr/share/texlive/texmf-dist/bibtex/bst/directory:/usr/share/texlive/texmf-dist/bibtex/bst/dvdcoll:/usr/share/texlive/texmf-dist/bibtex/bst/opcit:/usr/share/texlive/texmf-dist/bibtex/bst/achemso:/usr/share/texlive/texmf-dist/bibtex/bst/mciteplus:/usr/share/texlive/texmf-dist/bibtex/bst/base:/usr/share/texlive/texmf-dist/bibtex/bst/gloss:/usr/share/texlive/texmf-dist/bibtex/bst/dlfltxb:/usr/share/texlive/texmf-dist/bibtex/bst/adrconv:/usr/share/texlive/texmf-dist/bibtex/bst/upmethodology:/usr/share/texlive/texmf-dist/bibtex/bst/dinat:/usr/share/texlive/texmf-dist/bibtex/bst/mslapa:/usr/share/texlive/texmf-dist/bibtex/bst/frankenstein:/usr/share/texlive/texmf-dist/bibtex/bst/datatool:/usr/share/texlive/texmf-dist/bibtex/bst/chet:/usr/share/texlive/texmf-dist/bibtex/bst/tufte-latex:/usr/share/texlive/texmf-dist/bibtex/bst/hc:/usr/share/texlive/texmf-dist/bibtex/bst/abstyles:/usr/share/texlive/texmf-dist/bibtex/bst/natbib:/usr/share/texlive/texmf-dist/bibtex/bst/savetrees:/usr/share/texlive/texmf-dist/bibtex/csf:/usr/share/texlive/texmf-dist/bibtex/csf/base:/usr/share/texlive/texmf-dist/bibtex/csf/polish-csf\n\nProgram      Location            Status     Version\n-------      --------            ------     -------\nsublime      /usr/bin/subl       available  Sublime Text Build 3143\nlatexmk      /usr/bin/latexmk    available  perl: warning: Setting locale failed.\npdflatex     /usr/bin/pdflatex   available  pdfTeX 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian)\nxelatex                          missing    unavailable\nlualatex     /usr/bin/lualatex   available  This is LuaTeX, Version beta-0.80.0 (TeX Live 2015/Debian) (rev 5238)\nbiber                            missing    unavailable\nbibtex       /usr/bin/bibtex     available  BibTeX 0.99d (TeX Live 2015/Debian)\nbibtex8      /usr/bin/bibtex8    available  This is 8-bit Big BibTeX version 0.99d\nkpsewhich    /usr/bin/kpsewhich  available  kpathsea version 6.2.1\nconvert      /usr/bin/convert    available  ImageMagick 6.8.9-9 Q16 x86_64 2017-07-31 http://www.imagemagick.org\nghostscript  /usr/bin/gs         available  GPL Ghostscript 9.18 (2015-10-05)\n\nPackages for equation preview  Status\n-----------------------------  ------\nstandalone                     available\npreview                        available\nxcolor                         available\namsmath                        available\namssymb                        available\nlatexsym                       available\nmathtools                      available\n\nBuilder      Status\n-------      ------\ntraditional  available\n\nBuilder Setting  Value\n---------------  -----\ndisplay_log      False\nlinux            {}   \nosx              {}   \nwindows          {}   \n\nTeX Root\n--------\n/home/dami/tesis/latex/presentacion/trabajoPrevio.tex\n\nLaTeX Engine\n------------\npdflatex    \n\nViewer  Status     Location\n------  ------     --------\nevince  available  /usr/bin/evince",
+			"settings":
+			{
+				"buffer_size": 109454,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "LaTeXTools System Check",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "/home/dami/tesis/latex/src/tesis.sublime-project",
+			"settings":
+			{
+				"buffer_size": 475,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n    \"folders\":\n    [\n        {\n            \"path\": \"~/tesis/latex/presentacion/\"\n        }\n    ],\n    \"settings\": {\n        \"TEXroot\": \"presentacion.tex\",\n        \"spell_check\":true\n    },\n    \n    \"todoreview\": {\n            \"exclude_folders\": \n            [\n                \"*.git*\"\n            ],\n            \"exclude_files\": \n            [\n                \"*.sublime-workspace\",\n                \"*.sublime-project\",\n                          ]\n    }\n}",
+			"settings":
+			{
+				"buffer_size": 457,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/dami/tesis/latex/src/tesis.tex",
+			"settings":
+			{
+				"buffer_size": 3113,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "presentacion.bib",
+			"settings":
+			{
+				"buffer_size": 10585,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resultados.tex",
+			"settings":
+			{
+				"buffer_size": 114,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 184.0,
+		"last_filter": "todore",
+		"selected_items":
+		[
+			[
+				"todore",
+				"TodoReview: Project Files"
+			],
+			[
+				"TODO",
+				"TodoReview: Project Files"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"form",
+				"User: Python PEP8 Autoformat"
+			]
+		],
+		"width": 461.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/dami/tesis/latex/presentacion"
+	],
+	"file_history":
+	[
+		"/home/dami/tesis/latex/src/tesis.sublime-workspace",
+		"/home/dami/tesis/latex/presentacion/metodo.tex",
+		"/home/dami/tesis/latex/src/agradecimientos.tex",
+		"/home/dami/tesis/latex/src/apendice.tex",
+		"/home/dami/tesis/latex/src/tesis.sublime-project",
+		"/home/dami/tesis/latex/src/cambios.txt",
+		"/home/dami/tesis/latex/src/dedicatoria.tex",
+		"/home/dami/tesis/latex/src/tesis.tex",
+		"/home/dami/tesis/latex/src/duda.tex",
+		"/home/dami/tesis/graficos.py",
+		"/home/dami/tesis/textos.py",
+		"/home/dami/tesis/bootstrap.py",
+		"/home/dami/.config/sublime-text-3/Packages/TodoReview/TodoReview.sublime-settings",
+		"/home/dami/tesis/latex/datos.tex",
+		"/home/dami/tesis/latex/src/validacion.tex",
+		"/home/dami/tesis/latex/src/resultados.tex",
+		"/home/dami/tesis/latex/src/metodo.tex",
+		"/home/dami/.config/sublime-text-3/Packages/PlainTasks/messages/install.txt",
+		"/home/dami/Desktop/aed2/Damian/RTPS/Diaz-Bringas-TP1/src/BaseDeDatos.cpp",
+		"/home/dami/Desktop/aed2/Damian/RTPS/Diaz-Bringas-TP1/src/BaseDeDatos.h",
+		"/home/dami/Desktop/aed2/Damian/RTPS/Diaz-Bringas-TP1/tests/baseDeDatos_test.cpp",
+		"/home/dami/.config/sublime-text-3/Packages/PlainTasks/messages/Tutorial.todo",
+		"/home/dami/tesis/coordenadasUsuariosTrain.py",
+		"/home/dami/tesis/apps.py",
+		"/home/dami/tesis/.gitignore",
+		"/home/dami/locations_temp_geocoded.rds"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "presentacion.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1310,
+								1310
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "metricas.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "datos.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "introduccion.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 54,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "trabajoPrevio.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								671,
+								671
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 109454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								109454,
+								109454
+							]
+						],
+						"settings":
+						{
+							"gutter": false,
+							"line_numbers": false,
+							"syntax": "Packages/LaTeXTools/system_check.sublime-syntax",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/dami/tesis/latex/src/tesis.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 475,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								475,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 457,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								449,
+								449
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/home/dami/tesis/latex/presentacion",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/dami/tesis/latex/src/tesis.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3113,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3098,
+								3052
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "presentacion.bib",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10585,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeXTools/BibLaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "resultados.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 114,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								114,
+								114
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "presentacion.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 184.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

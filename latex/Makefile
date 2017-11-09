@@ -1,7 +1,9 @@
+.PHONY: all tesis presentacion clean
+    
 options= -bibtex -interaction=nonstopmode -auxdir="../tmp" -output-directory="../tmp"
 
 
-all: tesis presentacion concurso presentacion_eci
+all: tesis presentacion
 
 tesis:
 	cd src/ && \
@@ -10,19 +12,7 @@ tesis:
 	mv $@.pdf ..
 
 presentacion:
-	cd src/ && \
-	latexmk -pdf $@.tex $(options)
-	cd tmp/ && \
-	mv $@.pdf ..
-
-concurso:
-	cd src/ && \
-	latexmk -pdf $@.tex $(options)
-	cd tmp/ && \
-	mv $@.pdf ..
-
-presentacion_eci:
-	cd src/ && \
+	cd presentacion/ && \
 	latexmk -pdf $@.tex $(options)
 	cd tmp/ && \
 	mv $@.pdf ..

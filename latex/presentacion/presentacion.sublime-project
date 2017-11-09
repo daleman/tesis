@@ -1,0 +1,24 @@
+{
+    "folders":
+    [
+        {
+            "path": "~/tesis/latex/presentacion/"
+        }
+    ],
+    "settings": {
+        "TEXroot": "presentacion.tex",
+        "spell_check":true
+    },
+    
+    "todoreview": {
+            "exclude_folders": 
+            [
+                "*.git*"
+            ],
+            "exclude_files": 
+            [
+                "*.sublime-workspace",
+                "*.sublime-project",
+                          ]
+    }
+}
