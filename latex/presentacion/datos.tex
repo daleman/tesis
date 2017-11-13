@@ -1,3 +1,5 @@
+\subsection{Búsquedas geolocalizadas}
+
 
 \begin{frame}[t]\frametitle{Búsquedas geolocalizadas}
 
@@ -5,24 +7,29 @@ La búsqueda geolocalizada es una herramienta que nos da la posibilidad de obten
 
 
 \begin{columns}
-    \begin{column}{0.33\textwidth}
-        \includegraphics[width=\linewidth]{../src/images/mapaprovincias.pdf}
-        \caption{} 
-        \label{fig:mapaProvincias}
+    \begin{column}{0.30\textwidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth]{../src/images/mapaprovincias.pdf}
+            % \caption{} 
+            \label{fig:mapaProvincias}
+        \end{figure}
     \end{column}
 
-    \begin{column}{0.33\textwidth}
-        \includegraphics[width=\linewidth]{../src/images/mapadepartamentos.pdf}
-        \caption{} 
-        \label{fig:mapaDepartamentos}
+    \begin{column}{0.30\textwidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth]{../src/images/mapadepartamentos.pdf}
+            % \caption{} 
+            \label{fig:mapaDepartamentos}
+        \end{figure}
     \end{column}
 
-    \begin{column}{0.33\textwidth}
-        \includegraphics[width=\linewidth]{../src/images/mapaprovinciasConPuntos.pdf}
-    \caption{} 
-    \label{fig:mapaPuntos}
+    \begin{column}{0.30\textwidth}
+        \begin{figure}
+            \includegraphics[width=\linewidth]{../src/images/mapaprovinciasConPuntos.pdf}
+            % \caption{} 
+            \label{fig:mapaPuntos}
+        \end{figure}
     \end{column}
-
 \end{columns}
 
 Se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. 
@@ -33,23 +40,15 @@ Nos quedamos con los usuarios que tienen como campo \textit{location} al menos u
 
 \end{frame}
 
+\subsection{Tokenización y normalización}
 
+\begin{frame}[t]\frametitle{Tokenización y normalización del texto}
+    \begin{block}{Tokenización}
+    Se consideró una palabra a las secuencias de caracteres formados únicamente por letras. Por lo tanto se eliminaron las menciones con @, los hashtags y links entre otros. Decidimos ignorar estos términos ya que no tienen interés lingüístico y agregarían mucho ruido a los datos.
+    \end{block}
 
-% \begin{figure}[!ht]\centering
-%   \begin{subfigure}[t]{0.20\textwidth}
-%     \includegraphics[width=\linewidth]{../src/images/mapaprovincias.pdf}
-%     \caption{} 
-%     \label{fig:mapaProvincias} 
-%    \end{subfigure}
-%    \begin{subfigure}[t]{0.20\textwidth}
-%     \includegraphics[width=\linewidth]{../src/images/mapadepartamentos.pdf}
-%     \caption{} 
-%     \label{fig:mapaDepartamentos} 
-%    \end{subfigure}
-%    \begin{subfigure}[t]{0.20\textwidth}
-%     \includegraphics[width=\linewidth]{../src/images/mapaprovinciasConPuntos.pdf}
-%     \caption{} 
-%     \label{fig:mapaPuntos} 
-%    \end{subfigure}    
-% \end{figure}
+    \begin{block}{Normalización}
+    Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se hizo con la librería \textit{TweetTokenizer de NLTK}. 
+    \end{block}
 
+\end{frame}

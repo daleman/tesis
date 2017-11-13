@@ -1,0 +1,73 @@
+
+\subsection{Primeras métricas: MaxDif y $MaxDif_g$} 
+
+\begin{frame}[t]\frametitle{Primeras métricas: MaxDif}
+Para cada palabra $\omega$ y cada par de provincias $p_1$ y $p_2$, podemos calcular el cociente entre la frecuencia máxima de $\omega$ en ambas provincias y la frecuencia mínima:
+
+\begin{equation}
+  \label{eq:maxDif} 
+  maxDif(\omega,p_1,p_2) = \frac{f_{max}(\omega,p_1,p_2)}{f_{min}(\omega,p_1,p_2)}
+\end{equation}
+
+Desventajas:  
+\begin{enumerate}
+    \item \label{1} Un valor para cada par de provincias.
+    \item \label{2} No se considera la dispersión de los valores en todas las provincias.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Primeras métricas: $MaxDif_g$}
+
+Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias, definimos:
+
+\begin{equation}
+ maxDif_g(\omega) = \frac{f_{max}^\prime(\omega)}{f_{min}^\prime(\omega)}
+ \label{eq:maxDifg}  
+\end{equation} 
+donde $f_{max}^\prime(\omega)$ es la frecuencia máxima de la palabra $\omega$ entre las frecuencias de todas las provincias y $f_{min}^\prime(\omega)$ es la frecuencia mínima distinta de $0$.
+
+Con $maxDif_g$ se soluciona \ref{1}, pero no \ref{2}.
+
+
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{La entropía de la información}
+    
+La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Valor de la información}
+    Zanette y Montemurro definieron al \textit{valor de la información de una palabra} como
+ \begin{equation}
+  \Delta I_w(\omega) = p(\omega) \,  (\widehat{H}(\omega) - H(\omega))  =  p(w) \, \Delta{H(\omega)}
+ \end{equation}
+siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Valor contrastivo sobre las palabras}
+    \begin{alertblock}{Valor contrastivo sobre las palabras}
+        \begin{equation}
+            I_w(\omega) = norm_{w}(\omega) \cdot (\widehat{H}_{w}(\omega) - H_{w}(\omega))
+            \label{eq:iw}
+        \end{equation}
+        donde $norm_w$ sirve para normalizar sobre la cantidad de ocurrencias de la palabra.
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Agregando la cantidad de personas que mencionan cada palabra}
+    Hay palabras que pueden tener una frecuencia alta debido a pocas personas que las mencionan constantemente.
+    \begin{alertblock}{Valor contrastivo sobre las personas}
+        \begin{equation}
+            I_p(\omega) = norm_p(\omega) \cdot (\widehat{H}_p(\omega) - H_p(\omega))
+            \label{eq:iu}
+        \end{equation}
+        donde $norm_p$ sirve para normalizar sobre la cantidad de personas que mencionan la palabra.
+    \end{alertblock}
+
+\end{frame}
