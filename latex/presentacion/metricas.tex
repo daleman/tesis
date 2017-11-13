@@ -1,5 +1,5 @@
 
-\subsection{Primeras métricas: MaxDif y $MaxDif_g$} 
+\subsection{Primeras métricas: MaxDif y  \texorpdfstring{$MaxDif_g$}{MaxDifg}} 
 
 \begin{frame}[t]\frametitle{Primeras métricas: MaxDif}
 Para cada palabra $\omega$ y cada par de provincias $p_1$ y $p_2$, podemos calcular el cociente entre la frecuencia máxima de $\omega$ en ambas provincias y la frecuencia mínima:
@@ -27,15 +27,29 @@ Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias,
 \end{equation} 
 donde $f_{max}^\prime(\omega)$ es la frecuencia máxima de la palabra $\omega$ entre las frecuencias de todas las provincias y $f_{min}^\prime(\omega)$ es la frecuencia mínima distinta de $0$.
 
-Con $maxDif_g$ se soluciona \ref{1}, pero no \ref{2}.
+Con $maxDif_g$ se resume en un único valor la contrastividad de la palabra, sin embargo sigue sin considerar la distribución de las frecuencias.
 
 
 \end{frame}
 
+\subsection{Entropía y valor de la información}
 
 \begin{frame}[t]\frametitle{La entropía de la información}
     
 La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
+
+Las palabras con menor probabilidad son las que aportan más información. 
+
+\begin{block}{Intuición} Las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
+\end{block}
+
+\begin{block}{Observaciones}
+    \begin{itemize}
+        \item La entropía es máxima cuando los eventos de $X$ son equiprobables.% En este caso, si hay $n$ eventos con una probabilidad de $\frac{1}{n}$ cada uno, el valor de la entropía es $\log n$.
+        \item La entropía es 0 si y solo si todas las probabilidades son 0 a excepción de una con probabilidad igual a la unidad. 
+    \end{itemize}
+
+\end{block}
 
 \end{frame}
 
@@ -49,6 +63,7 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
 
 \end{frame}
 
+\subsection{Valores contrastivos}
 \begin{frame}[t]\frametitle{Valor contrastivo sobre las palabras}
     \begin{alertblock}{Valor contrastivo sobre las palabras}
         \begin{equation}
@@ -58,10 +73,18 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
         donde $norm_w$ sirve para normalizar sobre la cantidad de ocurrencias de la palabra.
     \end{alertblock}
 
+    \begin{block}{Observaciones}
+        \begin{itemize}
+            \item Si una palabra se dice muchas veces el valor de $I_w(\omega)$ es más alto.
+            \item Si dos palabras se dicen la misma cantidad de veces, la palabra que tenga una dispersión más heterogenea será la de mayor valor contrastivo sobre las palabras.
+        \end{itemize}
+    \end{block}
+
 \end{frame}
 
 \begin{frame}[t]\frametitle{Agregando la cantidad de personas que mencionan cada palabra}
-    Hay palabras que pueden tener una frecuencia alta debido a pocas personas que las mencionan constantemente.
+    Hay palabras que pueden tener una frecuencia alta debido a pocas personas que las mencionan constantemente. Por eso se decidió también tener en cuenta a la distribución de la cantidad de personas que mencionan cada palabra.
+
     \begin{alertblock}{Valor contrastivo sobre las personas}
         \begin{equation}
             I_p(\omega) = norm_p(\omega) \cdot (\widehat{H}_p(\omega) - H_p(\omega))
@@ -69,5 +92,28 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
         \end{equation}
         donde $norm_p$ sirve para normalizar sobre la cantidad de personas que mencionan la palabra.
     \end{alertblock}
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Valor de contrastividad}
+    \begin{block}{Valor de contrastividad}
+    Como nos interesa tanto la distribución de la cantidad de ocurrencias de cada palabra, como la de la cantidad de usuarios que la menciona, definimos   
+    \begin{equation}
+    I(\omega) =  I_w (\omega) \cdot I_p(\omega)
+    \label{eq:ivalor}
+    \end{equation}
+    \end{block}    
+
+    \begin{columns}
+        \begin{column}{.7\linewidth}
+        \includegraphics[width=.9\textwidth]{../src/images/PropAcumSinCandidatas.pdf}
+        \end{column}
+        \begin{column}{.3\linewidth}
+        Proporción de ocurrencias acumulada según la muestra de palabras. % El número de la leyenda indica la cantidad de palabras contrastivas elegidas para la muestra respectiva, siempre seleccionando las más contrastivas según la métrica.
+        \label{fig:propAcum}
+        \end{column}
+      \end{columns}
+   
 
 \end{frame}
