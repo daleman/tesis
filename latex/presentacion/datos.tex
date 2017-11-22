@@ -1,9 +1,35 @@
+\subsection{Twitter}
+\begin{frame}[t]\frametitle{Twitter}
+
+\begin{block}{Qué es Twitter}
+    \begin{itemize}
+        \item Red social creada en el 2006
+        \item Usuarios variados: personas, instituciones gubernamentales, ONG, etc.
+        \item Cada usuario puede escribir tuits con una longitud máxima de 140 carácteres{\footnote{Recientemente han aumentado el límite a 280 carácteres.}}
+        \item \alert{Todos los tuits son públicos}
+    \end{itemize}
+\end{block}
+
+\begin{block}{Porqué Twitter}
+    \begin{itemize}
+        \item Provee una interfaz pública para obtener tuits de cualquier persona
+        \item Tópicos muy variados (gran diferencia con portales de noticias, por ejemplo)
+        \item Escalabilidad
+    \end{itemize}
+    
+\end{block}
+
+
+\end{frame}
+
 \subsection{Búsquedas geolocalizadas}
+
 
 
 \begin{frame}[t]\frametitle{Búsquedas geolocalizadas}
 
-La búsqueda geolocalizada es una herramienta que nos da la posibilidad de obtener tuits generados en un área geográfica particular. Para esto, primero intenta buscar tuits cuyas coordenadas sean las buscadas.
+La búsqueda geolocalizada es una herramienta que nos da la posibilidad de obtener tuits generados en un área geográfica particular. 
+% Para esto, primero intenta buscar tuits cuyas coordenadas sean las buscadas.
 
 
 \begin{columns}
@@ -32,10 +58,98 @@ La búsqueda geolocalizada es una herramienta que nos da la posibilidad de obten
     \end{column}
 \end{columns}
 
-Se realizaron búsquedas por cada provincia con centro en las coordenadas de los departamentos de la misma y con un radio de 20 millas. 
+\begin{itemize}
+    \item Se realizaron búsquedas en todos los departamentos de las provincias argentinas.
+    \item Nos quedamos con los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. 
 
-Nos quedamos con los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. 
+\end{itemize}
 
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Distribución temporal de tuits}
+    ¿Y si en un momento dado la mayoría de los usuarios hablan del mismo tema por un fenómeno particular?
+     \begin{columns}
+    \only<2-3>{
+
+    \begin{column}{.30\textwidth}
+        \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../src/images/presentacion/estalloelverano.jpg}
+        % \caption{} 
+        \label{fig:estalloelverano}
+        \end{figure}
+    \end{column}
+
+    }
+    
+    \only<3>{
+    \begin{column}{.30\textwidth}   
+        \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../src/images/presentacion/eraporabajo.jpg}
+        % \caption{} 
+        \label{fig:eraporabajo}
+        \end{figure} 
+    \end{column}
+    }
+        
+    \end{columns}
+\only<4>{\begin{figure}[!ht]\centering
+   \begin{subfigure}[t]{0.42\textwidth}
+     \includegraphics[width=\linewidth]{../src/images2/histTweetsProvincia1_sinFiltro.pdf}
+     \caption{}
+     \label{fig:histTweetsProvincia1}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.42\textwidth}
+     \includegraphics[width=\linewidth]{../src/images2/histTweetsProvincia2_sinFiltro.pdf}
+     \caption{}
+     \label{fig:histTweetsProvincia2}
+   \end{subfigure}
+    \caption { \subref{fig:histTweetsProvincia1} Histograma de la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. \subref{fig:histTweetsProvincia2} Gráfico para Chaco y Neuquén.}
+   \label{fig:histTweets}
+\end{figure}
+}
+    
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Balanceo de cantidad de tuits y de usuarios}
+    
+    \begin{table}
+\centering
+\scalebox{0.6}{
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+Provincia      & \#Palabras Distintas & \#Usuarios & \#Tuits & \#Total Palabras \\ \hline
+Buenos Aires   & 191919       & 920          & 1125042    & 8974372  \\
+Catamarca      & 173104       & 957          & 1057019    & 8161309   \\
+Chaco          & 169476       & 964          & 976943     & 7605991   \\
+Chubut         & 182592       & 954          & 1023373    & 8884745   \\
+Córdoba        & 207307       & 987          & 1224266    & 10075932  \\
+Corrientes     & 183292       & 939          & 1044951    & 8426940   \\
+Entre Ríos     & 188679       & 969          & 1193693    & 9462986  \\
+Formosa        & 169254       & 903          & 923352     & 7184382   \\
+Jujuy          & 171064       & 971          & 678004     & 5951778   \\
+La Pampa       & 186593       & 935          & 1085757    & 8996318  \\
+La Rioja       & 186041       & 946          & 704044     & 6757277  \\
+Mendoza        & 193708       & 945          & 1099717    & 9402399   \\
+Misiones       & 168400       & 972          & 984218     & 7790197   \\
+Neuquén        & 188038       & 927          & 1111201    & 9021449   \\
+Río Negro      & 194383       & 965          & 1215361    & 9991831  \\
+Salta          & 188402       & 884          & 830916     & 7506652   \\
+San Juan       & 183546       & 926          & 1002322    & 8377792  \\
+San Luis       & 164185       & 896          & 1006464    & 8327093  \\
+Santa Cruz     & 174089       & 935          & 876621     & 7432923  \\
+Santa Fe       & 201879       & 937          & 1019620    & 8862328  \\
+S. del Estero       & 166540       & 887          & 944109     & 7355729  \\
+T. del Fuego & 197273       & 964          & 976426     & 8559218   \\
+Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
+  \hline
+\end{tabular}}
+\caption{Cantidades del conjunto de datos}
+\label{tab:cantidades}
+
+\end{table}
 
 
 \end{frame}

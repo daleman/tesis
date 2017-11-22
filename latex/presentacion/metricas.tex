@@ -36,22 +36,36 @@ Con $maxDif_g$ se resume en un único valor la contrastividad de la palabra, sin
 
 \begin{frame}[t]\frametitle{La entropía de la información}
     
-La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
+% La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
+\only<1->{
+    Sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual. Es decir, $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
 
-Las palabras con menor probabilidad son las que aportan más información. 
+    Definimos la entropía de $\mathbf{p}$ siendo
+    \begin{equation}
+    H(\mathbf{p})=-\sum_{i=1}^n \log(p_i)p_i.
+    \end{equation}
+}
 
-\begin{block}{Intuición} Las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
-\end{block}
+\only<2>
+{
+    \begin{exampleblock}{Dime que tan uniforme eres y te diré cuanta entropía tienes} Las palabras utilizadas más uniformemente en las distintas provincias como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
+\end{exampleblock}
+}
 
-\begin{block}{Observaciones}
-    \begin{itemize}
-        \item La entropía es máxima cuando los eventos de $X$ son equiprobables.% En este caso, si hay $n$ eventos con una probabilidad de $\frac{1}{n}$ cada uno, el valor de la entropía es $\log n$.
-        \item La entropía es 0 si y solo si todas las probabilidades son 0 a excepción de una con probabilidad igual a la unidad. 
-    \end{itemize}
+\only<3>
+{
+    \begin{block}{Observaciones}
+        \begin{enumerate}
+            \item $H(\mathbf{p})=0$ si y solo si $\mathbf{p}$ esta concentrada en un unico punto: existe $i$ tal que $p_i=1$ y $p_j=0$, para todo $j\not=i$. 
+            \item La funci\'on $H$ se maximiza tomando $\mathbf{p}$ equiprobable: $p_i=1/n$, para todo $i$. 
 
-\end{block}
+        \end{enumerate}
 
+    \end{block}
+}
 \end{frame}
+
+
 
 \begin{frame}[t]\frametitle{Valor de la información}
     Zanette y Montemurro definieron al \textit{valor de la información de una palabra} como
