@@ -143,3 +143,20 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
    
 
 \end{frame}
+
+\begin{frame}[fragile]\frametitle{Proporción de ocurrencias}
+    Detectadas las palabras que se utilizan en forma diferenciada, interesa detectar donde se utilizan mas.
+
+\begin{lstlisting}
+1 por cada subconjunto de palabras:
+2   por cada palabra w:
+3     se ordenen las provincias en funcion de la 
+      cantidad de veces que se utiliza w
+4     por k = 1..23:
+5       se calcula la proporcion acumulada de 
+        ocurrencias por las primeras k provincias
+\end{lstlisting}
+\centering \includegraphics[width=.4\textwidth]{../src/images/PropAcum5000SinCandidatas.pdf}
+        
+
+\end{frame}
