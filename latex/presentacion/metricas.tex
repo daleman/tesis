@@ -96,18 +96,30 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Agregando la cantidad de personas que mencionan cada palabra}
-    Hay palabras que pueden tener una frecuencia alta debido a pocas personas que las mencionan constantemente. Por eso se decidió también tener en cuenta a la distribución de la cantidad de personas que mencionan cada palabra.
+\begin{frame}[t]\frametitle{Robusteciendo métrica: valor contrastivo sobre las personas}
+    \only<1>{
+    ¿Y si algunas palabras tienen un $I_w$ alto debido a pocas personas que las mencionan constantemente?
+    \medskip
+    
+    \alert{Hay que tener en cuenta a la distribución de la cantidad de personas que mencionan cada palabra en las provincias.}
+    }
 
-    \begin{alertblock}{Valor contrastivo sobre las personas}
+    \only<1-2>{
+        \begin{alertblock}{Valor contrastivo sobre las personas}
         \begin{equation}
             I_p(\omega) = norm_p(\omega) \cdot (\widehat{H}_p(\omega) - H_p(\omega))
             \label{eq:iu}
         \end{equation}
-        donde $norm_p$ sirve para normalizar sobre la cantidad de personas que mencionan la palabra.
+        donde $norm_p$ sirve para normalizar sobre la cantidad de personas que mencionan la palabra $\omega$.
     \end{alertblock}
+    }
 
+    \only<2>{
+        \centering
+        \includegraphics[width=.55\textwidth]{../src/images2/entropiaPersonasxNormCantPersonas.pdf}
+    }
 
+    
 \end{frame}
 
 \begin{frame}[t]\frametitle{Valor de contrastividad}

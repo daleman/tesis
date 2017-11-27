@@ -185,15 +185,18 @@ Ejemplo: terminación azo/aza con base adjetiva.
 
 \begin{frame}[t]\frametitle{Test t de Welch}
 
-    \begin{itemize}
-        \item El test de Welch nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales.
+    El test de Welch nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales.
 
-        \item Las suposiciones del test 
+    \only<2>{
+       Las suposiciones del test 
         \begin{enumerate}
             \item Todos los textos son estadísticamente independientes 
             \item La media de las frecuencias proviene de una distribución normal
         \end{enumerate}
-        \begin{block}{Metodología}
+       } 
+    
+    \only<3>{
+       \begin{block}{Metodología}
               Agrupamos todos los tuits de cada usuario representando un texto.\footnote{Notar que la suposición de independencia es más débil.}
         \begin{description}
             \item[Corpus S] Todos los textos de los usuarios que provienen de las provincias en donde se cubre el 80\% de las ocurrencias
@@ -201,26 +204,31 @@ Ejemplo: terminación azo/aza con base adjetiva.
         \end{description}
 
         \end{block}
-    \end{itemize}
-
+       }
 \end{frame}
 
 
 \begin{frame}[t]\frametitle{Resultados test t de Welch}
 
-    \begin{columns}[t]
+  \begin{enumerate}
+    \alert<1>
+    {
+    \item Para cada métrica $I,I_W,I_P$  variamos los subconjuntos de palabras de acuerdo al listado ordenado según estas.
+    }
     
-        \begin{column}{.3\textwidth}
-        La tasa de rechazo de la hipótesis nula en los distintos conjuntos de palabras, los cuales varían según el índice de estas en el listado ordenado según la métrica elegida. 
-        \end{column}
-        
-        \begin{column}{.6\textwidth}
-        
-            \begin{figure}
-            \includegraphics[width=0.95\linewidth]{../src/images/rechazo_metricas.pdf}
-            \label{fig:rechazo_metricas}
-            \end{figure} 
-        \end{column}
-    \end{columns}
+    \alert<2>
+    {
+    \item Calculamos la tasa de rechazo de la hipótesis nula, definida por:
+    \begin{equation}
+      \text{Tasa de rechazo(tests)} = \frac{\# \{t:tests \mid p-valor(t) < 0.05\}}{\#tests} 
+    \end{equation}
+    } 
+  \end{enumerate}
 
+  \begin{figure}
+  \includegraphics[width=0.50\linewidth]{../src/images/rechazo_metricas.pdf}
+            % \label{fig:rechazo_metricas} 
+  
+  \end{figure}
+            
 \end{frame}
