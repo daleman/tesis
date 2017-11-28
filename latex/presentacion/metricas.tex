@@ -1,36 +1,61 @@
 
 \subsection{Primeras métricas: MaxDif y  \texorpdfstring{$MaxDif_g$}{MaxDifg}} 
 
-\begin{frame}[t]\frametitle{Primeras métricas: MaxDif}
-Para cada palabra $\omega$ y cada par de provincias $p_1$ y $p_2$, podemos calcular el cociente entre la frecuencia máxima de $\omega$ en ambas provincias y la frecuencia mínima:
+
+    \begin{frame}[t]\frametitle{Primeras métricas: MaxDif}
+Para cada palabra $\omega$ y cada par de provincias $p_1$ y $p_2$:
+% , podemos calcular el cociente entre la frecuencia máxima de $\omega$ en ambas provincias y la frecuencia mínima:
 
 \begin{equation}
   \label{eq:maxDif} 
   maxDif(\omega,p_1,p_2) = \frac{f_{max}(\omega,p_1,p_2)}{f_{min}(\omega,p_1,p_2)}
 \end{equation}
 
+\only<1>{
 Desventajas:  
 \begin{enumerate}
     \item \label{1} Un valor para cada par de provincias.
     \item \label{2} No se considera la dispersión de los valores en todas las provincias.
 \end{enumerate}
+}
+    
 
-\end{frame}
 
-\begin{frame}[t]\frametitle{Primeras métricas: $MaxDif_g$}
-
-Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias, definimos:
+\only<2>{
+\begin{block}{$MaxDif_g$}
+Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias:
 
 \begin{equation}
  maxDif_g(\omega) = \frac{f_{max}^\prime(\omega)}{f_{min}^\prime(\omega)}
  \label{eq:maxDifg}  
 \end{equation} 
-donde $f_{max}^\prime(\omega)$ es la frecuencia máxima de la palabra $\omega$ entre las frecuencias de todas las provincias y $f_{min}^\prime(\omega)$ es la frecuencia mínima distinta de $0$.
+\end{block}  
 
-Con $maxDif_g$ se resume en un único valor la contrastividad de la palabra, sin embargo sigue sin considerar la distribución de las frecuencias.
+\begin{enumerate}
+    \item Se resume en un único valor la contrastividad de la palabra
+    \item Sigue sin considerar la distribución de las frecuencias
+\end{enumerate}
 
+}
 
 \end{frame}
+
+% \begin{frame}[t]\frametitle{Primeras métricas: }
+
+% Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias, definimos:
+
+% \begin{equation}
+%  maxDif_g(\omega) = \frac{f_{max}^\prime(\omega)}{f_{min}^\prime(\omega)}
+%  \label{eq:maxDifg}  
+% \end{equation} 
+% % donde $f_{max}^\prime(\omega)$ es la frecuencia máxima de la palabra $\omega$ entre las frecuencias de todas las provincias y $f_{min}^\prime(\omega)$ es la frecuencia mínima distinta de $0$.
+
+% \begin{itemize}
+%     \item Se resume en un único valor la contrastividad de la palabra
+%     \item Sigue sin considerar la distribución de las frecuencias
+% \end{itemize}
+
+% \end{frame}
 
 \subsection{Entropía y valor de la información}
 
@@ -38,12 +63,22 @@ Con $maxDif_g$ se resume en un único valor la contrastividad de la palabra, sin
     
 % La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
 \only<1->{
-    Sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual. Es decir, $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
+    Sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual:
 
-    Definimos la entropía de $\mathbf{p}$ siendo
-    \begin{equation}
-    H(\mathbf{p})=-\sum_{i=1}^n \log(p_i)p_i.
-    \end{equation}
+     $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
+
+     \begin{columns}
+        \begin{column}{.5\linewidth}
+            Definimos la entropía de $\mathbf{p}$ siendo
+            \begin{equation}
+                H(\mathbf{p})=-\sum_{i=1}^n \log(p_i)p_i.
+            \end{equation}
+        \end{column}
+        \begin{column}{.5\linewidth}
+        \includegraphics[width=0.5\textwidth]{../src/images/presentacion/entropy.png}
+        \end{column}
+    \end{columns}
+    
 }
 
 \only<2>
@@ -68,11 +103,24 @@ Con $maxDif_g$ se resume en un único valor la contrastividad de la palabra, sin
 
 
 \begin{frame}[t]\frametitle{Valor de la información}
-    Zanette y Montemurro definieron al \textit{valor de la información de una palabra} como
+
+Zanette y Montemurro definieron al \textit{valor de la información de una palabra} como
  \begin{equation}
   \Delta I_w(\omega) = p(\omega) \,  (\widehat{H}(\omega) - H(\omega))  =  p(w) \, \Delta{H(\omega)}
  \end{equation}
-siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
+siendo $p(\omega)$ la frecuencia total de la palabra en el texto, $p(\omega) = n/N$ 
+
+N = \# palabras en texto,
+n = \# ocurrencias de $\omega$
+
+\begin{equation}
+ n_1 \ldots n_p \rightarrow H(\omega)   
+\end{equation}
+
+\begin{equation}
+  \widehat{H}(\omega) = \texttt{promedio de $H(\omega)$ en todas las permutaciones } n_1^\prime \ldots n_p^\prime  
+\end{equation}
+
 
 
 \end{frame}
@@ -131,22 +179,33 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
     \end{equation}
     \end{block}    
 
-    \begin{columns}
-        \begin{column}{.7\linewidth}
-        \includegraphics[width=.9\textwidth]{../src/images/PropAcumSinCandidatas.pdf}
-        \end{column}
-        \begin{column}{.3\linewidth}
-        Proporción de ocurrencias acumulada según la muestra de palabras. % El número de la leyenda indica la cantidad de palabras contrastivas elegidas para la muestra respectiva, siempre seleccionando las más contrastivas según la métrica.
-        \label{fig:propAcum}
-        \end{column}
-      \end{columns}
-   
+    % \begin{block}{Palabras candidatas}
+
+    % \begin{columns}
+    %     \begin{column}{.5\textwidth}
+    %     Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
+    %     cinco mil (5000) palabras con mayor valor de nuestra métrica.
+
+    %     \end{column}
+
+    %     \begin{column}{.45\textwidth}
+            \begin{figure}
+            \centering
+            \includegraphics[width=0.4\linewidth]{../src/images2/valorInformacionCorte.pdf}
+            \caption{Palabras Candidatas}
+            \label{fig:ivalue}
+            \end{figure}
+    %     \end{column}
+    % \end{columns}
+
+% \end{block}
+    
 
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Proporción de ocurrencias}
-    Detectadas las palabras que se utilizan en forma diferenciada, interesa detectar donde se utilizan mas.
-
+    % Detectadas las palabras que se utilizan en forma diferenciada, interesa detectar donde se utilizan mas.
+    ¿Dónde se utiliza más?
 \begin{lstlisting}
 1 por cada subconjunto de palabras:
 2   por cada palabra w:
@@ -156,7 +215,25 @@ siendo $p(\omega)$ la frecuencia total de la palabra en el texto.
 5       se calcula la proporcion acumulada de 
         ocurrencias por las primeras k provincias
 \end{lstlisting}
-\centering \includegraphics[width=.4\textwidth]{../src/images/PropAcum5000SinCandidatas.pdf}
-        
+\begin{columns}
+\begin{column}{.5\linewidth}
+\centering
+\includegraphics[width=.9\textwidth]{../src/images/PropAcum5000SinCandidatas.pdf}
+\end{column}
+\begin{column}{.5\linewidth}
+\centering
+\includegraphics[width=.9\textwidth]{../src/images/PropAcumSinCandidatas.pdf}
+\end{column}
+\end{columns}
+% \centering 
+% \begin{columns}
+%         \begin{column}{.7\linewidth}
+%         \end{column}
+%         \begin{column}{.3\linewidth}
+%         Proporción de ocurrencias acumulada según la muestra de palabras. % El número de la leyenda indica la cantidad de palabras contrastivas elegidas para la muestra respectiva, siempre seleccionando las más contrastivas según la métrica.
+%         \label{fig:propAcum}
+%         \end{column}
+%       \end{columns}
+           
 
 \end{frame}

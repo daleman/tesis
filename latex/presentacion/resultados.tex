@@ -1,24 +1,5 @@
 \subsection{Caracterización de las palabras identificadas como contrastivas}
 
-\begin{frame}[t]\frametitle{Palabras candidatas}
-
-    \begin{columns}
-        \begin{column}{.5\textwidth}
-        Para buscar las palabras candidatas a tener contrastes significativos en cuanto a la cantidad de ocurrencias en distintas provincias, elegimos el conjunto de las primeras 
-        cinco mil (5000) palabras con mayor valor de nuestra métrica.
-
-        \end{column}
-
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-            \centering
-            \includegraphics[width=0.95\linewidth]{../src/images2/valorInformacionCorte.pdf}
-            \label{fig:ivalue}
-            \end{figure}
-        \end{column}
-    \end{columns}
-
-\end{frame}
 
 \begin{frame}[t]\frametitle{Pipeline}
     
@@ -174,29 +155,13 @@ Ejemplo: terminación azo/aza con base adjetiva.
   \end{block}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Test hipergeométrico}
 
-    Para aplicar el test hipergeométrico representamos los datos sobre la palabra en una tabla de 2x2 como la de la siguiente Tabla.
-
-    \begin{table}[ht]
-    \centering
-    \begin{tabular}{l|ccc}
-    \hline
-    &  \begin{tabular}{@{}c@{}}\#Palabras \\sobre región\end{tabular} &  \begin{tabular}{@{}c@{}}\#Palabras en el \\ resto de Argentina\end{tabular}  &Total \\ \hline
-    \# Palabras w &   $k$ & $K-k$ & $K$ \\ 
-    \# Palabras $\neq$ w & $n-k$ & $N + k - n - K$  & $N - K$ \\ \hline
-    Total & $n$ & $N -n$ & $N$ \\ 
-    \end{tabular}
-    \label{tab:contingencia}
-    \end{table}
-
-\end{frame}
 
 \begin{frame}[t]\frametitle{Test t de Welch}
 
-    El test de Welch nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales.
+    \alert<1>{El test de Welch nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales.}
 
-    \only<2>{
+    \alert<2>{
        Las suposiciones del test 
         \begin{enumerate}
             \item Todos los textos son estadísticamente independientes 
@@ -206,9 +171,10 @@ Ejemplo: terminación azo/aza con base adjetiva.
     
     \only<3>{
        \begin{block}{Metodología}
-              Agrupamos todos los tuits de cada usuario representando un texto.\footnote{Notar que la suposición de independencia es más débil.}
+              Agrupamos todos los tuits de cada usuario representando un texto.
+              % \footnote{Notar que la suposición de independencia es más débil.}
         \begin{description}
-            \item[Corpus S] Todos los textos de los usuarios que provienen de las provincias en donde se cubre el 80\% de las ocurrencias
+            \item[Corpus S] Todos los textos (región que cubre > del 80\% de las ocurrencias) 
             \item[Corpus T] Los textos creados por usuarios del resto de las provincias
         \end{description}
 
