@@ -11,11 +11,14 @@
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \usepackage{listings}
 \usepackage{multicol}
-
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{wasysym}
 
 \def\tituloTesis{Hacia un método computacional para detectar léxico contrastivo}
 
-\title{\tituloTesis}
+\title[Tesis de Licenciatura]{\tituloTesis}
 \author{Damián Eliel Aleman}
 
 \usetheme{Madrid}

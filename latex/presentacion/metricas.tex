@@ -2,13 +2,23 @@
 \subsection{Primeras métricas: MaxDif y  \texorpdfstring{$MaxDif_g$}{MaxDifg}} 
 
 
+
+% \begin{center}
+%    \begin{tabular}{ l | c || r | }
+%      \hline
+%      1 & 2 & 3 \\ \hline
+%      4 & 5 & 6 \\ \hline
+%      7 & 8 & 9 \\
+%      \hline
+%    \end{tabular}
+%  \end{center}
     \begin{frame}[t]\frametitle{Primeras métricas: MaxDif}
 Para cada palabra $\omega$ y cada par de provincias $p_1$ y $p_2$:
 % , podemos calcular el cociente entre la frecuencia máxima de $\omega$ en ambas provincias y la frecuencia mínima:
 
 \begin{equation}
   \label{eq:maxDif} 
-  maxDif(\omega,p_1,p_2) = \frac{f_{max}(\omega,p_1,p_2)}{f_{min}(\omega,p_1,p_2)}
+  maxDif(\omega,p_1,p_2) = \frac{\text{frec.\ m\'axima de $\omega$ en ambas provincias}}{\text{frec.\ m\'inima de $\omega$ en ambas provincias}}
 \end{equation}
 
 \only<1>{
@@ -19,14 +29,14 @@ Desventajas:
 \end{enumerate}
 }
     
-
+% hago un vector de 23 frecuencias, coloreo la más baja y la más alta y las divido
 
 \only<2>{
 \begin{block}{$MaxDif_g$}
 Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias:
 
 \begin{equation}
- maxDif_g(\omega) = \frac{f_{max}^\prime(\omega)}{f_{min}^\prime(\omega)}
+ maxDif_g(\omega) = \frac{\text{frec.\ m\'axima de $\omega$ \textbf{todas las provincias}}}{\text{frec.\ m\'inima de $\omega$ sobre \textbf{todas las provincias}}}
  \label{eq:maxDifg}  
 \end{equation} 
 \end{block}  
@@ -63,36 +73,47 @@ Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias:
     
 % La entropía nos brinda un valor que indica qué tan uniforme es la distribución de las frecuencias de cada palabra. 
 \only<1->{
-    Sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual:
+    Sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual: $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
 
-     $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
-
-     \begin{columns}
-        \begin{column}{.5\linewidth}
             Definimos la entropía de $\mathbf{p}$ siendo
             \begin{equation}
-                H(\mathbf{p})=-\sum_{i=1}^n \log(p_i)p_i.
-            \end{equation}
-        \end{column}
-        \begin{column}{.5\linewidth}
-        \includegraphics[width=0.5\textwidth]{../src/images/presentacion/entropy.png}
-        \end{column}
-    \end{columns}
-    
+                H(\mathbf{p})=-\sum_{i=1}^n \log(p_i) p_i
+            \end{equation}    
 }
 
-\only<2>
-{
-    \begin{exampleblock}{Dime que tan uniforme eres y te diré cuanta entropía tienes} Las palabras utilizadas más uniformemente en las distintas provincias como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
-\end{exampleblock}
+\only<2>{
+    \begin{columns}
+    \begin{column}{.30\textwidth}
+        \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../src/images/presentacion/trump.jpg}
+        \caption{Poco predecible, alta entropía} 
+        \label{fig:trump}
+        \end{figure}
+    \end{column}
+    \begin{column}{.30\textwidth}   
+        \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../src/images/presentacion/coyote.png}
+        \caption{Muy predecible, baja entropía} 
+        \label{fig:coyote}
+        \end{figure} 
+    \end{column}
+    
+    \end{columns}
+
 }
 
 \only<3>
 {
+    \begin{exampleblock}{Dime que tan uniforme eres y te diré cuanta entropía tienes} Las palabras utilizadas más uniformemente en las distintas provincias como \textit{de} o \textit{que} aportan menos información que la palabra \textit{chomaso}. 
+\end{exampleblock}
+}
+
+\only<4>
+{
     \begin{block}{Observaciones}
         \begin{enumerate}
-            \item $H(\mathbf{p})=0$ si y solo si $\mathbf{p}$ esta concentrada en un unico punto: existe $i$ tal que $p_i=1$ y $p_j=0$, para todo $j\not=i$. 
-            \item La funci\'on $H$ se maximiza tomando $\mathbf{p}$ equiprobable: $p_i=1/n$, para todo $i$. 
+            \item Entropía mínima ($=0$)  si y solo si $\mathbf{p}$ esta concentrada en un unico punto: existe $i$ tal que $p_i=1$ y $p_j=0$, para todo $j\not=i$. 
+            \item Entropía máxima con $\mathbf{p}$ equiprobable: $p_i=1/n$, para todo $i$. 
 
         \end{enumerate}
 
@@ -100,13 +121,11 @@ Considerando las frecuencias de una palabra $\omega$ sobre todas las provincias:
 }
 \end{frame}
 
-
-
 \begin{frame}[t]\frametitle{Valor de la información}
 
 Zanette y Montemurro definieron al \textit{valor de la información de una palabra} como
  \begin{equation}
-  \Delta I_w(\omega) = p(\omega) \,  (\widehat{H}(\omega) - H(\omega))  =  p(w) \, \Delta{H(\omega)}
+  \Delta I(\omega) = p(\omega) \,  (\widehat{H}(\omega) - H(\omega))  =  p(\omega) \, \Delta{H(\omega)}
  \end{equation}
 siendo $p(\omega)$ la frecuencia total de la palabra en el texto, $p(\omega) = n/N$ 
 
@@ -117,22 +136,19 @@ n = \# ocurrencias de $\omega$
  n_1 \ldots n_p \rightarrow H(\omega)   
 \end{equation}
 
-\begin{equation}
-  \widehat{H}(\omega) = \texttt{promedio de $H(\omega)$ en todas las permutaciones } n_1^\prime \ldots n_p^\prime  
-\end{equation}
-
 
 
 \end{frame}
 
 \subsection{Valores contrastivos}
 \begin{frame}[t]\frametitle{Valor contrastivo sobre las palabras}
+\label{valoresContrastivos}
     \begin{alertblock}{Valor contrastivo sobre las palabras}
         \begin{equation}
             I_w(\omega) = norm_{w}(\omega) \cdot (\widehat{H}_{w}(\omega) - H_{w}(\omega))
             \label{eq:iw}
         \end{equation}
-        donde $norm_w$ sirve para normalizar sobre la cantidad de ocurrencias de la palabra.
+        donde \hyperlink{fr:metrica}{$norm_w$} sirve para normalizar sobre la cantidad de ocurrencias de la palabra.
     \end{alertblock}
 
     \begin{block}{Observaciones}
@@ -164,7 +180,7 @@ n = \# ocurrencias de $\omega$
 
     \only<2>{
         \centering
-        \includegraphics[width=.55\textwidth]{../src/images2/entropiaPersonasxNormCantPersonas.pdf}
+        \includegraphics[width=.55\textwidth]{../src/images2/entropiaPersonasxNormCantPersonasColor_sinFiltro.pdf}
     }
 
     
@@ -191,8 +207,8 @@ n = \# ocurrencias de $\omega$
     %     \begin{column}{.45\textwidth}
             \begin{figure}
             \centering
-            \includegraphics[width=0.4\linewidth]{../src/images2/valorInformacionCorte.pdf}
-            \caption{Palabras Candidatas}
+            \includegraphics[width=0.55\linewidth]{../src/images2/valorInformacionCorte_sinFiltro.pdf}
+            % \caption{Palabras Candidatas}
             \label{fig:ivalue}
             \end{figure}
     %     \end{column}
@@ -206,23 +222,20 @@ n = \# ocurrencias de $\omega$
 \begin{frame}[fragile]\frametitle{Proporción de ocurrencias}
     % Detectadas las palabras que se utilizan en forma diferenciada, interesa detectar donde se utilizan mas.
     ¿Dónde se utiliza más?
-\begin{lstlisting}
-1 por cada subconjunto de palabras:
-2   por cada palabra w:
-3     se ordenen las provincias en funcion de la 
-      cantidad de veces que se utiliza w
-4     por k = 1..23:
-5       se calcula la proporcion acumulada de 
-        ocurrencias por las primeras k provincias
-\end{lstlisting}
+\begin{verbatim}
+por cada palabra w:
+  por cada k = 1..23:
+    calculamos la proporción acumulada de ocurrencias 
+    por las k provincias que más mencionan a w
+\end{verbatim}
 \begin{columns}
 \begin{column}{.5\linewidth}
 \centering
-\includegraphics[width=.9\textwidth]{../src/images/PropAcum5000SinCandidatas.pdf}
+\includegraphics[width=1.1\linewidth]{../src/images/PropAcum5000SinCandidatas2.pdf}
 \end{column}
 \begin{column}{.5\linewidth}
 \centering
-\includegraphics[width=.9\textwidth]{../src/images/PropAcumSinCandidatas.pdf}
+\includegraphics[width=1.1\linewidth]{../src/images/PropAcumSinCandidatas2.pdf}
 \end{column}
 \end{columns}
 % \centering 

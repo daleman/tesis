@@ -15,3 +15,31 @@
     \end{table}
 
 \end{frame}
+
+
+
+\begin{frame}[t]\frametitle{Metrica}
+\label{fr:metrica}
+% Despues definis el n\'umero minimo y m\'aximo  en el que ocurre cada palabra a lo largo de todo el pa\'is, en escala logartimica. Para ello, definimos 
+\begin{equation}
+\label{cant_W_def}
+cant_W(w)=\log(\mathbf N(w)),
+\end{equation} 
+y 
+
+\begin{equation}
+\label{max_min_pais}
+MIN_W=\min_{w\in \text{Palabras}} cant_W(w)
+\;,\quad MAX_W=\max_{w\in \text{Palabras}} cant_W(w)
+\end{equation}
+\begin{block}{Índice normalizado}
+\begin{equation}
+\label{norm_W_def}
+norm_W(w)=\frac{cant_W(w)-MIN_W}{MAX_W-MIN_W}
+\end{equation}
+Esto se define para palabras $w$ con $\mathbf{w}\geq 40$. 
+\end{block}
+
+\hyperlink{valoresContrastivos}{\beamerbutton{Volver}}
+
+\end{frame}

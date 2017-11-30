@@ -1,11 +1,11 @@
 \subsection{Twitter}
-\begin{frame}[t]\frametitle{Twitter}
+\begin{frame}[c]\frametitle{Twitter}
 
 \begin{block}{Qué es Twitter}
     \begin{itemize}
         \item Red social creada en el 2006
         \item Usuarios variados
-        \item Tuits de hasta 140 carácteres{\footnote{Recientemente han aumentado el límite a 280 carácteres.}}
+        \item Tuits de hasta 140 caracteres{\footnote{Recientemente han aumentado el límite a 280 caracteres.}}
         \item \alert{Todos los tuits son públicos}
     \end{itemize}
 \end{block}
@@ -24,37 +24,44 @@
 
 \subsection{Búsquedas geolocalizadas}
 
-\begin{frame}[t]\frametitle{Búsquedas geolocalizadas}
+\begin{frame}[c]\frametitle{Búsquedas geolocalizadas}
 
-\begin{columns}
-    \begin{column}{0.30\textwidth}
-        \begin{figure}
-            \includegraphics[width=\linewidth]{../src/images/mapaprovincias.pdf}
-            % \caption{} 
-            \label{fig:mapaProvincias}
-        \end{figure}
-    \end{column}
 
-    \begin{column}{0.30\textwidth}
-        \begin{figure}
-            \includegraphics[width=\linewidth]{../src/images/mapadepartamentos.pdf}
-            % \caption{} 
-            \label{fig:mapaDepartamentos}
-        \end{figure}
-    \end{column}
+\begin{figure}
+    \includegraphics[height=0.5\textheight]{../src/images/mapadepartamentos.pdf}
+    % \caption{} 
+    \label{fig:mapaDepartamentos}
+\end{figure}
 
-    \begin{column}{0.30\textwidth}
-        \begin{figure}
-            \includegraphics[width=\linewidth]{../src/images/mapaprovinciasConPuntos.pdf}
-            % \caption{} 
-            \label{fig:mapaPuntos}
-        \end{figure}
-    \end{column}
-\end{columns}
+% \begin{columns}
+%     \begin{column}{0.30\textwidth}
+%         \begin{figure}
+%             \includegraphics[width=\linewidth]{../src/images/mapaprovincias.pdf}
+%             % \caption{} 
+%             \label{fig:mapaProvincias}
+%         \end{figure}
+%     \end{column}
+
+%     \begin{column}{0.30\textwidth}
+%         \begin{figure}
+%             \includegraphics[width=\linewidth]{../src/images/mapadepartamentos.pdf}
+%             % \caption{} 
+%             \label{fig:mapaDepartamentos}
+%         \end{figure}
+%     \end{column}
+
+%     \begin{column}{0.30\textwidth}
+%         \begin{figure}
+%             \includegraphics[width=\linewidth]{../src/images/mapaprovinciasConPuntos.pdf}
+%             % \caption{} 
+%             \label{fig:mapaPuntos}
+%         \end{figure}
+%     \end{column}
+% \end{columns}
 
 \begin{itemize}
     \item Se realizaron búsquedas en todos los departamentos de las provincias argentinas.
-    \item Nos quedamos con los usuarios que tienen como campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. 
+    \item Nos quedamos con los usuarios que ingresaron en el campo \textit{location} al menos uno de los nombres de las ciudades de la provincia. 
 
 \end{itemize}
 
@@ -62,11 +69,9 @@
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Distribución temporal de tuits}
+\begin{frame}[c]\frametitle{Distribución temporal de tuits}
     ¿Y si en un momento dado la mayoría de los usuarios hablan del mismo tema por un fenómeno particular?
-     \begin{columns}
-    \only<2>{
-
+    \begin{columns}
     \begin{column}{.30\textwidth}
         \begin{figure}
         \includegraphics[width=0.9\textwidth]{../src/images/presentacion/estalloelverano.jpg}
@@ -74,7 +79,6 @@
         \label{fig:estalloelverano}
         \end{figure}
     \end{column}
-
     \begin{column}{.30\textwidth}   
         \begin{figure}
         \includegraphics[width=0.9\textwidth]{../src/images/presentacion/eraporabajo.jpg}
@@ -82,30 +86,24 @@
         \label{fig:eraporabajo}
         \end{figure} 
     \end{column}
-    }
-        
-    \end{columns}
-\only<3>{
-\begin{figure}[!ht]\centering
-   \begin{subfigure}[t]{0.42\textwidth}
-     \includegraphics[width=\linewidth]{../src/images2/histTweetsProvincia1_sinFiltro.pdf}
-     \caption{}
-     \label{fig:histTweetsProvincia1}
-   \end{subfigure}%
-   \begin{subfigure}[t]{0.42\textwidth}
-     \includegraphics[width=\linewidth]{../src/images2/histTweetsProvincia2_sinFiltro.pdf}
-     \caption{}
-     \label{fig:histTweetsProvincia2}
-   \end{subfigure}
-    \caption{ (a) Histograma de la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. (b) Gráfico para Chaco y Neuquén.}
-   \label{fig:histTweets}
-\end{figure}
-}
     
+    \end{columns}
+
+
+  \begin{figure}
+    \begin{columns}%
+        \begin{column}{0.65\textwidth}%
+            \includegraphics[width=.8\textwidth]{../src/images2/histTweetsProvincia1_sinFiltro.pdf}
+        \end{column}%
+        \begin{column}{0.33\textwidth}%
+            \caption{Histograma de la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires.}
+        \end{column}%
+    \end{columns}
+\end{figure}
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Balanceo de cantidad de tuits y de usuarios}
+\begin{frame}[c]\frametitle{Balanceo de cantidad de tuits y de usuarios}
     
     \begin{table}
 \centering
@@ -148,13 +146,59 @@ Tucumán        & 195643       & 962          & 1093874    & 9238526 \\
 
 \subsection{Tokenización y normalización}
 
-\begin{frame}[t]\frametitle{¿Qué es una palabra?}
+\begin{frame}[c]\frametitle{¿Qué es una palabra?}
     \begin{block}{Tokenización}
-    Se consideró una palabra a las secuencias de caracteres formados únicamente por letras. Por lo tanto se eliminaron las menciones con @, los hashtags y links entre otros. Decidimos ignorar estos términos ya que no tienen interés lingüístico y agregarían mucho ruido a los datos.
+    Palabra = secuencia de caracteres alfabéticos (letras)
+    \begin{multicols}{2}
+    \begin{itemize}
+        \item \#estalloElVerano $\rightarrow$ \xmark
+        \item \smiley{} \frownie{} $\rightarrow$ \xmark
+        \item https://nic.ar/ $\rightarrow$ \xmark
+        \item @BombitaDarin $\rightarrow$ \xmark
+        \item siempr3 $\rightarrow$ \xmark
+        \item siempre $\rightarrow$ \cmark
+    \end{itemize}
+
+    \end{multicols}
+    % Decidimos ignorar estos términos ya que no tienen interés lingüístico y agregarían mucho ruido a los datos.
     \end{block}
 
     \begin{block}{Normalización}
-    Todas las letras se convirtieron a letra minúscula y las palabras con más de tres letras iguales de forma consecutiva se redujeron para que solo tengan tres repeticiones. De esta forma, el término \textit{padreeeee} y \textit{padreeee} fueron reducidos a una única unidad léxica (\textit{padreee}). Esto se hizo con la librería \textit{TweetTokenizer de NLTK}. 
+    \begin{itemize}
+        \item \textbf{Minúscula:} Casa,CaSA,casA $\rightarrow$ casa
+        \item \textbf{Hasta 3 repeticiones:} jajaaaaaa $\rightarrow$ jajaaaa
+    \end{itemize}
     \end{block}
+
+\end{frame}
+
+\begin{frame}[c]\frametitle{Cantidades por provincia}
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|cccc|c|}
+  \hline
+Palabra &Prov.1& Prov.2 &$\cdots$ Prov.23& Totales \\
+  \hline
+  $w_1$& $N_{1,1}$& $N_{1,2}$ &$\cdots$
+  $N_{1,23}$ & $\mathbf N(w_1)$\\
+    $w_2$& $N_{2,1}$& $N_{2,2}$&$\cdots$
+    $N_{2,23}$ & $\mathbf N(w_2)$\\
+  $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+          $\cdot$ & $\cdot$\\$w_i$& $N_{i,1}$& $N_{i,2}$ &$\cdots$
+      $N_{i,23}$ & $\mathbf N(w_i)$\\
+    $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+          $\cdot$ & $\cdot$\\
+            $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+                    $\cdot$ & $\cdot$\\  $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+                              $\cdot$ & $\cdot$\\
+      \end{tabular}
+\end{table}
+
+\noindent donde $N_{i,j}$ representa la cantidad de veces que la palabra $w_i$ aparece en la provincia Prov.$j$, $j=1,\ldots, 23$. 
+\begin{equation}
+\mathbf N(w_i)=\sum_{j=1}^{23} N_{i,j}
+\end{equation}
+
+% \hyperlink{valoresContrastivos}{\beamerbutton{Volver}}
 
 \end{frame}
