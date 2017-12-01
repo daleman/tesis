@@ -93,7 +93,11 @@
 
   % \blockquote[Mendoza]{Mañana que alguien \textbf{atine} con parque y porrones}
 
-  \blockquote[San Juan]{\textbf{Mansas} ganas de sentarme a tomar un te con semitas}
+  \blockquote[Mendoza]{\textbf{Manso} embole, ni el gato me habla, qué bajón.}
+
+  \blockquote[Mendoza]{Tengo \textbf{manso} sueño. No doy más.}
+  
+  \blockquote[Mendoza]{Mi mamá hace \textbf{manso} escándalo si le tocás alguna de sus cosas.}
 
   % \blockquote[Tierra del Fuego]{\textbf{Habilítenme} una nueva espaldaa}
 
@@ -107,7 +111,7 @@
 
 Ejemplo: terminación azo/aza con base adjetiva.
 
-  % \blockquote[San Juan]{Creo que va a estar \textbf{malazo} lo de esta noche } 
+  \blockquote[San Juan]{Creo que va a estar \textbf{malazo} lo de esta noche } 
 
   \blockquote[Córdoba]{Esta \textbf{locaza} esa mina para hacer eso}
 }
@@ -158,11 +162,11 @@ Ejemplo: terminación azo/aza con base adjetiva.
 \begin{frame}[c]\frametitle{Problema desde el punto de vista estadístico}
 
   Utilizar tests estadísticos para validar los resultados.
-  \medskip
+  % \medskip
 
-  \begin{block}{Hipótesis nula: $H_0$}
-    La palabra tienen un uso homogéneo en las distintas regiones de la Argentina, es decir que la frecuencia de ocurrencias de cada palabra debería ser similar independientemente de la región.
-  \end{block}
+  % \begin{block}{Hipótesis nula: $H_0$}
+  %   La palabra tienen un uso homogéneo en las distintas regiones de la Argentina, es decir que la frecuencia de ocurrencias de cada palabra debería ser similar independientemente de la región.
+  % \end{block}
 \end{frame}
 
 
@@ -193,18 +197,14 @@ Ejemplo: terminación azo/aza con base adjetiva.
 \begin{frame}[c]\frametitle{Resultados test t de Welch}
 
   \begin{enumerate}
-    \alert<1>
-    {
+   
     \item Para cada métrica $I,I_W,I_P$  variamos los subconjuntos de palabras de acuerdo al listado ordenado según estas.
-    }
-    
-    \alert<2>
-    {
+  
     \item Calculamos la tasa de rechazo de la hipótesis nula, definida por:
     \begin{equation}
       \text{Tasa de rechazo(tests)} = \frac{\# \{t:tests \mid p \text{-}valor(t) < 0.05\}}{\#tests} 
     \end{equation}
-    } 
+  
   \end{enumerate}
 
   \begin{figure}
