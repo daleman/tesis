@@ -13,7 +13,7 @@ mayor interés lingüístico buscamos un conjunto de datos con los nombres de la
 \section{Regiones de palabras} % (fold)
 \label{sub:regiones_de_palabras}
 
-Una vez que calculamos las regiones que cubren un umbral para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista con los conjuntos de provincias cuya cantidad sea menor a 7 y los ordenamos según su frecuencia. En la Tabla \ref{tab:regiones} se muestran los primeros conjuntos de provincias obtenidos a partir de las primeras 5000 palabras con mayores contrastes de acuerdo al valor de la información. Más precisamente se muestran las 30 regiones con mayor cantidad de palabras y cuya cantidad de provincias sea mayor a uno. Analizando esta tabla pudimos notar que la mayoría de las regiones están compuestas por provincias contiguas, es decir que para cada provincia dentro de una región hay otra provincia limítrofe. Mostramos algunos de los conjuntos de palabras de cada región en la Tabla \ref{tab:palabrasRegiones} (ver apéndice). 
+En la sección \ref{sec:proporcionDeOcurrencias} analizamos la variación de la proporción acumulada de las palabras en las regiones formadas por un conjunto de provincias. Estas regiones tienen la particularidad que son establecidas por cada palabra y  el conjunto de provincias que la forman son aquellas que tienen más ocurrencias en el conjunto de datos. Establecimos un umbral del\%80 de ocurrencias para definir a una región,es decir, estas eran formadas por el conjunto de provincias que contenían al \%80 de las ocurrencias de la palabra. Una vez definidas las regiones para cada palabra, nos propusimos analizar cuales son las más frecuentes. Para eso generamos una lista de regiones de las 5000 palabras con mayores contrastes de acuerdo al valor de contrastividad y la ordenamos según su frecuencia. De estas regiones quitamos aquellas que eran formadas por más de 7 provincias o por una sola. En la Tabla \ref{tab:regiones} se muestran las 30 regiones más frecuentes. Analizando esta tabla pudimos notar que la mayoría de las regiones están compuestas por provincias contiguas, es decir que para cada provincia dentro de una región hay otra provincia limítrofe. Mostramos algunos de los conjuntos de palabras de cada región en la Tabla \ref{tab:palabrasRegiones} (ver apéndice). 
 
 \begin{table}
 \centering
@@ -214,12 +214,12 @@ Como se puede ver en la Tabla \ref{tab:guaranismos} el contraste entre las frecu
 \hline
  & \multicolumn{2}{c}{Región Guaranítica} & \multicolumn{2}{c}{Región Litoral} \\ \hline
       & \#Ocurrencias & Frecuencia Normalizada & \#Ocurrencias & Frecuencia Normalizada \\
-Angá  & 548              & 45,03       & 6             & 0,21                  \\
-Angaú & 205               & 16,84   & 0               & 0                     \\
-Mitai & 175              & 15,69      & 1              & 0,036    \\ \hline              
+Angá  & 1017              & 32,80       & 27             & 0,337                  \\
+Angaú & 261               & 8,42   & 2               & 0,025                   \\
+Mitai & 467              & 15,06      & 3              & 0,037    \\ \hline              
 \end{tabular}
 
-\caption{Cantidad de ocurrencias y frecuencias normalizadas de las palabras en la región guaranítica y la del litoral. La cantidad total de palabras en la región guaranítica es de 12.167.635, mientras que la cantidad de términos en la región litoral es 27.477.861 }
+\caption{Cantidad de ocurrencias y frecuencias normalizadas de las palabras en la región guaranítica y la del litoral. La cantidad total de palabras en la región guaranítica es de 31.007.510, mientras que la cantidad de términos en la región litoral es 80.186.170 }
 \label{tab:guaranismos}
 \end{table}
 
@@ -266,7 +266,7 @@ Total & $n$ & $N -n$ & $N$ \\
 
 % agregar gráficos de palabras comunes, con los parametros de la distribucion
 % hacer un grafico de la distribución estimada (y la observada) de la cantidad de ocurrencias de la palabra 
-En primer lugar hicimos el test estadístico sobre las palabras del conjunto de datos de desarrollo para ver resultados preliminares. El test lo realizamos sobre las 5000 palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Con este test obtuvimos los p-valores de la Figura \ref{fig:p-valores}. Debido a que realizamos múltiples tests tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos usar la corrección de Bonferroni con $\alpha = 0.5$.
+En primer lugar hicimos el test estadístico sobre las 5000 palabras candidatas a ser contrastivas identificadas a través de nuestra métrica. Con este test obtuvimos los p-valores de la Figura \ref{fig:p-valores}. Debido a que realizamos múltiples tests tuvimos que aplicarle una corrección para evitar falsos positivos. Decidimos usar la corrección de Bonferroni con $\alpha = 0.5$.
 
 \begin{figure}[!ht]\centering
     \includegraphics[width=\linewidth]{images/pvaloresHipergeometrico.pdf}
@@ -290,7 +290,7 @@ Para entender este fenómeno es necesario notar el modelo que se usó al represe
 Para los tests que suponen los modelos de bolsa de palabras, los datos se representan en una tabla de contingencia de 2x2 y el número de muestras equivale al número de palabras en el corpus, mientras que en los otros cuatro tests, los datos son representados en una lista de frecuencias o una lista de \textit{tiempos de llegada}. En estos casos, el número de muestras es mucho menor que la cantidad de palabras en el corpus. Se destaca el número de muestras de los modelos ya que este número generalmente determina nuestro nivel de seguridad en relación a los valores estimados. Es por esto que los resultados experimentales muestran que los tests de modelos de \textit{bag-of-words} tienen una confianza excesivamente alta en los valores estimados de la frecuencia media de las palabras, en el contexto de comparación estadística entre dos corpus \cite{doi:10.1093/llc/fqu064}.
 
 \subsection{Test t de Welch}
-Basándonos en las propuestas de Lijffijt, decidimos utilizar el test de Welch. Este nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales. Sean $S$ y $T$ dos corpus y sea $q$ la palabra sobre la cual se va a hacer el test, sea $x_1$ la media de la frecuencia de la palabra $q$ sobre los textos de $S$, y sea $s_1$ la desviación estándar. Análogamente, sea $x_2$ la media de la frecuencia de $q$ en los textos $T$ y $s_2$ la desviación estándar. El estadístico $t$ se calcula con la siguiente ecuación: 
+Basándonos en las propuestas de Lijffijt, decidimos utilizar el test de Welch. Este nos provee un valor de probabilidad para rechazar la hipótesis nula que afirma que las medias de las dos distribuciones son iguales. Sean $S$ y $T$ dos corpus y sea $q$ la palabra sobre la cual se va a hacer el test, sea $x_1$ la media de la frecuencia de la palabra $w$ sobre los textos de $S$, y sea $s_1$ la desviación estándar. Análogamente, sea $x_2$ la media de la frecuencia de $q$ en los textos $T$ y $s_2$ la desviación estándar. El estadístico $t$ se calcula con la siguiente ecuación: 
 
 \begin{equation}
 \label{eq:estadistico_welch}
@@ -304,7 +304,13 @@ Las suposiciones del test consisten en que todos los textos son estadísticament
 
 Puede observarse la distribución de los p-valores para distintos grupos de palabras en la Figura \ref{fig:pvalores_sinBonferroni}. En éste, se pone de manifiesto que la distribución de estos no es uniforme, sino que tienden a ser p-valores bajos, y no queda del todo claro cómo se comparan estos resultados con los obtenidos por Lijffijt et al. Cabe destacar que el análisis de uniformidad realizado en dicho trabajo es distinto en varios aspectos: por empezar, nosotros definimos un ``corpus'' para cada una de las palabras debido a las regiones de uso. Por otro lado, las particularidades de los textos de Twitter podrían estar generando un artefacto en el cálculo de los p-valores.
 
-Sin embargo, a partir de esta validación estadística obtuvimos algunos resultados que dan un indicio de las virtudes de la métrica desarrollada, los cuales exponemos a continuación. Uno de ellos es la comparación de las tasas de rechazo de la hipótesis nula sobre las tres métricas desarrolladas, $I_p$, $I_w$ y $I$ mencionadas en \ref{eq:iu}, \ref{eq:iw} y \ref{eq:ivalor} (páginas \pageref{eq:iw} y \pageref{eq:ivalor}) respectivamente.
+Sin embargo, a partir de esta validación estadística obtuvimos algunos resultados que dan un indicio de las virtudes de la métrica desarrollada, los cuales exponemos a continuación. Uno de ellos es la comparación de las \textit{tasas de rechazo de la hipótesis nula} sobre las tres métricas desarrolladas, $I_p$, $I_w$ y $I$ mencionadas en \ref{eq:iu}, \ref{eq:iw} y \ref{eq:ivalor} (páginas \pageref{eq:iw} y \pageref{eq:ivalor}) respectivamente. Definimos a la \textit{tasa de rechazo} como la proporción de tests que tienen un p-valor menor a 0.05, es decir: 
+
+\begin{equation}
+   \text{Tasa de rechazo(tests)} = \frac{\# \{t:tests \mid p \text{-}valor(t) < 0.05\}}{\#tests}
+   \label{eq:tasaRechazo} 
+\end{equation}
+
 Calculamos la tasa de rechazo para las palabras en distintos intervalos del listado ordenado según las tres métricas elegidas: la métrica que tiene en cuenta la entropía de palabras, la que valora la entropía de personas, y la que contiene a los dos factores. En la Figura \ref{fig:rechazo_metricas} se muestran los resultados, donde la tasa de rechazo se calcula después de haber aplicado la corrección de Bonferroni con $\alpha = 0.5$ para reducir la probabilidad de falsos positivos. La métrica elegida, que tiene a ambos factores en consideración tiene una mejor tasa de rechazo de la hipótesis nula en las palabras consideradas contrastivas y una menor tasa de rechazo para el resto. Es importante notar que el test de Welch que realizamos tiene como muestras las distintas frecuencias de todos los usuarios en cada región. Por lo tanto, es razonable obtener un resultado como este, en el cual las métricas que consideran la dispersión sobre los usuarios y las palabras tienen un mejor comportamiento sobre la que tiene en cuenta solamente a la dispersión de las palabras.
 %para distinguir el nivel de contrastividad de la palabra.
 

@@ -9,7 +9,7 @@ La búsqueda de los usuarios se hizo de la siguiente manera:
 
 Por cada provincia de la Argentina, se extrajeron las coordenadas de cada uno de sus departamentos, de los partidos de la provincia de Buenos Aires y de las comunas de la Ciudad Autónoma de Buenos Aires. El conjunto de estas forman la subdivisión de segundo orden de la República Argentina. La lista de departamentos, partidos y comunas fue extraída de los datos publicados del Censo Argentino del año 2010. Para extraer los tuits se utilizó la librería de \textit{python} llamada \textit{tweepy}.
 
-De esta manera se recolectaron aproximadamente 2000 usuarios por provincia, lo que resulta en 46.000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits, dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
+De esta manera se recolectaron aproximadamente 900 usuarios por provincia, lo que resulta en 46.000 usuarios argentinos. Sobre este conjunto de usuarios se buscaron los tuits. Se decidió no tener en cuenta los retuits, dado que no son escritos por los usuarios sino que son una mera copia de otros tuits. 
 
 
 \subsection{Búsquedas geolocalizadas}
@@ -40,7 +40,7 @@ En el gráfico de la Figura \ref{fig:busqueda_usuarios} se muestran las ubicacio
 
 
 
-   \caption{Ubicaciones de los usuarios: \subref{fig:mapaProvincias} Mapa de Argentina con la distribución de los usuarios en las provincias sobre el conjunto de desarrollo. \subref{fig:mapaDepartamentos} Distribución de los usuarios en los departamentos sobre el conjunto de desarrollo. Se muestra con áreas grises los departamentos que no poseen usuarios que hayan definido el campo ubicación de su perfil en ese lugar. \subref{fig:mapaPuntos} Distribución de las coordenadas obtenidas a partir de todos los usuarios del conjunto de desarrollo. Las coordenadas fueron obtenidas a través de un proceso de geocodificación. } 
+   \caption{Ubicaciones de los usuarios: \subref{fig:mapaProvincias} Mapa de Argentina con la distribución de los usuarios en las provincias. \subref{fig:mapaDepartamentos} Distribución de los usuarios en los departamentos de las provincias argentinas. Se muestra con áreas grises los departamentos que no poseen usuarios que hayan definido el campo ubicación de su perfil en ese lugar. \subref{fig:mapaPuntos} Distribución de las coordenadas obtenidas a partir de todos los usuarios. Las coordenadas fueron obtenidas a través de un proceso de geocodificación. } 
   \label{fig:busqueda_usuarios} 
 
 \end{figure}
@@ -138,20 +138,20 @@ Debido a que los tuits están limitados a 140 caracteres, era de esperar que no 
 %Cantidad de palabras promedio por tweet
 %Cantidad de palabras por usuario + varianza por provincia
 \subsection{Distribución temporal de tuits}
-Los tuits recolectados para el conjunto de datos de desarrollo tienen una particularidad: la cantidad de tuits recolectados crece año a año. Esto se refleja en los gráficos de la Figura \ref{fig:histTweets}, que muestran la progresión temporal de la cantidad de tuits en cuatro regiones representativas: La Pampa, Buenos Aires, Chaco y Neuquén.
+Los tuits recolectados tienen una particularidad: la cantidad de tuits recolectados crece año a año. Esto se refleja en los gráficos de la Figura \ref{fig:histTweets}, que muestran la progresión temporal de la cantidad de tuits en cuatro regiones representativas: La Pampa, Buenos Aires, Chaco y Neuquén.
 
 \begin{figure}[!ht]\centering
    \begin{subfigure}[t]{0.49\textwidth}
-     \includegraphics[width=\linewidth]{images2/histTweetsProvincia1_sinFiltro.pdf}
+     \includegraphics[width=\linewidth]{images/tweets1.pdf}
      \caption{}
      \label{fig:histTweetsProvincia1}
    \end{subfigure}
    \begin{subfigure}[t]{0.49\textwidth}
-     \includegraphics[width=\linewidth]{images2/histTweetsProvincia2_sinFiltro.pdf}
+     \includegraphics[width=\linewidth]{images/tweets2.pdf}
      \caption{}
      \label{fig:histTweetsProvincia2}
    \end{subfigure}
-   \caption { \subref{fig:histTweetsProvincia1} Histograma de la cantidad de tuits que se hicieron por intervalo de tiempo en la provincias La Pampa y Buenos Aires. \subref{fig:histTweetsProvincia2} Gráfico para Chaco y Neuquén.}
+   \caption { \subref{fig:histTweetsProvincia1} Histograma de la cantidad de tuits que se hicieron por bimestre en las provincias La Pampa y Buenos Aires. \subref{fig:histTweetsProvincia2} Gráfico para Chaco y Neuquén.}
    \label{fig:histTweets}
 \end{figure}
 
@@ -159,3 +159,35 @@ Los tuits recolectados para el conjunto de datos de desarrollo tienen una partic
 % Tweets promedio por usuario, por provincia. (varianza)
 
 % cantidad de tweets por usuario, cantidad media de palabras por usuario
+\newpage
+\subsection{Información de palabra por provincia}
+
+Una vez recolectados los tuits y luego de procesar los datos, obtuvimos la cantidad de ocurrencias de cada palabra en cada provincia argentina. Esto se refleja en la Tabla \ref{tab:cantPalabras} donde por cada palabra (fila), aparece el n\'umero de ocurrencias en cada provincia (columna). 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|cccc|c|}
+  \hline
+Palabra &Prov.1& Prov.2 &$\cdots$ Prov.23& Totales \\
+  \hline
+  $w_1$& $N_{1,1}$& $N_{1,2}$ &$\cdots$
+  $N_{1,23}$ & $\mathbf{N}(w_1)$\\
+    $w_2$& $N_{2,1}$& $N_{2,2}$&$\cdots$
+    $N_{2,23}$ & $\mathbf{N}(w_2)$\\
+  $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+          $\cdot$ & $\cdot$\\$w_i$& $N_{i,1}$& $N_{i,2}$ &$\cdots$
+      $N_{i,23}$ & $\mathbf{N}(w_i)$\\
+    $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+          $\cdot$ & $\cdot$\\
+            $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+                    $\cdot$ & $\cdot$\\  $\cdot$& $\cdot$& $\cdot$ &$\cdots$
+                              $\cdot$ & $\cdot$\\
+      \end{tabular}
+      \caption{Cantidad de ocurrencias de cada palabra por provincia.}
+      \label{tab:cantPalabras}
+\end{table}
+
+\noindent donde $N_{i,j}$ representa la cantidad de veces que la palabra $w_i$ aparece en la provincia Prov.$j$, $j=1,\ldots, 23$. 
+\begin{equation}
+\mathbf{N}(w_i)=\sum_{j=1}^{23} N_{i,j}
+\end{equation}

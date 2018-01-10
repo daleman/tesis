@@ -5,30 +5,40 @@ Para ver la cantidad de información que nos aporta cada palabra se hará una in
 los conceptos que introdujo Claude Shannon \cite{shannon2001mathematical,abramson1963information}.
 Para entender estos conceptos es útil tener una descripción matemática del mecanismo que genera la información. Para eso se define a 
 la \textit{fuente} que emite señales de un alfabeto $ S = \{s_1, s_2, \dotsc s_n\}$ de acuerdo a una función de probabilidad fija.
-Si la fuente emite señales estadísticamente independientes decimos que es una \textit{fuente de memoria nula} y un símbolo $s$ está completamente determinado por el alfabeto $S$ y las probabilidades $p_{s_1}, p_{s_2}, \dotsc p_{s_n}$.
+Si la fuente emite señales estadísticamente independientes decimos que es una \textit{fuente de memoria nula} y un símbolo $s$ está completamente determinado por el alfabeto $S$ y las probabilidades $p_1, p_2, \dots , p_n$.
 
 
-% Sea $X$ una variable aleatoria discreta con posibles valores $\{x_1, x_2, \dots\, x_n\}$ y una función de probabilidad $P(X)$, luego:
-% ${\displaystyle \mathrm {H} (X)=\mathbb{E} [\mathrm {I} (X)]=\mathbb{E} [-\log(\mathrm {P} (X))]} = -\sum\limits_{i=1}^{n} p_i \log(p_{x_i})$
-% donde $X$ es una variable aleatoria con posibles valores $\{x_1, ... , x_n\}$ y $P$ es una función de probabilidad.
+% Se puede calcular la información promedio provista por una fuente de memoria nula de la siguiente manera: si el símbolo $s_i$ ocurre, obtenemos una cantidad de información igual a $I(s_i) = -\log(p_{s_i})$.
+% Luego, se define a la entropía como 
 
-Se puede calcular la información promedio provista por una fuente de memoria nula de la siguiente manera: si el símbolo $s_i$ ocurre, obtenemos una cantidad de información igual a $I(s_i) = -\log(p_{s_i})$.
-Luego, se define a la entropía como 
+% \begin{equation}
+%     {\displaystyle \mathrm {H} (S)=\mathbb{E} [\mathrm {I} (S)]=\mathbb{E} [-\log(\mathrm {P} (S))]} = -\sum\limits_{i=1}^{n} p_{s_i} \log(p_{s_i})
+% \end{equation}
 
+
+
+% Los símbolos con menor probabilidad son los que aportan más información. Esto va de la mano con nuestra intuición ya que si entendemos a los símbolos como palabras de un texto, las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
+
+
+Luego, sea $\mathbf{p}=(p_1,\ldots, p_n)$ un vector de probabilidad puntual. Es decir, $p_i\geq 0$ y $\sum_{i=1}^np_i=1$. 
+Definimos la entropía de $\mathbf{p}$ siendo
 \begin{equation}
-    {\displaystyle \mathrm {H} (S)=\mathbb{E} [\mathrm {I} (S)]=\mathbb{E} [-\log(\mathrm {P} (S))]} = -\sum\limits_{i=1}^{n} p_{s_i} \log(p_{s_i})
+H(\mathbf{p})=-\sum_{i=1}^n \log(p_i)p_i.
 \end{equation}
 
+De esta forma, la funci\'on  $H$ satisface las siguientes propiedades: 
 
-
-Los símbolos con menor probabilidad son los que aportan más información. Esto va de la mano con nuestra intuición ya que si entendemos a los símbolos como palabras de un texto, las palabras más utilizadas como \textit{de} o \textit{que} aportan menos información que la palabra \textit{celular}. 
-Observaciones:
 \begin{itemize}
-    \item La entropía es máxima cuando los eventos de $X$ son equiprobables. En este caso, si hay $n$ eventos con una probabilidad de $\frac{1}{n}$ cada uno, el valor de la entropía es de $\log n$.
-    \item La entropía es 0 si y solo si todas las probabilidades son 0 a excepción de una con probabilidad igual a la unidad. 
+\item[(i)] $H(\mathbf{p})=0$ si y solo si $\mathbf{p}$ esta concentrada en un unico punto: existe $i$ tal que $p_i=1$ y $p_j=0$, para todo $j\not=i$. 
+
+\item[(ii)] La funci\'on $H$ se maximiza tomando $\mathbf{p}$ equiprobable: 
+$p_i=1/n$, para todo $i$. 
+
 \end{itemize}
 
-Dado que la entropía es máxima cuando los eventos de $X$ son equiprobables, se suele decir que es una medida del desorden.
+% Dado que la entropía es máxima cuando los eventos de $X$ son equiprobables, se suele decir que es una medida del desorden.
+
+Tenemos entonces que la m\'axima entrop\'ia se realiza cuando todos los elementos tienen igual probabilidad de ocurrir. Ninguno de ellos es m\'as probable que otro. No hay como predecir un valor en particular. En tal caso, decimos que el desorden es m\'aximo. Por el contrario, cuando la probabilidad se concentra en un \'unico punto, estamos en un sistema destermin\'istico: orden total. En este sentido es que $H$ es una medida de \textit{orden} del sistema. Mayor entrop\'ia dice de m\'as desorden; entendiendo desorden como \textit{aleatoriedad completamente impredescible - distribuci\'on  uniforme}.  
 
 
 \section{Tablas y Gráficos}
